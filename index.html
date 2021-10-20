@@ -161,7 +161,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -211,7 +211,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://eyecatwang.github.io/2021/08/25/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">
+    <link itemprop="mainEntityOfPage" href="https://eyecatwang.github.io/2021/10/20/js%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/26106551">
@@ -224,7 +224,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/25/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">冒泡排序</a>
+          <a href="/2021/10/20/js%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">call、 bind、apply区别</a>
         </h2>
 
         <div class="post-meta-container">
@@ -234,16 +234,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2021-08-25 13:36:51" itemprop="dateCreated datePublished" datetime="2021-08-25T13:36:51+08:00">2021-08-25</time>
+      <time title="创建时间：2021-10-20 16:35:10 / 修改时间：17:50:23" itemprop="dateCreated datePublished" datetime="2021-10-20T16:35:10+08:00">2021-10-20</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-19 17:12:19" itemprop="dateModified" datetime="2021-10-19T17:12:19+08:00">2021-10-19</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -264,20 +258,24 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><ol>
-<li><p>比较相邻的元素。如果第一个比第二个大，就交换他们两个。</p>
-</li>
-<li><p>对每一对相邻元素做同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。</p>
-</li>
-<li><p>针对所有的元素重复以上的步骤，除了最后一个。</p>
-</li>
-<li><p>持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比比较</p>
-</li>
-</ol>
-<h2 id="动图演示"><a href="#动图演示" class="headerlink" title="动图演示"></a>动图演示</h2><p><img src="/.io//1.jpeg" alt="原理图"></p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">40</span>, <span class="number">60</span>, <span class="number">60</span>, <span class="number">0</span>, <span class="number">30</span>]</span><br><span class="line"><span class="comment">// 编写方法，实现冒泡</span></span><br><span class="line"><span class="comment">//外层循环，控制趟数，每一次找到一个最大值</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 内层循环,控制比较的次数，并且判断两个数的大小</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; arr.length - <span class="number">1</span> - i; j++) &#123;</span><br><span class="line">        <span class="comment">// 白话解释：如果前面的数大，放到后面(当然是从小到大的冒泡排序)</span></span><br><span class="line">        <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="keyword">var</span> temp = arr[j];</span><br><span class="line">            arr[j] = arr[j + <span class="number">1</span>];</span><br><span class="line">            arr[j + <span class="number">1</span>] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure>
+          <p>js中的数字按照IEEE 754的标准，使用64位双精度浮点型来表示。</p>
+<p>其中符号位S，指数位E，尾数位M分别占了1，11，52位，并在ES5规范中指出了指数位E的取值范围是[-1074, 971].</p>
+<h2 id="精度问题汇总"><a href="#精度问题汇总" class="headerlink" title="精度问题汇总"></a>精度问题汇总</h2><p>想用有限的位来表示无穷的数字，显然是不可能的，因此会出现一些列精度问题</p>
+<p>· 浮点数精度问题，比如，0.1+0.2 !== 0.3<br>· 大数精度问题，比如9999 9999 9999 9999 == 1000 0000 0000 0000 1<br>· toFixed 四舍五入结果不准确，比如1.335.toFixed(2) == 1.33</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1.335</span>).toPrecision(<span class="number">20</span>); <span class="comment">// &quot;1.3349999999999999645&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="性能分析："><a href="#性能分析：" class="headerlink" title="性能分析："></a>性能分析：</h2><p>时间复杂度: O(N^2)<br>空间复杂度: O(1)<br>稳定性：稳定</p>
+<p>而关于大数精度问题，我们可以先看下面这个代码片段：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 能精确表示的整数范围上限,S为1个0，E为11个0，S为52个1</span></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span> === <span class="built_in">Number</span>.MAX_SAFE_INTEGER    <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 能精确表示的整数范围下限,S为1个1，E为11个0，S为52个1</span></span><br><span class="line">-(<span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span>) === <span class="built_in">Number</span>.MIN_SAFE_INTEGER    <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 能表示的最大数字，S为1个0，E为971，S为52个1</span></span><br><span class="line">(<span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span>) * <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">971</span>) === <span class="built_in">Number</span>.MAX_VALUE    <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 能表示的最接近于0的正数，S为1个0，E为-1074，S为0</span></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, -<span class="number">1074</span>) === <span class="built_in">Number</span>.MIN_VALUE <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>通过以上可以明白，[MIN_SAFE_INTEGER, MAX_SAFE_INTEGER] 的整数都可以精确表示，但是超出这个范围的整数就不一定能精确表示。这样就会产生所谓的大数精度丢失问题。</p>
+<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><p>首先考虑的是如何解决浮点数运算的精度问题，有 3 种思路：</p>
+<p>· 考虑到每次浮点数运算的偏差非常小(其实不然)，可以对结果进行指定精度的四舍五入，比如可以parseFloat(result.toFixed(12));<br>· 将浮点数转为整数运算，再对结果做除法。比如0.1 + 0.2，可以转化为(1*2)/3。<br>· 把浮点数转化为字符串，模拟实际运算的过程。</p>
+<p>先来看第一种方案，在大多数情况下，它可以得到正确结果，但是对一些极端情况，toFixed 到 12 是不够的，比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">210000</span> * <span class="number">10000</span>  * <span class="number">1000</span> * <span class="number">8.2</span>    <span class="comment">// 17219999999999.998</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="number">17219999999999.998</span>.toFixed(<span class="number">12</span>));    <span class="comment">// 17219999999999.998，而正确结果为 17220000000000</span></span><br></pre></td></tr></table></figure>
+<p>上面的情况，如果想让结果正确，需要 toFixed(2)，这显然是不可接受的。</p>
+<p>再看第二种方案，比如 number-precision 这个库就是使用的这种方案，但是这也是有问题的，比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这两个浮点数，转化为整数之后，相乘的结果已经超过了 MAX_SAFE_INTEGER</span></span><br><span class="line"><span class="number">123456.789</span> * <span class="number">123456.789</span>     <span class="comment">// 转化为 (123456789 * 123456789)/1000000，结果是 15241578750.19052</span></span><br></pre></td></tr></table></figure>
+
+<p>所以，最终考虑使用第三种方案，目前已经有了很多较为成熟的库，比如 bignumber.js，decimal.js，以及big.js等。我们可以根据自己的需求来选择对应的工具。并且，这些库不仅解决了浮点数的运算精度问题，还支持了大数运算，并且修复了原生toFixed结果不准确的问题。</p>
 
       
     </div>
@@ -297,7 +295,7 @@
 
 
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>

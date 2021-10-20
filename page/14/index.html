@@ -21,27 +21,25 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"eyecatwang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="作用域什么是作用域？作用域为可访问变量，对象，函数的集合。 作用域就是变量与函数的可访问范围，即作用域控制着变量与函数的可见性和生命周期。 在js中，变量的作用域分为全局作用域和局部作用域两种。一个变量是全局作用域还是局部作用域，主要看变量声明的位置。 全局作用域： 最外层函数和在最外层函数外面定义的变量 没有通过关键字”var”声明的变量 浏览器中，window对象的属性  局部作用域 在函数内">
-<meta property="og:type" content="article">
-<meta property="og:title" content="作用域">
-<meta property="og:url" content="https://eyecatwang.github.io/2018/07/06/%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+<meta name="description" content="eyecatwang的学习日记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="eyecatwang">
+<meta property="og:url" content="https://eyecatwang.github.io/page/14/">
 <meta property="og:site_name" content="eyecatwang">
-<meta property="og:description" content="作用域什么是作用域？作用域为可访问变量，对象，函数的集合。 作用域就是变量与函数的可访问范围，即作用域控制着变量与函数的可见性和生命周期。 在js中，变量的作用域分为全局作用域和局部作用域两种。一个变量是全局作用域还是局部作用域，主要看变量声明的位置。 全局作用域： 最外层函数和在最外层函数外面定义的变量 没有通过关键字”var”声明的变量 浏览器中，window对象的属性  局部作用域 在函数内">
+<meta property="og:description" content="eyecatwang的学习日记">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-07-06T05:35:51.000Z">
-<meta property="article:modified_time" content="2021-10-19T09:12:19.180Z">
 <meta property="article:author" content="eyecatwang">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://eyecatwang.github.io/2018/07/06/%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+<link rel="canonical" href="https://eyecatwang.github.io/page/14/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://eyecatwang.github.io/2018/07/06/%E4%BD%9C%E7%94%A8%E5%9F%9F/","path":"2018/07/06/作用域/","title":"作用域"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/14/index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>作用域 | eyecatwang</title>
+<title>eyecatwang</title>
   
 
 
@@ -136,7 +134,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -149,7 +147,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">1.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE"><span class="nav-number">2.</span> <span class="nav-text">作用域链</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -204,18 +201,17 @@
 </noscript>
 
 
-    <div class="main-inner post posts-expand">
+    <div class="main-inner index posts-expand">
 
-
-  
+    
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://eyecatwang.github.io/2018/07/06/%E4%BD%9C%E7%94%A8%E5%9F%9F/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://eyecatwang.github.io/2018/07/06/%E5%8E%9F%E5%9E%8B%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/26106551">
@@ -227,9 +223,9 @@
       <meta itemprop="name" content="eyecatwang">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          作用域
-        </h1>
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/07/06/%E5%8E%9F%E5%9E%8B%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE/" class="post-title-link" itemprop="url">原型及原型链</a>
+        </h2>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -239,7 +235,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2018-07-06 13:35:51" itemprop="dateCreated datePublished" datetime="2018-07-06T13:35:51+08:00">2018-07-06</time>
+      <time title="创建时间：2018-07-06 13:24:45" itemprop="dateCreated datePublished" datetime="2018-07-06T13:24:45+08:00">2018-07-06</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
@@ -268,47 +264,38 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><h3 id="什么是作用域？"><a href="#什么是作用域？" class="headerlink" title="什么是作用域？"></a>什么是作用域？</h3><p>作用域为可访问变量，对象，函数的集合。</p>
-<p>作用域就是变量与函数的可访问范围，即作用域控制着变量与函数的可见性和生命周期。</p>
-<p>在js中，变量的作用域分为全局作用域和局部作用域两种。<br>一个变量是全局作用域还是局部作用域，主要看变量声明的位置。</p>
-<h4 id="全局作用域："><a href="#全局作用域：" class="headerlink" title="全局作用域："></a>全局作用域：</h4><ol>
-<li>最外层函数和在最外层函数外面定义的变量</li>
-<li>没有通过关键字”var”声明的变量</li>
-<li>浏览器中，window对象的属性</li>
-</ol>
-<h4 id="局部作用域"><a href="#局部作用域" class="headerlink" title="局部作用域"></a>局部作用域</h4><ol>
-<li>在函数内部就是局部作用域，这个代码的名字只在函数的内部起作用</li>
-<li>调用函数时创建函数作用域，函数执行完毕之后，函数作用域销毁；</li>
-<li>每调用一次函数就会创建一个新的函数作用域，它们之间是相互独立的。</li>
-</ol>
-<h3 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h3><p>在ES6中新增加了一个作用域就是会计作用域，通过let和const声明。那块级作用域什么情况下被创建内？答案如下</p>
-<p>在一个函数内部</p>
-<p>在一个代码块内部（{}包裹的代码块）</p>
-<p>let声明的愈发与var的语法一致，基本上可以用let代替var,但会讲变量的作用域限制在当前代码块中。</p>
-<p>块级作用域的特点：</p>
-<p>声明变量不会提升到代码块顶部</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Scope</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(scope) <span class="comment">// Uncaught ReferenceError: value is not defined</span></span><br><span class="line"><span class="keyword">let</span> scope = <span class="string">&quot;块级&quot;</span></span><br><span class="line"><span class="built_in">console</span>.log(scope) <span class="comment">// 块级</span></span><br><span class="line">&#125;</span><br><span class="line">Scope()</span><br></pre></td></tr></table></figure>
-
-<p>禁止重复声明</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Scope</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">let</span> scope = <span class="string">&#x27;a&#x27;</span></span><br><span class="line"> <span class="comment">//let scope = &#x27;b&#x27; // Uncaught SyntaxError: Identifier &#x27;scope&#x27; has already been declared</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h2 id="prototype"><a href="#prototype" class="headerlink" title="prototype"></a>prototype</h2><p>每一个js对象(null除外)在创建的时候就会与之关联另一个对象【Prototype】，这个对象就是我们所说的原型。每个对象都会从原型“继承”属性。</p>
+<p>举个例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line"><span class="attr">name</span>: <span class="string">&quot;zhangsan&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> newObj = <span class="built_in">Object</span>.create(obj)</span><br><span class="line"></span><br><span class="line">newObj.name <span class="comment">// zhangsan</span></span><br></pre></td></tr></table></figure>
 
 
+<p>上述例子中，newObj对象的【Prototype】属性引用了obj对象，也就是说newObj对象的【Prototype】指向了obj对象，并继承了obj的属性。</p>
+<p>几乎所有的对象在创建时【Prototype】属性都会被赋予非空的值，由【Prototype】串联起来的对象的关系链条我们就称为【Prototype】链也就是原型链，一般情况下【Prototype】链的最顶层是Object.prototype</p>
+<p>每个函数都有一个 prototype 属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.name = <span class="string">&quot;zhangsan&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person()</span><br><span class="line"></span><br><span class="line">person.name <span class="comment">// zhangsan</span></span><br></pre></td></tr></table></figure>
 
-<p>小技巧：在循环中可以用let const声明变量</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt; <span class="number">100</span>; i++)&#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(i) <span class="comment">// Uncaught ReferenceError: i is not defined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i&lt; <span class="number">100</span>; i++)&#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(i) <span class="comment">// 100</span></span><br></pre></td></tr></table></figure>
+<p><img src="/.io//1.png"></p>
+<h2 id="proto"><a href="#proto" class="headerlink" title="proto"></a>proto</h2><p>每一个js对象（除null）都具有一个属性叫proto，这个属性会指向改对象的原型。</p>
+<p>对象可以通过__proto__访问内部的【Prototype】属性，即我们可以通过__proto__访问对象的原型。</p>
+<p>ps: __proto__是一种非标准的方法，实际开发中我们应该使用Object.getPrototypeOf()来获取对象的原型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</span><br><span class="line"></span><br><span class="line">person.__proto__ === Person.prototype <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p><img src="/.io//2.png"></p>
+<h2 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h2><p>每个原型都有一个constructor属性指向关联的构造函数，实例原型指向构造函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">person.__proto__ == Person.prototype <span class="comment">// true</span></span><br><span class="line">Person === Person.prototype.constructor <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.getPrototypeOf(person) === Person.prototype <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
+<p>补充说明：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</span><br><span class="line">person.constructor === Person<span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="作用域的目的"><a href="#作用域的目的" class="headerlink" title="作用域的目的"></a>作用域的目的</h3><p>是为了提高程序的可靠性，更重要的是减少命名冲突</p>
-<h3 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h3><p>在js中，根据作用域的不同，变量可以分为两种：<strong>全局变量</strong>和<strong>局部变量</strong></p>
-<h4 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h4><ul>
-<li>在全局作用域下声明的变量叫做全局变量</li>
-<li>全局变量在全局任何位置都可以使用，全局作用域中无法访问到局部作用域中的变量<h4 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h4></li>
-<li>在局部作用域下声明的变量叫做局部变量</li>
-<li>局部变量只能在函数内部使用，在局部作用域中可以访问到全局变量</li>
-</ul>
-<h2 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h2><p>在js代码运行中，所有用到的变量都需要去当前上下文环境中查找，当找不到的时候，就会继续查找上层的环境变量。<br>这样一级一级向上查找的过程，就组合成了一个作用域链。</p>
-<p>所以说，<strong>作用域链</strong>与一个<strong>执行上下文</strong>相关，是内部上下文所有变量对象（包含父变量对象）的列表，用于变量查询。</p>
+<p>当获取 person.constructor 时，其实 person 中并没有 constructor 属性,当不能读取到constructor 属性时，会从 person 的原型也就是 Person.prototype 中读取，正好原型中有该属性，所以：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">person.constructor === Person.prototype.constructor</span><br></pre></td></tr></table></figure>
+<p><img src="/.io//3.png"></p>
+<h2 id="实例与原型"><a href="#实例与原型" class="headerlink" title="实例与原型"></a>实例与原型</h2><p>当读取实例的属性时，如果找不到，就会查找与对象关联的原型中的属性，如果还查不到，就去找原型的原型，一直找到最顶层为止。<br><img src="/.io//4.png"></p>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>简单的回顾一下构造函数、原型和实例的关系：每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。那么假如我们让原型对象等于另一个类型的实例，结果会怎样？显然，此时的原型对象将包含一个指向另一个原型的指针，相应地，另一个原型中也包含着一个指向另一个构造函数的指针。假如另一个原型又是另一个类型的实例，那么上述关系依然成立。如此层层递进，就构成了实例与原型的链条。这就是所谓的原型链的基本概念。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.prototype.__proto__ === <span class="literal">null</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
+<p><img src="/.io//5.png"></p>
+
+      
     </div>
 
     
@@ -316,38 +303,8 @@
     
 
     <footer class="post-footer">
-          
-
-<div class="post-copyright">
-<ul>
-  <li class="post-copyright-author">
-      <strong>本文作者： </strong>eyecatwang
-  </li>
-  <li class="post-copyright-link">
-      <strong>本文链接：</strong>
-      <a href="https://eyecatwang.github.io/2018/07/06/%E4%BD%9C%E7%94%A8%E5%9F%9F/" title="作用域">https://eyecatwang.github.io/2018/07/06/作用域/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2018/07/06/%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E6%96%B9%E5%BC%8F/" rel="prev" title="创建对象方式">
-                  <i class="fa fa-chevron-left"></i> 创建对象方式
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2021/07/06/this%E6%8C%87%E5%90%91/" rel="next" title="this指向">
-                  this指向 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        <div class="post-eof"></div>
+      
     </footer>
   </article>
 </div>
@@ -355,7 +312,9 @@
 
 
 
-
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span>
+  </nav>
 
 </div>
   </main>

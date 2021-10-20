@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>call、 bind、apply区别</title>
+    <url>/2021/08/19/call%E3%80%81apply%E5%92%8Cbind%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h1 id="call、-bind、apply区别"><a href="#call、-bind、apply区别" class="headerlink" title="call、 bind、apply区别"></a>call、 bind、apply区别</h1><p>我们都知道call apply bind都可以改变函数调用的this指向。那么它们三者有什么区别，什么时候该用哪个呢？</p>
+<p>我们先来看MDN语法说明</p>
+<h2 id="语法说明"><a href="#语法说明" class="headerlink" title="语法说明"></a>语法说明</h2><h3 id="1-call语法"><a href="#1-call语法" class="headerlink" title="1. call语法"></a>1. call语法</h3><ul>
+<li>fun.call(thisArg, arg1, arg2, …)</li>
+<li>thisArg: 在fun函数运行时指定的this值。需要注意的是，指定的this值并不一定是该函数执行时真正的this值，如果这个函数处于非严格模式下，则指定为null和undefined的this值会自动指向全局对象(浏览器中就是window对象)，同时值为原始值(数字，字符串，布尔值)的this会指向该原始值的自动包装对象。</li>
+<li>arg1, arg2, … 指定的参数列表</li>
+</ul>
+<h3 id="2-apply语法"><a href="#2-apply语法" class="headerlink" title="2. apply语法"></a>2. apply语法</h3><ul>
+<li>fun.apply(thisArg, [argsArray])</li>
+<li>thisArg 在 fun 函数运行时指定的 this 值。需要注意的是，指定的 this 值并不一定是该函数执行时真正的 this 值，如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自动指向全局对象（浏览器中就是window对象），同时值为原始值（数字，字符串，布尔值）的 this 会指向该原始值的自动包装对象。</li>
+<li>argsArray 一个数组或者类数组对象，其中的数组元素将作为单独的参数传给 fun 函数。如果该参数的值为null 或 undefined，则表示不需要传入任何参数。从ECMAScript 5 开始可以使用类数组对象。</li>
+</ul>
+<h3 id="3-bind语法"><a href="#3-bind语法" class="headerlink" title="3. bind语法"></a>3. bind语法</h3><ul>
+<li>fun.bind(thisArg[, arg1[, arg2[, …]]])</li>
+<li>thisArg 当绑定函数被调用时，该参数会作为原函数运行时的 this 指向。当使用new 操作符调用绑定函数时，该参数无效。</li>
+<li>arg1, arg2, … 当绑定函数被调用时，这些参数将置于实参之前传递给被绑定的方法。</li>
+</ul>
+<h2 id="例子说明"><a href="#例子说明" class="headerlink" title="例子说明"></a>例子说明</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 有只猫叫小黑，小黑会吃鱼</span></span><br><span class="line"><span class="keyword">const</span> cat = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;小黑&#x27;</span>,</span><br><span class="line">    <span class="function"><span class="title">eatFish</span>(<span class="params">...args</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;this指向=&gt;&#x27;</span>, <span class="built_in">this</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;...args&#x27;</span>, args);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&#x27;吃鱼&#x27;</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 有只狗叫大毛，大毛会吃骨头</span></span><br><span class="line"><span class="keyword">const</span> dog = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;大毛&#x27;</span>,</span><br><span class="line">    <span class="function"><span class="title">eatBone</span>(<span class="params">...args</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;this指向=&gt;&#x27;</span>, <span class="built_in">this</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;...args&#x27;</span>, args);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&#x27;吃骨头&#x27;</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;=================== call =========================&#x27;</span>);</span><br><span class="line"><span class="comment">// 有一天大毛想吃鱼了，可是它不知道怎么吃。怎么办？小黑说我吃的时候喂你吃</span></span><br><span class="line">cat.eatFish.call(dog, <span class="string">&#x27;汪汪汪&#x27;</span>, <span class="string">&#x27;call&#x27;</span>)</span><br><span class="line"><span class="comment">// 大毛为了表示感谢，决定下次吃骨头的时候也喂小黑吃</span></span><br><span class="line">dog.eatBone.call(cat, <span class="string">&#x27;喵喵喵&#x27;</span>, <span class="string">&#x27;call&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;=================== apply =========================&#x27;</span>);</span><br><span class="line">cat.eatFish.apply(dog, [<span class="string">&#x27;汪汪汪&#x27;</span>, <span class="string">&#x27;apply&#x27;</span>])</span><br><span class="line">dog.eatBone.apply(cat, [<span class="string">&#x27;喵喵喵&#x27;</span>, <span class="string">&#x27;apply&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;=================== bind =========================&#x27;</span>);</span><br><span class="line"><span class="comment">// 有一天他们觉得每次吃的时候再喂太麻烦了。干脆直接教对方怎么吃</span></span><br><span class="line"><span class="keyword">const</span> test1 = cat.eatFish.bind(dog, <span class="string">&#x27;汪汪汪&#x27;</span>, <span class="string">&#x27;bind&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> test2 = dog.eatBone.bind(cat, <span class="string">&#x27;喵喵喵&#x27;</span>, <span class="string">&#x27;bind&#x27;</span>)</span><br><span class="line">test1()</span><br><span class="line">test2()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>call跟apply的用法几乎一样，唯一的不同就是传递的参数不同，call只能一个参数一个参数的传入。</p>
+</li>
+<li><p>apply则只支持传入一个数组，哪怕是一个参数也要是数组形式。最终调用函数时候这个数组会拆成一个个参数分别传入。</p>
+</li>
+<li><p>至于bind方法，他是直接改变这个函数的this指向并且返回一个新的函数，之后再次调用这个函数的时候this都是指向bind绑定的第一个参数。bind传餐方式跟call方法一致。</p>
+</li>
+</ul>
+<p>由于apply函数传参的特殊性，我们又衍生出了一个黑魔法。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 如果一个数组我们已知里面全都是数字，想要知道最大的那个数，由于Array没有max方法，Math对象上有</span></span><br><span class="line"><span class="comment">// 我们可以根据apply传递参数的特性将这个数组当成参数传入</span></span><br><span class="line"><span class="comment">// 最终Math.max函数调用的时候会将apply的数组里面的参数一个一个传入，恰好符合Math.max的参数传递方式</span></span><br><span class="line"><span class="comment">// 这样变相的实现了数组的max方法。min方法也同理</span></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="keyword">const</span> max = <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, arr)</span><br><span class="line"><span class="built_in">console</span>.log(max)    <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>箭头函数没有this，会忽律第一个参数</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> cat = &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;小黑&quot;</span>,</span><br><span class="line">        <span class="attr">eatFish</span>: <span class="function">(<span class="params">...args</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;this 指向=》&quot;</span>, <span class="built_in">this</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;...args=&gt;&quot;</span>, args);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&quot;吃鱼&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> dog = &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;大毛&quot;</span>,</span><br><span class="line">        <span class="function"><span class="title">eatBone</span>(<span class="params">...args</span>)</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;this 指向=》&quot;</span>, <span class="built_in">this</span>);</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;...args=&gt;&quot;</span>, args);</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&quot;吃骨头&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cat.eatFish.call(dog, <span class="string">&quot;1&quot;</span>, <span class="string">&quot;2&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>call 和 apply 的主要作用，是改变对象的执行上下文，并且是立即执行的。它们在参数上的写法略有区别。</p>
+<p>bind 也能改变对象的执行上下文，它与 call 和 apply 不同的是，返回值是一个函数，并且需要稍后再调用一下，才会执行。</p>
+]]></content>
+      <categories>
+        <category>js基础</category>
+      </categories>
+  </entry>
+  <entry>
     <title>js实现call, apply, bind方法</title>
     <url>/2021/08/19/js%E5%AE%9E%E7%8E%B0call,%20apply,%20bind%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p>#实现call方法</p>
@@ -11,6 +53,32 @@
 
 <p>#实现bind方法</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;叫爸爸&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> son = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;叫儿子&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="built_in">this</span>.name) </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Function</span>.prototype.bind_ = <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//判断是否为null或者undefined,同时考虑传递参数不是对象情况</span></span><br><span class="line">    obj = obj ? <span class="built_in">Object</span>(obj) : <span class="built_in">window</span>;</span><br><span class="line">    <span class="keyword">var</span> args = [];</span><br><span class="line">    <span class="comment">// 注意i从1开始</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>, len = <span class="built_in">arguments</span>.length; i &lt; len; i++) &#123;</span><br><span class="line">        args.push(<span class="built_in">arguments</span>[i])</span><br><span class="line">    &#125;;</span><br><span class="line">    obj.fn = <span class="built_in">this</span>; <span class="comment">// 此时this就是函数fn</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        obj.fn(...args)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>js基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>call、 bind、apply区别</title>
+    <url>/2021/10/20/js%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>js中的数字按照IEEE 754的标准，使用64位双精度浮点型来表示。</p>
+<p>其中符号位S，指数位E，尾数位M分别占了1，11，52位，并在ES5规范中指出了指数位E的取值范围是[-1074, 971].</p>
+<h2 id="精度问题汇总"><a href="#精度问题汇总" class="headerlink" title="精度问题汇总"></a>精度问题汇总</h2><p>想用有限的位来表示无穷的数字，显然是不可能的，因此会出现一些列精度问题</p>
+<p>· 浮点数精度问题，比如，0.1+0.2 !== 0.3<br>· 大数精度问题，比如9999 9999 9999 9999 == 1000 0000 0000 0000 1<br>· toFixed 四舍五入结果不准确，比如1.335.toFixed(2) == 1.33</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="number">1.335</span>).toPrecision(<span class="number">20</span>); <span class="comment">// &quot;1.3349999999999999645&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>而关于大数精度问题，我们可以先看下面这个代码片段：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 能精确表示的整数范围上限,S为1个0，E为11个0，S为52个1</span></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span> === <span class="built_in">Number</span>.MAX_SAFE_INTEGER    <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 能精确表示的整数范围下限,S为1个1，E为11个0，S为52个1</span></span><br><span class="line">-(<span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span>) === <span class="built_in">Number</span>.MIN_SAFE_INTEGER    <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 能表示的最大数字，S为1个0，E为971，S为52个1</span></span><br><span class="line">(<span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span>) * <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">971</span>) === <span class="built_in">Number</span>.MAX_VALUE    <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 能表示的最接近于0的正数，S为1个0，E为-1074，S为0</span></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, -<span class="number">1074</span>) === <span class="built_in">Number</span>.MIN_VALUE <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>通过以上可以明白，[MIN_SAFE_INTEGER, MAX_SAFE_INTEGER] 的整数都可以精确表示，但是超出这个范围的整数就不一定能精确表示。这样就会产生所谓的大数精度丢失问题。</p>
+<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><p>首先考虑的是如何解决浮点数运算的精度问题，有 3 种思路：</p>
+<p>· 考虑到每次浮点数运算的偏差非常小(其实不然)，可以对结果进行指定精度的四舍五入，比如可以parseFloat(result.toFixed(12));<br>· 将浮点数转为整数运算，再对结果做除法。比如0.1 + 0.2，可以转化为(1*2)/3。<br>· 把浮点数转化为字符串，模拟实际运算的过程。</p>
+<p>先来看第一种方案，在大多数情况下，它可以得到正确结果，但是对一些极端情况，toFixed 到 12 是不够的，比如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">210000</span> * <span class="number">10000</span>  * <span class="number">1000</span> * <span class="number">8.2</span>    <span class="comment">// 17219999999999.998</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="number">17219999999999.998</span>.toFixed(<span class="number">12</span>));    <span class="comment">// 17219999999999.998，而正确结果为 17220000000000</span></span><br></pre></td></tr></table></figure>
+<p>上面的情况，如果想让结果正确，需要 toFixed(2)，这显然是不可接受的。</p>
+<p>再看第二种方案，比如 number-precision 这个库就是使用的这种方案，但是这也是有问题的，比如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这两个浮点数，转化为整数之后，相乘的结果已经超过了 MAX_SAFE_INTEGER</span></span><br><span class="line"><span class="number">123456.789</span> * <span class="number">123456.789</span>     <span class="comment">// 转化为 (123456789 * 123456789)/1000000，结果是 15241578750.19052</span></span><br></pre></td></tr></table></figure>
+
+<p>所以，最终考虑使用第三种方案，目前已经有了很多较为成熟的库，比如 bignumber.js，decimal.js，以及big.js等。我们可以根据自己的需求来选择对应的工具。并且，这些库不仅解决了浮点数的运算精度问题，还支持了大数运算，并且修复了原生toFixed结果不准确的问题。</p>
 ]]></content>
       <categories>
         <category>js基础</category>
@@ -176,48 +244,6 @@
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">40</span>, <span class="number">60</span>, <span class="number">60</span>, <span class="number">0</span>, <span class="number">30</span>]</span><br><span class="line"><span class="comment">// 编写方法，实现冒泡</span></span><br><span class="line"><span class="comment">//外层循环，控制趟数，每一次找到一个最大值</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 内层循环,控制比较的次数，并且判断两个数的大小</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; arr.length - <span class="number">1</span> - i; j++) &#123;</span><br><span class="line">        <span class="comment">// 白话解释：如果前面的数大，放到后面(当然是从小到大的冒泡排序)</span></span><br><span class="line">        <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="keyword">var</span> temp = arr[j];</span><br><span class="line">            arr[j] = arr[j + <span class="number">1</span>];</span><br><span class="line">            arr[j + <span class="number">1</span>] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure>
 
 <h2 id="性能分析："><a href="#性能分析：" class="headerlink" title="性能分析："></a>性能分析：</h2><p>时间复杂度: O(N^2)<br>空间复杂度: O(1)<br>稳定性：稳定</p>
-]]></content>
-      <categories>
-        <category>js基础</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>call、 bind、apply区别</title>
-    <url>/2021/08/19/call%E3%80%81apply%E5%92%8Cbind%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<h1 id="call、-bind、apply区别"><a href="#call、-bind、apply区别" class="headerlink" title="call、 bind、apply区别"></a>call、 bind、apply区别</h1><p>我们都知道call apply bind都可以改变函数调用的this指向。那么它们三者有什么区别，什么时候该用哪个呢？</p>
-<p>我们先来看MDN语法说明</p>
-<h2 id="语法说明"><a href="#语法说明" class="headerlink" title="语法说明"></a>语法说明</h2><h3 id="1-call语法"><a href="#1-call语法" class="headerlink" title="1. call语法"></a>1. call语法</h3><ul>
-<li>fun.call(thisArg, arg1, arg2, …)</li>
-<li>thisArg: 在fun函数运行时指定的this值。需要注意的是，指定的this值并不一定是该函数执行时真正的this值，如果这个函数处于非严格模式下，则指定为null和undefined的this值会自动指向全局对象(浏览器中就是window对象)，同时值为原始值(数字，字符串，布尔值)的this会指向该原始值的自动包装对象。</li>
-<li>arg1, arg2, … 指定的参数列表</li>
-</ul>
-<h3 id="2-apply语法"><a href="#2-apply语法" class="headerlink" title="2. apply语法"></a>2. apply语法</h3><ul>
-<li>fun.apply(thisArg, [argsArray])</li>
-<li>thisArg 在 fun 函数运行时指定的 this 值。需要注意的是，指定的 this 值并不一定是该函数执行时真正的 this 值，如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自动指向全局对象（浏览器中就是window对象），同时值为原始值（数字，字符串，布尔值）的 this 会指向该原始值的自动包装对象。</li>
-<li>argsArray 一个数组或者类数组对象，其中的数组元素将作为单独的参数传给 fun 函数。如果该参数的值为null 或 undefined，则表示不需要传入任何参数。从ECMAScript 5 开始可以使用类数组对象。</li>
-</ul>
-<h3 id="3-bind语法"><a href="#3-bind语法" class="headerlink" title="3. bind语法"></a>3. bind语法</h3><ul>
-<li>fun.bind(thisArg[, arg1[, arg2[, …]]])</li>
-<li>thisArg 当绑定函数被调用时，该参数会作为原函数运行时的 this 指向。当使用new 操作符调用绑定函数时，该参数无效。</li>
-<li>arg1, arg2, … 当绑定函数被调用时，这些参数将置于实参之前传递给被绑定的方法。</li>
-</ul>
-<h2 id="例子说明"><a href="#例子说明" class="headerlink" title="例子说明"></a>例子说明</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 有只猫叫小黑，小黑会吃鱼</span></span><br><span class="line"><span class="keyword">const</span> cat = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;小黑&#x27;</span>,</span><br><span class="line">    <span class="function"><span class="title">eatFish</span>(<span class="params">...args</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;this指向=&gt;&#x27;</span>, <span class="built_in">this</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;...args&#x27;</span>, args);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&#x27;吃鱼&#x27;</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 有只狗叫大毛，大毛会吃骨头</span></span><br><span class="line"><span class="keyword">const</span> dog = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;大毛&#x27;</span>,</span><br><span class="line">    <span class="function"><span class="title">eatBone</span>(<span class="params">...args</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;this指向=&gt;&#x27;</span>, <span class="built_in">this</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;...args&#x27;</span>, args);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&#x27;吃骨头&#x27;</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;=================== call =========================&#x27;</span>);</span><br><span class="line"><span class="comment">// 有一天大毛想吃鱼了，可是它不知道怎么吃。怎么办？小黑说我吃的时候喂你吃</span></span><br><span class="line">cat.eatFish.call(dog, <span class="string">&#x27;汪汪汪&#x27;</span>, <span class="string">&#x27;call&#x27;</span>)</span><br><span class="line"><span class="comment">// 大毛为了表示感谢，决定下次吃骨头的时候也喂小黑吃</span></span><br><span class="line">dog.eatBone.call(cat, <span class="string">&#x27;喵喵喵&#x27;</span>, <span class="string">&#x27;call&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;=================== apply =========================&#x27;</span>);</span><br><span class="line">cat.eatFish.apply(dog, [<span class="string">&#x27;汪汪汪&#x27;</span>, <span class="string">&#x27;apply&#x27;</span>])</span><br><span class="line">dog.eatBone.apply(cat, [<span class="string">&#x27;喵喵喵&#x27;</span>, <span class="string">&#x27;apply&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;=================== bind =========================&#x27;</span>);</span><br><span class="line"><span class="comment">// 有一天他们觉得每次吃的时候再喂太麻烦了。干脆直接教对方怎么吃</span></span><br><span class="line"><span class="keyword">const</span> test1 = cat.eatFish.bind(dog, <span class="string">&#x27;汪汪汪&#x27;</span>, <span class="string">&#x27;bind&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> test2 = dog.eatBone.bind(cat, <span class="string">&#x27;喵喵喵&#x27;</span>, <span class="string">&#x27;bind&#x27;</span>)</span><br><span class="line">test1()</span><br><span class="line">test2()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>call跟apply的用法几乎一样，唯一的不同就是传递的参数不同，call只能一个参数一个参数的传入。</p>
-</li>
-<li><p>apply则只支持传入一个数组，哪怕是一个参数也要是数组形式。最终调用函数时候这个数组会拆成一个个参数分别传入。</p>
-</li>
-<li><p>至于bind方法，他是直接改变这个函数的this指向并且返回一个新的函数，之后再次调用这个函数的时候this都是指向bind绑定的第一个参数。bind传餐方式跟call方法一致。</p>
-</li>
-</ul>
-<p>由于apply函数传参的特殊性，我们又衍生出了一个黑魔法。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 如果一个数组我们已知里面全都是数字，想要知道最大的那个数，由于Array没有max方法，Math对象上有</span></span><br><span class="line"><span class="comment">// 我们可以根据apply传递参数的特性将这个数组当成参数传入</span></span><br><span class="line"><span class="comment">// 最终Math.max函数调用的时候会将apply的数组里面的参数一个一个传入，恰好符合Math.max的参数传递方式</span></span><br><span class="line"><span class="comment">// 这样变相的实现了数组的max方法。min方法也同理</span></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="keyword">const</span> max = <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, arr)</span><br><span class="line"><span class="built_in">console</span>.log(max)    <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>箭头函数没有this，会忽律第一个参数</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> cat = &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;小黑&quot;</span>,</span><br><span class="line">        <span class="attr">eatFish</span>: <span class="function">(<span class="params">...args</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;this 指向=》&quot;</span>, <span class="built_in">this</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;...args=&gt;&quot;</span>, args);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&quot;吃鱼&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> dog = &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;大毛&quot;</span>,</span><br><span class="line">        <span class="function"><span class="title">eatBone</span>(<span class="params">...args</span>)</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;this 指向=》&quot;</span>, <span class="built_in">this</span>);</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;...args=&gt;&quot;</span>, args);</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&quot;吃骨头&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cat.eatFish.call(dog, <span class="string">&quot;1&quot;</span>, <span class="string">&quot;2&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>call 和 apply 的主要作用，是改变对象的执行上下文，并且是立即执行的。它们在参数上的写法略有区别。</p>
-<p>bind 也能改变对象的执行上下文，它与 call 和 apply 不同的是，返回值是一个函数，并且需要稍后再调用一下，才会执行。</p>
 ]]></content>
       <categories>
         <category>js基础</category>
@@ -418,6 +444,26 @@
       </categories>
   </entry>
   <entry>
+    <title>数据类型</title>
+    <url>/2021/08/19/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<h1 id="js中基本数据类型"><a href="#js中基本数据类型" class="headerlink" title="js中基本数据类型"></a>js中基本数据类型</h1><h2 id="原始数据类型"><a href="#原始数据类型" class="headerlink" title="原始数据类型"></a>原始数据类型</h2><ul>
+<li>number</li>
+<li>string</li>
+<li>boolean</li>
+<li>null</li>
+<li>undefined</li>
+<li>symbol(es6)</li>
+<li>bigint(es10)</li>
+</ul>
+<h2 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h2><ul>
+<li>object (包括function/array/object)</li>
+</ul>
+]]></content>
+      <categories>
+        <category>js基础</category>
+      </categories>
+  </entry>
+  <entry>
     <title>数组操作</title>
     <url>/2021/08/19/%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<h1 id="最常见的几种数组操作方法归纳总结"><a href="#最常见的几种数组操作方法归纳总结" class="headerlink" title="最常见的几种数组操作方法归纳总结"></a>最常见的几种数组操作方法归纳总结</h1><h2 id="1-shift-方法：把数组的第一个元素删除，并返回第一个元素的值"><a href="#1-shift-方法：把数组的第一个元素删除，并返回第一个元素的值" class="headerlink" title="1.shift() 方法：把数组的第一个元素删除，并返回第一个元素的值"></a>1.shift() 方法：把数组的第一个元素删除，并返回第一个元素的值</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.shift() <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
@@ -436,26 +482,6 @@
 
 <h2 id="9-unshift：将参数添加到原数组开头，并返回数组的长度"><a href="#9-unshift：将参数添加到原数组开头，并返回数组的长度" class="headerlink" title="9.unshift：将参数添加到原数组开头，并返回数组的长度"></a>9.unshift：将参数添加到原数组开头，并返回数组的长度</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">const</span> len = arr.unshift(<span class="number">0</span>); <span class="comment">// 5</span></span><br><span class="line"><span class="built_in">console</span>.log(arr) <span class="comment">// [0,1,2,3,4]</span></span><br></pre></td></tr></table></figure>
 <h2 id="10-sort-orderfunction-：按指定的参数对数组进行排序"><a href="#10-sort-orderfunction-：按指定的参数对数组进行排序" class="headerlink" title="10.sort(orderfunction)：按指定的参数对数组进行排序"></a>10.sort(orderfunction)：按指定的参数对数组进行排序</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line"><span class="keyword">const</span> b = arr.sort(); <span class="comment">// [1,2,3,4]</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// [1,2,3,4]</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>js基础</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>数据类型</title>
-    <url>/2021/08/19/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<h1 id="js中基本数据类型"><a href="#js中基本数据类型" class="headerlink" title="js中基本数据类型"></a>js中基本数据类型</h1><h2 id="原始数据类型"><a href="#原始数据类型" class="headerlink" title="原始数据类型"></a>原始数据类型</h2><ul>
-<li>number</li>
-<li>string</li>
-<li>boolean</li>
-<li>null</li>
-<li>undefined</li>
-<li>symbol(es6)</li>
-<li>bigint(es10)</li>
-</ul>
-<h2 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h2><ul>
-<li>object (包括function/array/object)</li>
-</ul>
 ]]></content>
       <categories>
         <category>js基础</category>
