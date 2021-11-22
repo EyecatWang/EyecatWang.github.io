@@ -211,7 +211,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://eyecatwang.github.io/2021/08/19/css%E9%9D%A2%E8%AF%95/">
+    <link itemprop="mainEntityOfPage" href="https://eyecatwang.github.io/2021/08/19/%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/26106551">
@@ -224,7 +224,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/19/css%E9%9D%A2%E8%AF%95/" class="post-title-link" itemprop="url">css面试</a>
+          <a href="/2021/08/19/%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">数组操作</a>
         </h2>
 
         <div class="post-meta-container">
@@ -242,7 +242,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-22 12:40:50" itemprop="dateModified" datetime="2021-11-22T12:40:50+08:00">2021-11-22</time>
+        <time title="修改时间：2021-11-19 10:33:03" itemprop="dateModified" datetime="2021-11-19T10:33:03+08:00">2021-11-19</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -250,7 +250,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+          <a href="/categories/js%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">js基础</span></a>
         </span>
     </span>
 
@@ -264,196 +264,154 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>1、介绍一下标准的CSS的盒子模型？与低版本IE的盒子模型有什么不同？</p>
-<p>标准盒子模型：宽度=内容宽度（content）+ border + padding + margin</p>
-<p>低版本IE盒子模型：宽度=内容宽度（content + border + padding）+ margin</p>
-<p>2、box-sizing属性？</p>
-<p>用来控制元素的盒子模型的解析模式，默认为content-box</p>
-<p>content-box：w3c标准盒子模型，设置元素的width/height属性指的是content部分的宽高</p>
-<p>border-box：IE传统盒子模型。设置元素的height/width属性指的是border+padding+content<br>部分的宽/高</p>
-<p>3、css选择器有哪些？哪些属性可以继承？</p>
-<p>css选择符：ID选择器（#id）、类选择器（.class）、标签选择器（div,h1）、相邻选择器（h1+p）、<br>子选择器（ul&gt;li）、后代选择器（li a）、通配符选择器(*)、属性选择器（a[rel=”external”]）、伪类选择器(a:hover,li:nth-child)</p>
-<p>可继承的属性：font-size,font-family,color</p>
-<p>不可继承的样式：border，padding，margin</p>
-<p>优先级（就近原则）：！important&gt;id&gt;class&gt;tag, !important比内联优先级高</p>
-<p>4、css优先级算法如何计算</p>
-<p>元素选择符： 1</p>
-<p>class选择符： 10</p>
-<p>id选择符：100</p>
-<p>元素标签：1000</p>
-<p>优先级（就近原则）：！important&gt;id&gt;class｜属性｜伪类》元素选择器, !important比内联优先级高</p>
-<p>1、!important声明的样式优先级最高，如果有冲突在进行计算</p>
-<p>2、如果优先级相同，则选择最后出现的样式</p>
-<p>3、继承得到的样式优先级最低</p>
-<p>5、css3新增的伪类有哪些？</p>
-<p>p:first-of-type 选择属于其父元素的首个元素</p>
-<p>p:last-of-type 选择属于其父元素的最后元素</p>
-<p>p:only-of-type 选择属于其父元素唯一的元素</p>
-<p>p:only-child 选择属于其父元素唯一的元素</p>
-<p>p:ntn-child(2) 选择属于其父元素的第二个子元素</p>
-<p>:enabled,:disabled 表单控件的禁用状态</p>
-<p>:checked 单选框或复选框被选中</p>
-<p>6、如何居中div？如何居中一个浮动元素？如何让绝对定位的div居中？</p>
-<p>div:</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line"><span class="attribute">margin</span>:<span class="number">0</span> auto;</span><br><span class="line"><span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line"><span class="attribute">width</span>: <span class="number">50px</span>;</span><br></pre></td></tr></table></figure>
+          <h1 id="最常见的几种数组操作方法归纳总结"><a href="#最常见的几种数组操作方法归纳总结" class="headerlink" title="最常见的几种数组操作方法归纳总结"></a>最常见的几种数组操作方法归纳总结</h1><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>concat()</td>
+<td>连接两个或多个数组，并返回已连接数组的副本</td>
+</tr>
+<tr>
+<td>copyWithin()</td>
+<td>将数组中的数组元素复制到指定位置或从指定位置复制</td>
+</tr>
+<tr>
+<td>entries()</td>
+<td>返回键/值对数组迭代对象</td>
+</tr>
+<tr>
+<td>every()</td>
+<td>检查数组中的每个元素是否通过测试</td>
+</tr>
+<tr>
+<td>fill()</td>
+<td>用静态值填充数组中的元素</td>
+</tr>
+<tr>
+<td>filter()</td>
+<td>使用数组中通过测试的每个元素创建新数组</td>
+</tr>
+<tr>
+<td>find()</td>
+<td>返回数组中第一个通过测试的元素的值</td>
+</tr>
+<tr>
+<td>findIndex()</td>
+<td>返回数组中通过测试的第一个元素的索引。</td>
+</tr>
+<tr>
+<td>forEach()</td>
+<td>为每个数组元素调用函数。</td>
+</tr>
+<tr>
+<td>from()</td>
+<td>从对象创建数组</td>
+</tr>
+<tr>
+<td>includes()</td>
+<td>检查数组是否包含指定的元素。</td>
+</tr>
+<tr>
+<td>indexOf()</td>
+<td>在数组中搜索元素并返回其位置。</td>
+</tr>
+<tr>
+<td>isArray()</td>
+<td>检查对象是否为数组。</td>
+</tr>
+<tr>
+<td>join()</td>
+<td>将数组的所有元素连接成一个字符串。</td>
+</tr>
+<tr>
+<td>keys()</td>
+<td>返回 Array Iteration 对象，包含原始数组的键.</td>
+</tr>
+<tr>
+<td>lastIndexOf()</td>
+<td>在数组中搜索元素，从末尾开始，并返回其位置。</td>
+</tr>
+<tr>
+<td>map()</td>
+<td>使用为每个数组元素调用函数的结果创建新数组。</td>
+</tr>
+<tr>
+<td>pop()</td>
+<td>删除数组的最后一个元素，并返回该元素。</td>
+</tr>
+<tr>
+<td>push()</td>
+<td>将新元素添加到数组的末尾，并返回新的长度。</td>
+</tr>
+<tr>
+<td>reduce()</td>
+<td>将数组的值减为单个值（从左到右）。</td>
+</tr>
+<tr>
+<td>reduceRight()</td>
+<td>将数组的值减为单个值（从右到左）。</td>
+</tr>
+<tr>
+<td>reverse()</td>
+<td>反转数组中元素的顺序。</td>
+</tr>
+<tr>
+<td>shift()</td>
+<td>删除数组的第一个元素，并返回该元素。</td>
+</tr>
+<tr>
+<td>slice()</td>
+<td>选择数组的一部分，并返回新数组。</td>
+</tr>
+<tr>
+<td>some()</td>
+<td>检查数组中的任何元素是否通过测试。</td>
+</tr>
+<tr>
+<td>sort()</td>
+<td>对数组的元素进行排序。</td>
+</tr>
+<tr>
+<td>splice()</td>
+<td>从数组中添加/删除元素。</td>
+</tr>
+<tr>
+<td>toString()</td>
+<td>将数组转换为字符串，并返回结果。</td>
+</tr>
+<tr>
+<td>unshift()</td>
+<td>将新元素添加到数组的开头，并返回新的长度。</td>
+</tr>
+<tr>
+<td>valueOf()</td>
+<td>返回数组的原始值。</td>
+</tr>
+<tr>
+<td>at()</td>
+<td>2021.1新提案，解决方括号的限制，可以输入负数。</td>
+</tr>
+</tbody></table>
+<h2 id="1-shift-方法：把数组的第一个元素删除，并返回第一个元素的值"><a href="#1-shift-方法：把数组的第一个元素删除，并返回第一个元素的值" class="headerlink" title="1.shift() 方法：把数组的第一个元素删除，并返回第一个元素的值"></a>1.shift() 方法：把数组的第一个元素删除，并返回第一个元素的值</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.shift() <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
 
-<p>浮动元素的上下左右居中：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line"><span class="attribute">float</span>: left;</span><br><span class="line"><span class="attribute">position</span>: absolute;</span><br><span class="line"><span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line"><span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line"><span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line"><span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line"><span class="attribute">margin</span>: -<span class="number">50px</span> <span class="number">0</span> <span class="number">0</span> -<span class="number">100px</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="2-concat-方法：用于连接两个或多个数组-并返回一个新数组，新数组是将参数添加到原数组中构成的"><a href="#2-concat-方法：用于连接两个或多个数组-并返回一个新数组，新数组是将参数添加到原数组中构成的" class="headerlink" title="2.concat() 方法：用于连接两个或多个数组,并返回一个新数组，新数组是将参数添加到原数组中构成的"></a>2.concat() 方法：用于连接两个或多个数组,并返回一个新数组，新数组是将参数添加到原数组中构成的</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">const</span> arr1 = arr.concat(<span class="number">2</span>, <span class="number">4</span>); <span class="comment">// 1, 3, 2, 4</span></span><br><span class="line"><span class="keyword">const</span> arr2 = [<span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"><span class="keyword">const</span> arr3 = [<span class="number">7</span>, <span class="number">8</span>];</span><br><span class="line"><span class="keyword">const</span> arr4 = arr2.concat(arr3); <span class="comment">// 5, 6, 7, 8</span></span><br></pre></td></tr></table></figure>
 
-<p>绝对定位的左右居中：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">border</span>: <span class="number">1px</span> solid black;</span><br><span class="line"><span class="attribute">position</span>: absolute;</span><br><span class="line"><span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line"><span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line"><span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line"><span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line"><span class="attribute">right</span>: <span class="number">0</span>; </span><br></pre></td></tr></table></figure>
+<h2 id="3-join-方法：用于把数组中的所有元素放入一个字符串。元素是通过指定的分隔符进行分隔的。"><a href="#3-join-方法：用于把数组中的所有元素放入一个字符串。元素是通过指定的分隔符进行分隔的。" class="headerlink" title="3. join() 方法：用于把数组中的所有元素放入一个字符串。元素是通过指定的分隔符进行分隔的。"></a>3. join() 方法：用于把数组中的所有元素放入一个字符串。元素是通过指定的分隔符进行分隔的。</h2><p>返回一个字符串。该字符串是通过把 arrayObject 的每个元素转换为字符串，然后把这些字符串连接起来，在两个元素之间插入separator 字符串而生成的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"><span class="keyword">const</span> str = arr.join(<span class="string">&#x27;-&#x27;</span>); <span class="comment">// 1-3-4-5-6</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>flex居中：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">display</span>: flex;</span><br><span class="line"><span class="attribute">align-items</span>: center;</span><br><span class="line"><span class="attribute">justify-content</span>: center;</span><br></pre></td></tr></table></figure>
+<h2 id="4-pop-方法：用于删除并返回数组的最后一个-删除元素-元素-如果数组为空则返回undefined-把数组长度减-1"><a href="#4-pop-方法：用于删除并返回数组的最后一个-删除元素-元素-如果数组为空则返回undefined-把数组长度减-1" class="headerlink" title="4. pop() 方法：用于删除并返回数组的最后一个(删除元素)元素,如果数组为空则返回undefined ,把数组长度减 1"></a>4. pop() 方法：用于删除并返回数组的最后一个(删除元素)元素,如果数组为空则返回undefined ,把数组长度减 1</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="keyword">const</span> str = arr.pop(); <span class="comment">// 6</span></span><br><span class="line"><span class="built_in">console</span>.log(arr) <span class="comment">// 1,2,3,4,5</span></span><br></pre></td></tr></table></figure>
 
-<p>7、display有哪些值？说明他们的作用？</p>
-<p>inline(默认)-内联<br>none-隐藏<br>block-块显示<br>table-表格显示<br>list-item -项目列表<br>inline-block（内联块显示）</p>
-<p>8、position的值？</p>
-<p>static（默认）按照正常文档流进行排列</p>
-<p>relative（相对定位）：不脱离文档流，参考自身静态位置通过 top,bottom,left,right定位</p>
-<p>absolute（绝对定位）：参考距其最近的一个不为 static的福元素通过top,bottom,left,right定位</p>
-<p>fixed（固定定位）：所固定的参照对象是可视窗口</p>
-<p>9、css3新特性？</p>
-<ol>
-<li>RGBA和透明度</li>
-<li>background-image、background-origin background-size background-repeat</li>
-<li>word-wrap(对长的不可分割单词换行) work- wrap:break-word</li>
-<li>文字阴影  text-shadom:5px 5px 5px #000(水平阴影，垂直阴影，模糊距离，颜色)</li>
-<li>font-face属性：定义自己的字体</li>
-<li>圆角 border-radius</li>
-<li>边框图片 border-image:url() 30 30 round</li>
-<li>盒阴影：box-shadom:10px 10px 5px #000(水平阴影，垂直阴影，模糊距离，颜色)</li>
-<li>媒体查询@media</li>
-</ol>
-<p>10、请解释一下css3的flexbox（弹性盒布局模型），以及适用场景</p>
-<p>该布局模型的目的是提供一种更加高效的方式来对容器中的条目进行布局、对齐和分配空间。在传统的布局方式中，block 布局是把块在垂直方向从上到下依次排列的；而 inline 布局则是在水平方向来排列。弹性盒布局并没有这样内在的方向限制，可以由开发人员自由操作。试用场景：弹性布局适合于移动前端开发，在Android和ios上也完美支持。</p>
-<p>11、用纯CSS创建一个三角形的原理是什么？<br>采用的是均分原理,把矩形分为4等份,这4等份其实都是边框</p>
-<p>首先，需要把元素的宽度、高度设为0。然后设置边框样式。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line"><span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line"><span class="attribute">border-top</span>: <span class="number">40px</span> solid transparent;</span><br><span class="line"><span class="attribute">border-left</span>: <span class="number">40px</span> solid transparent;</span><br><span class="line"><span class="attribute">border-right</span>: <span class="number">40px</span> solid transparent;</span><br><span class="line"><span class="attribute">border-bottom</span>: <span class="number">40px</span> solid <span class="number">#ff0000</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="5-push-方法：可向数组的末尾添加一个或多个元素，并返回新的长度，（用来改变数组长度）。"><a href="#5-push-方法：可向数组的末尾添加一个或多个元素，并返回新的长度，（用来改变数组长度）。" class="headerlink" title="5.push() 方法：可向数组的末尾添加一个或多个元素，并返回新的长度，（用来改变数组长度）。"></a>5.push() 方法：可向数组的末尾添加一个或多个元素，并返回新的长度，（用来改变数组长度）。</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">const</span> len = arr.push(<span class="number">5</span>)<span class="comment">// 5</span></span><br><span class="line"><span class="built_in">console</span>.log(arr) <span class="comment">// [1,2,3,4,5]</span></span><br></pre></td></tr></table></figure>
+<h2 id="6-reverse-：方法用于颠倒数组中元素的顺序。"><a href="#6-reverse-：方法用于颠倒数组中元素的顺序。" class="headerlink" title="6.reverse() ：方法用于颠倒数组中元素的顺序。"></a>6.reverse() ：方法用于颠倒数组中元素的顺序。</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="keyword">const</span> len = arr.reverse(); <span class="comment">// [6,5,4,3,2,1]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr) <span class="comment">// [6,5,4,3,2,1]</span></span><br></pre></td></tr></table></figure>
+<h2 id="7-slice-方法：可从已有的数组中返回选定的元素。slice-开始截取位置，结束截取位置"><a href="#7-slice-方法：可从已有的数组中返回选定的元素。slice-开始截取位置，结束截取位置" class="headerlink" title="7.slice() 方法：可从已有的数组中返回选定的元素。slice(开始截取位置，结束截取位置)"></a>7.slice() 方法：可从已有的数组中返回选定的元素。slice(开始截取位置，结束截取位置)</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="keyword">const</span> a = arr.slice(<span class="number">1</span>,<span class="number">2</span>); <span class="comment">// [2]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr)<span class="comment">// [1,2,3,4,5,6]</span></span><br></pre></td></tr></table></figure>
+<h2 id="8-splice-：方法向-从数组中添加-删除项目，然后返回被删除的项目。"><a href="#8-splice-：方法向-从数组中添加-删除项目，然后返回被删除的项目。" class="headerlink" title="8.splice() ：方法向/从数组中添加/删除项目，然后返回被删除的项目。"></a>8.splice() ：方法向/从数组中添加/删除项目，然后返回被删除的项目。</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="keyword">const</span> a = arr.splice(<span class="number">1</span>,<span class="number">2</span>); <span class="comment">// [2,3]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr) <span class="comment">// [1,4,5]</span></span><br><span class="line"><span class="keyword">const</span> b = arr.splice(<span class="number">1</span>,<span class="number">2</span>,)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arrr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="keyword">const</span> c = arr.splice(<span class="number">1</span>,<span class="number">0</span>, <span class="string">&#x27;a&#x27;</span>) <span class="comment">// []</span></span><br><span class="line"><span class="built_in">console</span>.log(arrr) <span class="comment">// [1, &#x27;a&#x27;,2,3,4,5]</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>12、一个满屏品字布局如何设计？</p>
-<p>第一种真正的品字：</p>
-<ol>
-<li>三块高宽是确定的；</li>
-<li>上面那块用margin: 0 auto;居中；</li>
-<li>下面两块用float或者inline-block不换行；</li>
-<li>用margin调整位置使他们居中。</li>
-</ol>
-<p>第二种全屏的品字布局:上面的div设置成100%，下面的div分别宽50%，然后使用float或者inline使其不换行。</p>
-<p>13、常见的兼容性问题？</p>
-<ol>
-<li>不同浏览器的标签默认的margin和padding不一样。*{margin:0;padding:0}</li>
-<li>IE6双边距bug:块属性标签float后，又有横行的margin情况下，在IE6显示的margin比较大。解决方案： display：inline；将其转化为行内属性。</li>
-<li>渐进识别的方式，从总体中逐渐排出局部。首先，巧妙的使用“9”这一标记，将IE浏览器从所有情况中分离出来。接着，再次使用“+”将IE8和IE7、IE6分离开来，这样IE8已经独立识别。<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">background-color</span>:<span class="number">#f1ee18</span>;<span class="comment">/*所有识别*/</span></span><br><span class="line">    <span class="selector-class">.background-color</span>:<span class="number">#00deff</span>\<span class="number">9</span>; <span class="comment">/*IE6、7、8识别*/</span></span><br><span class="line">    +<span class="attribute">background-color</span>:<span class="number">#a200ff</span>;<span class="comment">/*IE6、7识别*/</span></span><br><span class="line">    _background-<span class="attribute">color</span>:<span class="number">#1e0bd1</span>;<span class="comment">/*IE6识别*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>设置较小高度标签（一般小于10px），在IE6，IE7中高度超出自己设置高度。hack：给超出高度的标签设置overflow：hidden；或者设置行高line- height小于你设置的高度。</li>
-<li>IE下，可以使用获取常规属性的方法来获取自定义属性,也可以使用getAttribute()获取自定义属性；Firefox下，只能使用getAttribute()获取自定义属性。解决方法:统一通过getAttribute()获取自定义属性。</li>
-<li>Chrome 中文界面下默认会将小于 12px 的文本强制按照 12px 显示,可通过加入 CSS 属性 -webkit-text-size-adjust: none; 解决。</li>
-<li>超链接访问过后hover样式就不出现了，被点击访问过的超链接样式不再具有hover和active了。解决方法是改变CSS属性的排列顺序:L-V-H-A ( love hate ): a:link {} a:visited {} a:hover {} a:active {}</li>
-</ol>
-<p>14、为什么要初始化CSS样式</p>
-<p>因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异。</p>
-<p>15、 absolute的containing block计算方式跟正常流有什么不同</p>
-<p>无论属于哪种，都要先找到其祖先元素中最近的 position 值不为 static 的元素，然后再判断：</p>
-<ol>
-<li>若此元素为 inline 元素，则 containing block 为能够包含这个元素生成的第一个和最后一个 inline box 的 padding box (除 margin, border 外的区域) 的最小矩形；</li>
-<li>否则,则由这个祖先元素的 padding box 构成。</li>
-<li>如果都找不到，则为 initial containing block。<br>补充：</li>
-<li>static(默认的)/relative：简单说就是它的父元素的内容框（即去掉padding的部分）</li>
-<li>absolute: 向上找最近的定位为absolute/relative的元素</li>
-<li>fixed: 它的containing block一律为根元素(html/body)</li>
-</ol>
-<p>16、CSS里的visibility属性有个collapse属性值？在不同浏览器下以后什么区别？</p>
-<p>当一个元素的visibility属性被设置成collapse值后，对于一般的元素，它的表现跟hidden是一样的。</p>
-<ol>
-<li>chrome中，使用collapse值和使用hidden没有区别。</li>
-<li>firefox，opera和IE，使用collapse值和使用display：none没有什么区别。</li>
-</ol>
-<p>17、display:none与visibility：hidden的区别？</p>
-<ol>
-<li>display：none 不显示对应的元素，在文档布局中不再分配空间（回流+重绘）</li>
-<li>visibility：hidden 隐藏对应元素，在文档布局中仍保留原来的空间（重绘）</li>
-</ol>
-<p>18、position跟display、overflow、float这些特性相互叠加后会怎么样？</p>
-<p>display属性规定元素应该生成的框的类型；position属性规定元素的定位类型；float属性是一种布局方式，定义元素在哪个方向浮动。</p>
-<p>类似于优先级机制：position：absolute/fixed优先级最高，有他们在时，float不起作用，display值需要调整。float 或者absolute定位的元素，只能是块元素或表格。</p>
-<p>19、对BFC规范(块级格式化上下文：block formatting context)的理解？</p>
-<p>BFC规定了内部的Block Box如何布局。定位方案：</p>
-<ol>
-<li>内部的Box会在垂直方向上一个接一个放置。</li>
-<li>Box垂直方向的距离由margin决定，属于同一个BFC的两个相邻Box的margin会发生重叠。</li>
-<li>每个元素的margin box 的左边，与包含块border box的左边相接触。</li>
-<li>BFC的区域不会与float box重叠。</li>
-<li>BFC是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。</li>
-<li>计算BFC的高度时，浮动元素也会参与计算。</li>
-</ol>
-<p>满足下列条件之一就可触发BFC:</p>
-<ol>
-<li>根元素，即html</li>
-<li>float的值不为none（默认）</li>
-<li>overflow的值不为visible（默认）</li>
-<li>display的值为inline-block、table-cell、table-caption</li>
-<li>position的值为absolute或fixed</li>
-</ol>
-<p>20、为什么会出现浮动和什么时候需要清除浮动？清除浮动的方式？</p>
-<p>浮动元素碰到包含它的边框或者浮动元素的边框停留。由于浮动元素不在文档流中，所以文档流的块框表现得就像浮动框不存在一样。浮动元素会漂浮在文档流的块框上。浮动带来的问题：</p>
-<ol>
-<li>父元素的高度无法被撑开，影响与父元素同级的元素</li>
-<li>与浮动元素同级的非浮动元素（内联元素）会跟随其后</li>
-<li>若非第一个元素浮动，则该元素之前的元素也需要浮动，否则会影响页面显示的结构。</li>
-</ol>
-<p>清除浮动的方式：</p>
-<ol>
-<li>父级div定义height</li>
-<li>最后一个浮动元素后加空div标签 并添加样式clear:both。</li>
-<li>包含浮动元素的父标签添加样式overflow为hidden或auto。</li>
-<li>父级div定义zoom</li>
-</ol>
-<p>21、上下margin重合的问题</p>
-<p>在重合元素外包裹一层容器，并触发该容器生成一个BFC。</p>
-<p>例子：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;aside&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;text&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;main&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!--下面是css代码--&gt;</span><br><span class="line"> .aside &#123;</span><br><span class="line">            margin-bottom: 100px;  </span><br><span class="line">            width: 100px;</span><br><span class="line">            height: 150px;</span><br><span class="line">            background: #f66;</span><br><span class="line">        &#125;</span><br><span class="line">        .main &#123;</span><br><span class="line">            margin-top: 100px;</span><br><span class="line">            height: 200px;</span><br><span class="line">            background: #fcc;</span><br><span class="line">        &#125;</span><br><span class="line">         .text&#123;</span><br><span class="line">            /*盒子main的外面包一个div，通过改变此div的属性使两个盒子分属于两个不同的BFC，以此来阻止margin重叠*/</span><br><span class="line">            overflow: hidden;  //此时已经触发了BFC属性。</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-<p>22、设置元素浮动后，该元素的display值是多少？</p>
-<p>自动变成display:block</p>
-<p>23、移动端的布局用过媒体查询吗？</p>
-<p>通过媒体查询可以为不同大小和尺寸的媒体定义不同的css，适应相应的设备的显示。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. &lt;head&gt;里边&lt;link rel=”stylesheet” type=”text/css” href=”xxx.css” media=”only screen and (max-device-width:480px)”&gt;</span><br><span class="line"></span><br><span class="line">2. CSS : @media only screen and (max-device-width:480px) &#123;/css样式/&#125;</span><br></pre></td></tr></table></figure>
-
-<p>24、使用 CSS 预处理器吗？</p>
-<p>Less sass</p>
-<p>25、CSS优化、提高性能的方法有哪些？</p>
-<ol>
-<li>避免过度约束</li>
-<li>避免后代选择符</li>
-<li>避免链式选择符</li>
-<li>使用紧凑的语法</li>
-<li>避免不必要的命名空间</li>
-<li>避免不必要的重复</li>
-<li>最好使用表示语义的名字。一个好的类名应该是描述他是什么而不是像什么</li>
-<li>避免！important，可以选择其他选择器</li>
-<li>尽可能的精简规则，你可以合并不同类里的重复规则</li>
-</ol>
-<p>26、浏览器是怎样解析CSS选择器的？</p>
-<p>CSS选择器的解析是从右向左解析的。若从左向右的匹配，发现不符合规则，需要进行回溯，会损失很多性能。若从右向左匹配，先找到所有的最右节点，对于每一个节点，向上寻找其父节点直到找到根元素或满足条件的匹配规则，则结束这个分支的遍历。两种匹配规则的性能差别很大，是因为从右向左的匹配在第一步就筛选掉了大量的不符合条件的最右节点（叶子节点），而从左向右的匹配规则的性能都浪费在了失败的查找上面。</p>
-<p>而在 CSS 解析完毕后，需要将解析的结果与 DOM Tree 的内容一起进行分析建立一棵 Render Tree，最终用来进行绘图。在建立 Render Tree 时（WebKit 中的「Attachment」过程），浏览器就要为每个 DOM Tree 中的元素根据 CSS 的解析结果（Style Rules）来确定生成怎样的 Render Tree。</p>
-<p>27、在网页中的应该使用奇数还是偶数的字体？为什么呢？</p>
-<p>使用偶数字体。偶数字号相对更容易和 web 设计的其他部分构成比例关系。Windows 自带的点阵宋体（中易宋体）从 Vista 开始只提供 12、14、16 px 这三个大小的点阵，而 13、15、17 px时用的是小一号的点。（即每个字占的空间大了 1 px，但点阵没变），于是略显稀疏。</p>
-<p>28、margin和padding分别适合什么场景使用？</p>
-<p>何时使用margin：</p>
-<ol>
-<li>需要在border外侧添加空白</li>
-<li>空白处不需要背景色</li>
-<li>上下相连的两个盒子之间的空白，需要相互抵消时。</li>
-</ol>
-<p>何时使用padding：</p>
-<ol>
-<li>需要在border内侧添加空白</li>
-<li>空白处需要背景颜色</li>
-<li>上下相连的两个盒子的空白，希望为两者之和。</li>
-</ol>
-<p>兼容性的问题：在IE5 IE6中，为float的盒子指定margin时，左侧的margin可能会变成两倍的宽度。通过改变padding或者指定盒子的display：inline解决。</p>
-<p>29、元素竖向的百分比设定是相对于容器的高度吗？</p>
-<p>当按百分比设定一个元素的宽度时，它是相对于父容器的宽度计算的，但是，对于一些表示竖向距离的属性，例如 padding-top , padding-bottom , margin-top , margin-bottom 等，当按百分比设定它们时，依据的也是父容器的宽度，而不是高度。</p>
+<h2 id="9-unshift：将参数添加到原数组开头，并返回数组的长度"><a href="#9-unshift：将参数添加到原数组开头，并返回数组的长度" class="headerlink" title="9.unshift：将参数添加到原数组开头，并返回数组的长度"></a>9.unshift：将参数添加到原数组开头，并返回数组的长度</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">const</span> len = arr.unshift(<span class="number">0</span>); <span class="comment">// 5</span></span><br><span class="line"><span class="built_in">console</span>.log(arr) <span class="comment">// [0,1,2,3,4]</span></span><br></pre></td></tr></table></figure>
+<h2 id="10-sort-orderfunction-：按指定的参数对数组进行排序"><a href="#10-sort-orderfunction-：按指定的参数对数组进行排序" class="headerlink" title="10.sort(orderfunction)：按指定的参数对数组进行排序"></a>10.sort(orderfunction)：按指定的参数对数组进行排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line"><span class="keyword">const</span> b = arr.sort(); <span class="comment">// [1,2,3,4]</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// [1,2,3,4]</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
