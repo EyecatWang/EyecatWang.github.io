@@ -161,7 +161,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -211,7 +211,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://eyecatwang.github.io/2021/08/19/%E9%9D%A2%E8%AF%95%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="https://eyecatwang.github.io/2021/08/25/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/26106551">
@@ -224,7 +224,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/19/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-title-link" itemprop="url">面试题</a>
+          <a href="/2021/08/25/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">插入排序</a>
         </h2>
 
         <div class="post-meta-container">
@@ -235,7 +235,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-08-19 16:55:19" itemprop="dateCreated datePublished" datetime="2021-08-19T16:55:19+08:00">2021-08-19</time>
+      <time title="创建时间：2021-08-25 13:35:51" itemprop="dateCreated datePublished" datetime="2021-08-25T13:35:51+08:00">2021-08-25</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
@@ -244,6 +244,15 @@
         <span class="post-meta-item-text">更新于</span>
         <time title="修改时间：2021-10-19 17:12:19" itemprop="dateModified" datetime="2021-10-19T17:12:19+08:00">2021-10-19</time>
       </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/js%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">js基础</span></a>
+        </span>
+    </span>
 
   
 </div>
@@ -255,10 +264,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="JavaScript-面试题"><a href="#JavaScript-面试题" class="headerlink" title="JavaScript 面试题"></a>JavaScript 面试题</h1><h2 id><a href="#" class="headerlink" title></a><a href="/2018/07/06/%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E6%96%B9%E5%BC%8F/" title="1.在 JavaScript 中创建对象的可行方法有哪些？">1.在 JavaScript 中创建对象的可行方法有哪些？</a></h2><p>1、对象的构造函数-new object()<br>2、对象的创建方法-Object.create(null)<br>3、对象字面量语法-const obj = {}<br>4、函数构造器<br>5、带有原型的函数构造函数<br>6、es6类语法 class<br>7、单例模式</p>
-<h2 id="-1"><a href="#-1" class="headerlink" title></a><a href="/2018/07/06/%E5%8E%9F%E5%9E%8B%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE/" title="1.什么是原型链？">1.什么是原型链？</a></h2><p>原型链用于基于现有对象构建新类型的对象。它类似于基于类的语言中的继承。</p>
-<p>对象实例上的原型可通过Object.getPrototypeOf(object)或proto属性获得，而构造函数上的原型可通过Object.prototype 获得。</p>
-<h2 id="-2"><a href="#-2" class="headerlink" title></a><a href="/2021/08/19/call%E3%80%81apply%E5%92%8Cbind%E5%8C%BA%E5%88%AB/" title="3.call、 bind、apply区别？">3.call、 bind、apply区别？</a></h2><h2 id="-3"><a href="#-3" class="headerlink" title></a><a href="/2021/08/19/%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C/" title="4.数组操作？">4.数组操作？</a></h2>
+          <h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>1.从数组的第二个数据开始往前比较，即一开始用第二个数和他前面的一个比较，如果 符合条件（比前面的大或者小，自定义），则让他们交换位置。</p>
+<p>2.然后再用第三个数和第二个比较，符合则交换，但是此处还得继续往前比较，比如有 5个数8，15，20，45, 17,17比45小，需要交换，但是17也比20小，也要交换，当不需 要和15交换以后，说明也不需要和15前面的数据比较了，肯定不需要交换，因为前 面的数据都是有序的。</p>
+<p>3.重复步骤二，一直到数据全都排完。</p>
+<h2 id="动图演示"><a href="#动图演示" class="headerlink" title="动图演示"></a>动图演示</h2><p><img src="/.io//1.gif" alt="原理图"></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">40</span>, <span class="number">60</span>, <span class="number">60</span>, <span class="number">0</span>, <span class="number">30</span>]</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> n = i;</span><br><span class="line">    <span class="keyword">while</span> (arr[n] &gt; arr[n+<span class="number">1</span>] &amp;&amp; n &gt;=<span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> temp = arr[n];</span><br><span class="line">        arr[n] = arr[n + <span class="number">1</span>];</span><br><span class="line">        arr[n + <span class="number">1</span>] = temp;</span><br><span class="line">        n--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure>
+
+<h2 id="性能分析："><a href="#性能分析：" class="headerlink" title="性能分析："></a>性能分析：</h2><p>1.属于稳定的排序，适合于数据量小，部分数据有序的情况排序。</p>
+<p>2.如果目标是把n个元素的序列升序排列，那么采用插入排序存在最好情况和最坏情况。最好情况就是，序列已经是升序排列了，在这种情况下，需要进行的比较操作需（n-1）次即可。最坏情况就是，序列是降序排列，那么此时需要进行的比较共有n(n-1)/2次。插入排序的赋值操作是比较操作的次数加上 (n-1）次。平均来说插入排序算法的时间复杂度为O(n^2）。因而，插入排序不适合对于数据量比较大的排序应用。但是，如果需要排序的数据量很小，例如，量级小于千，那么插入排序还是一个不错的选择</p>
+<p>3.插入排序的平均时间复杂度也是 O(n^2)，空间复杂度为常数阶 O(1)</p>
+
       
     </div>
 
@@ -277,7 +292,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>

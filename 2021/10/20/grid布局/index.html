@@ -21,25 +21,27 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"eyecatwang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="eyecatwang的学习日记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="eyecatwang">
-<meta property="og:url" content="https://eyecatwang.github.io/page/2/">
+<meta name="description" content="概述网格布局是最强大的css布局方案。 1display: grid;  #container1 {     display: grid;     grid-template-columns: 100px 100px 100px;     grid-template-rows: 100px 100px 100px; } .item {   font-size: 2em;   text-align:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="grid布局">
+<meta property="og:url" content="https://eyecatwang.github.io/2021/10/20/grid%E5%B8%83%E5%B1%80/">
 <meta property="og:site_name" content="eyecatwang">
-<meta property="og:description" content="eyecatwang的学习日记">
+<meta property="og:description" content="概述网格布局是最强大的css布局方案。 1display: grid;  #container1 {     display: grid;     grid-template-columns: 100px 100px 100px;     grid-template-rows: 100px 100px 100px; } .item {   font-size: 2em;   text-align:">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-20T08:35:10.000Z">
+<meta property="article:modified_time" content="2021-11-23T08:29:27.601Z">
 <meta property="article:author" content="eyecatwang">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://eyecatwang.github.io/page/2/">
+<link rel="canonical" href="https://eyecatwang.github.io/2021/10/20/grid%E5%B8%83%E5%B1%80/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/2/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://eyecatwang.github.io/2021/10/20/grid%E5%B8%83%E5%B1%80/","path":"2021/10/20/grid布局/","title":"grid布局"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>eyecatwang</title>
+<title>grid布局 | eyecatwang</title>
   
 
 
@@ -134,7 +136,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -147,6 +149,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E5%B1%9E%E6%80%A7%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">容器属性：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#display%E5%B1%9E%E6%80%A7"><span class="nav-number">2.1.</span> <span class="nav-text">display属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grid-template-columns-%E5%B1%9E%E6%80%A7-grid-template-rows%E5%B1%9E%E6%80%A7"><span class="nav-number">2.2.</span> <span class="nav-text">grid-template-columns 属性 grid-template-rows属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grid-row-gap-grid-column-gap-grid-gap"><span class="nav-number">2.3.</span> <span class="nav-text">grid-row-gap grid-column-gap grid-gap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grid-template-areas"><span class="nav-number">2.4.</span> <span class="nav-text">grid-template-areas</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grid-auto-flow"><span class="nav-number">2.5.</span> <span class="nav-text">grid-auto-flow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#justify-items-%E5%B1%9E%E6%80%A7%EF%BC%8Calign-items-%E5%B1%9E%E6%80%A7%EF%BC%8Cplace-items-%E5%B1%9E%E6%80%A7"><span class="nav-number">2.6.</span> <span class="nav-text">justify-items 属性，align-items 属性，place-items 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#justify-content-%E5%B1%9E%E6%80%A7%EF%BC%8Calign-content-%E5%B1%9E%E6%80%A7%EF%BC%8Cplace-content-%E5%B1%9E%E6%80%A7"><span class="nav-number">2.7.</span> <span class="nav-text">justify-content 属性，align-content 属性，place-content 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grid-auto-columns-%E5%B1%9E%E6%80%A7%EF%BC%8Cgrid-auto-rows-%E5%B1%9E%E6%80%A7"><span class="nav-number">2.8.</span> <span class="nav-text">grid-auto-columns 属性，grid-auto-rows 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grid-template-%E5%B1%9E%E6%80%A7%EF%BC%8Cgrid-%E5%B1%9E%E6%80%A7"><span class="nav-number">2.9.</span> <span class="nav-text">grid-template 属性，grid 属性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%90%E5%85%83%E7%B4%A0%E5%B1%9E%E6%80%A7"><span class="nav-number">3.</span> <span class="nav-text">子元素属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#grid-column-start-%E5%B1%9E%E6%80%A7%EF%BC%8Cgrid-column-end-%E5%B1%9E%E6%80%A7%EF%BC%8Cgrid-row-start-%E5%B1%9E%EF%BC%8Cgrid-row-end-%E5%B1%9E%E6%80%A7"><span class="nav-number">3.1.</span> <span class="nav-text">grid-column-start 属性，grid-column-end 属性，grid-row-start 属，grid-row-end 属性</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -201,16 +204,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://eyecatwang.github.io/2021/10/20/grid%E5%B8%83%E5%B1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -223,9 +227,9 @@
       <meta itemprop="name" content="eyecatwang">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/10/20/grid%E5%B8%83%E5%B1%80/" class="post-title-link" itemprop="url">grid布局</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          grid布局
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -264,7 +268,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>网格布局是最强大的css布局方案。</p>
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>网格布局是最强大的css布局方案。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">display: grid;</span><br></pre></td></tr></table></figure>
 <style>
 #container1 {
@@ -1001,7 +1005,6 @@ grid-area属性还可用作grid-row-start、grid-column-start、grid-row-end、g
 
 <p>· start：对齐单元格的起始边缘。<br>· end：对齐单元格的结束边缘。<br>· center：单元格内部居中。<br>· stretch：拉伸，占满单元格的整个宽度（默认值）。</p>
 </li></ol>
-      
     </div>
 
     
@@ -1009,8 +1012,38 @@ grid-area属性还可用作grid-row-start、grid-column-start、grid-row-end、g
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>eyecatwang
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://eyecatwang.github.io/2021/10/20/grid%E5%B8%83%E5%B1%80/" title="grid布局">https://eyecatwang.github.io/2021/10/20/grid布局/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/25/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" rel="prev" title="冒泡排序">
+                  <i class="fa fa-chevron-left"></i> 冒泡排序
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/10/20/js%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" rel="next" title="js精度问题">
+                  js精度问题 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
   </article>
 </div>
@@ -1018,9 +1051,7 @@ grid-area属性还可用作grid-row-start、grid-column-start、grid-row-end、g
 
 
 
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
+
 
 </div>
   </main>
