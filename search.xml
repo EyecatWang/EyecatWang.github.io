@@ -43,32 +43,6 @@
       </categories>
   </entry>
   <entry>
-    <title>js精度问题</title>
-    <url>/2021/10/20/js%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>js中的数字按照IEEE 754的标准，使用64位双精度浮点型来表示。</p>
-<p>其中符号位S，指数位E，尾数位M分别占了1，11，52位，并在ES5规范中指出了指数位E的取值范围是[-1074, 971].</p>
-<h2 id="精度问题汇总"><a href="#精度问题汇总" class="headerlink" title="精度问题汇总"></a>精度问题汇总</h2><p>想用有限的位来表示无穷的数字，显然是不可能的，因此会出现一些列精度问题</p>
-<p>· 浮点数精度问题，比如，0.1+0.2 !== 0.3<br>· 大数精度问题，比如9999 9999 9999 9999 == 1000 0000 0000 0000 1<br>· toFixed 四舍五入结果不准确，比如1.335.toFixed(2) == 1.33</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="number">1.335</span>).toPrecision(<span class="number">20</span>); <span class="comment">// &quot;1.3349999999999999645&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>而关于大数精度问题，我们可以先看下面这个代码片段：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 能精确表示的整数范围上限,S为1个0，E为11个0，S为52个1</span></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span> === <span class="built_in">Number</span>.MAX_SAFE_INTEGER    <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 能精确表示的整数范围下限,S为1个1，E为11个0，S为52个1</span></span><br><span class="line">-(<span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span>) === <span class="built_in">Number</span>.MIN_SAFE_INTEGER    <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 能表示的最大数字，S为1个0，E为971，S为52个1</span></span><br><span class="line">(<span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span>) * <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">971</span>) === <span class="built_in">Number</span>.MAX_VALUE    <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 能表示的最接近于0的正数，S为1个0，E为-1074，S为0</span></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, -<span class="number">1074</span>) === <span class="built_in">Number</span>.MIN_VALUE <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p>通过以上可以明白，[MIN_SAFE_INTEGER, MAX_SAFE_INTEGER] 的整数都可以精确表示，但是超出这个范围的整数就不一定能精确表示。这样就会产生所谓的大数精度丢失问题。</p>
-<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><p>首先考虑的是如何解决浮点数运算的精度问题，有 3 种思路：</p>
-<p>· 考虑到每次浮点数运算的偏差非常小(其实不然)，可以对结果进行指定精度的四舍五入，比如可以parseFloat(result.toFixed(12));<br>· 将浮点数转为整数运算，再对结果做除法。比如0.1 + 0.2，可以转化为(1*2)/3。<br>· 把浮点数转化为字符串，模拟实际运算的过程。</p>
-<p>先来看第一种方案，在大多数情况下，它可以得到正确结果，但是对一些极端情况，toFixed 到 12 是不够的，比如：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">210000</span> * <span class="number">10000</span>  * <span class="number">1000</span> * <span class="number">8.2</span>    <span class="comment">// 17219999999999.998</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="number">17219999999999.998</span>.toFixed(<span class="number">12</span>));    <span class="comment">// 17219999999999.998，而正确结果为 17220000000000</span></span><br></pre></td></tr></table></figure>
-<p>上面的情况，如果想让结果正确，需要 toFixed(2)，这显然是不可接受的。</p>
-<p>再看第二种方案，比如 number-precision 这个库就是使用的这种方案，但是这也是有问题的，比如：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这两个浮点数，转化为整数之后，相乘的结果已经超过了 MAX_SAFE_INTEGER</span></span><br><span class="line"><span class="number">123456.789</span> * <span class="number">123456.789</span>     <span class="comment">// 转化为 (123456789 * 123456789)/1000000，结果是 15241578750.19052</span></span><br></pre></td></tr></table></figure>
-
-<p>所以，最终考虑使用第三种方案，目前已经有了很多较为成熟的库，比如 bignumber.js，decimal.js，以及big.js等。我们可以根据自己的需求来选择对应的工具。并且，这些库不仅解决了浮点数的运算精度问题，还支持了大数运算，并且修复了原生toFixed结果不准确的问题。</p>
-]]></content>
-      <categories>
-        <category>js基础</category>
-      </categories>
-  </entry>
-  <entry>
     <title>js实现call, apply, bind方法</title>
     <url>/2021/08/19/js%E5%AE%9E%E7%8E%B0call,%20apply,%20bind%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p>#实现call方法</p>
@@ -626,6 +600,32 @@
 <h2 id="-1"><a href="#-1" class="headerlink" title></a><a href="/2018/07/06/%E5%8E%9F%E5%9E%8B%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE/" title="1.什么是原型链？">1.什么是原型链？</a></h2><p>原型链用于基于现有对象构建新类型的对象。它类似于基于类的语言中的继承。</p>
 <p>对象实例上的原型可通过Object.getPrototypeOf(object)或proto属性获得，而构造函数上的原型可通过Object.prototype 获得。</p>
 <h2 id="-2"><a href="#-2" class="headerlink" title></a><a href="/2021/08/19/call%E3%80%81apply%E5%92%8Cbind%E5%8C%BA%E5%88%AB/" title="3.call、 bind、apply区别？">3.call、 bind、apply区别？</a></h2><h2 id="-3"><a href="#-3" class="headerlink" title></a><a href="/2021/08/19/%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C/" title="4.数组操作？">4.数组操作？</a></h2>]]></content>
+  </entry>
+  <entry>
+    <title>js精度问题</title>
+    <url>/2021/10/20/js%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>js中的数字按照IEEE 754的标准，使用64位双精度浮点型来表示。</p>
+<p>其中符号位S，指数位E，尾数位M分别占了1，11，52位，并在ES5规范中指出了指数位E的取值范围是[-1074, 971].</p>
+<h2 id="精度问题汇总"><a href="#精度问题汇总" class="headerlink" title="精度问题汇总"></a>精度问题汇总</h2><p>想用有限的位来表示无穷的数字，显然是不可能的，因此会出现一些列精度问题</p>
+<p>· 浮点数精度问题，比如，0.1+0.2 !== 0.3<br>· 大数精度问题，比如9999 9999 9999 9999 == 1000 0000 0000 0000 1<br>· toFixed 四舍五入结果不准确，比如1.335.toFixed(2) == 1.33</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="number">1.335</span>).toPrecision(<span class="number">20</span>); <span class="comment">// &quot;1.3349999999999999645&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>而关于大数精度问题，我们可以先看下面这个代码片段：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 能精确表示的整数范围上限,S为1个0，E为11个0，S为52个1</span></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span> === <span class="built_in">Number</span>.MAX_SAFE_INTEGER    <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 能精确表示的整数范围下限,S为1个1，E为11个0，S为52个1</span></span><br><span class="line">-(<span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span>) === <span class="built_in">Number</span>.MIN_SAFE_INTEGER    <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 能表示的最大数字，S为1个0，E为971，S为52个1</span></span><br><span class="line">(<span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) - <span class="number">1</span>) * <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">971</span>) === <span class="built_in">Number</span>.MAX_VALUE    <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 能表示的最接近于0的正数，S为1个0，E为-1074，S为0</span></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, -<span class="number">1074</span>) === <span class="built_in">Number</span>.MIN_VALUE <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>通过以上可以明白，[MIN_SAFE_INTEGER, MAX_SAFE_INTEGER] 的整数都可以精确表示，但是超出这个范围的整数就不一定能精确表示。这样就会产生所谓的大数精度丢失问题。</p>
+<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><p>首先考虑的是如何解决浮点数运算的精度问题，有 3 种思路：</p>
+<p>· 考虑到每次浮点数运算的偏差非常小(其实不然)，可以对结果进行指定精度的四舍五入，比如可以parseFloat(result.toFixed(12));<br>· 将浮点数转为整数运算，再对结果做除法。比如0.1 + 0.2，可以转化为(1*2)/3。<br>· 把浮点数转化为字符串，模拟实际运算的过程。</p>
+<p>先来看第一种方案，在大多数情况下，它可以得到正确结果，但是对一些极端情况，toFixed 到 12 是不够的，比如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">210000</span> * <span class="number">10000</span>  * <span class="number">1000</span> * <span class="number">8.2</span>    <span class="comment">// 17219999999999.998</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="number">17219999999999.998</span>.toFixed(<span class="number">12</span>));    <span class="comment">// 17219999999999.998，而正确结果为 17220000000000</span></span><br></pre></td></tr></table></figure>
+<p>上面的情况，如果想让结果正确，需要 toFixed(2)，这显然是不可接受的。</p>
+<p>再看第二种方案，比如 number-precision 这个库就是使用的这种方案，但是这也是有问题的，比如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这两个浮点数，转化为整数之后，相乘的结果已经超过了 MAX_SAFE_INTEGER</span></span><br><span class="line"><span class="number">123456.789</span> * <span class="number">123456.789</span>     <span class="comment">// 转化为 (123456789 * 123456789)/1000000，结果是 15241578750.19052</span></span><br></pre></td></tr></table></figure>
+
+<p>所以，最终考虑使用第三种方案，目前已经有了很多较为成熟的库，比如 bignumber.js，decimal.js，以及big.js等。我们可以根据自己的需求来选择对应的工具。并且，这些库不仅解决了浮点数的运算精度问题，还支持了大数运算，并且修复了原生toFixed结果不准确的问题。</p>
+]]></content>
+      <categories>
+        <category>js基础</category>
+      </categories>
   </entry>
   <entry>
     <title>grid布局</title>
@@ -1429,14 +1429,24 @@ grid-area属性还可用作grid-row-start、grid-column-start、grid-row-end、g
 </ol>
 <h2 id="Webp"><a href="#Webp" class="headerlink" title="Webp"></a>Webp</h2><p>WebP 格式，谷歌（google）开发的一种旨在加快图片加载速度的图片格式。图片压缩体积大约只有 JPEG 的 2/3 ，并能节省大量的服务器带宽资源和数据空间。Facebook 、 Ebay 等知名网站已经开始测试并使用 WebP 格式。<br>在质量相同的情况下， WebP 格式图像的体积要比 JPEG 格式图像小40%</p>
 <h2 id="HTML全局属性-global-attribute-有"><a href="#HTML全局属性-global-attribute-有" class="headerlink" title="HTML全局属性(global attribute)有"></a>HTML全局属性(global attribute)有</h2><ol>
-<li>class ：为元素设置类标识</li>
-<li>data-* ：为元素增加自定义属性</li>
-<li>draggable ：设置元素是否可拖拽</li>
-<li>id ：元素 id ，文档内唯一</li>
-<li>lang ：元素内容的的语言</li>
-<li>style ：行内 css 样式</li>
-<li>title ：元素相关的建议信息<h2 id="对HTML语义化的理解"><a href="#对HTML语义化的理解" class="headerlink" title="对HTML语义化的理解"></a>对HTML语义化的理解</h2>语义化是指根据内容的结构化（内容语义化），选择合适的标签（代码语义化）。通俗来讲就是用正确的标签做正确的事情。<br>语义化的优点如下：</li>
+<li>accesskey    规定激活元素的快捷键。</li>
+<li>class    规定元素的一个或多个类名（引用样式表中的类）。</li>
+<li>contenteditable    规定元素内容是否可编辑。</li>
+<li>contextmenu    规定元素的上下文菜单。上下文菜单在用户点击元素时显示。</li>
+<li>data-*    用于存储页面或应用程序的私有定制数据。</li>
+<li>dir    规定元素中内容的文本方向。</li>
+<li>draggable    规定元素是否可拖动。</li>
+<li>dropzone    规定在拖动被拖动数据时是否进行复制、移动或链接。</li>
+<li>hidden    规定元素仍未或不再相关。</li>
+<li>id    规定元素的唯一 id。</li>
+<li>lang    规定元素内容的语言。</li>
+<li>spellcheck    规定是否对元素进行拼写和语法检查。</li>
+<li>style    规定元素的行内 CSS 样式。</li>
+<li>tabindex    规定元素的 tab 键次序。</li>
+<li>title    规定有关元素的额外信息。</li>
+<li>translate    规定是否应该翻译元素内容。</li>
 </ol>
+<h2 id="对HTML语义化的理解"><a href="#对HTML语义化的理解" class="headerlink" title="对HTML语义化的理解"></a>对HTML语义化的理解</h2><p>语义化是指根据内容的结构化（内容语义化），选择合适的标签（代码语义化）。通俗来讲就是用正确的标签做正确的事情。<br>语义化的优点如下：</p>
 <p>对机器友好，带有语义的文字表现力丰富，更适合搜索引擎的爬虫爬取有效信息，有利于SEO。除此之外，语义类还支持读屏软件，根据文章可以自动生成目录；<br>对开发者友好，使用语义类标签增强了可读性，结构更加清晰，开发者能清晰的看出网页的结构，便于团队的开发与维护。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;header&gt;&lt;/header&gt;  头部</span><br><span class="line"></span><br><span class="line">&lt;nav&gt;&lt;/nav&gt;  导航栏</span><br><span class="line"></span><br><span class="line">&lt;section&gt;&lt;/section&gt;  区块（有语义化的div）</span><br><span class="line"></span><br><span class="line">&lt;main&gt;&lt;/main&gt;  主要区域</span><br><span class="line"></span><br><span class="line">&lt;article&gt;&lt;/article&gt;  主要内容</span><br><span class="line"></span><br><span class="line">&lt;aside&gt;&lt;/aside&gt;  侧边栏</span><br><span class="line"></span><br><span class="line">&lt;footer&gt;&lt;/footer&gt;  底部</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
