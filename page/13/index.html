@@ -242,7 +242,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-11-23 14:50:15" itemprop="dateModified" datetime="2021-11-23T14:50:15+08:00">2021-11-23</time>
+        <time title="修改时间：2021-12-02 14:17:32" itemprop="dateModified" datetime="2021-12-02T14:17:32+08:00">2021-12-02</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -286,14 +286,8 @@
 <li>声音样式属性：pause-before、pause-after、pause、cue-before、cue-after、cue、play-during</li>
 </ol>
 <p>二、有继承性的属性<br>1.字体系列属性<br>font-family：字体系列<br>font-weight：字体的粗细<br>font-size：字体的大小<br>font-style：字体的风格<br>2. 文本系列属性<br>text-indent：文本缩进<br>text-align：文本水平对齐<br>line-height：行高<br>word-spacing：单词之间的间距<br>letter-spacing：中文或者字母之间的间距<br>text-transform：控制文本大小写（就是uppercase、lowercase、capitalize这三个）<br>color：文本颜色<br>3. 元素可见性<br>visibility：控制元素显示隐藏<br>列表布局属性<br>list-style：列表风格，包括list-style-type、list-style-image等<br>光标属性<br>cursor：光标显示为何种形态</p>
-<h2 id="css优先级算法如何计算"><a href="#css优先级算法如何计算" class="headerlink" title="css优先级算法如何计算"></a>css优先级算法如何计算</h2><p>元素选择符： 1</p>
-<p>class选择符： 10</p>
-<p>id选择符：100</p>
-<p>元素标签：1000</p>
-<p>优先级（就近原则）：！important&gt;id&gt;class｜属性｜伪类》元素选择器, !important比内联优先级高</p>
-<p>1、!important声明的样式优先级最高，如果有冲突在进行计算</p>
-<p>2、如果优先级相同，则选择最后出现的样式</p>
-<p>3、继承得到的样式优先级最低</p>
+<h2 id="css优先级算法如何计算"><a href="#css优先级算法如何计算" class="headerlink" title="css优先级算法如何计算"></a>css优先级算法如何计算</h2><p>判断优先级时，首先我们会判断一条属性声明是否有权重，也就是是否在声明后面加上了!important。一条声明如果加上了权重，<br>那么它的优先级就是最高的，前提是它之后不再出现相同权重的声明。如果权重相同，我们则需要去比较匹配规则的特殊性。</p>
+<p>一条匹配规则一般由多个选择器组成，一条规则的特殊性由组成它的选择器的特殊性累加而成。选择器的特殊性可以分为四个等级，<br>第一个等级是行内样式，为1000，第二个等级是id选择器，为0100，第三个等级是类选择器、伪类选择器和属性选择器，为0010，<br>第四个等级是元素选择器和伪元素选择器，为0001。规则中每出现一个选择器，就将它的特殊性进行叠加，这个叠加只限于对应的等<br>级的叠加，不会产生进位。选择器特殊性值的比较是从左向右排序的，也就是说以1开头的特殊性值比所有以0开头的特殊性值要大。<br>比如说特殊性值为1000的的规则优先级就要比特殊性值为0999的规则高。如果两个规则的特殊性值相等的时候，那么就会根据它们引<br>入的顺序，后出现的规则的优先级最高。</p>
 <h2 id="css3新增的伪类有哪些？"><a href="#css3新增的伪类有哪些？" class="headerlink" title="css3新增的伪类有哪些？"></a>css3新增的伪类有哪些？</h2><p>p:first-of-type 选择属于其父元素的首个元素</p>
 <p>p:last-of-type 选择属于其父元素的最后元素</p>
 <p>p:only-of-type 选择属于其父元素唯一的元素</p>
@@ -352,16 +346,10 @@
 <li>超链接访问过后hover样式就不出现了，被点击访问过的超链接样式不再具有hover和active了。解决方法是改变CSS属性的排列顺序:L-V-H-A ( love hate ): a:link {} a:visited {} a:hover {} a:active {}</li>
 </ol>
 <h2 id="为什么要初始化CSS样式"><a href="#为什么要初始化CSS样式" class="headerlink" title="为什么要初始化CSS样式"></a>为什么要初始化CSS样式</h2><p>因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异。</p>
-<h2 id="absolute的containing-block计算方式跟正常流有什么不同"><a href="#absolute的containing-block计算方式跟正常流有什么不同" class="headerlink" title="absolute的containing block计算方式跟正常流有什么不同"></a>absolute的containing block计算方式跟正常流有什么不同</h2><p>无论属于哪种，都要先找到其祖先元素中最近的 position 值不为 static 的元素，然后再判断：</p>
-<ol>
-<li>若此元素为 inline 元素，则 containing block 为能够包含这个元素生成的第一个和最后一个 inline box 的 padding box (除 margin, border 外的区域) 的最小矩形；</li>
-<li>否则,则由这个祖先元素的 padding box 构成。</li>
-<li>如果都找不到，则为 initial containing block。<br>补充：</li>
-<li>static(默认的)/relative：简单说就是它的父元素的内容框（即去掉padding的部分）</li>
-<li>absolute: 向上找最近的定位为absolute/relative的元素</li>
-<li>fixed: 它的containing block一律为根元素(html/body)</li>
-</ol>
-<h2 id="CSS里的visibility属性有个collapse属性值？在不同浏览器下以后什么区别？"><a href="#CSS里的visibility属性有个collapse属性值？在不同浏览器下以后什么区别？" class="headerlink" title="CSS里的visibility属性有个collapse属性值？在不同浏览器下以后什么区别？"></a>CSS里的visibility属性有个collapse属性值？在不同浏览器下以后什么区别？</h2><p>当一个元素的visibility属性被设置成collapse值后，对于一般的元素，它的表现跟hidden是一样的。但例外的是，如果这个元素是table相关的元素，例如table行，table group，table列，table column group，它的表现却跟display:none一样，也就是说，它们占用的空间也会释放。</p>
+<h2 id="absolute的containing-block计算方式跟正常流有什么不同"><a href="#absolute的containing-block计算方式跟正常流有什么不同" class="headerlink" title="absolute的containing block计算方式跟正常流有什么不同"></a>absolute的containing block计算方式跟正常流有什么不同</h2><p>（1）内联元素也可以作为“包含块”所在的元素；</p>
+<p>（2）“包含块”所在的元素不是父块级元素，而是最近的position不为static的祖先元素或根元素；</p>
+<p>（3）边界是padding box而不是content box。</p>
+<h2 id="CSS里的visibility属性有个collapse属性值？在不同浏览器下有什么区别？"><a href="#CSS里的visibility属性有个collapse属性值？在不同浏览器下有什么区别？" class="headerlink" title="CSS里的visibility属性有个collapse属性值？在不同浏览器下有什么区别？"></a>CSS里的visibility属性有个collapse属性值？在不同浏览器下有什么区别？</h2><p>当一个元素的visibility属性被设置成collapse值后，对于一般的元素，它的表现跟hidden是一样的。但例外的是，如果这个元素是table相关的元素，例如table行，table group，table列，table column group，它的表现却跟display:none一样，也就是说，它们占用的空间也会释放。</p>
 <ol>
 <li>chrome中，使用collapse值和使用hidden没有区别。</li>
 <li>firefox，opera和IE，使用collapse值和使用display：none没有什么区别。</li>

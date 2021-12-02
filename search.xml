@@ -427,23 +427,6 @@
       </categories>
   </entry>
   <entry>
-    <title>插入排序</title>
-    <url>/2021/08/25/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>1.从数组的第二个数据开始往前比较，即一开始用第二个数和他前面的一个比较，如果 符合条件（比前面的大或者小，自定义），则让他们交换位置。</p>
-<p>2.然后再用第三个数和第二个比较，符合则交换，但是此处还得继续往前比较，比如有 5个数8，15，20，45, 17,17比45小，需要交换，但是17也比20小，也要交换，当不需 要和15交换以后，说明也不需要和15前面的数据比较了，肯定不需要交换，因为前 面的数据都是有序的。</p>
-<p>3.重复步骤二，一直到数据全都排完。</p>
-<h2 id="动图演示"><a href="#动图演示" class="headerlink" title="动图演示"></a>动图演示</h2><p><img src="/.io//1.gif" alt="原理图"></p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">40</span>, <span class="number">60</span>, <span class="number">60</span>, <span class="number">0</span>, <span class="number">30</span>]</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> n = i;</span><br><span class="line">    <span class="keyword">while</span> (arr[n] &gt; arr[n+<span class="number">1</span>] &amp;&amp; n &gt;=<span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> temp = arr[n];</span><br><span class="line">        arr[n] = arr[n + <span class="number">1</span>];</span><br><span class="line">        arr[n + <span class="number">1</span>] = temp;</span><br><span class="line">        n--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure>
-
-<h2 id="性能分析："><a href="#性能分析：" class="headerlink" title="性能分析："></a>性能分析：</h2><p>1.属于稳定的排序，适合于数据量小，部分数据有序的情况排序。</p>
-<p>2.如果目标是把n个元素的序列升序排列，那么采用插入排序存在最好情况和最坏情况。最好情况就是，序列已经是升序排列了，在这种情况下，需要进行的比较操作需（n-1）次即可。最坏情况就是，序列是降序排列，那么此时需要进行的比较共有n(n-1)/2次。插入排序的赋值操作是比较操作的次数加上 (n-1）次。平均来说插入排序算法的时间复杂度为O(n^2）。因而，插入排序不适合对于数据量比较大的排序应用。但是，如果需要排序的数据量很小，例如，量级小于千，那么插入排序还是一个不错的选择</p>
-<p>3.插入排序的平均时间复杂度也是 O(n^2)，空间复杂度为常数阶 O(1)</p>
-]]></content>
-      <categories>
-        <category>js基础</category>
-      </categories>
-  </entry>
-  <entry>
     <title>数据类型</title>
     <url>/2021/08/19/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
     <content><![CDATA[<h1 id="js中基本数据类型"><a href="#js中基本数据类型" class="headerlink" title="js中基本数据类型"></a>js中基本数据类型</h1><h2 id="原始数据类型"><a href="#原始数据类型" class="headerlink" title="原始数据类型"></a>原始数据类型</h2><ul>
@@ -458,6 +441,23 @@
 <h2 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h2><ul>
 <li>object (包括function/array/object)</li>
 </ul>
+]]></content>
+      <categories>
+        <category>js基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>插入排序</title>
+    <url>/2021/08/25/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<h2 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h2><p>1.从数组的第二个数据开始往前比较，即一开始用第二个数和他前面的一个比较，如果 符合条件（比前面的大或者小，自定义），则让他们交换位置。</p>
+<p>2.然后再用第三个数和第二个比较，符合则交换，但是此处还得继续往前比较，比如有 5个数8，15，20，45, 17,17比45小，需要交换，但是17也比20小，也要交换，当不需 要和15交换以后，说明也不需要和15前面的数据比较了，肯定不需要交换，因为前 面的数据都是有序的。</p>
+<p>3.重复步骤二，一直到数据全都排完。</p>
+<h2 id="动图演示"><a href="#动图演示" class="headerlink" title="动图演示"></a>动图演示</h2><p><img src="/.io//1.gif" alt="原理图"></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">40</span>, <span class="number">60</span>, <span class="number">60</span>, <span class="number">0</span>, <span class="number">30</span>]</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> n = i;</span><br><span class="line">    <span class="keyword">while</span> (arr[n] &gt; arr[n+<span class="number">1</span>] &amp;&amp; n &gt;=<span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> temp = arr[n];</span><br><span class="line">        arr[n] = arr[n + <span class="number">1</span>];</span><br><span class="line">        arr[n + <span class="number">1</span>] = temp;</span><br><span class="line">        n--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure>
+
+<h2 id="性能分析："><a href="#性能分析：" class="headerlink" title="性能分析："></a>性能分析：</h2><p>1.属于稳定的排序，适合于数据量小，部分数据有序的情况排序。</p>
+<p>2.如果目标是把n个元素的序列升序排列，那么采用插入排序存在最好情况和最坏情况。最好情况就是，序列已经是升序排列了，在这种情况下，需要进行的比较操作需（n-1）次即可。最坏情况就是，序列是降序排列，那么此时需要进行的比较共有n(n-1)/2次。插入排序的赋值操作是比较操作的次数加上 (n-1）次。平均来说插入排序算法的时间复杂度为O(n^2）。因而，插入排序不适合对于数据量比较大的排序应用。但是，如果需要排序的数据量很小，例如，量级小于千，那么插入排序还是一个不错的选择</p>
+<p>3.插入排序的平均时间复杂度也是 O(n^2)，空间复杂度为常数阶 O(1)</p>
 ]]></content>
       <categories>
         <category>js基础</category>
@@ -1970,11 +1970,6 @@ grid-area属性还可用作grid-row-start、grid-column-start、grid-row-end、g
 <li>会产生很多页面，不容易管理</li>
 </ol>
 <h2 id="页面可见性（Page-Visibility）API-可以有哪些用途"><a href="#页面可见性（Page-Visibility）API-可以有哪些用途" class="headerlink" title="页面可见性（Page Visibility）API 可以有哪些用途"></a>页面可见性（Page Visibility）API 可以有哪些用途</h2><p>在页面被切换到其他后台进程的时候，自动暂停音乐或视频的播放。</p>
-<h2 id="从浏览器地址栏输入url到显示页面的步骤"><a href="#从浏览器地址栏输入url到显示页面的步骤" class="headerlink" title="从浏览器地址栏输入url到显示页面的步骤"></a>从浏览器地址栏输入url到显示页面的步骤</h2><p>浏览器根据请求的URL交给DNS域名解析，找到真实IP，向服务器发起请求；<br>服务器交给后台处理完成后返回数据，浏览器接收文件（HTML、JS、CSS、图象等）；<br>浏览器对加载到的资源（HTML、JS、CSS等）进行语法解析，建立相应的内部数据结构（如HTML的DOM）；<br>载入解析到的资源文件，渲染页面，完成。</p>
-<ol>
-<li>为什么url要解析（也就是编码)<br>因为网络标准规定了URL只能使用英文字母、阿拉伯数字和某些标点符号（-_.~ ! * ‘ ( ) ; : @ &amp; = + $ , / ? # [ ]，比较常见的就是不包括百分号和双引号），如果URL中有汉字，就必须编码后使用（一般由应用程序决定），如果不转义会出现歧义，比如http:<a href="http://www.baidu.com/?key=value,%E5%81%87%E5%A6%82%E6%88%91%E7%9A%84key%E6%9C%AC%E8%BA%AB%E5%B0%B1%E5%8C%85%E6%8B%AC%E7%AD%89%E4%BA%8E=%E7%AC%A6%E5%8F%B7%EF%BC%8C%E6%AF%94%E5%A6%82ke=y=value%EF%BC%8C%E5%B0%B1%E4%BC%9A%E5%87%BA%E7%8E%B0%E6%AD%A7%E4%B9%89%EF%BC%8C%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93=%E5%88%B0%E5%BA%95%E6%98%AF%E8%BF%9E%E6%8E%A5key%E5%92%8Cvalue%E7%9A%84%E7%AC%A6%E5%8F%B7%EF%BC%8C%E8%BF%98%E6%98%AF%E8%AF%B4%E6%9C%AC%E8%BA%ABkey%E9%87%8C%E9%9D%A2%E5%B0%B1%E6%9C%89=">www.baidu.com?key=value,假如我的key本身就包括等于=符号，比如ke=y=value，就会出现歧义，你不知道=到底是连接key和value的符号，还是说本身key里面就有=</a></li>
-<li>url编码的规则是什么？<br> （1）情况1:网址路径中包含汉字，网址路径的编码，用的是utf-8编码<br> （2）情况2:查询字符串包含汉字，查询字符串的编码，用的是操作系统的默认编码。<br> （3）情况3:Get/Post方法生成的URL包含汉字，GET和POST方法的编码，用的是网页的编码。<br> （4）情况4:Ajax调用的URL包含汉字，，IE总是采用GB2312编码（操作系统的默认编码），而Firefox总是采用utf-8编码，也就是说不通浏览器有不同的编码规则</li>
-</ol>
 <h2 id="script标签为什么要放在body标签的底部，【defer-async】"><a href="#script标签为什么要放在body标签的底部，【defer-async】" class="headerlink" title="script标签为什么要放在body标签的底部，【defer async】"></a>script标签为什么要放在body标签的底部，【defer async】</h2><p>因为浏览器在渲染html的时候，从上到下依次执行，遇到js文件就会停止当前页面的渲染，转而去下载js文件，如果将script标签放在头部，如果文件又很大的情况下，首屏时间就会延长，影响用户体验。<br>解决方法：</p>
 <p>将script标签放到body的底部<br>通过defer\async属性将js文件转为异步下载</p>
 <p>defer\async的区别<br>首先都是让js文件能够异步下载，不阻塞页面的渲染<br>区别就是defer必须等待整个文档渲染完成后才执行<br>而async在下载完成后，会暂停html的解析，转去执行js</p>
@@ -2351,7 +2346,20 @@ grid-area属性还可用作grid-row-start、grid-column-start、grid-row-end、g
 
 <p>首屏时间:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">window.performance.timing.domInteractive - window.performace.timing.navigationStart</span><br></pre></td></tr></table></figure>
-
+<h2 id="从浏览器地址栏输入url到显示页面的步骤"><a href="#从浏览器地址栏输入url到显示页面的步骤" class="headerlink" title="从浏览器地址栏输入url到显示页面的步骤"></a>从浏览器地址栏输入url到显示页面的步骤</h2><p>浏览器根据请求的URL交给DNS域名解析，找到真实IP，向服务器发起请求；<br>服务器交给后台处理完成后返回数据，浏览器接收文件（HTML、JS、CSS、图象等）；<br>浏览器对加载到的资源（HTML、JS、CSS等）进行语法解析，建立相应的内部数据结构（如HTML的DOM）；<br>载入解析到的资源文件，渲染页面，完成。</p>
+<ol>
+<li>为什么url要解析（也就是编码)<br>因为网络标准规定了URL只能使用英文字母、阿拉伯数字和某些标点符号（-_.~ ! * ‘ ( ) ; : @ &amp; = + $ , / ? # [ ]，比较常见的就是不包括百分号和双引号），如果URL中有汉字，就必须编码后使用（一般由应用程序决定），如果不转义会出现歧义，比如http:<a href="http://www.baidu.com/?key=value,%E5%81%87%E5%A6%82%E6%88%91%E7%9A%84key%E6%9C%AC%E8%BA%AB%E5%B0%B1%E5%8C%85%E6%8B%AC%E7%AD%89%E4%BA%8E=%E7%AC%A6%E5%8F%B7%EF%BC%8C%E6%AF%94%E5%A6%82ke=y=value%EF%BC%8C%E5%B0%B1%E4%BC%9A%E5%87%BA%E7%8E%B0%E6%AD%A7%E4%B9%89%EF%BC%8C%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93=%E5%88%B0%E5%BA%95%E6%98%AF%E8%BF%9E%E6%8E%A5key%E5%92%8Cvalue%E7%9A%84%E7%AC%A6%E5%8F%B7%EF%BC%8C%E8%BF%98%E6%98%AF%E8%AF%B4%E6%9C%AC%E8%BA%ABkey%E9%87%8C%E9%9D%A2%E5%B0%B1%E6%9C%89=">www.baidu.com?key=value,假如我的key本身就包括等于=符号，比如ke=y=value，就会出现歧义，你不知道=到底是连接key和value的符号，还是说本身key里面就有=</a></li>
+<li>url编码的规则是什么？<br> （1）情况1:网址路径中包含汉字，网址路径的编码，用的是utf-8编码<br> （2）情况2:查询字符串包含汉字，查询字符串的编码，用的是操作系统的默认编码。<br> （3）情况3:Get/Post方法生成的URL包含汉字，GET和POST方法的编码，用的是网页的编码。<br> （4）情况4:Ajax调用的URL包含汉字，，IE总是采用GB2312编码（操作系统的默认编码），而Firefox总是采用utf-8编码，也就是说不通浏览器有不同的编码规则</li>
+</ol>
+<h2 id="什么是关键渲染路径"><a href="#什么是关键渲染路径" class="headerlink" title="什么是关键渲染路径"></a>什么是关键渲染路径</h2><p>从收到 HTML、CSS 和 JavaScript 字节到对其进行必需的处理，从而将它们转变成渲染的像素这一过程中有一些中间步骤，优化性能其实就是了解这些步骤中发生了什么， 即关键渲染路径</p>
+<ol>
+<li>创建DOM树(Constructing the DOM Tree)</li>
+<li>创建CSSOM树(Constructing the CSSOM Tree)</li>
+<li>执行脚本(Running JavaScript)</li>
+<li>生成渲染树(Creating the Render Tree)</li>
+<li>生成布局(Generating the Layout)</li>
+<li>绘制(Painting)</li>
+</ol>
 <h2 id="什么是重排重绘，如何减少重拍重绘"><a href="#什么是重排重绘，如何减少重拍重绘" class="headerlink" title="什么是重排重绘，如何减少重拍重绘"></a>什么是重排重绘，如何减少重拍重绘</h2><p>重排和重绘是关键渲染路径中的两步，可以参考另一个问题: 什么是关键渲染路径(opens new window)</p>
 <p>重排(Reflow)：元素的位置发生变动时发生重排，也叫回流。此时在关键渲染路径中的 Layout 阶段，计算每一个元素在设备视口内的确切位置和大小。当一个元素位置发生变化时，其父元素及其后边的元素位置都可能发生变化，代价极高</p>
 <p>重绘(Repaint): 元素的样式发生变动，但是位置没有改变。此时在关键渲染路径中的 Paint 阶段，将渲染树中的每个节点转换成屏幕上的实际像素，这一步通常称为绘制或栅格化</p>
@@ -2444,14 +2452,8 @@ grid-area属性还可用作grid-row-start、grid-column-start、grid-row-end、g
 <li>声音样式属性：pause-before、pause-after、pause、cue-before、cue-after、cue、play-during</li>
 </ol>
 <p>二、有继承性的属性<br>1.字体系列属性<br>font-family：字体系列<br>font-weight：字体的粗细<br>font-size：字体的大小<br>font-style：字体的风格<br>2. 文本系列属性<br>text-indent：文本缩进<br>text-align：文本水平对齐<br>line-height：行高<br>word-spacing：单词之间的间距<br>letter-spacing：中文或者字母之间的间距<br>text-transform：控制文本大小写（就是uppercase、lowercase、capitalize这三个）<br>color：文本颜色<br>3. 元素可见性<br>visibility：控制元素显示隐藏<br>列表布局属性<br>list-style：列表风格，包括list-style-type、list-style-image等<br>光标属性<br>cursor：光标显示为何种形态</p>
-<h2 id="css优先级算法如何计算"><a href="#css优先级算法如何计算" class="headerlink" title="css优先级算法如何计算"></a>css优先级算法如何计算</h2><p>元素选择符： 1</p>
-<p>class选择符： 10</p>
-<p>id选择符：100</p>
-<p>元素标签：1000</p>
-<p>优先级（就近原则）：！important&gt;id&gt;class｜属性｜伪类》元素选择器, !important比内联优先级高</p>
-<p>1、!important声明的样式优先级最高，如果有冲突在进行计算</p>
-<p>2、如果优先级相同，则选择最后出现的样式</p>
-<p>3、继承得到的样式优先级最低</p>
+<h2 id="css优先级算法如何计算"><a href="#css优先级算法如何计算" class="headerlink" title="css优先级算法如何计算"></a>css优先级算法如何计算</h2><p>判断优先级时，首先我们会判断一条属性声明是否有权重，也就是是否在声明后面加上了!important。一条声明如果加上了权重，<br>那么它的优先级就是最高的，前提是它之后不再出现相同权重的声明。如果权重相同，我们则需要去比较匹配规则的特殊性。</p>
+<p>一条匹配规则一般由多个选择器组成，一条规则的特殊性由组成它的选择器的特殊性累加而成。选择器的特殊性可以分为四个等级，<br>第一个等级是行内样式，为1000，第二个等级是id选择器，为0100，第三个等级是类选择器、伪类选择器和属性选择器，为0010，<br>第四个等级是元素选择器和伪元素选择器，为0001。规则中每出现一个选择器，就将它的特殊性进行叠加，这个叠加只限于对应的等<br>级的叠加，不会产生进位。选择器特殊性值的比较是从左向右排序的，也就是说以1开头的特殊性值比所有以0开头的特殊性值要大。<br>比如说特殊性值为1000的的规则优先级就要比特殊性值为0999的规则高。如果两个规则的特殊性值相等的时候，那么就会根据它们引<br>入的顺序，后出现的规则的优先级最高。</p>
 <h2 id="css3新增的伪类有哪些？"><a href="#css3新增的伪类有哪些？" class="headerlink" title="css3新增的伪类有哪些？"></a>css3新增的伪类有哪些？</h2><p>p:first-of-type 选择属于其父元素的首个元素</p>
 <p>p:last-of-type 选择属于其父元素的最后元素</p>
 <p>p:only-of-type 选择属于其父元素唯一的元素</p>
@@ -2510,16 +2512,10 @@ grid-area属性还可用作grid-row-start、grid-column-start、grid-row-end、g
 <li>超链接访问过后hover样式就不出现了，被点击访问过的超链接样式不再具有hover和active了。解决方法是改变CSS属性的排列顺序:L-V-H-A ( love hate ): a:link {} a:visited {} a:hover {} a:active {}</li>
 </ol>
 <h2 id="为什么要初始化CSS样式"><a href="#为什么要初始化CSS样式" class="headerlink" title="为什么要初始化CSS样式"></a>为什么要初始化CSS样式</h2><p>因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异。</p>
-<h2 id="absolute的containing-block计算方式跟正常流有什么不同"><a href="#absolute的containing-block计算方式跟正常流有什么不同" class="headerlink" title="absolute的containing block计算方式跟正常流有什么不同"></a>absolute的containing block计算方式跟正常流有什么不同</h2><p>无论属于哪种，都要先找到其祖先元素中最近的 position 值不为 static 的元素，然后再判断：</p>
-<ol>
-<li>若此元素为 inline 元素，则 containing block 为能够包含这个元素生成的第一个和最后一个 inline box 的 padding box (除 margin, border 外的区域) 的最小矩形；</li>
-<li>否则,则由这个祖先元素的 padding box 构成。</li>
-<li>如果都找不到，则为 initial containing block。<br>补充：</li>
-<li>static(默认的)/relative：简单说就是它的父元素的内容框（即去掉padding的部分）</li>
-<li>absolute: 向上找最近的定位为absolute/relative的元素</li>
-<li>fixed: 它的containing block一律为根元素(html/body)</li>
-</ol>
-<h2 id="CSS里的visibility属性有个collapse属性值？在不同浏览器下以后什么区别？"><a href="#CSS里的visibility属性有个collapse属性值？在不同浏览器下以后什么区别？" class="headerlink" title="CSS里的visibility属性有个collapse属性值？在不同浏览器下以后什么区别？"></a>CSS里的visibility属性有个collapse属性值？在不同浏览器下以后什么区别？</h2><p>当一个元素的visibility属性被设置成collapse值后，对于一般的元素，它的表现跟hidden是一样的。但例外的是，如果这个元素是table相关的元素，例如table行，table group，table列，table column group，它的表现却跟display:none一样，也就是说，它们占用的空间也会释放。</p>
+<h2 id="absolute的containing-block计算方式跟正常流有什么不同"><a href="#absolute的containing-block计算方式跟正常流有什么不同" class="headerlink" title="absolute的containing block计算方式跟正常流有什么不同"></a>absolute的containing block计算方式跟正常流有什么不同</h2><p>（1）内联元素也可以作为“包含块”所在的元素；</p>
+<p>（2）“包含块”所在的元素不是父块级元素，而是最近的position不为static的祖先元素或根元素；</p>
+<p>（3）边界是padding box而不是content box。</p>
+<h2 id="CSS里的visibility属性有个collapse属性值？在不同浏览器下有什么区别？"><a href="#CSS里的visibility属性有个collapse属性值？在不同浏览器下有什么区别？" class="headerlink" title="CSS里的visibility属性有个collapse属性值？在不同浏览器下有什么区别？"></a>CSS里的visibility属性有个collapse属性值？在不同浏览器下有什么区别？</h2><p>当一个元素的visibility属性被设置成collapse值后，对于一般的元素，它的表现跟hidden是一样的。但例外的是，如果这个元素是table相关的元素，例如table行，table group，table列，table column group，它的表现却跟display:none一样，也就是说，它们占用的空间也会释放。</p>
 <ol>
 <li>chrome中，使用collapse值和使用hidden没有区别。</li>
 <li>firefox，opera和IE，使用collapse值和使用display：none没有什么区别。</li>
