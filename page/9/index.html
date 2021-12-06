@@ -161,13 +161,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -211,7 +211,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://eyecatwang.github.io/2021/08/19/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="https://eyecatwang.github.io/2021/08/19/call%E3%80%81apply%E5%92%8Cbind%E5%8C%BA%E5%88%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/26106551">
@@ -224,7 +224,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/19/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">数据类型</a>
+          <a href="/2021/08/19/call%E3%80%81apply%E5%92%8Cbind%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">call、 bind、apply区别</a>
         </h2>
 
         <div class="post-meta-container">
@@ -264,18 +264,40 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="js中基本数据类型"><a href="#js中基本数据类型" class="headerlink" title="js中基本数据类型"></a>js中基本数据类型</h1><h2 id="原始数据类型"><a href="#原始数据类型" class="headerlink" title="原始数据类型"></a>原始数据类型</h2><ul>
-<li>number</li>
-<li>string</li>
-<li>boolean</li>
-<li>null</li>
-<li>undefined</li>
-<li>symbol(es6)</li>
-<li>bigint(es10)</li>
+          <h1 id="call、-bind、apply区别"><a href="#call、-bind、apply区别" class="headerlink" title="call、 bind、apply区别"></a>call、 bind、apply区别</h1><p>我们都知道call apply bind都可以改变函数调用的this指向。那么它们三者有什么区别，什么时候该用哪个呢？</p>
+<p>我们先来看MDN语法说明</p>
+<h2 id="语法说明"><a href="#语法说明" class="headerlink" title="语法说明"></a>语法说明</h2><h3 id="1-call语法"><a href="#1-call语法" class="headerlink" title="1. call语法"></a>1. call语法</h3><ul>
+<li>fun.call(thisArg, arg1, arg2, …)</li>
+<li>thisArg: 在fun函数运行时指定的this值。需要注意的是，指定的this值并不一定是该函数执行时真正的this值，如果这个函数处于非严格模式下，则指定为null和undefined的this值会自动指向全局对象(浏览器中就是window对象)，同时值为原始值(数字，字符串，布尔值)的this会指向该原始值的自动包装对象。</li>
+<li>arg1, arg2, … 指定的参数列表</li>
 </ul>
-<h2 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h2><ul>
-<li>object (包括function/array/object)</li>
+<h3 id="2-apply语法"><a href="#2-apply语法" class="headerlink" title="2. apply语法"></a>2. apply语法</h3><ul>
+<li>fun.apply(thisArg, [argsArray])</li>
+<li>thisArg 在 fun 函数运行时指定的 this 值。需要注意的是，指定的 this 值并不一定是该函数执行时真正的 this 值，如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自动指向全局对象（浏览器中就是window对象），同时值为原始值（数字，字符串，布尔值）的 this 会指向该原始值的自动包装对象。</li>
+<li>argsArray 一个数组或者类数组对象，其中的数组元素将作为单独的参数传给 fun 函数。如果该参数的值为null 或 undefined，则表示不需要传入任何参数。从ECMAScript 5 开始可以使用类数组对象。</li>
 </ul>
+<h3 id="3-bind语法"><a href="#3-bind语法" class="headerlink" title="3. bind语法"></a>3. bind语法</h3><ul>
+<li>fun.bind(thisArg[, arg1[, arg2[, …]]])</li>
+<li>thisArg 当绑定函数被调用时，该参数会作为原函数运行时的 this 指向。当使用new 操作符调用绑定函数时，该参数无效。</li>
+<li>arg1, arg2, … 当绑定函数被调用时，这些参数将置于实参之前传递给被绑定的方法。</li>
+</ul>
+<h2 id="例子说明"><a href="#例子说明" class="headerlink" title="例子说明"></a>例子说明</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 有只猫叫小黑，小黑会吃鱼</span></span><br><span class="line"><span class="keyword">const</span> cat = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;小黑&#x27;</span>,</span><br><span class="line">    <span class="function"><span class="title">eatFish</span>(<span class="params">...args</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;this指向=&gt;&#x27;</span>, <span class="built_in">this</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;...args&#x27;</span>, args);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&#x27;吃鱼&#x27;</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 有只狗叫大毛，大毛会吃骨头</span></span><br><span class="line"><span class="keyword">const</span> dog = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;大毛&#x27;</span>,</span><br><span class="line">    <span class="function"><span class="title">eatBone</span>(<span class="params">...args</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;this指向=&gt;&#x27;</span>, <span class="built_in">this</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;...args&#x27;</span>, args);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&#x27;吃骨头&#x27;</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;=================== call =========================&#x27;</span>);</span><br><span class="line"><span class="comment">// 有一天大毛想吃鱼了，可是它不知道怎么吃。怎么办？小黑说我吃的时候喂你吃</span></span><br><span class="line">cat.eatFish.call(dog, <span class="string">&#x27;汪汪汪&#x27;</span>, <span class="string">&#x27;call&#x27;</span>)</span><br><span class="line"><span class="comment">// 大毛为了表示感谢，决定下次吃骨头的时候也喂小黑吃</span></span><br><span class="line">dog.eatBone.call(cat, <span class="string">&#x27;喵喵喵&#x27;</span>, <span class="string">&#x27;call&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;=================== apply =========================&#x27;</span>);</span><br><span class="line">cat.eatFish.apply(dog, [<span class="string">&#x27;汪汪汪&#x27;</span>, <span class="string">&#x27;apply&#x27;</span>])</span><br><span class="line">dog.eatBone.apply(cat, [<span class="string">&#x27;喵喵喵&#x27;</span>, <span class="string">&#x27;apply&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;=================== bind =========================&#x27;</span>);</span><br><span class="line"><span class="comment">// 有一天他们觉得每次吃的时候再喂太麻烦了。干脆直接教对方怎么吃</span></span><br><span class="line"><span class="keyword">const</span> test1 = cat.eatFish.bind(dog, <span class="string">&#x27;汪汪汪&#x27;</span>, <span class="string">&#x27;bind&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> test2 = dog.eatBone.bind(cat, <span class="string">&#x27;喵喵喵&#x27;</span>, <span class="string">&#x27;bind&#x27;</span>)</span><br><span class="line">test1()</span><br><span class="line">test2()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>call跟apply的用法几乎一样，唯一的不同就是传递的参数不同，call只能一个参数一个参数的传入。</p>
+</li>
+<li><p>apply则只支持传入一个数组，哪怕是一个参数也要是数组形式。最终调用函数时候这个数组会拆成一个个参数分别传入。</p>
+</li>
+<li><p>至于bind方法，他是直接改变这个函数的this指向并且返回一个新的函数，之后再次调用这个函数的时候this都是指向bind绑定的第一个参数。bind传餐方式跟call方法一致。</p>
+</li>
+</ul>
+<p>由于apply函数传参的特殊性，我们又衍生出了一个黑魔法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 如果一个数组我们已知里面全都是数字，想要知道最大的那个数，由于Array没有max方法，Math对象上有</span></span><br><span class="line"><span class="comment">// 我们可以根据apply传递参数的特性将这个数组当成参数传入</span></span><br><span class="line"><span class="comment">// 最终Math.max函数调用的时候会将apply的数组里面的参数一个一个传入，恰好符合Math.max的参数传递方式</span></span><br><span class="line"><span class="comment">// 这样变相的实现了数组的max方法。min方法也同理</span></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="keyword">const</span> max = <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, arr)</span><br><span class="line"><span class="built_in">console</span>.log(max)    <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>箭头函数没有this，会忽律第一个参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cat = &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;小黑&quot;</span>,</span><br><span class="line">        <span class="attr">eatFish</span>: <span class="function">(<span class="params">...args</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;this 指向=》&quot;</span>, <span class="built_in">this</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;...args=&gt;&quot;</span>, args);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&quot;吃鱼&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> dog = &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;大毛&quot;</span>,</span><br><span class="line">        <span class="function"><span class="title">eatBone</span>(<span class="params">...args</span>)</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;this 指向=》&quot;</span>, <span class="built_in">this</span>);</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;...args=&gt;&quot;</span>, args);</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="string">&quot;吃骨头&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cat.eatFish.call(dog, <span class="string">&quot;1&quot;</span>, <span class="string">&quot;2&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>call 和 apply 的主要作用，是改变对象的执行上下文，并且是立即执行的。它们在参数上的写法略有区别。</p>
+<p>bind 也能改变对象的执行上下文，它与 call 和 apply 不同的是，返回值是一个函数，并且需要稍后再调用一下，才会执行。</p>
 
       
     </div>
@@ -295,7 +317,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>
