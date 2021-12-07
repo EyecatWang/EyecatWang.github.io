@@ -211,7 +211,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://eyecatwang.github.io/2021/08/19/js%E9%9D%A2%E8%AF%95-%E9%AB%98%E9%A2%91%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81/">
+    <link itemprop="mainEntityOfPage" href="https://eyecatwang.github.io/2021/08/19/js%E9%9D%A2%E8%AF%95%E9%A2%98-react/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/26106551">
@@ -224,7 +224,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/19/js%E9%9D%A2%E8%AF%95-%E9%AB%98%E9%A2%91%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81/" class="post-title-link" itemprop="url">javascript面试-高频手写代码</a>
+          <a href="/2021/08/19/js%E9%9D%A2%E8%AF%95%E9%A2%98-react/" class="post-title-link" itemprop="url">javascript面试-react</a>
         </h2>
 
         <div class="post-meta-container">
@@ -242,7 +242,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-12-06 15:19:11" itemprop="dateModified" datetime="2021-12-06T15:19:11+08:00">2021-12-06</time>
+        <time title="修改时间：2021-12-05 17:10:18" itemprop="dateModified" datetime="2021-12-05T17:10:18+08:00">2021-12-05</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -268,14 +268,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="什么是防抖和节流，他们的应用场景有哪些"><a href="#什么是防抖和节流，他们的应用场景有哪些" class="headerlink" title="什么是防抖和节流，他们的应用场景有哪些"></a>什么是防抖和节流，他们的应用场景有哪些</h1><h2 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖(debounce)"></a>防抖(debounce)</h2><p>触发高频事件后 n 秒内函数只会执行一次，如果 n 秒内高频事件再次被触发，则重新计算时间</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 防抖函数</span><br><span class="line">function debounce(fn, wait) &#123;</span><br><span class="line">  let timer;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    let _this = this;</span><br><span class="line">    let args = arguments;</span><br><span class="line">    if (timer) &#123;</span><br><span class="line">      clearTimeout(timer);</span><br><span class="line">    &#125;</span><br><span class="line">    timer = setTimeout(function () &#123;</span><br><span class="line">      fn.apply(_this, args);</span><br><span class="line">    &#125;, wait);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">// 使用</span><br><span class="line">window.onresize = debounce(function () &#123;</span><br><span class="line">  console.log(&quot;resize&quot;);</span><br><span class="line">&#125;, 500);</span><br></pre></td></tr></table></figure>
-
-<h2 id="节流-throttle"><a href="#节流-throttle" class="headerlink" title="节流(throttle)"></a>节流(throttle)</h2><p>高频事件触发，但在 n 秒内只会执行一次，所以节流会稀释函数的执行频率</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">// 方式1: 使用时间戳</span><br><span class="line">function throttle1(fn, wait) &#123;</span><br><span class="line">  let time = 0;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    let _this = this;</span><br><span class="line">    let args = arguments;</span><br><span class="line">    let now = Date.now();</span><br><span class="line">    if (now - time &gt; wait) &#123;</span><br><span class="line">      fn.apply(_this, args);</span><br><span class="line">      time = now;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">// 方式2: 使用定时器</span><br><span class="line">function thorttle2(fn, wait) &#123;</span><br><span class="line">  let timer;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    let _this = this;</span><br><span class="line">    let args = arguments;</span><br><span class="line"></span><br><span class="line">    if (!timer) &#123;</span><br><span class="line">      timer = setTimeout(function () &#123;</span><br><span class="line">        timer = null;</span><br><span class="line">        fn.apply(_this, args);</span><br><span class="line">      &#125;, wait);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面节流和防抖实现方式比较简单，但是已经可以满足日常使用，如果想更近一步了解可以查看underscore (opens new window)和lodash (opens new window)文档中debounce和thorttle</p>
-<p>防抖：防止抖动，单位时间内事件触发会被重置，避免事件被误伤触发多次。代码实现重在清零 clearTimeout。防抖可以比作等电梯，只要有一个人进来，就需要再等一会儿。业务场景有避免登录按钮多次点击的重复提交。<br>节流：控制流量，单位时间内事件只能触发一次，与服务器端的限流 (Rate Limit) 类似。代码实现重在开锁关锁 timer=timeout; timer=null。节流可以比作过红绿灯，每等一个红灯时间就可以过一批。</p>
-<h1 id="如何实现一个简单的-Promise"><a href="#如何实现一个简单的-Promise" class="headerlink" title="如何实现一个简单的 Promise"></a>如何实现一个简单的 Promise</h1>
+          
       
     </div>
 

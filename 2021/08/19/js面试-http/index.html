@@ -21,15 +21,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"eyecatwang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="eyecatwang的学习日记">
+<meta name="description" content="说一下http和httpshttp和https的基本概念http: 超文本传输协议，是互联网上应用最为广泛的一种网络协议，是一个客户端和服务器端请求和应答的标准（TCP），用于从WWW服务器传输超文本到本地浏览器的传输协议，它可以使浏览器更加高效，使网络传输减少。 https: 是以安全为目标的HTTP通道，简单讲是HTTP的安全版，即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javascript面试-http">
 <meta property="og:url" content="https://eyecatwang.github.io/2021/08/19/js%E9%9D%A2%E8%AF%95-http/">
 <meta property="og:site_name" content="eyecatwang">
-<meta property="og:description" content="eyecatwang的学习日记">
+<meta property="og:description" content="说一下http和httpshttp和https的基本概念http: 超文本传输协议，是互联网上应用最为广泛的一种网络协议，是一个客户端和服务器端请求和应答的标准（TCP），用于从WWW服务器传输超文本到本地浏览器的传输协议，它可以使浏览器更加高效，使网络传输减少。 https: 是以安全为目标的HTTP通道，简单讲是HTTP的安全版，即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-08-19T07:14:33.000Z">
-<meta property="article:modified_time" content="2021-12-05T09:09:35.833Z">
+<meta property="article:modified_time" content="2021-12-07T01:40:52.582Z">
 <meta property="article:author" content="eyecatwang">
 <meta name="twitter:card" content="summary">
 
@@ -136,7 +136,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -149,6 +149,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%B4%E4%B8%80%E4%B8%8Bhttp%E5%92%8Chttps"><span class="nav-number">1.</span> <span class="nav-text">说一下http和https</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#http%E5%92%8Chttps%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">http和https的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http%E5%92%8Chttps%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">http和https的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#https%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.3.</span> <span class="nav-text">https协议的工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#https%E5%8D%8F%E8%AE%AE%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">1.4.</span> <span class="nav-text">https协议的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#https%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="nav-number">1.5.</span> <span class="nav-text">https协议的缺点</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -245,7 +246,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-12-05 17:09:35" itemprop="dateModified" datetime="2021-12-05T17:09:35+08:00">2021-12-05</time>
+        <time title="修改时间：2021-12-07 09:40:52" itemprop="dateModified" datetime="2021-12-07T09:40:52+08:00">2021-12-07</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -271,7 +272,30 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        
+        <h1 id="说一下http和https"><a href="#说一下http和https" class="headerlink" title="说一下http和https"></a>说一下http和https</h1><h2 id="http和https的基本概念"><a href="#http和https的基本概念" class="headerlink" title="http和https的基本概念"></a>http和https的基本概念</h2><p>http: 超文本传输协议，是互联网上应用最为广泛的一种网络协议，是一个客户端和服务器端请求和应答的标准（TCP），用于从WWW服务器传输超文本到本地浏览器的传输协议，它可以使浏览器更加高效，使网络传输减少。</p>
+<p>https: 是以安全为目标的HTTP通道，简单讲是HTTP的安全版，即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL。</p>
+<p>https协议的主要作用是：建立一个信息安全通道，来确保数组的传输，确保网站的真实性。</p>
+<h2 id="http和https的区别？"><a href="#http和https的区别？" class="headerlink" title="http和https的区别？"></a>http和https的区别？</h2><p>http传输的数据都是未加密的，也就是明文的，网景公司设置了SSL协议来对http协议传输的数据进行加密处理，简单来说https协议是由http和ssl协议构建的可进行加密传输和身份认证的网络协议，比http协议的安全性更高。<br>主要的区别如下：</p>
+<p>Https协议需要ca证书，费用较高。</p>
+<p>http是超文本传输协议，信息是明文传输，https则是具有安全性的ssl加密传输协议。</p>
+<p>使用不同的链接方式，端口也不同，一般而言，http协议的端口为80，https的端口为443</p>
+<p>http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比http协议安全。</p>
+<h2 id="https协议的工作原理"><a href="#https协议的工作原理" class="headerlink" title="https协议的工作原理"></a>https协议的工作原理</h2><p>客户端在使用HTTPS方式与Web服务器通信时有以下几个步骤，如图所示。</p>
+<p>客户使用https url访问服务器，则要求web 服务器建立ssl链接。</p>
+<p>web服务器接收到客户端的请求之后，会将网站的证书（证书中包含了公钥），返回或者说传输给客户端。</p>
+<p>客户端和web服务器端开始协商SSL链接的安全等级，也就是加密等级。</p>
+<p>客户端浏览器通过双方协商一致的安全等级，建立会话密钥，然后通过网站的公钥来加密会话密钥，并传送给网站。</p>
+<p>web服务器通过自己的私钥解密出会话密钥。</p>
+<p>web服务器通过会话密钥加密与客户端之间的通信。</p>
+<h2 id="https协议的优点"><a href="#https协议的优点" class="headerlink" title="https协议的优点"></a>https协议的优点</h2><p>使用HTTPS协议可认证用户和服务器，确保数据发送到正确的客户机和服务器；</p>
+<p>HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，要比http协议安全，可防止数据在传输过程中不被窃取、改变，确保数据的完整性。</p>
+<p>HTTPS是现行架构下最安全的解决方案，虽然不是绝对安全，但它大幅增加了中间人攻击的成本。</p>
+<p>谷歌曾在2014年8月份调整搜索引擎算法，并称“比起同等HTTP网站，采用HTTPS加密的网站在搜索结果中的排名将会更高”。</p>
+<h2 id="https协议的缺点"><a href="#https协议的缺点" class="headerlink" title="https协议的缺点"></a>https协议的缺点</h2><p>https握手阶段比较费时，会使页面加载时间延长50%，增加10%~20%的耗电。</p>
+<p>https缓存不如http高效，会增加数据开销。</p>
+<p>SSL证书也需要钱，功能越强大的证书费用越高。</p>
+<p>SSL证书需要绑定IP，不能再同一个ip上绑定多个域名，ipv4资源支持不了这种消耗。</p>
+
     </div>
 
     
