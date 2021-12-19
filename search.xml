@@ -2989,7 +2989,7 @@ finally方法的回调函数不接受任何参数，这意味着没有办法知�
 <h1 id="实现每隔一秒打印-1-2-3-4"><a href="#实现每隔一秒打印-1-2-3-4" class="headerlink" title="实现每隔一秒打印 1,2,3,4"></a>实现每隔一秒打印 1,2,3,4</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (let i = 0; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(function() &#123;</span><br><span class="line">    console.log(i);</span><br><span class="line">  &#125;, i * 1000);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="小孩报数问题"><a href="#小孩报数问题" class="headerlink" title="小孩报数问题"></a>小孩报数问题</h1><p>有30个小孩儿，编号从1-30，围成一圈依此报数，1、2、3 数到 3 的小孩儿退出这个圈， 然后下一个小孩 重新报数 1、2、3，问最后剩下的那个小孩儿的编号是多少?</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function live(nums, count) &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function live(nums, count) &#123;</span><br><span class="line">  let </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>面试</category>
         <category>js</category>
