@@ -161,13 +161,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -211,7 +211,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://eyecatwang.github.io/2021/08/19/html%E9%9D%A2%E8%AF%95/">
+    <link itemprop="mainEntityOfPage" href="https://eyecatwang.github.io/2021/08/19/js%E9%9D%A2%E8%AF%95%E9%A2%98-react/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/26106551">
@@ -224,7 +224,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/19/html%E9%9D%A2%E8%AF%95/" class="post-title-link" itemprop="url">html面试</a>
+          <a href="/2021/08/19/js%E9%9D%A2%E8%AF%95%E9%A2%98-react/" class="post-title-link" itemprop="url">javascript面试-react</a>
         </h2>
 
         <div class="post-meta-container">
@@ -242,7 +242,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-12-05 17:10:37" itemprop="dateModified" datetime="2021-12-05T17:10:37+08:00">2021-12-05</time>
+        <time title="修改时间：2021-12-12 15:57:06" itemprop="dateModified" datetime="2021-12-12T15:57:06+08:00">2021-12-12</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -254,7 +254,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E9%9D%A2%E8%AF%95/html/" itemprop="url" rel="index"><span itemprop="name">html</span></a>
+          <a href="/categories/%E9%9D%A2%E8%AF%95/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
         </span>
     </span>
 
@@ -268,744 +268,225 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="html基础"><a href="#html基础" class="headerlink" title="html基础"></a>html基础</h1><h2 id="什么是HTML5以及和HTML的区别是什么"><a href="#什么是HTML5以及和HTML的区别是什么" class="headerlink" title="什么是HTML5以及和HTML的区别是什么"></a>什么是HTML5以及和HTML的区别是什么</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>HTML5是HTML的新标准，其主要目标是无需任何额外的插件如Flash、Silverlight等，就可以传输所有内容。它囊括了动画、视频、丰富的图形用户界面等。<br>HTML5是由万维网联盟（W3C）和Web Hypertext Application Technology Working Group 合作创建的HTML新版本。</p>
-<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>从文档声明类型上看：</p>
-<p>HTML是很长的一段代码，很难记住。如下代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;</span><br><span class="line">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span><br><span class="line">&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p>HTML5却只有简简单单的声明，方便记忆。如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br></pre></td></tr></table></figure>
-<p>从语义结构上看：</p>
-<p>HTML4.0：没有体现结构语义化的标签，通常都是这样来命名的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;header&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>这样表示网站的头部。<br>HTML5：在语义上却有很大的优势。提供了一些新的标签，比如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;header&gt;&lt;article&gt;&lt;footer&gt;</span><br></pre></td></tr></table></figure>
-
-<p>拓展： 不输入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE HTML&gt;</span><br></pre></td></tr></table></figure>
-<p>，浏览器将无法识别html文件，因此html将无法正常工作。</p>
-<h2 id="HTML、XHTML和HTML5区别以及有什么联系"><a href="#HTML、XHTML和HTML5区别以及有什么联系" class="headerlink" title="HTML、XHTML和HTML5区别以及有什么联系"></a>HTML、XHTML和HTML5区别以及有什么联系</h2><p>XHTML与HTML的区别</p>
-<ol>
-<li>XHTML标签名必须小写；</li>
-<li>XHTML元素必须被关闭；</li>
-<li>XHTML元素必须被正确的嵌套；</li>
-<li>XHTML元素必须要有根元素。</li>
-</ol>
-<p>XHTML与HTML5的区别</p>
-<ol>
-<li>HTML5新增了canvas绘画元素；</li>
-<li>HTML5新增了用于绘媒介回放的video和audio元素；</li>
-<li>更具语义化的标签，便于浏览器识别；</li>
-<li>对本地离线存储有更好的支持；</li>
-<li>MATHML，SVG等，可以更好的render；</li>
-<li>添加了新的表单控件：calendar、date、time、email等。</li>
-</ol>
-<p>HTML、XHTML、HTML5之间联系</p>
-<ol>
-<li>XHTML是HTML规范版本；</li>
-<li>HTML5是HTML、XHTML以及HTML DOM的新标准。</li>
-</ol>
-<h2 id="HTML5-为什么只需要写-lt-doctype-html-gt"><a href="#HTML5-为什么只需要写-lt-doctype-html-gt" class="headerlink" title="HTML5 为什么只需要写 &lt;!doctype html&gt;"></a>HTML5 为什么只需要写 &lt;!doctype html&gt;</h2><p>这是因为HTML5不基于SGML，因此不需要对DTD进行引用，但是需要DOCTYPE来规范浏览器的行为（让浏览器按照他们应该的方式来运行）而HTML4.01基于SGML，所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。</p>
-<h2 id="行内元素有哪些？块级元素有哪些？-空-void-元素有那些？"><a href="#行内元素有哪些？块级元素有哪些？-空-void-元素有那些？" class="headerlink" title="行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？"></a>行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？</h2><ol>
-<li>行内元素： a, b, span, img, input, select, strong;</li>
-<li>块级元素： div, ul, li, dl, dt, dd, h1-5, p等；</li>
-<li>空元素： br, hr, img, link, meta;</li>
-</ol>
-<h2 id="Html5-有哪些新特性、移除了哪些元素"><a href="#Html5-有哪些新特性、移除了哪些元素" class="headerlink" title="Html5 有哪些新特性、移除了哪些元素"></a>Html5 有哪些新特性、移除了哪些元素</h2><p>（1）新增元素</p>
-<p>绘画 canvas<br>用于媒介回放的 video 和 audio 元素<br>本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失<br>sessionStorage 的数据在浏览器关闭后会自动删除<br>语义化更好的内容元素，比如 article 、footer、header、nav、section<br>表单控件 ， calendar 、 date 、 time 、 email 、 url 、 search<br>新的技术 webworker 、 websocket 、 Geolocation</p>
-<p>（2）移除的元素</p>
-<p>纯表现的元素： basefont 、 big 、 center 、 font 、 s 、 strike 、 tt 、 u<br>对可用性产生负面影响的元素： frame 、 frameset 、 noframes</p>
-<p>（3）支持 HTML5 新标签</p>
-<p>IE8/IE7/IE6 支持通过 document.createElement 方法产生的标签。<br>可以利用这一特性让这些浏览器支持 HTML5 新标签。<br>浏览器支持新标签后，还需要添加标签默认的样式。</p>
-<h2 id="HTML5有哪些更新"><a href="#HTML5有哪些更新" class="headerlink" title="HTML5有哪些更新"></a>HTML5有哪些更新</h2><ol>
-<li>语义化标签</li>
-</ol>
-<p>· header：定义文档的页眉（头部）；<br>· nav：定义导航链接的部分；<br>· footer：定义文档或节的页脚（底部）；<br>· article：定义文章内容；<br>· section：定义文档中的节（section、区段）；<br>· aside：定义其所处内容之外的内容（侧边）；</p>
-<ol start="2">
-<li>媒体标签<br>（1） audio：音频<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;audio src=&#x27;&#x27; controls autoplay loop=&#x27;true&#x27;&gt;&lt;/audio&gt;</span><br></pre></td></tr></table></figure>
-属性：</li>
-</ol>
-<p>· controls 控制面板<br>· autoplay 自动播放<br>· loop=‘true’ 循环播放</p>
-<p>（2）video视频</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;video src=&#x27;&#x27; poster=&#x27;imgs/aa.jpg&#x27; controls&gt;&lt;/video&gt;</span><br></pre></td></tr></table></figure>
-<p>属性：<br>· poster：指定视频还没有完全下载完毕，或者用户还没有点击播放前显示的封面。默认显示当前视频文件的第一针画面，当然通过poster也可以自己指定。<br>· controls 控制面板<br>· width<br>· height</p>
-<p>（3）source标签<br>因为浏览器对视频格式支持程度不一样，为了能够兼容不同的浏览器，可以通过source来指定视频源。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;video&gt;</span><br><span class="line"> 	&lt;source src=&#x27;aa.flv&#x27; type=&#x27;video/flv&#x27;&gt;&lt;/source&gt;</span><br><span class="line"> 	&lt;source src=&#x27;aa.mp4&#x27; type=&#x27;video/mp4&#x27;&gt;&lt;/source&gt;</span><br><span class="line">&lt;/video&gt;</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>表单<br>表单类型：</li>
-</ol>
-<p>· email ：能够验证当前输入的邮箱地址是否合法<br>· url ： 验证URL<br>· number ： 只能输入数字，其他输入不了，而且自带上下增大减小箭头，max属性可以设置为最大值，min可以设置为最小值，value为默认值。<br>· search ： 输入框后面会给提供一个小叉，可以删除输入的内容，更加人性化。<br>· range ： 可以提供给一个范围，其中可以设置max和min以及value，其中value属性可以设置为默认值<br>· color ： 提供了一个颜色拾取器<br>· time ： 时分秒<br>· data ： 日期选择年月日<br>· datatime ： 时间和日期(目前只有Safari支持)<br>· datatime-local ：日期时间控件<br>· week ：周控件<br>· month：月控件</p>
-<p>表单属性：</p>
-<p>· placeholder ：提示信息<br>· autofocus ：自动获取焦点<br>· autocomplete=“on” 或者 autocomplete=“off” 使用这个属性需要有两个前提：</p>
-<pre><code>· 表单必须提交过
-· 必须有name属性。
+          <h1 id="请说一下你对React的理解"><a href="#请说一下你对React的理解" class="headerlink" title="请说一下你对React的理解"></a>请说一下你对React的理解</h1><pre><code>+ 解题思路
+    - 是什么？一句话直达本质
+    - 能干什么？ 用途和应用场景
+    - 如何干的？核心的工作原理
+    干的怎么样？优缺点
 </code></pre>
-<p>· required：要求输入框不能为空，必须有值才能够提交。<br>· pattern=” “ 里面写入想要的正则模式，例如手机号patte=”^(+86)?\d{10}$”<br>· multiple：可以选择多个文件或者多个邮箱<br>· form=” form表单的ID”</p>
-<p>表单事件：</p>
-<p>· oninput 每当input里的输入框内容发生变化都会触发此事件。<br>· oninvalid 当验证不通过时触发此事件。</p>
-<ol start="4">
-<li>进度条、度量器</li>
-</ol>
-<p>· progress标签：用来表示任务的进度（IE、Safari不支持），max用来表示任务的进度，value表示已完成多少<br>· meter属性：用来显示剩余容量或剩余库存（IE、Safari不支持）</p>
-<pre><code>· high/low：规定被视作高/低的范围
-· max/min：规定最大/小值
-· value：规定当前度量值
+<h2 id="React是什么？"><a href="#React是什么？" class="headerlink" title="React是什么？"></a>React是什么？</h2><pre><code>React是一个用于构建用户界面的js库
 </code></pre>
-<p>设置规则：min &lt; low &lt; high &lt; max<br>5.DOM查询操作</p>
-<p>· document.querySelector()<br>· document.querySelectorAll()</p>
-<p>它们选择的对象可以是标签，可以是类(需要加点)，可以是ID(需要加#)<br>6. Web存储<br>HTML5 提供了两种在客户端存储数据的新方法：</p>
-<p>· localStorage - 没有时间限制的数据存储<br>· sessionStorage - 针对一个 session 的数据存储</p>
-<ol start="7">
-<li>其他</li>
-</ol>
-<p>拖放：拖放是一种常见的特性，即抓取对象以后拖到另一个位置。设置元素可拖放：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img draggable=&quot;true&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="React能干什么"><a href="#React能干什么" class="headerlink" title="React能干什么"></a>React能干什么</h2><pre><code>React通过组件化的方式构建快速响应的大型Web应用程序
+</code></pre>
+<h2 id="React如何干的"><a href="#React如何干的" class="headerlink" title="React如何干的"></a>React如何干的</h2><h3 id="声明式"><a href="#声明式" class="headerlink" title="声明式"></a>声明式</h3><pre><code>+ 声明式使用声明式的编写用户界面，代码可方便调试
++ 声明式渲染和命令式渲染
+    - 命令式渲染 命令我们的程序去做什么，程序就会跟着你的命令去一步步执行
+    - 声明式渲染 我们只要告诉程序我们想要什么效果，其他的交给程序来做
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let root = document.getElementById(&#x27;root&#x27;)</span><br><span class="line">// 声明式</span><br><span class="line">ReactDOM.render(&lt;h1&gt;声明式&lt;/h1&gt;, root);</span><br><span class="line">let h1 = document.creatElement(&#x27;h1&#x27;)</span><br><span class="line">root.appendCHild(h1)</span><br><span class="line">// </span><br></pre></td></tr></table></figure>
+</code></pre>
+<h3 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h3><pre><code> 组件化 把页面拆分为一个个组件，方便视图的拆分和复用，还可以做到高内聚和低耦合
+</code></pre>
+<h3 id="一次学习，随处编写"><a href="#一次学习，随处编写" class="headerlink" title="一次学习，随处编写"></a>一次学习，随处编写</h3><pre><code>+ 开发web,android,ios,VR,和命令行程序
++ reactNative使用react来创建android和iOS的原生应用
++ react 360是一个创建3D和VR用户交互的框架
+</code></pre>
+<h2 id="React干的怎么样？"><a href="#React干的怎么样？" class="headerlink" title="React干的怎么样？"></a>React干的怎么样？</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><pre><code>+ 开发团队和社区强大
++ 一次学习，随处编写
++ API比较简洁
+</code></pre>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><pre><code>+ 没有官方系统解决方案，选型成本高
++ 过于灵活，不容易写出高质量的应用
+</code></pre>
+<h2 id="其他扩展"><a href="#其他扩展" class="headerlink" title="其他扩展"></a>其他扩展</h2><pre><code>+ JSX实现声明式
++ 虚拟DOM可以实现跨平台
++ React使用的设计模式 
++ 自己React大型架构经验
+</code></pre>
+<h1 id="为什么React会引入JSX"><a href="#为什么React会引入JSX" class="headerlink" title="为什么React会引入JSX"></a>为什么React会引入JSX</h1><pre><code>+ 题目分析 方案选型，考察知识扩展
++ 解题思路
+    - 即使概念
+    - 想实现什么目的？
+    - 有哪些可选方案，为什么这个方案最好
+    - JSX的工作原理？
+</code></pre>
+<h2 id="JSX是什么"><a href="#JSX是什么" class="headerlink" title="JSX是什么"></a>JSX是什么</h2><pre><code>+ jsx是一个js的语法扩展，jsx可以很好的描述UI应该呈现出它应有交互的本质形式
++ jsx其实式React.createElement的语法糖
+</code></pre>
+<h2 id="React想实现什么目的"><a href="#React想实现什么目的" class="headerlink" title="React想实现什么目的"></a>React想实现什么目的</h2><pre><code>+ 需要实现声明式
++ 代码结构需要非常清晰和简洁，可读性强
++ 结构、样式、和事件等能够实现高内聚低耦合，方便重用和组合
++ 不想引入新的概念和语法，只写js
+</code></pre>
+<h2 id="为什么JSX最好（列举其他）"><a href="#为什么JSX最好（列举其他）" class="headerlink" title="为什么JSX最好（列举其他）"></a>为什么JSX最好（列举其他）</h2><pre><code>+ Vue.js使用了基于HTML的模版语法，允许开发者声明式的将DOM绑定至底层VUE实例的数据
++ 引入太多概念，比如ng就引入了控制器、作用域、服务等概念
+</code></pre>
+<h2 id="JSX工作原理"><a href="#JSX工作原理" class="headerlink" title="JSX工作原理"></a>JSX工作原理</h2><h3 id="AST抽象语法树"><a href="#AST抽象语法树" class="headerlink" title="AST抽象语法树"></a>AST抽象语法树</h3><p>抽象语法树式源代码语法结构的一种抽象表示，它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源中的一种结构。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type,props,children</span><br></pre></td></tr></table></figure>
 
-<p>画布（canvas ）： canvas 元素使用 JavaScript 在网页上绘制图像。画布是一个矩形区域，可以控制其每一像素。canvas 拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;canvas id=&quot;myCanvas&quot; width=&quot;200&quot; height=&quot;100&quot;&gt;&lt;/canvas&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="babel工作流"><a href="#babel工作流" class="headerlink" title="babel工作流"></a>babel工作流</h3><p>code =&gt;词法分析=&gt;语法分析=&gt;转换新的树=&gt;code源代码</p>
+<h3 id="旧转换-classic"><a href="#旧转换-classic" class="headerlink" title="旧转换 classic"></a>旧转换 classic</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const babel = require(&#x27;@babel/core&#x27;)</span><br><span class="line">const source = &#x27;&lt;h1&gt;111&lt;/h1&gt;&#x27;</span><br><span class="line">const result = babel.transform(source, &#123;</span><br><span class="line">    plugin: [</span><br><span class="line">        [</span><br><span class="line">            &#x27;@babel/plugin-transform-react-jsx&#x27;, &#123;</span><br><span class="line">                runtime: &#x27;classic&#x27;</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="新转换-automatic"><a href="#新转换-automatic" class="headerlink" title="新转换 automatic"></a>新转换 automatic</h3><p>automatic不需要引入React</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">const babel = require(&#x27;@babel/core&#x27;)</span><br><span class="line">const source = &#x27;&lt;h1&gt;111&lt;/h1&gt;&#x27;</span><br><span class="line">const result = babel.transform(source, &#123;</span><br><span class="line">    plugin: [</span><br><span class="line">        [</span><br><span class="line">            &#x27;@babel/plugin-transform-react-jsx&#x27;, &#123;</span><br><span class="line">                runtime: &#x27;automatic&#x27;</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<p>SVG：SVG 指可伸缩矢量图形，用于定义用于网络的基于矢量的图形，使用 XML 格式定义图形，图像在放大或改变尺寸的情况下其图形质量不会有损失，它是万维网联盟的标准<br>地理定位：Geolocation（地理定位）用于定位用户的位置。‘</p>
-<p>总结：<br>（1）新增语义化标签：nav、header、footer、aside、section、article<br>（2）音频、视频标签：audio、video<br>（3）数据存储：localStorage、sessionStorage<br>（4）canvas（画布）、Geolocation（地理定位）、websocket（通信协议）<br>（5）input标签新增属性：placeholder、autocomplete、autofocus、required<br>（6）history API：go、forward、back、pushstate<br>移除的元素有：</p>
-<p>纯表现的元素：basefont，big，center，font, s，strike，tt，u;<br>对可用性产生负面影响的元素：frame，frameset，noframes；</p>
-<h2 id="src和href的区别"><a href="#src和href的区别" class="headerlink" title="src和href的区别"></a>src和href的区别</h2><p>src和href都是用来引用外部的资源，它们的区别如下：</p>
-<ol>
-<li>src： 表示对资源的引用，它指向的内容会嵌入到当前标签所在的位置。src会将其指向的资源下载并应⽤到⽂档内，如请求js脚本。当浏览器解析到该元素时，会暂停其他资源的下载和处理，直到将该资源加载、编译、执⾏完毕，所以⼀般js脚本会放在页面底部。</li>
-<li>href： 表示超文本引用，它指向一些网络资源，建立和当前元素或本文档的链接关系。当浏览器识别到它他指向的⽂件时，就会并⾏下载资源，不会停⽌对当前⽂档的处理。 常用在a、link等标签上。</li>
-</ol>
-<h2 id="Webp"><a href="#Webp" class="headerlink" title="Webp"></a>Webp</h2><p>WebP 格式，谷歌（google）开发的一种旨在加快图片加载速度的图片格式。图片压缩体积大约只有 JPEG 的 2/3 ，并能节省大量的服务器带宽资源和数据空间。Facebook 、 Ebay 等知名网站已经开始测试并使用 WebP 格式。<br>在质量相同的情况下， WebP 格式图像的体积要比 JPEG 格式图像小40%</p>
-<h2 id="WebP-相对于-PNG、JPG-有什么优势？"><a href="#WebP-相对于-PNG、JPG-有什么优势？" class="headerlink" title="WebP 相对于 PNG、JPG 有什么优势？"></a>WebP 相对于 PNG、JPG 有什么优势？</h2><ol>
-<li>PNG 转 WebP 的压缩率要高于 PNG 原图压缩率，同样支持有损与无损压缩</li>
-<li>转换后的 WebP 体积大幅减少，图片质量也得到保障（同时肉眼几乎无法看出差异）</li>
-<li>转换后的 WebP 支持 Alpha 透明和 24-bit 颜色数，不存在 PNG8 色彩不够丰富和在浏览器中可能会出现毛边的问题</li>
-</ol>
-<h2 id="HTML全局属性-global-attribute-有"><a href="#HTML全局属性-global-attribute-有" class="headerlink" title="HTML全局属性(global attribute)有"></a>HTML全局属性(global attribute)有</h2><ol>
-<li>accesskey    规定激活元素的快捷键。</li>
-<li>class    规定元素的一个或多个类名（引用样式表中的类）。</li>
-<li>contenteditable    规定元素内容是否可编辑。</li>
-<li>contextmenu    规定元素的上下文菜单。上下文菜单在用户点击元素时显示。</li>
-<li>data-*    用于存储页面或应用程序的私有定制数据。</li>
-<li>dir    规定元素中内容的文本方向。</li>
-<li>draggable    规定元素是否可拖动。</li>
-<li>dropzone    规定在拖动被拖动数据时是否进行复制、移动或链接。</li>
-<li>hidden    规定元素仍未或不再相关。</li>
-<li>id    规定元素的唯一 id。</li>
-<li>lang    规定元素内容的语言。</li>
-<li>spellcheck    规定是否对元素进行拼写和语法检查。</li>
-<li>style    规定元素的行内 CSS 样式。</li>
-<li>tabindex    规定元素的 tab 键次序。</li>
-<li>title    规定有关元素的额外信息。</li>
-<li>translate    规定是否应该翻译元素内容。</li>
-</ol>
-<h2 id="对HTML语义化的理解"><a href="#对HTML语义化的理解" class="headerlink" title="对HTML语义化的理解"></a>对HTML语义化的理解</h2><p>语义化是指根据内容的结构化（内容语义化），选择合适的标签（代码语义化）。通俗来讲就是用正确的标签做正确的事情。<br>语义化的优点如下：</p>
-<p>对机器友好，带有语义的文字表现力丰富，更适合搜索引擎的爬虫爬取有效信息，有利于SEO。除此之外，语义类还支持读屏软件，根据文章可以自动生成目录；<br>对开发者友好，使用语义类标签增强了可读性，结构更加清晰，开发者能清晰的看出网页的结构，便于团队的开发与维护。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;header&gt;&lt;/header&gt;  头部</span><br><span class="line"></span><br><span class="line">&lt;nav&gt;&lt;/nav&gt;  导航栏</span><br><span class="line"></span><br><span class="line">&lt;section&gt;&lt;/section&gt;  区块（有语义化的div）</span><br><span class="line"></span><br><span class="line">&lt;main&gt;&lt;/main&gt;  主要区域</span><br><span class="line"></span><br><span class="line">&lt;article&gt;&lt;/article&gt;  主要内容</span><br><span class="line"></span><br><span class="line">&lt;aside&gt;&lt;/aside&gt;  侧边栏</span><br><span class="line"></span><br><span class="line">&lt;footer&gt;&lt;/footer&gt;  底部</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h2 id="DOCTYPE-⽂档类型-的作⽤"><a href="#DOCTYPE-⽂档类型-的作⽤" class="headerlink" title="DOCTYPE(⽂档类型) 的作⽤"></a>DOCTYPE(⽂档类型) 的作⽤</h2><p>DOCTYPE是HTML5中一种标准通用标记语言的文档类型声明，它的目的是告诉浏览器（解析器）应该以什么样（html或xhtml）的文档类型定义来解析文档，不同的渲染模式会影响浏览器对 CSS 代码甚⾄ JavaScript 脚本的解析。它必须声明在HTML⽂档的第⼀⾏。<br>浏览器渲染页面的两种模式（可通过document.compatMode获取，比如，语雀官网的文档类型是CSS1Compat）：</p>
+<h1 id="请说一下你对Virtual-Dom的理解"><a href="#请说一下你对Virtual-Dom的理解" class="headerlink" title="请说一下你对Virtual Dom的理解"></a>请说一下你对Virtual Dom的理解</h1><p>题目分析 本题属于概念题<br>解题思路<br>    + 是什么？一句话直达本质<br>    + 能干什么？用途和应用场景<br>    + 如何干的？核心的工作原理<br>    + 干的怎么样？优缺点<br>    + 其他扩展</p>
+<h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><p>虚拟DOM就是一个描述真实DOM的纯JS对象</p>
+<h2 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h2><ul>
+<li>处理了浏览器的兼容性问题，避免用户操作真实DOM，</li>
+<li>内容经过了XSS处理，可以防范XSS攻击</li>
+<li>更容易实现跨平台开发Android,ios,VR 应用</li>
+<li>更新的时候可以实现差异化更新，减少更新DOM的操作</li>
+</ul>
+<h2 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h2><ul>
+<li>虚拟DOM需要消耗额外的内存</li>
+<li>首次渲染其实并不一定更快</li>
+</ul>
+<h1 id="函数组件和类组件的相同点和不同点？"><a href="#函数组件和类组件的相同点和不同点？" class="headerlink" title="函数组件和类组件的相同点和不同点？"></a>函数组件和类组件的相同点和不同点？</h1><p>题目分析 本题属于差异题<br>解题思路</p>
+<ul>
+<li>相同点</li>
+<li>不同点</li>
+</ul>
+<h2 id="函数组件"><a href="#函数组件" class="headerlink" title="函数组件"></a>函数组件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let v = (</span><br><span class="line">    &lt;div&gt;hello word&lt;/div&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">function VF (props) &#123;</span><br><span class="line">    return v</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let fdom = &lt;VF /&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="类组件"><a href="#类组件" class="headerlink" title="类组件"></a>类组件</h2><h2 id="源代码怎么区分普通函数还是类组件"><a href="#源代码怎么区分普通函数还是类组件" class="headerlink" title="源代码怎么区分普通函数还是类组件"></a>源代码怎么区分普通函数还是类组件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function Component(props) &#123;</span><br><span class="line">    this.props = props</span><br><span class="line">&#125;</span><br><span class="line">Component.prototype.isReactComponent = &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h2><p>他们都可以接收属性并且返回React元素</p>
+<h2 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h2><ul>
+<li>编程思想不同：类组件需要创建实例，是基于面向对象的方式编程，而函数组件不需要创建实例，接收输入，返回输出，是基于函数式编程思想写的</li>
+<li>内存占用：类组件需要创建并保存实例，会占用一定内存，函数组件不需要创建实例，可以节约内存占用</li>
+<li>捕获特性：函数组件具有捕获特性</li>
+<li>可测试性：函数组件更方便写单元测试</li>
+<li>状态：类组件有自己的实例，可以定义状态，而且可以修改状态更新组件，函数组件以前没有状态，现在可以使用useState使用状态</li>
+<li>声明周期：类组件有自己完整的生命周期，可以在声明周期里面写逻辑，函数组件没有声明周期，现在可以使用useEffect实现类似声明周期的功能</li>
+<li>逻辑复用：类组件可以通过继承实现逻辑的复用，但官方推荐组件优先继承，函数组件可以通过自定义hooks实现逻辑复用</li>
+<li>跳过更新：类组件可以通过shouldComponentUpdate和PureCompinent来跳过更新，而函数式组件可以使用React.momo来跳过更新</li>
+<li>发展前景：未来函数式组件将成为主流，因为它可以更好的屏蔽this问题，规范和复用逻辑，更好的适合时间分片和并发渲染</li>
+</ul>
+<h2 id="值捕获"><a href="#值捕获" class="headerlink" title="值捕获"></a>值捕获</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import &#123;useState&#125; from &#x27;react&#x27;</span><br><span class="line">function () &#123;</span><br><span class="line">    const [number, setNumber] = useState(0)</span><br><span class="line"></span><br><span class="line">    handleClick = () =&gt; &#123;</span><br><span class="line">        setTimeout(() =&gt; &#123;</span><br><span class="line">            console.log(number) // 0</span><br><span class="line">        &#125;, 3000)</span><br><span class="line">        setNumber(number+1)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return (</span><br><span class="line">        &lt;div onClick=&#123;handleClick&#125;&gt;&#123;number&#125;&lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class...</span><br><span class="line">this.state = &#123;number: 0&#125;</span><br><span class="line"> handleClick = () =&gt; &#123;</span><br><span class="line">        setTimeout(() =&gt; &#123;</span><br><span class="line">            console.log() // 1</span><br><span class="line">        &#125;, 3000)</span><br><span class="line">        this.setState(&#123;</span><br><span class="line">            number: this.state.number + 1</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render (</span><br><span class="line">        &lt;div onClick=&#123;handleClick&#125;&gt;&#123;number&#125;&lt;/div&gt;</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<h1 id="请说一下React中的渲染流程"><a href="#请说一下React中的渲染流程" class="headerlink" title="请说一下React中的渲染流程"></a>请说一下React中的渲染流程</h1><p>解题思路</p>
+<ul>
+<li>宏观的设计理念</li>
+<li>关键原理清晰描述，抽象和具象相结合</li>
+<li>结合工程实践和工作成果</li>
+</ul>
+<h2 id="设计理念"><a href="#设计理念" class="headerlink" title="设计理念"></a>设计理念</h2><ul>
+<li>跨平台渲染 =&gt;虚拟DOM</li>
+<li>快速响应 =&gt; 异步可中断+ 增量更新</li>
+</ul>
+<h2 id="性能瓶颈"><a href="#性能瓶颈" class="headerlink" title="性能瓶颈"></a>性能瓶颈</h2><p>js任务执行实践过长</p>
+<ul>
+<li>浏览器刷新的频率为60HZ，大概16.6毫秒（1/ 60 * 1000）渲染一次，而js线程和渲染线程是互斥的，所以如果js线程执行任务时间超过了16.6ms的话，就会导致掉帧，导致卡顿，解决方案就是React利用空闲的实践进行更新，不影响渲染进行的渲染</li>
+<li>把一个耗时的任务分成一个个小任务，分布在每一帧里的方式就叫做时间切片</li>
+</ul>
+<h2 id="屏幕刷新率"><a href="#屏幕刷新率" class="headerlink" title="屏幕刷新率"></a>屏幕刷新率</h2><h2 id="桢"><a href="#桢" class="headerlink" title="桢"></a>桢</h2><h2 id="requestIdelCallback-React使用MessageChannel-requestAnimationFrame模拟RequestIdleCallback"><a href="#requestIdelCallback-React使用MessageChannel-requestAnimationFrame模拟RequestIdleCallback" class="headerlink" title="requestIdelCallback(React使用MessageChannel+requestAnimationFrame模拟RequestIdleCallback)"></a>requestIdelCallback(React使用MessageChannel+requestAnimationFrame模拟RequestIdleCallback)</h2><ul>
+<li>我们希望快速响应用户，让用户觉得够快，不能阻塞用户的交互</li>
+<li>requestIdleCallback使开发者能够在主事件循环上执行后台和低优先级工作，而不会影响延迟关键事件，如动画和输入响应</li>
+<li>正常桢任务完成后没超过16.6ms，说明时间有富裕，此时就会执行requestIdleCallback里注册的任务<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">requestIdleCallback(fn)</span><br><span class="line">function fn(deadline) &#123;</span><br><span class="line">    deadline.timeRemaining()</span><br><span class="line">    while(deading.timeRemaining() &gt; 0) &#123;</span><br><span class="line">        doSomeThing()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="fiber"><a href="#fiber" class="headerlink" title="fiber"></a>fiber</h2></li>
+<li>我们可以通过某些调度策略合理分配CPU资源，从而提高用户的响应速度</li>
+<li>通过fiber架构，让自己的调和过程变成可被中断。适时让出CPU执行权，可以让浏览器及时响应用户的交互<h3 id="fiber是一个执行单元"><a href="#fiber是一个执行单元" class="headerlink" title="fiber是一个执行单元"></a>fiber是一个执行单元</h3></li>
+<li>Fiber是一个执行单元，每次执行完一个执行单元，React就会检查现在还剩下多少时间，如果没有时间就将控制权让出去</li>
+</ul>
+<h1 id="react-hooks"><a href="#react-hooks" class="headerlink" title="react hooks"></a>react hooks</h1><p>hooks可以让你在不编写class的情况下使用state以及其他的React特性</p>
+<h2 id="hooks的优点"><a href="#hooks的优点" class="headerlink" title="hooks的优点"></a>hooks的优点</h2><ul>
+<li>可以抽离公共方法和逻辑，提高代码的可复用性</li>
+<li>函数式组件更简洁，开发效率更高</li>
+</ul>
+<h2 id="自定义hooks"><a href="#自定义hooks" class="headerlink" title="自定义hooks"></a>自定义hooks</h2><ul>
+<li>通过自定义hook，可以将组件逻辑提取到可重用的函数中</li>
+<li>自定义hook是一个函数，其名称以use开头，函数内部可以调用其他的hook</li>
+</ul>
+<h1 id="请说一下React中的DOM-DIff算法"><a href="#请说一下React中的DOM-DIff算法" class="headerlink" title="请说一下React中的DOM-DIff算法"></a>请说一下React中的DOM-DIff算法</h1><p>DOM-DIFF就是根据老得fiber树和最新的JSX对比生成新的fiber树的过程</p>
+<h2 id="react优化原则"><a href="#react优化原则" class="headerlink" title="react优化原则"></a>react优化原则</h2><ul>
+<li>只对同级节点进行对比，如果DOM节点跨层移动，则React不会复用</li>
+<li>不同类型的元素会产生不同的结构，会销毁老得结构，创建新的结构</li>
+<li>可以通过key标示移动的元素</li>
+</ul>
+<p>具体的流程如下：</p>
+<ul>
+<li>真实的 DOM 首先会映射为虚拟 DOM；</li>
+<li>当虚拟 DOM 发生变化后，就会根据差距计算生成 patch，这个 patch 是一个结构化的数据，内容包含了增加、更新、移除等；</li>
+<li>根据 patch 去更新真实的 DOM，反馈到用户的界面上。</li>
+</ul>
+<p>diff算法可以总结为三个策略，分别从树、组件及元素三个层面进行复杂度的优化：</p>
 <ol>
-<li>CSS1Compat：标准模式（Strick mode），默认模式，浏览器使用W3C的标准解析渲染页面。在标准模式中，浏览器以其支持的最高标准呈现页面。</li>
-<li>BackCompat：怪异模式(混杂模式)(Quick mode)，浏览器使用自己的怪异模式解析渲染页面。在怪异模式中，页面以一种比较宽松的向后兼容的方式显示。</li>
+<li>策略一：忽略节点跨层级操作场景，提升比对效率。（基于树进行对比）<br>这一策略需要进行树比对，即对树进行分层比较。树比对的处理手法是非常“暴力”的，即两棵树只对同一层次的节点进行比较，如果发现节点已经不存在了，则该节点及其子节点会被完全删除掉，不会用于进一步的比较，这就提升了比对效率。</li>
+<li>策略二：如果组件的 class 一致，则默认为相似的树结构，否则默认为不同的树结构。（基于组件进行对比）<br>在组件比对的过程中：</li>
 </ol>
-<h2 id="viewport的content属性作用"><a href="#viewport的content属性作用" class="headerlink" title="viewport的content属性作用"></a>viewport的content属性作用</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;&quot; /&gt; </span><br><span class="line">	width – viewport的宽度[device-width | pixel_value]width如果直接设置pixel_value数值，大部分的安卓手机不支持，但是ios支持；</span><br><span class="line">	height – viewport 的高度 （范围从 223 到 10,000 ）</span><br><span class="line">	user-scalable [yes | no]是否允许缩放</span><br><span class="line">	initial-scale [数值] 初始化比例（范围从 &gt; 0 到 10）</span><br><span class="line">	minimum-scale [数值] 允许缩放的最小比例</span><br><span class="line">	maximum-scale [数值] 允许缩放的最大比例</span><br><span class="line">	target-densitydpi 值有以下（一般推荐设置中等响度密度或者低像素密度，后者设置具体的值 dpi_value，另外webkit内核已不准备再支持此属性） </span><br><span class="line">	-- dpi_value 一般是70-400//没英寸像素点的个数</span><br><span class="line">	-- device-dpi设备默认像素密度</span><br><span class="line">	-- high-dpi 高像素密度</span><br><span class="line">	-- medium-dpi 中等像素密度</span><br><span class="line">	-- low-dpi 低像素密度</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="常⽤的meta标签有哪些"><a href="#常⽤的meta标签有哪些" class="headerlink" title="常⽤的meta标签有哪些"></a>常⽤的meta标签有哪些</h2><p>meta 标签由 name 和 content 属性定义，用来描述网页文档的属性，比如网页的作者，网页描述，关键词等，除了HTTP标准固定了一些name作为大家使用的共识，开发者还可以自定义name。<br>常用的meta标签：<br>（1）charset，用来描述HTML文档的编码类型：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta charset=&quot;UTF-8&quot; &gt;</span><br></pre></td></tr></table></figure>
-<p>（2） keywords，页面关键词：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;keywords&quot; content=&quot;关键词&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<p>（3）description，页面描述：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;description&quot; content=&quot;页面描述内容&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<p>（4）refresh，页面重定向和刷新：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0;url=&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<p>（5）viewport，适配移动端，可以控制视口的大小和比例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p>其中，content 参数有以下几种：</p>
-<ol>
-<li>width viewport ：宽度(数值/device-width)</li>
-<li>height viewport ：高度(数值/device-height)</li>
-<li>initial-scale ：初始缩放比例</li>
-<li>maximum-scale ：最大缩放比例</li>
-<li>minimum-scale ：最小缩放比例</li>
-<li>user-scalable ：是否允许用户缩放(yes/no）</li>
+<ul>
+<li>如果组件是同一类型则进行树比对；</li>
+<li>如果不是则直接放入补丁中。</li>
+</ul>
+<p>只要父组件类型不同，就会被重新渲染。这也就是为什么 shouldComponentUpdate、PureComponent 及 React.memo 可以提高性能的原因。<br>3. 策略三：同一层级的子节点，可以通过标记 key 的方式进行列表对比。（基于节点进行对比）<br>元素比对主要发生在同层级中，通过标记节点操作生成补丁。节点操作包含了插入、移动、删除等。其中节点重新排序同时涉及插入、移动、删除三个操作，所以效率消耗最大，此时策略三起到了至关重要的作用。通过标记 key 的方式，React 可以直接移动 DOM 节点，降低内耗。</p>
+<ul>
+<li>单节点<br>直接对比，更新删除</li>
+<li>多节点<br>两次遍历，第一次更新，key或者type不同，就进入第二次遍历<br>第二次遍历，会生成map，进行标记（更新，删除，移动，插入）<br>生成真实dom</li>
+</ul>
+<h1 id="为什么不能在条件和循环里使用hooks"><a href="#为什么不能在条件和循环里使用hooks" class="headerlink" title="为什么不能在条件和循环里使用hooks"></a>为什么不能在条件和循环里使用hooks</h1><h1 id="为什么不能在函数组件外部使用hooks"><a href="#为什么不能在函数组件外部使用hooks" class="headerlink" title="为什么不能在函数组件外部使用hooks"></a>为什么不能在函数组件外部使用hooks</h1><h1 id="React-Hooks的状态保存在哪里"><a href="#React-Hooks的状态保存在哪里" class="headerlink" title="React Hooks的状态保存在哪里"></a>React Hooks的状态保存在哪里</h1><h1 id="为什么传入两次相同的状态，函数组件不更新"><a href="#为什么传入两次相同的状态，函数组件不更新" class="headerlink" title="为什么传入两次相同的状态，函数组件不更新"></a>为什么传入两次相同的状态，函数组件不更新</h1><h1 id="函数组件的useState和类组件的setState有什么区别"><a href="#函数组件的useState和类组件的setState有什么区别" class="headerlink" title="函数组件的useState和类组件的setState有什么区别"></a>函数组件的useState和类组件的setState有什么区别</h1><h1 id="组件基础"><a href="#组件基础" class="headerlink" title="组件基础"></a>组件基础</h1><h2 id="React-事件机制"><a href="#React-事件机制" class="headerlink" title="React 事件机制"></a>React 事件机制</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div onClick=&#123;this.handleClick.bind(this)&#125;&gt;点我&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>React 并不是将click事件绑定到div的真实DOM 上，而是在document处监听了所有的事件，当事件发生并且冒泡到document处的时候，React将事件内容封装并交由真正的处理函数运行。这样的方式不仅仅减少了内存的消耗，还能在组建挂载销毁时统一订阅和移除事件。</p>
+<p>除此之外，冒泡到document上的事件也不是原生的浏览器事件，而是由react自己实现的合成事件。因此如果不想要事件冒泡的话应该调用event.preventDefault()方法，而不是调用event.stopProppagation()方法。</p>
+<p>实现合成事件的目的如下：</p>
+<ul>
+<li>合成事件首先抹平了浏览器之间的兼容问题，另外这是一个跨浏览器原生事件包装器，赋予了跨浏览器开发的能力；</li>
+<li>对于原生浏览器事件来说，浏览器会给监听器创建一个事件对象。如果你有很多的事件监听，那么就需要分配很多的事件对象，造成高额的内存分配问题。但是对于合成事件来说，有一个事件池专门来管理它们的创建和销毁，当事件需要被使用时，就会从池子中复用对象，事件回调结束后，就会销毁事件对象上的属性，从而便于下次复用事件对象。</li>
+</ul>
+<h2 id="React的事件和普通的HTML事件有什么不同？"><a href="#React的事件和普通的HTML事件有什么不同？" class="headerlink" title="React的事件和普通的HTML事件有什么不同？"></a>React的事件和普通的HTML事件有什么不同？</h2><p>区别：</p>
+<ul>
+<li>对于事件名称命名方式，原生事件为全小写，react 事件采用小驼峰；</li>
+<li>对于事件函数处理语法，原生事件为字符串，react 事件为函数；</li>
+<li>react 事件不能采用 return false 的方式来阻止浏览器的默认行为，而必须要地明确地调用preventDefault()来阻止默认行为。</li>
+</ul>
+<p>合成事件是 react 模拟原生 DOM 事件所有能力的一个事件对象，其优点如下：</p>
+<ul>
+<li>兼容所有浏览器，更好的跨平台；</li>
+<li>将事件统一存放在一个数组，避免频繁的新增与删除（垃圾回收）。</li>
+<li>方便 react 统一管理和事务机制。</li>
+</ul>
+<p>事件的执行顺序为原生事件先执行，合成事件后执行，合成事件会冒泡绑定到 document 上，所以尽量避免原生事件与合成事件混用，如果原生事件阻止冒泡，可能会导致合成事件不执行，因为需要冒泡到document 上合成事件才会执行。</p>
+<h2 id="React-组件中怎么做事件代理？它的原理是什么？"><a href="#React-组件中怎么做事件代理？它的原理是什么？" class="headerlink" title="React 组件中怎么做事件代理？它的原理是什么？"></a>React 组件中怎么做事件代理？它的原理是什么？</h2><p>React基于Virtual DOM实现了一个SyntheticEvent层（合成事件层），定义的事件处理器会接收到一个合成事件对象的实例，它符合W3C标准，且与原生的浏览器事件拥有同样的接口，支持冒泡机制，所有的事件都自动绑定在最外层上。<br>在React底层，主要对合成事件做了两件事：</p>
+<ul>
+<li>事件委派： React会把所有的事件绑定到结构的最外层，使用统一的事件监听器，这个事件监听器上维持了一个映射来保存所有组件内部事件监听和处理函数。</li>
+<li>自动绑定： React组件中，每个方法的上下文都会指向该组件的实例，即自动绑定this为当前组件。</li>
+</ul>
+<h2 id="React如果没写key，源码不会加上key，而是使用索引来比较"><a href="#React如果没写key，源码不会加上key，而是使用索引来比较" class="headerlink" title="React如果没写key，源码不会加上key，而是使用索引来比较"></a>React如果没写key，源码不会加上key，而是使用索引来比较</h2><h2 id="React-高阶组件、Render-props、hooks-有什么区别，为什么要不断迭代"><a href="#React-高阶组件、Render-props、hooks-有什么区别，为什么要不断迭代" class="headerlink" title="React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代"></a>React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代</h2><ol>
+<li>HOC<br>高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。<br>HOC的优缺点∶</li>
 </ol>
-<p>（6）搜索引擎索引方式：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;robots&quot; content=&quot;index,follow&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<p>其中，content 参数有以下几种：</p>
-<ol>
-<li>all：文件将被检索，且页面上的链接可以被查询；</li>
-<li>none：文件将不被检索，且页面上的链接不可以被查询；</li>
-<li>index：文件将被检索；</li>
-<li>follow：页面上的链接可以被查询；</li>
-<li>noindex：文件将不被检索；</li>
-<li>nofollow：页面上的链接不可以被查询。</li>
-</ol>
-<h2 id="meta-相关"><a href="#meta-相关" class="headerlink" title="meta 相关"></a>meta 相关</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt; &lt;!--H5标准声明，使用 HTML5 doctype，不区分大小写--&gt; </span><br><span class="line">&lt;head lang=”en”&gt; &lt;!--标准的 lang 属性写法--&gt; </span><br><span class="line">&lt;meta charset=’utf-8ʹ&gt; &lt;!--声明文档使用的字符编码--&gt; </span><br><span class="line">&lt;meta http-equiv=”X-UA-Compatible” content=”IE=edge,chrome=1″/&gt; &lt;!--优先使用指定浏 览器使用特定的文档模式--&gt; </span><br><span class="line">&lt;meta name=”description” content=”不超过150个字符”/&gt; &lt;!--页面描述--&gt; </span><br><span class="line">&lt;meta name=”keywords” content=””/&gt; &lt;!-- 页面关键词--&gt; </span><br><span class="line">&lt;meta name=”author” content=”name, email@gmail.com”/&gt; &lt;!--网页作者--&gt; </span><br><span class="line">&lt;meta name=”robots” content=”index,follow”/&gt; &lt;!--搜索引擎抓取--&gt; </span><br><span class="line">&lt;meta name=”viewport” content=”initial-scale=1, maximum-scale=3, minimum-sc </span><br><span class="line">&lt;meta name=”apple-mobile-web-app-title” content=”标题”&gt; &lt;!--iOS 设备 begin--&gt; </span><br><span class="line">&lt;meta name=”apple-mobile-web-app-capable” content=”yes”/&gt; &lt;!--添加到主屏后的标 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏--&gt; &lt;meta name=”apple-mobile-web-app-status-bar-style” content=”black”/&gt; </span><br><span class="line">&lt;meta name=”renderer” content=”webkit”&gt; &lt;!-- 启用360浏览器的极速模式(webkit)--&gt; </span><br><span class="line">&lt;meta http-equiv=”X-UA-Compatible” content=”IE=edge”&gt; &lt;!--避免IE使用兼容模式--&gt; </span><br><span class="line">&lt;meta http-equiv=”Cache-Control” content=”no-siteapp” /&gt; &lt;!--不让百度转码--&gt; </span><br><span class="line">&lt;meta name=”HandheldFriendly” content=”true”&gt; &lt;!--针对手持设备优化，主要是针对一些老的 不识别viewport的浏览器--&gt; </span><br><span class="line">&lt;meta name=”MobileOptimized” content=”320″&gt; &lt;!--微软的老式浏览器--&gt; </span><br><span class="line">&lt;meta name=”screen-orientation” content=”portrait”&gt; &lt;!--uc强制竖屏--&gt; </span><br><span class="line">&lt;meta name=”x5-orientation” content=”portrait”&gt; &lt;!--QQ强制竖屏--&gt; </span><br><span class="line">&lt;meta name=”full-screen” content=”yes”&gt; &lt;!--UC强制全屏--&gt; </span><br><span class="line">&lt;meta name=”x5-fullscreen” content=”true”&gt; &lt;!--QQ强制全屏--&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="script标签中defer和async的区别"><a href="#script标签中defer和async的区别" class="headerlink" title="script标签中defer和async的区别"></a>script标签中defer和async的区别</h2><p>如果没有defer或async属性，浏览器会立即加载并执行相应的脚本。它不会等待后续加载的文档元素，读取到就会开始加载和执行，这样就阻塞了后续文档的加载。</p>
-<p>defer 和 async属性都是去异步加载外部的JS脚本文件，它们都不会阻塞页面的解析，其区别如下：</p>
-<ol>
-<li>执行顺序： 多个带async属性的标签，不能保证加载的顺序；多个带defer属性的标签，按照加载顺序执行；</li>
-<li>脚本是否并行执行：async属性，表示后续文档的加载和执行与js脚本的加载和执行是并行进行的，即异步执行；defer属性，加载后续文档的过程和js脚本的加载(此时仅加载不执行)是并行进行的(异步)，js脚本需要等到文档所有元素解析完成之后才执行，DOMContentLoaded事件触发执行之前。</li>
-<li>async异步，defer是延迟</li>
-</ol>
-<h2 id="em-与-i-的区别"><a href="#em-与-i-的区别" class="headerlink" title="em 与 i 的区别"></a>em 与 i 的区别</h2><ol>
-<li>效果都是斜体</li>
-<li>em 是语义化标签，表强调</li>
-<li>i 是样式标签， 表斜体</li>
-</ol>
-<h2 id="HTML-和-DOM-的关系"><a href="#HTML-和-DOM-的关系" class="headerlink" title="HTML 和 DOM 的关系"></a>HTML 和 DOM 的关系</h2><ol>
-<li>HTML 只是一个字符串</li>
-<li>DOM 由 HTML 解析而来</li>
-<li>JS 可以维护 DOM</li>
-</ol>
-<h2 id="HTML5新增了哪些内容或API，使用过哪些"><a href="#HTML5新增了哪些内容或API，使用过哪些" class="headerlink" title="HTML5新增了哪些内容或API，使用过哪些"></a>HTML5新增了哪些内容或API，使用过哪些</h2><ol>
-<li>document.querySelector()和document.querySelectorAll()</li>
-</ol>
-<p>document.querySelector()：根据css选择器返回第一个匹配的元素，如果没有匹配返回null；</p>
-<p>document.querySelectorAll(“selector”)：querySelectorAll和querySelector作用一样的，只是querySelectorAll返回的是元素数组，querySelector返回的是一个元素。如果querySelectorAll没有匹配的内容返回的是一个空数组。</p>
+<ul>
+<li>优点∶ 逻辑服用、不影响被包裹组件的内部逻辑。</li>
+<li>缺点∶ hoc传递给被包裹组件的props容易和被包裹后的组件重名，进而被覆盖</li>
+</ul>
 <ol start="2">
-<li>document.getElementsByClassName()<br>getElementsByClassName()方法接收一个参数，即一个包含一或多个类名的字符串，返回带有指定类的所有元素的NodeList。传入多个类名时，类名的先后顺序不重要。</li>
+<li>render prop<br>“render prop”是指一种在 React 组件之间使用一个值为函数的 prop 共享代码的简单技术</li>
 </ol>
+<ul>
+<li>优点：数据共享、代码复用，将组件内的state作为props传递给调用者，将渲染逻辑交给调用者。</li>
+<li>缺点：无法在 return 语句外访问数据、嵌套写法不够优雅</li>
+</ul>
 <ol start="3">
-<li><p>classList属性<br>add(value)：将给定的字符串值添加到列表中。如果值已经存在，就不添加了。<br>contains(value)：表示列表中是否存在给定的值，如果存在则返回true，否则返回false。<br>remove(value)：从列表中删除给定的字符串。<br>toggle(value)：如果列表中已经存在给定的值，删除它；如果列表中没有给定的值，添加它</p>
-</li>
-<li><p>自定义数据属性<br>HTML5 规定可以为元素添加非标准的属性，但要添加前缀data-，目的是为元素提供与渲染无关的信息，或者提供语义信息。这些属性可以任意添加、随便命名，只要以data-开头即可。来看一个例子。</p>
-</li>
+<li>Hooks<br>Hook是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。通过自定义hook，可以复用代码逻辑。</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;myDiv&quot; data-myname=&quot;mike&quot;&gt;&lt;/div&gt;</span><br><span class="line">var div=document.getElementById(&#x27;myDiv&#x27;);</span><br><span class="line">if(div.dataset.myname)&#123;alert(div.dataset.myname);&#125;</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>insertAdjacentHtml(),insertAdjacentText(),insertAdjacentElement()<br>插入标记的最后一个新增方式是insertAdjacentHTML()方法。它接收两个参数：插入位置和要插入的HTML 文本。第一个参数必须是下列值之一：</li>
-</ol>
-<p>“beforebegin”，在当前元素之前插入一个紧邻的同辈元素；<br>“afterbegin”，在当前元素之下插入一个新的子元素或在第一个子元素之前再插入新的子元素；<br>“beforeend”，在当前元素之下插入一个新的子元素或在最后一个子元素之后再插入新的子元素；<br>“afterend”，在当前元素之后插入一个紧邻的同辈元素。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element.insertAdjacentHTML(&#x27;beforebegin&#x27;,&#x27;&lt;p&gt;hello world&lt;/p&gt;&#x27;);</span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li>FullScreen API…</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">  &lt;style&gt;</span><br><span class="line">    html:-moz-full-screen &#123;</span><br><span class="line">      background: red;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    html:-webkit-full-screen &#123;</span><br><span class="line">      background: red;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    html:fullscreen &#123;</span><br><span class="line">      background: red;</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;ul class=&quot;class1 class2 class3 &quot;&gt;</span><br><span class="line">    &lt;li onclick=&quot;launchFullScreen()&quot;&gt;全屏&lt;/li&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot;&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">  &lt;button onclick=&quot;exitFullscreen()&quot;&gt;click me&lt;/button&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    // 找到支持的方法, 使用需要全屏的 element 调用</span><br><span class="line">    function launchFullScreen(element) &#123;</span><br><span class="line"></span><br><span class="line">      var element = element || document.documentElement;</span><br><span class="line">      console.log(element);</span><br><span class="line">      if (element.requestFullscreen) &#123;</span><br><span class="line">        element.requestFullscreen();</span><br><span class="line">      &#125; else if (element.mozRequestFullScreen) &#123;</span><br><span class="line">        element.mozRequestFullScreen();</span><br><span class="line">      &#125; else if (element.webkitRequestFullscreen) &#123;</span><br><span class="line">        element.webkitRequestFullscreen();</span><br><span class="line">      &#125; else if (element.msRequestFullscreen) &#123;</span><br><span class="line">        element.msRequestFullscreen();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //请注意: exitFullscreen 只能通过 document 对象调用 —— 而不是使用普通的 DOM element.</span><br><span class="line">    function exitFullscreen() &#123;</span><br><span class="line">      if (document.exitFullscreen) &#123;</span><br><span class="line">        document.exitFullscreen();</span><br><span class="line">      &#125; else if (document.mozExitFullScreen) &#123;</span><br><span class="line">        document.mozExitFullScreen();</span><br><span class="line">      &#125; else if (document.webkitExitFullscreen) &#123;</span><br><span class="line">        document.webkitExitFullscreen();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    element.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);//全屏状态允许键盘输入</span><br><span class="line"></span><br><span class="line">    /*有的时候为了用户友好体验，在进入全屏或者退出全屏的时候，需要给用户提示，</span><br><span class="line">    这个时候我们可以使用FullScreen的screenchange事件进行监控。事件监听没作用？？？？？*/</span><br><span class="line">    document.addEventListener(&quot;fullscreenchange&quot;, function () &#123;</span><br><span class="line">      fullscreenState.innerHTML = (document.fullscreen) ? &quot;&quot; : &quot;not &quot;;</span><br><span class="line">    &#125;, false);</span><br><span class="line"></span><br><span class="line">    document.addEventListener(&quot;mozfullscreenchange&quot;, function () &#123;</span><br><span class="line">      fullscreenState.innerHTML = (document.mozFullScreen) ? &quot;&quot; : &quot;not &quot;;</span><br><span class="line">    &#125;, false);</span><br><span class="line"></span><br><span class="line">    document.addEventListener(&quot;webkitfullscreenchange&quot;, function () &#123;</span><br><span class="line">      fullscreenState.innerHTML = (document.webkitIsFullScreen) ? &quot;&quot; : &quot;not &quot;;</span><br><span class="line">    &#125;, false);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<ol start="7">
-<li>页面可见性（Page Visibility）…<br>所谓页面可见性就是当前页面是处于显示状态还是隐藏状态，页面可见性对于网站的统计非常有用。有的时候我们会统计用户停留在每个页面的时间，这个时间就是：用户打开网页到网页关闭或者最小化之间的时间。</li>
-</ol>
-<p>有的时候在视频播放的时候，当用户离开视频播放页面自动暂停视频播放，我们有时候也对那些定期刷新内容的页面进行控制，当该页面不可见则不刷新，可见则刷新。这些都是页面可见性的具体应用。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;ul class=&quot;class1 class2 class3 &quot;&gt;</span><br><span class="line">  &lt;li&gt;1&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;4&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  (function () &#123;</span><br><span class="line">    var hidden = &quot;hidden&quot;;</span><br><span class="line">    // Standards:</span><br><span class="line">    if (hidden in document)</span><br><span class="line">      document.addEventListener(&quot;visibilitychange&quot;, onchange);</span><br><span class="line">    else if ((hidden = &quot;mozHidden&quot;) in document)</span><br><span class="line">      document.addEventListener(&quot;mozvisibilitychange&quot;, onchange);</span><br><span class="line">    else if ((hidden = &quot;webkitHidden&quot;) in document)</span><br><span class="line">      document.addEventListener(&quot;webkitvisibilitychange&quot;, onchange);</span><br><span class="line">    else if ((hidden = &quot;msHidden&quot;) in document)</span><br><span class="line">      document.addEventListener(&quot;msvisibilitychange&quot;, onchange);</span><br><span class="line">    // IE 9 and lower:</span><br><span class="line">    else if (&quot;onfocusin&quot; in document)</span><br><span class="line">      document.onfocusin = document.onfocusout = onchange;</span><br><span class="line">    // All others:</span><br><span class="line">    else</span><br><span class="line">      window.onpageshow = window.onpagehide</span><br><span class="line">        = window.onfocus = window.onblur = onchange;</span><br><span class="line">    function onchange(evt) &#123;</span><br><span class="line">      var v = &quot;visible&quot;, h = &quot;hidden&quot;,</span><br><span class="line">        evtMap = &#123;</span><br><span class="line">          focus: v, focusin: v, pageshow: v, blur: h, focusout: h, pagehide: h</span><br><span class="line">        &#125;;</span><br><span class="line">      evt = evt || window.event;</span><br><span class="line">      if (evt.type in evtMap)</span><br><span class="line">        document.body.className = evtMap[evt.type];</span><br><span class="line">      else</span><br><span class="line">        document.body.className = this[hidden] ? &quot;hidden&quot; : &quot;visible&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    // set the initial state (but only if browser supports the Page Visibility API)</span><br><span class="line">    if (document[hidden] !== undefined)</span><br><span class="line">      onchange(&#123;type: document[hidden] ? &quot;blur&quot; : &quot;focus&quot;&#125;);</span><br><span class="line">  &#125;)();</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<ol start="8">
-<li>预加载（prefetch）<br>网站优化一直是项目开发中的重点之中，常用的优化方式主要有：图片懒加载、图片sprite、css合并、js合并、数据本地存储、数据网络缓存等。这些都是项目中经常使用的，HTML5考虑到了这一点，提出了链接预加载的方法，其实，这个方案是FireFox提出的，所以它对链接预加载绝对的支持。什么是链接预加载那？我们看一下mdn的描述：<br>预加载是一种浏览器机制，使用浏览器空闲时间来预先下载/加载用户接下来很可能会浏览的页面/资源。页面提供给浏览器需要预加载的集合。 浏览器载入当前页面完成后，将会在后台下载需要预加载的页面并添加到缓存中。当用户访问某个预加载的链接时，如果从缓存命中, 页面就得以快速呈现。<br>说的直接一些就是让浏览器在后台提前下载一些文件</li>
-</ol>
-<p>关于链接预加载，有如下注意事项：<br>预加载可以跨域进行，当然，请求时cookie等信息也会被发送。<br>预加载可能破坏网站统计数据，而用户并没有实际访问。<br>浏览器兼容性不是很好</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&#x27;prefetch&#x27; href=&#x27;page1.html&#x27;&gt;</span><br><span class="line">&lt;link rel=&#x27;dns-prefetch&#x27; href=&#x27;flower.png&#x27;&gt;</span><br></pre></td></tr></table></figure>
-
-<ol start="9">
-<li>图形元素（The Figure Element）<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;figure&gt;</span><br><span class="line">     &lt;img src=&quot;path/to/image&quot; alt=&quot;About image&quot; /&gt;</span><br><span class="line">     &lt;figcaption&gt;</span><br><span class="line">        &lt;p&gt;This is an image of something interesting. &lt;/p&gt;</span><br><span class="line">     &lt;/figcaption&gt;</span><br><span class="line"> &lt;/figure&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>内容可编辑（contenteditable）<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul contenteditable=true&gt;</span><br><span class="line">    &lt;li&gt;i am editable&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;i am editable too&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;i am editable too too&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure></li>
-<li>本地存储（Local Storage）</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">//localStorage方法</span><br><span class="line">if (localStorage.pagecount)</span><br><span class="line">    &#123;</span><br><span class="line">    localStorage.pagecount=Number(localStorage.pagecount) +1;</span><br><span class="line">    &#125;</span><br><span class="line">else</span><br><span class="line">    &#123;</span><br><span class="line">    localStorage.pagecount=1;</span><br><span class="line">    &#125;</span><br><span class="line">document.write(&quot;Visits: &quot; + localStorage.pagecount + &quot; time(s).&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//sessionStorage方法</span><br><span class="line">if (sessionStorage.pagecount)</span><br><span class="line">  &#123;</span><br><span class="line">  sessionStorage.pagecount=Number(sessionStorage.pagecount) +1;</span><br><span class="line">  &#125;</span><br><span class="line">else</span><br><span class="line">  &#123;</span><br><span class="line">  sessionStorage.pagecount=1;</span><br><span class="line">  &#125;</span><br><span class="line">document.write(&quot;Visits &quot;+sessionStorage.pagecount+&quot; time(s) this session.&quot;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<ol start="12">
-<li>自定义数据属性<br>HTML5 规定可以为元素添加非标准的属性，但要添加前缀data-，目的是为元素提供与渲染无关的信息，或者提供语义信息。这些属性可以任意添加、随便命名，只要以data-开头即可。</li>
-</ol>
-<h2 id="img的srcset属性的作⽤？"><a href="#img的srcset属性的作⽤？" class="headerlink" title="img的srcset属性的作⽤？"></a>img的srcset属性的作⽤？</h2><p>响应式页面中经常用到根据屏幕密度设置不同的图片。这时就用到了 img 标签的srcset属性。srcset属性用于设置不同屏幕密度下，img 会自动加载不同的图片。用法如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;image-128.png&quot; srcset=&quot;image-256.png 2x&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<p>使用上面的代码，就能实现在屏幕密度为1x的情况下加载image-128.png, 屏幕密度为2x时加载image-256.png。<br>按照上面的实现，不同的屏幕密度都要设置图片地址，目前的屏幕密度有1x,2x,3x,4x四种，如果每一个图片都设置4张图片，加载就会很慢。所以就有了新的srcset标准。代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;image-128.png&quot;</span><br><span class="line">     srcset=&quot;image-128.png 128w, image-256.png 256w, image-512.png 512w&quot;</span><br><span class="line">     sizes=&quot;(max-width: 360px) 340px, 128px&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<p>其中srcset指定图片的地址和对应的图片质量。sizes用来设置图片的尺寸零界点。对于 srcset 中的 w 单位，可以理解成图片质量。如果可视区域小于这个质量的值，就可以使用。浏览器会自动选择一个最小的可用图片。<br>sizes语法如下：<br>sizes=”[media query] [length], [media query] [length] … “</p>
-<p>sizes就是指默认显示128px, 如果视区宽度大于360px, 则显示340px。</p>
-<h2 id="说一下-web-worker"><a href="#说一下-web-worker" class="headerlink" title="说一下 web worker"></a>说一下 web worker</h2><p>在 HTML 页面中，如果在执行脚本时，页面的状态是不可相应的，直到脚本执行完成后，页面才变成可相应。web worker 是运行在后台的 js，独立于其他脚本，不会影响页面的性能。 并且通过 postMessage 将结果回传到主线程。这样在进行复杂操作的时候，就不会阻塞主线程了。</p>
-<p>web worker特点：<br>（1）同源限制</p>
-<p>分配给 Worker 线程运行的脚本文件，必须与主线程的脚本文件同源。</p>
-<p>（2）DOM 限制</p>
-<p>Worker 线程所在的全局对象，与主线程不一样，无法读取主线程所在网页的 DOM 对象，也无法使用document、window、parent这些对象。但是，Worker 线程可以navigator对象和location对象。</p>
-<p>（3）通信联系</p>
-<p>Worker 线程和主线程不在同一个上下文环境，它们不能直接通信，必须通过消息完成。</p>
-<p>（4）脚本限制</p>
-<p>Worker 线程不能执行alert()方法和confirm()方法，但可以使用 XMLHttpRequest 对象发出 AJAX 请求。</p>
-<p>（5）文件限制</p>
-<p>Worker 线程无法读取本地文件，即不能打开本机的文件系统（file://），它所加载的脚本，必须来自网络。</p>
-<p>如何创建 web worker：</p>
-<ol>
-<li>检测浏览器对于 web worker 的支持性</li>
-<li>创建 web worker 文件（js，回传函数等）</li>
-<li>创建 web worker 对象</li>
-</ol>
-<h2 id="HTML5的离线储存怎么使用，它的工作原理是什么"><a href="#HTML5的离线储存怎么使用，它的工作原理是什么" class="headerlink" title="HTML5的离线储存怎么使用，它的工作原理是什么"></a>HTML5的离线储存怎么使用，它的工作原理是什么</h2><p>离线存储指的是：在用户没有与因特网连接时，可以正常访问站点或应用，在用户与因特网连接时，更新用户机器上的缓存文件。<br><strong>原理：</strong>HTML5的离线存储是基于一个新建的 .appcache 文件的缓存机制(不是存储技术)，通过这个文件上的解析清单离线存储资源，这些资源就会像cookie一样被存储了下来。之后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示<br>使用方法：<br>（1）创建一个和 html 同名的 manifest 文件，然后在页面头部加入 manifest 属性：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;html lang=&quot;en&quot; manifest=&quot;index.manifest&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p>（2）在 cache.manifest 文件中编写需要离线存储的资源：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line">    #v0.11</span><br><span class="line">    CACHE:</span><br><span class="line">    js/app.js</span><br><span class="line">    css/style.css</span><br><span class="line">    NETWORK:</span><br><span class="line">    resourse/logo.png</span><br><span class="line">    FALLBACK:</span><br><span class="line">    / /offline.html</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>CACHE: 表示需要离线存储的资源列表，由于包含 manifest 文件的页面将被自动离线存储，所以不需要把页面自身也列出来。</li>
-<li>NETWORK: 表示在它下面列出来的资源只有在在线的情况下才能访问，他们不会被离线存储，所以在离线情况下无法使用这些资源。不过，如果在 CACHE 和 NETWORK 中有一个相同的资源，那么这个资源还是会被离线存储，也就是说 CACHE 的优先级更高。<br>FALLBACK: 表示如果访问第一个资源失败，那么就使用第二个资源来替换他，比如上面这个文件表示的就是如果访问根目录下任何一个资源失败了，那么就去访问 offline.html 。</li>
-</ol>
-<p>（3）在离线状态时，操作 window.applicationCache 进行离线缓存的操作。<br>如何更新缓存：<br>（1）更新 manifest 文件<br>（2）通过 javascript 操作<br>（3）清除浏览器缓存<br>注意事项：<br>（1）浏览器对缓存数据的容量限制可能不太一样（某些浏览器设置的限制是每个站点 5MB）。<br>（2）如果 manifest 文件，或者内部列举的某一个文件不能正常下载，整个更新过程都将失败，浏览器继续全部使用老的缓存。<br>（3）引用 manifest 的 html 必须与 manifest 文件同源，在同一个域下。<br>（4）FALLBACK 中的资源必须和 manifest 文件同源。<br>（5）当一个资源被缓存后，该浏览器直接请求这个绝对路径也会访问缓存中的资源。<br>（6）站点中的其他页面即使没有设置 manifest 属性，请求的资源如果在缓存中也从缓存中访问。<br>（7）当 manifest 文件发生改变时，资源请求本身也会触发更新。</p>
-<h2 id="浏览器是如何对-HTML5-的离线储存资源进行管理和加载？"><a href="#浏览器是如何对-HTML5-的离线储存资源进行管理和加载？" class="headerlink" title="浏览器是如何对 HTML5 的离线储存资源进行管理和加载？"></a>浏览器是如何对 HTML5 的离线储存资源进行管理和加载？</h2><ol>
-<li>在线的情况下，浏览器发现 html 头部有 manifest 属性，它会请求 manifest 文件，如果是第一次访问页面 ，那么浏览器就会根据 manifest 文件的内容下载相应的资源并且进行离线存储。如果已经访问过页面并且资源已经进行离线存储了，那么浏览器就会使用离线的资源加载页面，然后浏览器会对比新的 manifest 文件与旧的 manifest 文件，如果文件没有发生改变，就不做任何操作，如果文件改变了，就会重新下载文件中的资源并进行离线存储。</li>
-<li>离线的情况下，浏览器会直接使用离线存储的资源。</li>
-</ol>
-<h2 id="title与h1的区别、b与strong的区别、i与em的区别？"><a href="#title与h1的区别、b与strong的区别、i与em的区别？" class="headerlink" title="title与h1的区别、b与strong的区别、i与em的区别？"></a>title与h1的区别、b与strong的区别、i与em的区别？</h2><ol>
-<li>strong标签有语义，是起到加重语气的效果，而b标签是没有的，b标签只是一个简单加粗标签。b标签之间的字符都设为粗体，strong标签加强字符的语气都是通过粗体来实现的，而搜索引擎更侧重strong标签。</li>
-<li>title属性没有明确意义只表示是个标题，H1则表示层次明确的标题，对页面信息的抓取有很大的影响</li>
-<li>i内容展示为斜体，em表示强调的文本</li>
-</ol>
-<h2 id="iframe-有那些优点和缺点？"><a href="#iframe-有那些优点和缺点？" class="headerlink" title="iframe 有那些优点和缺点？"></a>iframe 有那些优点和缺点？</h2><p>iframe 元素会创建包含另外一个文档的内联框架（即行内框架）。<br>优点：</p>
-<ol>
-<li>用来加载速度较慢的内容（如广告）</li>
-<li>可以使脚本可以并行下载</li>
-<li>可以实现跨子域通信</li>
-</ol>
-<p>缺点：</p>
-<ol>
-<li>iframe 会阻塞主页面的 onload 事件</li>
-<li>无法被一些搜索引擎索识别</li>
-<li>会产生很多页面，不容易管理</li>
-</ol>
-<h2 id="页面可见性（Page-Visibility）API-可以有哪些用途"><a href="#页面可见性（Page-Visibility）API-可以有哪些用途" class="headerlink" title="页面可见性（Page Visibility）API 可以有哪些用途"></a>页面可见性（Page Visibility）API 可以有哪些用途</h2><p>在页面被切换到其他后台进程的时候，自动暂停音乐或视频的播放。</p>
-<h2 id="script标签为什么要放在body标签的底部，【defer-async】"><a href="#script标签为什么要放在body标签的底部，【defer-async】" class="headerlink" title="script标签为什么要放在body标签的底部，【defer async】"></a>script标签为什么要放在body标签的底部，【defer async】</h2><p>因为浏览器在渲染html的时候，从上到下依次执行，遇到js文件就会停止当前页面的渲染，转而去下载js文件，如果将script标签放在头部，如果文件又很大的情况下，首屏时间就会延长，影响用户体验。<br>解决方法：</p>
-<p>将script标签放到body的底部<br>通过defer\async属性将js文件转为异步下载</p>
-<p>defer\async的区别<br>首先都是让js文件能够异步下载，不阻塞页面的渲染<br>区别就是defer必须等待整个文档渲染完成后才执行<br>而async在下载完成后，会暂停html的解析，转去执行js</p>
-<p>也就是说 下载的处理二者是相同的，主要是执行的时间不同，async执行的时候还是要阻塞html的解析，defer就是安排到最后才执行。 另外如果两个属性同时设置，以async为准。</p>
-<h2 id="HTML5的form如何关闭自动完成功能"><a href="#HTML5的form如何关闭自动完成功能" class="headerlink" title="HTML5的form如何关闭自动完成功能"></a>HTML5的form如何关闭自动完成功能</h2><p>给不想要提示的input是设置autocomplete=off即可。</p>
-<h2 id="处理兼容问题有两种方式"><a href="#处理兼容问题有两种方式" class="headerlink" title="处理兼容问题有两种方式"></a>处理兼容问题有两种方式</h2><p>IE6/IE7/IE8支持通过document方法产生的标签，利用这一特性让这些浏览器支持HTML5新标签；<br>使用是html5shim框架 另外，DOCTYPE声明的方式是区分HTML和HTML5标志的一个重要因素，此外，还可以根据新增的结构，功能元素来加以区分。</p>
-<h2 id="说说-title-和-alt-属性"><a href="#说说-title-和-alt-属性" class="headerlink" title="说说 title 和 alt 属性"></a>说说 title 和 alt 属性</h2><ol>
-<li>两个属性都是当鼠标滑动到元素上的时候显示。</li>
-<li>alt 是 img 的特有属性，是图片内容的等价描述，图片无法正常显示时候的替代文字。</li>
-<li>title 属性可以用在除了base，basefont，head，html，meta，param，script和title 之外的所有标签，是对dom元素的一种类似注释说明。</li>
-</ol>
-<h2 id="div-css的布局较table布局有什么优点"><a href="#div-css的布局较table布局有什么优点" class="headerlink" title="div+css的布局较table布局有什么优点"></a>div+css的布局较table布局有什么优点</h2><ol>
-<li>改版的时候更方便，只需要修改 css 文件。</li>
-<li>页面加载速度更快、结构化清晰、页面显示简洁。</li>
-<li>表现与结构相分离。</li>
-<li>易于优化 seo ，搜索引擎更友好，排名更容易靠前。</li>
-</ol>
-<h2 id="label-的作用是什么？如何使用？"><a href="#label-的作用是什么？如何使用？" class="headerlink" title="label 的作用是什么？如何使用？"></a>label 的作用是什么？如何使用？</h2><p>label标签来定义表单控件的关系：当用户选择label标签时，浏览器会自动将焦点转到和label标签相关的表单控件上。</p>
-<p>使用方法1：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;label for=&quot;mobile&quot;&gt;Number:&lt;/label&gt;</span><br><span class="line">&lt;input type=&quot;text&quot; id=&quot;mobile&quot;/&gt;</span><br></pre></td></tr></table></figure>
-
-<p>使用方法2：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;label&gt;Date:&lt;input type=&quot;text&quot;/&gt;&lt;/label&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Canvas和SVG的区别"><a href="#Canvas和SVG的区别" class="headerlink" title="Canvas和SVG的区别"></a>Canvas和SVG的区别</h2><p>（1）SVG：<br>SVG可缩放矢量图形（Scalable Vector Graphics）是基于可扩展标记语言XML描述的2D图形的语言，SVG基于XML就意味着SVG DOM中的每个元素都是可用的，可以为某个元素附加Javascript事件处理器。在 SVG 中，每个被绘制的图形均被视为对象。如果 SVG 对象的属性发生变化，那么浏览器能够自动重现图形。<br>其特点如下：</p>
-<ol>
-<li>不依赖分辨率</li>
-<li>支持事件处理器</li>
-<li>最适合带有大型渲染区域的应用程序（比如谷歌地图）</li>
-<li>复杂度高会减慢渲染速度（任何过度使用 DOM 的应用都不快）</li>
-<li>不适合游戏应用</li>
-</ol>
-<p>（2）Canvas：<br>Canvas是画布，通过Javascript来绘制2D图形，是逐像素进行渲染的。其位置发生改变，就会重新进行绘制。<br>其特点如下：</p>
-<ol>
-<li>依赖分辨率</li>
-<li>不支持事件处理器</li>
-<li>弱的文本渲染能力</li>
-<li>能够以 .png 或 .jpg 格式保存结果图像</li>
-<li>最适合图像密集型的游戏，其中的许多对象会被频繁重绘</li>
-</ol>
-<p>注：矢量图，也称为面向对象的图像或绘图图像，在数学上定义为一系列由线连接的点。矢量文件中的图形元素称为对象。每个对象都是一个自成一体的实体，它具有颜色、形状、轮廓、大小和屏幕位置等属性。</p>
-<h2 id="head-标签有什么作用，其中什么标签必不可少？"><a href="#head-标签有什么作用，其中什么标签必不可少？" class="headerlink" title="head 标签有什么作用，其中什么标签必不可少？"></a>head 标签有什么作用，其中什么标签必不可少？</h2><p> 标签用于定义文档的头部，它是所有头部元素的容器。 中的元素可以引用脚本、指示浏览器在哪里找到样式表、提供元信息等。<br>文档的头部描述了文档的各种属性和信息，包括文档的标题、在 Web 中的位置以及和其他文档的关系等。绝大多数文档头部包含的数据都不会真正作为内容显示给读者。<br>下面这些标签可用在 head 部分：base, link, meta, script, style, title。<br>其中 title 定义文档的标题，它是 head 部分中唯一必需的元素。</p>
-<h2 id="文档声明（Doctype）和-lt-Doctype-html-gt-有何作用-严格模式与混杂模式如何区分？它们有何意义"><a href="#文档声明（Doctype）和-lt-Doctype-html-gt-有何作用-严格模式与混杂模式如何区分？它们有何意义" class="headerlink" title="文档声明（Doctype）和&lt;!Doctype html&gt;有何作用? 严格模式与混杂模式如何区分？它们有何意义?"></a>文档声明（Doctype）和&lt;!Doctype html&gt;有何作用? 严格模式与混杂模式如何区分？它们有何意义?</h2><p>文档声明的作用： 文档声明是为了告诉浏览器，当前HTML文档使用什么版本的HTML来写的，这样浏览器才能按照声明的版本来正确的解析。<br>作用：&lt;!Doctype html&gt; 的作用就是让浏览器进入标准模式，使用最新的 HTML5 标准来解析渲染页面；如果不写，浏览器就会进入混杂模式，我们需要避免此类情况发生。<br>严格模式与混杂模式的区分：</p>
-<ol>
-<li>严格模式： 又称为标准模式，指浏览器按照W3C标准解析代码；</li>
-<li>混杂模式： 又称怪异模式、兼容模式，是指浏览器用自己的方式解析代码。混杂模式通常模拟老式浏览器的行为，以防止老站点无法工作；</li>
-</ol>
-<p>区分：网页中的DTD，直接影响到使用的是严格模式还是浏览模式，可以说DTD的使用与这两种方式的区别息息相关。</p>
-<ol>
-<li>如果文档包含严格的DOCTYPE ，那么它一般以严格模式呈现（严格 DTD ——严格模式）；<br>包含过渡 DTD 和 URI 的 DOCTYPE ，也以严格模式呈现，但有过渡 DTD 而没有 URI （统一资源标识符，就是声明最后的地址）会导致页面以混杂模式呈现（有 URI 的过渡 DTD ——严格模式；没有 URI 的过渡 DTD ——混杂模式）；</li>
-<li>DOCTYPE 不存在或形式不正确会导致文档以混杂模式呈现（DTD不存在或者格式不正确——混杂模式）；</li>
-<li>HTML5 没有 DTD ，因此也就没有严格模式与混杂模式的区别，HTML5 有相对宽松的 法，实现时，已经尽可能大的实现了向后兼容(HTML5 没有严格和混杂之分)。</li>
-</ol>
-<p>总之，严格模式让各个浏览器统一执行一套规范兼容模式保证了旧网站的正常运行。</p>
-<h2 id="几种Doctype文档类型"><a href="#几种Doctype文档类型" class="headerlink" title="几种Doctype文档类型"></a>几种Doctype文档类型</h2><p>标签可声明三种 DTD 类型，分别表示严格版本、过渡版本以及基于框架的 HTML 文档。</p>
-<ol>
-<li>HTML 4.01 规定了三种文档类型：分别是Strict、Transitional 以及 Frameset；</li>
-<li>XHTML 1.0 规定了三种 XML 文档类型：分别是Strict、Transitional 以及 Frameset；</li>
-<li>Standards （标准）模式（也就是严格呈现模式）用于呈现遵循最新标准的网页；</li>
-<li>Quirks（包容）模式（也就是松散呈现模式或者兼容模式）用于呈现为传统浏览器而设计的网页。</li>
-</ol>
-<h2 id="Quirks模式是什么？它和Standards模式有什么区别？"><a href="#Quirks模式是什么？它和Standards模式有什么区别？" class="headerlink" title="Quirks模式是什么？它和Standards模式有什么区别？"></a>Quirks模式是什么？它和Standards模式有什么区别？</h2><p>Quirks模式<br>Quirks模式，又称怪癖模式、诡异模式、怪异模式。<br>Quirks和Standards模式的区别<br>当我们在写程序时，遇到新旧功能不兼容的时候，如何做才能保证原来的接口不变，又可以提供强大的功能？<br>一般情况下可以通过增加参数和分支来解决。也就是当某个参数为true时，使用新功能，为false时使用旧功能，这样就能不破坏原有的程序，又能提供新功能。<br>IE6也是类似这样做的，它将DTD当成了这个“参数”，因为以前的页面大家都不会去写DTD，第一IE6就假定，如果写了DTD就意味这个页面将采用对CSS支持更好的布局，而如果没有就采用兼容之前的布局方式，这就是Quirks模式（怪癖，诡异，怪异模式）。<br>其与Standards的区别总体会有布局、样式解析、和脚本执行三个方面的区别：</p>
-<ol>
-<li>盒模型：在W3C标准中，如果设置一个元素的宽度和高度，指的是元素内容的宽度和高度，而在Quirks 模式下，IE的宽度和高度还包含了padding和border；</li>
-<li>设置行内元素的高宽：在Standards模式下，给等行内元素设置wdith和height都不会生效，而在2.quirks模式下，则会生效；</li>
-<li>设置百分比的高度：在standards模式下，一个元素的高度是由其包含的内容来决定的，如果父元素没有设置百分比的高度，子元素设置一个百分比的高度是无效的用；</li>
-<li>设置水平居中：使用margin:0 auto在standards模式下可以使元素水平居中，但在quirks模式下却会失效。</li>
-</ol>
-<h2 id="什么是前端的结构，样式和行为相分离？以及分离的好处是什么？"><a href="#什么是前端的结构，样式和行为相分离？以及分离的好处是什么？" class="headerlink" title="什么是前端的结构，样式和行为相分离？以及分离的好处是什么？"></a>什么是前端的结构，样式和行为相分离？以及分离的好处是什么？</h2><p>结构，样式和行为分离<br>小编的理解是： 若是将前端比作一个人来举例子，结构（HTML）就相当于是人体的“骨架”，样式就相当于人体的“装饰”，例如衣服，首饰等；行为就相当于人做出的一系列“动作”。<br>在结构，样式和行为分离，就是将三者分离开，各自负责各自的内容，各部分可以通过引用进行使用。<br>在分离的基础上，我们需要做到代码的：精简， 重用， 有序。<br>分离的好处</p>
-<ol>
-<li>代码分离，利于团队的开发和后期的维护；</li>
-<li>减少维护成本，提高可读性和更好的兼容性；</li>
-</ol>
-<h2 id="如何对网站的文件和资源进行优化"><a href="#如何对网站的文件和资源进行优化" class="headerlink" title="如何对网站的文件和资源进行优化"></a>如何对网站的文件和资源进行优化</h2><ol>
-<li>文件合并（目的是减少http请求）；</li>
-<li>文件压缩 （目的是直接减少文件下载的体积）；</li>
-<li>使用缓存；</li>
-<li>使用cdn托管资源；</li>
-<li>gizp压缩需要的js和css文件；</li>
-<li>反向链接，网站外链接优化；</li>
-<li>meta标签优化（title, description, keywords）,heading标签的优化,alt优化；</li>
-</ol>
-<h2 id="Html5中datalist是什么"><a href="#Html5中datalist是什么" class="headerlink" title="Html5中datalist是什么"></a>Html5中datalist是什么</h2><p>datalist标签，用来定义选项列表，与input元素配合使用该元素，来定义input可能的值。</p>
-<p>datalist及其选项不会被显示出来，他仅仅是合法的输入列表值。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;input id=&quot;fruits&quot; list=&quot;fruit&quot; /&gt;</span><br><span class="line">&lt;datalist id=&quot;fruit&quot;&gt;</span><br><span class="line">    &lt;option value=&quot;apple&quot;&gt;</span><br><span class="line">    &lt;option value=&quot;orange&quot;&gt;</span><br><span class="line">    &lt;option value=&quot;banana&quot;&gt;</span><br><span class="line">&lt;/datalist&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="LocalStorage本地存储在HTML5中有什么用途"><a href="#LocalStorage本地存储在HTML5中有什么用途" class="headerlink" title="LocalStorage本地存储在HTML5中有什么用途"></a>LocalStorage本地存储在HTML5中有什么用途</h2><p>localStorage本地存储相当于一个轻量级的数据库，可以在本地永久的储存数据（除非人为删除）。此外，还可以在断网情况下读取本地缓存的cookies。</p>
-<ol>
-<li>使用localStorage保存数据： localStorage.setItem(key, value);</li>
-<li>使用localStorage获取保存的数据: localStorage.getItem(key);</li>
-<li>清除localStorage保存的数据： localStorage.removeItem(key);</li>
-<li>清除全部localStorage对象保存的数据: localStorage.clear( );</li>
-</ol>
-<h2 id="新的HTML5文档类型和字符集是什么"><a href="#新的HTML5文档类型和字符集是什么" class="headerlink" title="新的HTML5文档类型和字符集是什么"></a>新的HTML5文档类型和字符集是什么</h2><p>HTML5文档类型：&lt;!doctype html&gt;<br>字符集：HTML5使用的编码&lt;meta charset=”UTF-8”&gt;</p>
-<h2 id="为什么HTML5里面我们不需要DTD"><a href="#为什么HTML5里面我们不需要DTD" class="headerlink" title="为什么HTML5里面我们不需要DTD"></a>为什么HTML5里面我们不需要DTD</h2><p>HTML5没有使用SGML或者XHTML，HTML5是一个全新的东西，因此不需要参考DTD，对于HTML5，仅需放置下面的文档类型代码告诉浏览器识别这是HTML5文档就行。</p>
-<h2 id="自身对网页标准和标准制定机构重要性有何理解"><a href="#自身对网页标准和标准制定机构重要性有何理解" class="headerlink" title="自身对网页标准和标准制定机构重要性有何理解"></a>自身对网页标准和标准制定机构重要性有何理解</h2><p>网页标准和标准制定机构是让web更加规范，更加标准，健康的发展所必不可少的东西。</p>
-<p>于开发者而言： 开发者可以遵循统一的开发标准，大大降低了开发难度，开发成本，从而也提高了代码的可阅读性以及易于后期维护；<br>于SEO而言： 对SEO更加友好，提升了搜索效率。</p>
-<p>使用网页标准和标准制定机构，对于提高网站的易用性起着非常大的作用。</p>
-<h2 id="对于web标准以及w3c有何理解与认识"><a href="#对于web标准以及w3c有何理解与认识" class="headerlink" title="对于web标准以及w3c有何理解与认识"></a>对于web标准以及w3c有何理解与认识</h2><p>于WEB而言：web标准简单来说可以分为结构、表现和行为。web标准一般是将该三部分独立分开，使其更具有模块化。但一般产生行为时，就会有结构或者表现的变化，也使这三者的界限并不那么清晰；<br>于W3C而言： W3C对web标准提出了规范化的要求，也就是在实际编程中的一些代码规范，如下：<br>结构上的要求：</p>
-<ol>
-<li>标签必须闭合、标签小写、不乱嵌套，可以提高搜索机器人对网页内容的搜索几率；</li>
-</ol>
-<p>对于css和js来说：</p>
-<ol>
-<li>建议使用外链css和js脚本，从而达到结构与行为、结构与表现的分离，提高页面的渲染速度，能更快地显示页面的内容；</li>
-<li>样式与标签的分离，更合理的语义化标签，使内容能被更多的用户所访问、内容能被更广泛的设备所访问、更少的代码和组件， 从而降低维护成本、改版更方便；</li>
-<li>不需要变动页面内容，便可提供打印版本而不需要复制内容，提高网站易用性；</li>
-</ol>
-<p>总之，遵循w3c制定的web标准，能够使用户浏览者更方便的阅读，使网页开发者之间更好的交流。</p>
-<h2 id="Html5应用程序缓存和HTML浏览器缓存有什么区别"><a href="#Html5应用程序缓存和HTML浏览器缓存有什么区别" class="headerlink" title="Html5应用程序缓存和HTML浏览器缓存有什么区别"></a>Html5应用程序缓存和HTML浏览器缓存有什么区别</h2><p>新的HTML5规范的应用缓存最关键的就是支持离线应用，允许浏览器在链接客户端时预取一些或全部网站资产，如HTML文件，图像，CSS以及JS等，预取文件加速了站点的性能。换句话说，应用程序缓存可以预取完全未被访问的页面，从而在常规的浏览器缓存中不可用。与传统的浏览器缓存比较，该特性并不强制要求用户访问网站。</p>
-<h2 id="HTML元素如何体现其嵌套关系"><a href="#HTML元素如何体现其嵌套关系" class="headerlink" title="HTML元素如何体现其嵌套关系"></a>HTML元素如何体现其嵌套关系</h2><ol>
-<li>块级元素可以包含行内元素；</li>
-<li>块级元素不一定能包含块级元素；</li>
-<li>行内元素一般不能包含块级元素（a元素例外）</li>
-</ol>
-<h2 id="property和attribute的区别是什么"><a href="#property和attribute的区别是什么" class="headerlink" title="property和attribute的区别是什么"></a>property和attribute的区别是什么</h2><p>property是DOM中的属性，是JavaScript里的对象;<br>attribute是HTML标签上的特性，它的值只能够是字符串;</p>
-<p>简单的理解就是：Attribute就是DOM节点自带的属性，例如html中常用的id、class、title、align等；而Property是这个DOM元素作为对象，其附加的内容，例如childNodes、firstChild等。</p>
-<h2 id="form-作用"><a href="#form-作用" class="headerlink" title="form 作用"></a>form 作用</h2><ol>
-<li>直接提交表单</li>
-<li>使用 submit / reset 按钮</li>
-<li>便于浏览器保存表单</li>
-<li>第三方库可以整体取值</li>
-<li>第三方库可以进行表单验证</li>
-</ol>
-<h2 id="请描述一下-cookies，sessionStorage-和-localStorage-的区别？"><a href="#请描述一下-cookies，sessionStorage-和-localStorage-的区别？" class="headerlink" title="请描述一下 cookies，sessionStorage 和 localStorage 的区别？"></a>请描述一下 cookies，sessionStorage 和 localStorage 的区别？</h2><ol>
-<li>cookie 是网站为了标示用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）</li>
-<li>cookie 数据始终在同源的 http 请求中携带（即使不需要），记会在浏览器和服务器间来回传递。</li>
-<li>sessionStorage 和 localStorage 不会自动把数据发给服务器，仅在本地保存。</li>
-<li>存储大小：<br>· cookie 数据大小不能超过 4k。<br>·sessionStorage 和 localStorage 虽然也有存储大小的限制，但比 cookie 大得多，可以达到 5M 或更大。</li>
-<li>有效期（生命周期）：<br>· localStorage: 存储持久数据，浏览器关闭后数据不丢失除非主动删除数据；<br>· sessionStorage: 数据在当前浏览器窗口关闭后自动删除。<br>· cookie: 设置的 cookie 过期时间之前一直有效，即使窗口或浏览器关闭</li>
-<li>共享<br>· sessionStorage 不能共享，localStorage 在同源文档之间共享，cookie 在同源且符合 path 规则的文档之间共享</li>
-</ol>
-<h2 id="浏览器乱码的原因是什么？如何解决？"><a href="#浏览器乱码的原因是什么？如何解决？" class="headerlink" title="浏览器乱码的原因是什么？如何解决？"></a>浏览器乱码的原因是什么？如何解决？</h2><p>产生乱码的原因：</p>
-<ol>
-<li>网页源代码是gbk的编码，而内容中的中文字是utf-8编码的，这样浏览器打开即会出现html乱码，反之也会出现乱码；</li>
-<li>html网页编码是gbk，而程序从数据库中调出呈现是utf-8编码的内容也会造成编码乱码；</li>
-<li>浏览器不能自动检测网页编码，造成网页乱码。</li>
-</ol>
-<p>解决办法：</p>
-<ol>
-<li>使用软件编辑HTML网页内容；</li>
-<li>如果网页设置编码是gbk，而数据库储存数据编码格式是UTF-8，此时需要程序查询数据库数据显示数据前进程序转码；</li>
-<li>如果浏览器浏览时候出现网页乱码，在浏览器中找到转换编码的菜单进行转换。</li>
-</ol>
-<h2 id="渐进增强和优雅降级之间的区别"><a href="#渐进增强和优雅降级之间的区别" class="headerlink" title="渐进增强和优雅降级之间的区别"></a>渐进增强和优雅降级之间的区别</h2><p>（1）渐进增强（progressive enhancement）：主要是针对低版本的浏览器进行页面重构，保证基本的功能情况下，再针对高级浏览器进行效果、交互等方面的改进和追加功能，以达到更好的用户体验。<br>（2）优雅降级 graceful degradation： 一开始就构建完整的功能，然后再针对低版本的浏览器进行兼容。<br>两者区别：</p>
-<ol>
-<li>优雅降级是从复杂的现状开始的，并试图减少用户体验的供给；而渐进增强是从一个非常基础的，能够起作用的版本开始的，并在此基础上不断扩充，以适应未来环境的需要；</li>
-<li>降级（功能衰竭）意味着往回看，而渐进增强则意味着往前看，同时保证其根基处于安全地带。</li>
-</ol>
-<p>“优雅降级”观点认为应该针对那些最高级、最完善的浏览器来设计网站。而将那些被认为“过时”或有功能缺失的浏览器下的测试工作安排在开发周期的最后阶段，并把测试对象限定为主流浏览器（如 IE、Mozilla 等）的前一个版本。 在这种设计范例下，旧版的浏览器被认为仅能提供“简陋却无妨 (poor, but passable)” 的浏览体验。可以做一些小的调整来适应某个特定的浏览器。但由于它们并非我们所关注的焦点，因此除了修复较大的错误之外，其它的差异将被直接忽略。<br>“渐进增强”观点则认为应关注于内容本身。内容是建立网站的诱因，有的网站展示它，有的则收集它，有的寻求，有的操作，还有的网站甚至会包含以上的种种，但相同点是它们全都涉及到内容。这使得“渐进增强”成为一种更为合理的设计范例。这也是它立即被 Yahoo 所采纳并用以构建其“分级式浏览器支持 (Graded Browser Support)”策略的原因所在。</p>
-<h2 id="说一下-HTML5-drag-API"><a href="#说一下-HTML5-drag-API" class="headerlink" title="说一下 HTML5 drag API"></a>说一下 HTML5 drag API</h2><ol>
-<li>dragstart：事件主体是被拖放元素，在开始拖放被拖放元素时触发。</li>
-<li>darg：事件主体是被拖放元素，在正在拖放被拖放元素时触发。</li>
-<li>dragenter：事件主体是目标元素，在被拖放元素进入某元素时触发。</li>
-<li>dragover：事件主体是目标元素，在被拖放在某元素内移动时触发。</li>
-<li>dragleave：事件主体是目标元素，在被拖放元素移出目标元素是触发。</li>
-<li>drop：事件主体是目标元素，在目标元素完全接受被拖放元素时触发。</li>
-<li>dragend：事件主体是被拖放元素，在整个拖放操作结束时触发。</li>
-</ol>
-<h2 id="table的作用以及其优缺点"><a href="#table的作用以及其优缺点" class="headerlink" title="table的作用以及其优缺点"></a>table的作用以及其优缺点</h2><p>作用</p>
-<p>可用于布局（已过时）；<br>用于显示批量数据；</p>
-<p>优点<br>在某些场合，使用Table是100%的适合、恰当和正确。比如，用table做表格是完全正确的<br>缺点</p>
-<ol>
-<li>Table要比其它html标记占更多的字节，会导致延迟下载时间，占用服务器更多的流量资源；</li>
-<li>Table会阻挡浏览器渲染引擎的渲染顺序，这会导致延迟页面的生成速度，让用户等待更久的时间；</li>
-<li>灵活性差，比如要通多td才能设置tr的border属性；</li>
-<li>代码臃肿，当在table中套用table的时候，阅读代码会显得异常混乱；</li>
-<li>混乱的colspan与rowspan，用来布局时，频繁使用他们会造成整个文档顺序混乱；</li>
-<li>深层的嵌套，导致搜索引擎读取困难，同时还很大程度上增加了代码冗余；<br>不够语义。</li>
-</ol>
-<h2 id="HTML-中的-input-标签有哪些-type"><a href="#HTML-中的-input-标签有哪些-type" class="headerlink" title="HTML 中的 input 标签有哪些 type"></a>HTML 中的 input 标签有哪些 type</h2><h3 id="button"><a href="#button" class="headerlink" title="button"></a>button</h3><p>没有默认行为的按钮，上面显示 value 属性的值，默认为空。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;button&quot; name=&quot;button&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="checkbox"><a href="#checkbox" class="headerlink" title="checkbox"></a>checkbox</h3><p>复选框，可设为选中或未选中。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;checkbox&quot; name=&quot;checkbox&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="color"><a href="#color" class="headerlink" title="color"></a>color</h3><p>用于指定颜色的控件；在支持的浏览器中，激活时会打开取色器。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;color&quot; name=&quot;color&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="date"><a href="#date" class="headerlink" title="date"></a>date</h3><p>输入日期的控件（年、月、日，不包括时间）。在支持的浏览器激活时打开日期选择器或年月日的数字滚轮。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;date&quot; name=&quot;date&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="datetime-local"><a href="#datetime-local" class="headerlink" title="datetime-local"></a>datetime-local</h3><p>输入日期和时间的控件，不包括时区。在支持的浏览器激活时打开日期选择器或年月日的数字滚轮。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;datetime-local&quot; name=&quot;datetime-local&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="email"><a href="#email" class="headerlink" title="email"></a>email</h3><p>编辑邮箱地址的区域。类似  text  输入，但在支持的浏览器和带有动态键盘的设备上会有确认参数和相应的键盘。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;email&quot; name=&quot;email&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="file"><a href="#file" class="headerlink" title="file"></a>file</h3><p>让用户选择文件的控件。使用 accept 属性规定控件能选择的文件类型。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;file&quot; accept=&quot;image/*, text/*&quot; name=&quot;file&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="hidden"><a href="#hidden" class="headerlink" title="hidden"></a>hidden</h3><p>不显示的控件，其值仍会提交到服务器。举个例子，右边就是一个隐形的控件。</p>
-<h3 id="image"><a href="#image" class="headerlink" title="image"></a>image</h3><p>带图像的  submit 按钮。显示的图像由 src  属性规定。如果 src 缺失，alt 属性就会显示。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;image&quot; name=&quot;image&quot; src=&quot;&quot; alt=&quot;image input&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="month"><a href="#month" class="headerlink" title="month"></a>month</h3><p>输入年和月的控件，没有时区。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;month&quot; name=&quot;month&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="number"><a href="#number" class="headerlink" title="number"></a>number</h3><p>用于输入数字的控件。如果支持的话，会显示滚动按钮并提供缺省验证（即只能输入数字）。拥有动态键盘的设备上会显示数字键盘。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;number&quot; name=&quot;number&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="password"><a href="#password" class="headerlink" title="password"></a>password</h3><p>单行的文本区域，其值会被遮盖。如果站点不安全，会警告用户。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;password&quot; name=&quot;password&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="radio"><a href="#radio" class="headerlink" title="radio"></a>radio</h3><p>单选按钮，允许在多个拥有相同 name 值的选项中选中其中一个。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;radio&quot; name=&quot;radio&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="range"><a href="#range" class="headerlink" title="range"></a>range</h3><p>此控件用于输入不需要精确的数字。控件是一个范围组件，默认值为正中间的值。同时使用 htmlattrdefmin    和 htmlattrdefmax 来规定值的范围。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;range&quot; name=&quot;range&quot; min=&quot;0&quot; max=&quot;25&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h3><p>此按钮将表单的所有内容重置为默认值。不推荐。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;reset&quot; name=&quot;reset&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="search"><a href="#search" class="headerlink" title="search"></a>search</h3><p>用于搜索字符串的单行文字区域。输入文本中的换行会被自动去除。在支持的浏览器中可能有一个删除按钮，用于清除整个区域。拥有动态键盘的设备上的回车图标会变成搜索图标。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;search&quot; name=&quot;search&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="submit"><a href="#submit" class="headerlink" title="submit"></a>submit</h3><p>用于提交表单的按钮。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;submit&quot; name=&quot;submit&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="tel"><a href="#tel" class="headerlink" title="tel"></a>tel</h3><p>用于输入电话号码的控件。拥有动态键盘的设备上会显示电话数字键盘。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;tel&quot; name=&quot;tel&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="text"><a href="#text" class="headerlink" title="text"></a>text</h3><p>默认值。单行的文本区域，输入中的换行会被自动去除。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;text&quot; name=&quot;text&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="time"><a href="#time" class="headerlink" title="time"></a>time</h3><p>用于输入时间的控件，不包括时区。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;time&quot; name=&quot;time&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="url"><a href="#url" class="headerlink" title="url"></a>url</h3><p>用于输入 URL 的控件。类似 text  输入，但有验证参数，在支持动态键盘的设备上有相应的键盘。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;url&quot; name=&quot;url&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="week"><a href="#week" class="headerlink" title="week"></a>week</h3><p>用于输入以年和周数组成的日期，不带时区。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;week&quot; name=&quot;week&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="什么是-Data-URL"><a href="#什么是-Data-URL" class="headerlink" title="什么是 Data URL"></a>什么是 Data URL</h3><p>Data URL 是将图片转换为 base64 直接嵌入到了网页中，使用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;data:[MIME type];base64&quot;/&gt;</span><br></pre></td></tr></table></figure>
-<p>这种方式引用图片，不需要再发请求获取图片。 使用 Data URL 也有一些缺点：</p>
-<ol>
-<li>base64 编码后的图片会比原来的体积大三分之一左右。</li>
-<li>Data URL 形式的图片不会缓存下来，每次访问页面都要被下载一次。可以将 Data URL 写入到 CSS 文件中随着 CSS 被缓存下来。</li>
-</ol>
-<h2 id="你做的页面在哪些流览器测试过？这些浏览器的内核分别是什么"><a href="#你做的页面在哪些流览器测试过？这些浏览器的内核分别是什么" class="headerlink" title="你做的页面在哪些流览器测试过？这些浏览器的内核分别是什么?"></a>你做的页面在哪些流览器测试过？这些浏览器的内核分别是什么?</h2><ol>
-<li>IE: trident内核</li>
-<li>Firefox：gecko内核</li>
-<li>Safari:webkit内核</li>
-<li>Opera:以前是presto内核，Opera现已改用GoogleChrome的Blink内核</li>
-<li>Chrome:Blink(基于webkit，Google与Opera Software共同开发)</li>
-</ol>
-<h2 id="介绍一下你对浏览器内核的理解？"><a href="#介绍一下你对浏览器内核的理解？" class="headerlink" title="介绍一下你对浏览器内核的理解？"></a>介绍一下你对浏览器内核的理解？</h2><p>主要分成两部分：渲染引擎(layout engineer或Rendering Engine)和JS引擎<br>渲染引擎：负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入CSS等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器</p>
-<h2 id="渲染优化"><a href="#渲染优化" class="headerlink" title="渲染优化"></a>渲染优化</h2><ol>
-<li>使用CSS3代码代替JS动画（尽可能避免重绘重排以及回流）</li>
-<li>页面中空的href和 src会阻塞页面其他资源的加载 (阻塞下载进程)</li>
-<li>用innerHTML代替DOM操作，减少DOM操作次数，优化javascript性能</li>
-<li>当需要设置的样式很多时设置className而不是直接操作style</li>
-<li>少用全局变量、缓存DOM节点查找的结果。减少IO读取操作</li>
-<li>图片预加载，将样式表放在顶部，将脚本放在底部 加上时间戳</li>
-</ol>
-<h2 id="如何进行网站性能优化"><a href="#如何进行网站性能优化" class="headerlink" title="如何进行网站性能优化"></a>如何进行网站性能优化</h2><p>1、减少HTTP请求：合并文件、CSS精灵、inline Image<br>2、将样式表放到页面顶部<br>3、不使用CSS表达式<br>4、使用link不使用@import<br>5、将脚本放到页面底部<br>6、将javascript和css从外部引入<br>7、压缩javascript和css</p>
-<h3 id="什么是-HTML-的实体编码-HTML-Entity-Encode"><a href="#什么是-HTML-的实体编码-HTML-Entity-Encode" class="headerlink" title="什么是 HTML 的实体编码 (HTML Entity Encode)"></a>什么是 HTML 的实体编码 (HTML Entity Encode)</h3><p>HTML 实体是一段以连字号（&amp;）开头、以分号（;）结尾的字符串。用以显示不可见字符及保留字符 (如 HTML 标签)</p>
-<p>在前端，一般为了避免 XSS 攻击，会将 &lt;&gt; 编码为 &lt; 与 &gt;，这些就是 HTML 实体编码。</p>
-<p>在 whatwg (opens new window)中可查看实体编码数据。</p>
-<p>在 HTML 转义时，仅仅只需要对六个字符进行编码: &amp;, &lt;, &gt;, “, ‘, ```。可使用 he (opens new window)这个库进行编码及转义</p>
-<ol>
-<li>不可分的空格:＆nbsp;</li>
-<li>&lt;(小于符号):＆lt;</li>
-<li>(大于符号):＆gt;</li>
-<li>＆(与符号):＆amp;</li>
-<li>″(双引号):＆quot;</li>
-<li>‘(单引号):’＆apos;</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 实体编码</span><br><span class="line">&gt; he.encode(&#x27;&lt;img src=&quot;&quot;&gt;&lt;/img&gt;&#x27;)</span><br><span class="line">&lt; &quot;&amp;#x3C;img src=&amp;#x22;&amp;#x22;&amp;#x3E;&amp;#x3C;/img&amp;#x3E;&quot;</span><br><span class="line"></span><br><span class="line">// 转义</span><br><span class="line">&gt; he.escape(&#x27;&lt;img src=&quot;&quot;&gt;&lt;/img&gt;&#x27;)</span><br><span class="line">&lt; &quot;&amp;lt;img src=&amp;quot;&amp;quot;&amp;gt;&amp;lt;/img&amp;gt;&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="input和textarea的区别"><a href="#input和textarea的区别" class="headerlink" title="input和textarea的区别"></a>input和textarea的区别</h2><p>input是单行文本框，不会换行。<br>通过size属性指定显示字符的长度，注意：当使用css限定了宽高，那么size属性就不再起作用。<br>value属性指定初始值，Maxlength属性指定文本框可以输入的最长长度。<br>可以通过width和height设置宽高，但是也不会增加行数。<br>textarea是多行文本输入框，文本区中可容纳无限数量的文本，无value属性，其中的文本的默认字体是等宽字体（通常是Courier） ，可以通 过 cols 和 rows 属性来规定 textarea 的尺寸，不过更好的办法是使用 CSS 的 height 和 width 属性。</p>
-<h2 id="用一个div模拟textarea的实现"><a href="#用一个div模拟textarea的实现" class="headerlink" title="用一个div模拟textarea的实现"></a>用一个div模拟textarea的实现</h2><p>作为多行文本域功能来讲，textarea满足了我们大部分的需求。然而，textarea有一个不足就是不能像普通div标签一样高度可以跟随内容自适应。textarea总是很自信地显摆它的滚动条，高度固执地岿然不动。</p>
-<p>要解决这个问题很简单，一个普通的block元素上加个contenteditable=”true”就ok了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div contenteditable=&quot;true&quot;&gt;&lt;/div&gt; </span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">	&lt;style&gt;</span><br><span class="line">		.textarea&#123;</span><br><span class="line">			min-height: 100px;</span><br><span class="line">			border: 1px solid #a0b3d6; </span><br><span class="line">			width: 300px;</span><br><span class="line">			font-size: 14px;</span><br><span class="line">			max-height: 300px;</span><br><span class="line">			overflow-y: auto;</span><br><span class="line">		&#125;</span><br><span class="line">	&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;!--用div模拟textarea--&gt;</span><br><span class="line">	&lt;div class=&quot;textarea&quot; contenteditable=&quot;true&quot;&gt;</span><br><span class="line">		</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
-<p>给div设置了一个最小高度，当超过最小高度但不超过最大高度时，div的高度根据文本自适应，当超过最大高度时，出现滚动条。</p>
-<h2 id="textarea-如何禁止拉伸"><a href="#textarea-如何禁止拉伸" class="headerlink" title="textarea 如何禁止拉伸"></a>textarea 如何禁止拉伸</h2><p>使用 CSS 样式可以避免拉伸</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">textarea &#123;</span><br><span class="line">  resize: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="移动设备忽略将页面中的数字识别为电话号码的方法"><a href="#移动设备忽略将页面中的数字识别为电话号码的方法" class="headerlink" title="移动设备忽略将页面中的数字识别为电话号码的方法"></a>移动设备忽略将页面中的数字识别为电话号码的方法</h2><p>在做移动端l的web开发的时候； IOS 上的Safari总会把长串数字识别为电话号码，文字变成蓝色，点击还会弹出菜单添加到通讯录。<br>解决方法：<br>只要加上 ：<br> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name = &quot;format-detection&quot; content = &quot;telephone=no&quot;&gt;  </span><br></pre></td></tr></table></figure><br>meta标签中format-detection翻译成中文的意思是“格式检测”，是用来检测html里的文本格式的，还包括：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot;&gt;  //禁止把数字转化为拨号链接</span><br><span class="line">&lt;meta name=&quot;format-detection&quot; content=&quot;email=no&quot;&gt;  //禁止邮箱,禁止发送邮件</span><br><span class="line">&lt;meta name=&quot;format-detection&quot; content=&quot;adress=no&quot;&gt;  //禁止地址跳转至地图</span><br><span class="line">&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no,email=no,adress=no&quot;&gt;  //合并写法</span><br></pre></td></tr></table></figure>
-<h2 id="在-Canvas-中如何处理跨域的图片"><a href="#在-Canvas-中如何处理跨域的图片" class="headerlink" title="在 Canvas 中如何处理跨域的图片"></a>在 Canvas 中如何处理跨域的图片</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img.setAttribute(&quot;crossOrigin&quot;, &quot;anonymous&quot;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="什么是-URL-编码-URL-Encode"><a href="#什么是-URL-编码-URL-Encode" class="headerlink" title="什么是 URL 编码 (URL Encode)"></a>什么是 URL 编码 (URL Encode)</h2><ol>
-<li><p>encodeURI 用来编码URI，其不会编码保留字符：;,/?😡&amp;=+$</p>
-</li>
-<li><p>encodeURIComponent 用来编码 URI参数，除了字符：A-Z a-z 0-9 - _ . ! ~ * ‘ ( )，都将会转义</p>
-</li>
-</ol>
-<h2 id="head-元素"><a href="#head-元素" class="headerlink" title="head 元素"></a>head 元素</h2><p>head 子元素大概分为三类，分别是：</p>
-<ol>
-<li>描述网页基本信息的</li>
-<li>指向渲染网页需要其他文件链接的</li>
-<li>各大厂商根据自己需要定制的</li>
-</ol>
-<h2 id="网页基本信息"><a href="#网页基本信息" class="headerlink" title="网页基本信息"></a>网页基本信息</h2><p>一个网页，首先得有个标题，就跟人有名字一样。除此之外，还可以根据实际需要补充一些基本信息。</p>
-<ol>
-<li>文档标题（浏览器标签中显示的文本）：深入了解 head 元素</li>
-<li>编码格式： 如果你的页面出现乱码，那一般就是编码格式不对</li>
-<li>视窗设置：</li>
-<li>搜索引擎优化相关内容： </li>
-<li>IE 浏览器版本渲染设置</li>
-</ol>
-<h2 id="厂商定制"><a href="#厂商定制" class="headerlink" title="厂商定制"></a>厂商定制</h2><p>同样分享页面到 QQ 的聊天窗口，有些页面直接就是一个链接，但是有些页面有标题，图片，还有文字介绍。为什么区别这么明显呢？其实就是看有没有设置下面这三个内容</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta itemprop=&quot;name&quot; content=&quot;这是分享的标题&quot; /&gt;</span><br><span class="line">&lt;meta</span><br><span class="line">  itemprop=&quot;image&quot;</span><br><span class="line">  content=&quot;http://imgcache.qq.com/qqshow/ac/v4/global/logo.png&quot;</span><br><span class="line">/&gt;</span><br><span class="line">&lt;meta name=&quot;description&quot; itemprop=&quot;description&quot; content=&quot;这是要分享的内容&quot; /&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="300-毫秒点击延迟问题"><a href="#300-毫秒点击延迟问题" class="headerlink" title="300 毫秒点击延迟问题"></a>300 毫秒点击延迟问题</h2><ol>
-<li>原因<br>移动端浏览器会有一些默认的行为，比如双击缩放、双击滚动，尤其是双击缩放，这也是300 毫秒延迟的主要原因。</li>
-<li>解决反感<br>方案一：禁用缩放(不推荐)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;user-scalable=no&quot;&gt;</span><br><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1,maximum-scale=1&quot;&gt;</span><br></pre></td></tr></table></figure>
-方案二：更改默认的视口宽度(不推荐)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;</span><br></pre></td></tr></table></figure>
-方案三：CSS touch-action(不推荐)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch-action: none</span><br></pre></td></tr></table></figure>
-方案四：FastClick（推荐）<br>FastClick的实现原理是在检测到touchend事件的时候，会通过DOM自定义事件立即出发模拟一个click事件，并把浏览器在300ms之后的click事件阻止掉。<br>在移动端开发中，某些机型上使用 click 事件会延迟 300ms 才执行，这样影响了用户体验。 解决方法： 引入fastclick.js。<h1 id="html深入"><a href="#html深入" class="headerlink" title="html深入"></a>html深入</h1><h2 id="网站开发中，如何实现图片的懒加载"><a href="#网站开发中，如何实现图片的懒加载" class="headerlink" title="网站开发中，如何实现图片的懒加载"></a>网站开发中，如何实现图片的懒加载</h2></li>
-</ol>
-<p>懒加载，顾名思义，在当前网页，滑动页面到能看到图片的时候再加载图片</p>
-<p>故问题拆分成两个：</p>
-<ol>
-<li>如何判断图片出现在了当前视口 （即如何判断我们能够看到图片）</li>
-<li>如何控制图片的加载</li>
-</ol>
-<h3 id="方案一-位置计算-滚动事件-Scroll-DataSet-API"><a href="#方案一-位置计算-滚动事件-Scroll-DataSet-API" class="headerlink" title="方案一: 位置计算 + 滚动事件 (Scroll) + DataSet API"></a>方案一: 位置计算 + 滚动事件 (Scroll) + DataSet API</h3><h4 id="如何判断图片出现在了当前视口"><a href="#如何判断图片出现在了当前视口" class="headerlink" title="如何判断图片出现在了当前视口"></a>如何判断图片出现在了当前视口</h4><p>clientTop，offsetTop，clientHeight 以及 scrollTop 各种关于图片的高度作比对</p>
-<p>这些高度都代表了什么意思？</p>
-<p>这我以前有可能是知道的，那时候我比较单纯，喜欢死磕。我现在想通了，背不过的东西就不要背了</p>
-<p>所以它有一个问题：复杂琐碎不好理解！</p>
-<p>仅仅知道它静态的高度还不够，我们还需要知道动态的</p>
-<p>如何动态？监听 window.scroll 事件</p>
-<h4 id="如何控制图片的加载"><a href="#如何控制图片的加载" class="headerlink" title="如何控制图片的加载"></a>如何控制图片的加载</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img data-src=&quot;shanyue.jpg&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<p>首先设置一个临时 Data 属性 data-src，控制加载时使用 src 代替 data-src，可利用 DataSet API 实现</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img.src = img.datset.src</span><br></pre></td></tr></table></figure>
-
-<h3 id="方案二-getBoundingClientRect-API-Scroll-with-Throttle-DataSet-API"><a href="#方案二-getBoundingClientRect-API-Scroll-with-Throttle-DataSet-API" class="headerlink" title="方案二: getBoundingClientRect API + Scroll with Throttle + DataSet API"></a>方案二: getBoundingClientRect API + Scroll with Throttle + DataSet API</h3><p>改进一下</p>
-<p>#如何判断图片出现在了当前视口<br>引入一个新的 API， Element.getBoundingClientRect() 方法返回元素的大小及其相对于视口的位置。</p>
-<p>那如何</p>
-<p>判断图片出现在了当前视口呢，根据示例图示意，代码如下，这个就比较好理解了，就可以很容易地背会(就可以愉快地去面试了)。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// clientHeight 代表当前视口的高度</span><br><span class="line">img.getBoundingClientRect().top &lt; document.documentElement.clientHeight;</span><br></pre></td></tr></table></figure>
-
-<p>监听 window.scroll 事件也优化一下</p>
-<p>加个节流器，提高性能。工作中一般使用 lodash.throttle 就可以了，万能的 lodash 啊！</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.throttle(func, [(wait = 0)], [(options = &#123;&#125;)]);</span><br></pre></td></tr></table></figure>
-
-<h3 id="方案三-IntersectionObserver-API-DataSet-API"><a href="#方案三-IntersectionObserver-API-DataSet-API" class="headerlink" title="方案三: IntersectionObserver API + DataSet API"></a>方案三: IntersectionObserver API + DataSet API</h3><p>再改进一下</p>
-<h4 id="如何判断图片出现在了当前视口-1"><a href="#如何判断图片出现在了当前视口-1" class="headerlink" title="如何判断图片出现在了当前视口"></a>如何判断图片出现在了当前视口</h4><p>方案二使用的方法是: window.scroll 监听 Element.getBoundingClientRect() 并使用 _.throttle 节流</p>
-<p>一系列组合动作太复杂了，于是浏览器出了一个三合一事件: IntersectionObserver API，一个能够监听元素是否到了当前视口的事件，一步到位！</p>
-<p>事件回调的参数是 IntersectionObserverEntry (opens new window)的集合，代表关于是否在可见视口的一系列值</p>
-<p>其中，entry.isIntersecting 代表目标元素可见</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const observer = new IntersectionObserver(changes =&gt; &#123;</span><br><span class="line">  // changes: 目标元素集合</span><br><span class="line">  changes.forEach(change =&gt; &#123;</span><br><span class="line">    // intersectionRatio</span><br><span class="line">    if (change.isIntersecting) &#123;</span><br><span class="line">      const img = change.target;</span><br><span class="line">      img.src = img.dataset.src;</span><br><span class="line">      observer.unobserve(img);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>observer.observe(img);<br>当然，IntersectionObserver 除了给图片做懒加载外，还可以对单页应用资源做预加载。</p>
-<p>如在 next.js v9 中，会对视口内的资源做预加载，可以参考 next 9 production optimizations(opens new window)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Link href=&quot;/about&quot;&gt;</span><br><span class="line">  &lt;a&gt;关于山月&lt;/a&gt;</span><br><span class="line">&lt;/Link&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="方案四-LazyLoading-属性"><a href="#方案四-LazyLoading-属性" class="headerlink" title="方案四: LazyLoading 属性"></a>方案四: LazyLoading 属性</h3><p>浏览器觉得懒加载这事可以交给自己做，你们开发者加个属性就好了。实在是…！</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;shanyue.jpg&quot; loading=&quot;lazy&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<p>不过目前浏览器兼容性不太好</p>
-<h2 id="浏览器中如何实现剪切板复制内容的功能"><a href="#浏览器中如何实现剪切板复制内容的功能" class="headerlink" title="浏览器中如何实现剪切板复制内容的功能"></a>浏览器中如何实现剪切板复制内容的功能</h2><p>它一般可以使用第三方库 clipboard-copy (opens new window)来实现，源码很简单，可以读一读</p>
-<p>目前最为推荐的方式是使用 Clipboard API 进行实现</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">navigator.clipboard.writeText(text);</span><br></pre></td></tr></table></figure>
-<p>而对于一些不支持 Clipboard API 的浏览器，使用以下 API 进行复制</p>
-<p>选中: Selection API<br>复制: document.execCommand (已被废弃)</p>
-<h3 id="选中-Selection-API-Range-API"><a href="#选中-Selection-API-Range-API" class="headerlink" title="选中: Selection API/Range API"></a>选中: Selection API/Range API</h3><p>选中主要利用了 Selection API (opens new window)与 Range API</p>
-<p>选中的代码如下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const selection = window.getSelection();</span><br><span class="line">const range = document.createRange();</span><br><span class="line"></span><br><span class="line">// RangeAPI: 制造区域</span><br><span class="line">range.selectNodeContents(element);</span><br><span class="line"></span><br><span class="line">// Selection: 选中区域</span><br><span class="line">selection.addRange(range);</span><br><span class="line"></span><br><span class="line">selectedText = selection.toString();</span><br></pre></td></tr></table></figure>
-<p>取消选中的代码如下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.getSelection().removeAllRanges();</span><br></pre></td></tr></table></figure>
-
-<h2 id="在浏览器中如何监听剪切板中内容"><a href="#在浏览器中如何监听剪切板中内容" class="headerlink" title="在浏览器中如何监听剪切板中内容"></a>在浏览器中如何监听剪切板中内容</h2><p>通过 Clipboard API 可以获取剪切板中内容，但需要获取到 clipboard-read 的权限，以下是关于读取剪贴板内容的代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 是否能够有读取剪贴板的权限</span><br><span class="line">// result.state == &quot;granted&quot; || result.state == &quot;prompt&quot;</span><br><span class="line">const result = await navigator.permissions.query(&#123; name: &quot;clipboard-read&quot; &#125;);</span><br><span class="line"></span><br><span class="line">// 获取剪贴板内容</span><br><span class="line">const text = await navigator.clipboard.readText();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>它有现成的第三方库可以使用: select.js(opens new window)</p>
-<h4 id="复制-execCommand"><a href="#复制-execCommand" class="headerlink" title="复制: execCommand"></a>复制: execCommand</h4><p>复制就比较简单了，execCommand</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.execCommand(&quot;copy&quot;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="localhost-3000-与-localhost-5000-的-cookie-信息是否共享"><a href="#localhost-3000-与-localhost-5000-的-cookie-信息是否共享" class="headerlink" title="localhost:3000 与 localhost:5000 的 cookie 信息是否共享"></a>localhost:3000 与 localhost:5000 的 cookie 信息是否共享</h2><p>根据同源策略，cookie 是区分端口的，但是浏览器实现来说，“cookie 区分域，而不区分端口，也就是说，同一个 ip 下的多个端口下的 cookie 是共享的！<br>不考虑 domian 设置 path 默认为/的话</p>
-<p><a href="https://xxxx.com/">https://xxxx.com</a> 和<a href="http://xxxx.com/">http://xxxx.com</a> 协议不同其他相同的 cookie 也是共享的</p>
-<p>默认 domain 为 localhost path 为/ 存储的 cookie 没有端口信息 共享</p>
-<h2 id="什么是-CSRF-攻击"><a href="#什么是-CSRF-攻击" class="headerlink" title="什么是 CSRF 攻击"></a>什么是 CSRF 攻击</h2><p>跨站请求伪造（英语：Cross-site request forgery），也被称为 one-click attack 或者 session riding，通常缩写为 CSRF 或者 XSRF， 是一种挟制用户在当前已登录的 Web 应用程序上执行非本意的操作的攻击方法。跟跨网站脚本（XSS）相比，XSS 利用的是用户对指定网站的信任，CSRF 利用的是网站对用户网页浏览器的信任。</p>
-<p>CSRF (Cross-site request forgery)，跨站请求伪造，又称为 one-click attack，顾名思义，通过恶意引导用户一次点击劫持 cookie 进行攻击。</p>
-<p>使用 JSON API。当进行 CSRF 攻击时，请求体通过 &lt;form&gt; 构建，请求头为 application/www-form-urlencoded。它难以发送 JSON 数据被服务器所理解。<br>CSRF Token。生成一个随机的 token，切勿放在 cookie 中，每次请求手动携带该 token 进行校验。<br>SameSite Cookie。设置为 Lax 或者 Strict，禁止发送第三方 Cookie。</p>
-<h2 id="如何把-json-数据转化为-demo-json-并下载文件"><a href="#如何把-json-数据转化为-demo-json-并下载文件" class="headerlink" title="如何把 json 数据转化为 demo.json 并下载文件"></a>如何把 json 数据转化为 demo.json 并下载文件</h2><p>json 视为字符串，可以利用 DataURL 进行下载</p>
-<p>Text -&gt; DataURL</p>
-<p>除了使用 DataURL，还可以转化为 Object URL 进行下载</p>
-<p>Text -&gt; Blob -&gt; Object URL</p>
-<p>可以把以下代码直接粘贴到控制台下载文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function download(url, name) &#123;</span><br><span class="line">  const a = document.createElement(&quot;a&quot;);</span><br><span class="line">  a.download = name;</span><br><span class="line">  a.rel = &quot;noopener&quot;;</span><br><span class="line">  a.href = url;</span><br><span class="line">  // 触发模拟点击</span><br><span class="line">  a.dispatchEvent(new MouseEvent(&quot;click&quot;));</span><br><span class="line">  // 或者 a.click()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const json = &#123;</span><br><span class="line">  a: 3,</span><br><span class="line">  b: 4,</span><br><span class="line">  c: 5</span><br><span class="line">&#125;;</span><br><span class="line">const str = JSON.stringify(json, null, 2);</span><br><span class="line"></span><br><span class="line">// 方案一：Text -&gt; DataURL</span><br><span class="line">const dataUrl = `data:,$&#123;str&#125;`;</span><br><span class="line">download(dataUrl, &quot;demo.json&quot;);</span><br><span class="line"></span><br><span class="line">// 方案二：Text -&gt; Blob -&gt; ObjectURL</span><br><span class="line">const url = URL.createObjectURL(new Blob(str.split(&quot;&quot;)));</span><br><span class="line">download(url, &quot;demo1.json&quot;);</span><br></pre></td></tr></table></figure>
-<p>#总结<br>模拟下载，可以通过新建一个 &lt;a href=”url” download&gt;&lt;a&gt; 标签并设置 url 及 download 属性来下载<br>可以通过把 json 转化为 dataurl 来构造 URL<br>可以通过把 json 转换为 Blob 再转化为 ObjectURL 来构造 URL</p>
-<h2 id="简单介绍-requestIdleCallback-及使用场景"><a href="#简单介绍-requestIdleCallback-及使用场景" class="headerlink" title="简单介绍 requestIdleCallback 及使用场景"></a>简单介绍 requestIdleCallback 及使用场景</h2><p>requestIdleCallback 维护一个队列，将在浏览器空闲时间内执行。它属于 Background Tasks API (opens new window)，你可以使用 setTimeout 来模拟实现</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">window.requestIdleCallback =</span><br><span class="line">  window.requestIdleCallback ||</span><br><span class="line">  function(handler) &#123;</span><br><span class="line">    let startTime = Date.now();</span><br><span class="line"></span><br><span class="line">    return setTimeout(function() &#123;</span><br><span class="line">      handler(&#123;</span><br><span class="line">        didTimeout: false,</span><br><span class="line">        timeRemaining: function() &#123;</span><br><span class="line">          return Math.max(0, 50.0 - (Date.now() - startTime));</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;, 1);</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const rIC = window[&quot;requestIdleCallback&quot;] || (f =&gt; setTimeout(f, 1));</span><br></pre></td></tr></table></figure>
-<p>在 rIC 中执行任务时需要注意以下几点：</p>
-<p>执行重计算而非紧急任务<br>空闲回调执行时间应该小于 50ms，最好更少<br>空闲回调中不要操作 DOM，因为它本来就是利用的重排重绘后的间隙空闲时间，重新操作 DOM 又会造成重排重绘<br>React 的时间分片便是基于类似 rIC 而实现，然而因为 rIC 的兼容性及 50ms 流畅问题，React 自制了一个实现: scheduler(opens new window)</p>
-<p>use-swr (opens new window)中进行资源的 revalidate 时，也是通过 rIC 来提高性能</p>
-<h2 id="如何计算白屏时间和首屏时间"><a href="#如何计算白屏时间和首屏时间" class="headerlink" title="如何计算白屏时间和首屏时间"></a>如何计算白屏时间和首屏时间</h2><p>白屏时间:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.performance.timing.domLoading - window.performance.timing.navigationStart</span><br></pre></td></tr></table></figure>
-
-<p>首屏时间:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.performance.timing.domInteractive - window.performace.timing.navigationStart</span><br></pre></td></tr></table></figure>
-<h2 id="从浏览器地址栏输入url到显示页面的步骤"><a href="#从浏览器地址栏输入url到显示页面的步骤" class="headerlink" title="从浏览器地址栏输入url到显示页面的步骤"></a>从浏览器地址栏输入url到显示页面的步骤</h2><p>浏览器根据请求的URL交给DNS域名解析，找到真实IP，向服务器发起请求；<br>服务器交给后台处理完成后返回数据，浏览器接收文件（HTML、JS、CSS、图象等）；<br>浏览器对加载到的资源（HTML、JS、CSS等）进行语法解析，建立相应的内部数据结构（如HTML的DOM）；<br>载入解析到的资源文件，渲染页面，完成。</p>
-<ol>
-<li>为什么url要解析（也就是编码)<br>因为网络标准规定了URL只能使用英文字母、阿拉伯数字和某些标点符号（-_.~ ! * ‘ ( ) ; : @ &amp; = + $ , / ? # [ ]，比较常见的就是不包括百分号和双引号），如果URL中有汉字，就必须编码后使用（一般由应用程序决定），如果不转义会出现歧义，比如http:<a href="http://www.baidu.com/?key=value,%E5%81%87%E5%A6%82%E6%88%91%E7%9A%84key%E6%9C%AC%E8%BA%AB%E5%B0%B1%E5%8C%85%E6%8B%AC%E7%AD%89%E4%BA%8E=%E7%AC%A6%E5%8F%B7%EF%BC%8C%E6%AF%94%E5%A6%82ke=y=value%EF%BC%8C%E5%B0%B1%E4%BC%9A%E5%87%BA%E7%8E%B0%E6%AD%A7%E4%B9%89%EF%BC%8C%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93=%E5%88%B0%E5%BA%95%E6%98%AF%E8%BF%9E%E6%8E%A5key%E5%92%8Cvalue%E7%9A%84%E7%AC%A6%E5%8F%B7%EF%BC%8C%E8%BF%98%E6%98%AF%E8%AF%B4%E6%9C%AC%E8%BA%ABkey%E9%87%8C%E9%9D%A2%E5%B0%B1%E6%9C%89=">www.baidu.com?key=value,假如我的key本身就包括等于=符号，比如ke=y=value，就会出现歧义，你不知道=到底是连接key和value的符号，还是说本身key里面就有=</a></li>
-<li>url编码的规则是什么？<br> （1）情况1:网址路径中包含汉字，网址路径的编码，用的是utf-8编码<br> （2）情况2:查询字符串包含汉字，查询字符串的编码，用的是操作系统的默认编码。<br> （3）情况3:Get/Post方法生成的URL包含汉字，GET和POST方法的编码，用的是网页的编码。<br> （4）情况4:Ajax调用的URL包含汉字，，IE总是采用GB2312编码（操作系统的默认编码），而Firefox总是采用utf-8编码，也就是说不通浏览器有不同的编码规则</li>
-</ol>
-<h2 id="什么是关键渲染路径"><a href="#什么是关键渲染路径" class="headerlink" title="什么是关键渲染路径"></a>什么是关键渲染路径</h2><p>从收到 HTML、CSS 和 JavaScript 字节到对其进行必需的处理，从而将它们转变成渲染的像素这一过程中有一些中间步骤，优化性能其实就是了解这些步骤中发生了什么， 即关键渲染路径</p>
-<ol>
-<li>创建DOM树(Constructing the DOM Tree)</li>
-<li>创建CSSOM树(Constructing the CSSOM Tree)</li>
-<li>执行脚本(Running JavaScript)</li>
-<li>生成渲染树(Creating the Render Tree)</li>
-<li>生成布局(Generating the Layout)</li>
-<li>绘制(Painting)</li>
-</ol>
-<h2 id="什么是重排重绘，如何减少重拍重绘"><a href="#什么是重排重绘，如何减少重拍重绘" class="headerlink" title="什么是重排重绘，如何减少重拍重绘"></a>什么是重排重绘，如何减少重拍重绘</h2><p>重排和重绘是关键渲染路径中的两步，可以参考另一个问题: 什么是关键渲染路径(opens new window)</p>
-<p>重排(Reflow)：元素的位置发生变动时发生重排，也叫回流。此时在关键渲染路径中的 Layout 阶段，计算每一个元素在设备视口内的确切位置和大小。当一个元素位置发生变化时，其父元素及其后边的元素位置都可能发生变化，代价极高</p>
-<p>重绘(Repaint): 元素的样式发生变动，但是位置没有改变。此时在关键渲染路径中的 Paint 阶段，将渲染树中的每个节点转换成屏幕上的实际像素，这一步通常称为绘制或栅格化</p>
-<p>另外，重排必定会造成重绘。以下是避免过多重拍重绘的方法</p>
-<ol>
-<li>使用 DocumentFragment 进行 DOM 操作，不过现在原生操作很少也基本上用不到</li>
-<li>CSS 样式尽量批量修改</li>
-<li>避免使用 table 布局</li>
-<li>为元素提前设置好高宽，不因多次渲染改变位置</li>
-</ol>
-<h2 id="如何取消请求的发送"><a href="#如何取消请求的发送" class="headerlink" title="如何取消请求的发送"></a>如何取消请求的发送</h2><p>根据发送网络请求的 API 不同，取消方法不同</p>
-<p>xhr<br>fetch<br>axios<br>如果使用XMLHttpRequest发送请求可以使用XMLHttpRequest.abort()</p>
-<p>如果使用fetch发送请求可以使用AbortController</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const controller = new AbortController();</span><br><span class="line">const signal = controller.signal;</span><br><span class="line">fetch(&#x27;https://somewhere&#x27;, &#123; signal &#125;)</span><br><span class="line">controller.abort()</span><br></pre></td></tr></table></figure>
-<p>如果使用axios，取消原理同 fetch</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var CancelToken = axios.CancelToken;</span><br><span class="line">var source = CancelToken.source();</span><br><span class="line"></span><br><span class="line">axios.get(&#x27;/https://somewhere&#x27;, &#123;</span><br><span class="line">  cancelToken: source.token</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">source.cancel()</span><br></pre></td></tr></table></figure>
-
-<p>XHR 使用 xhr.abort()</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const xhr = new XMLHttpRequest(),</span><br><span class="line">  method = &quot;GET&quot;,</span><br><span class="line">  url = &quot;https://developer.mozilla.org/&quot;;</span><br><span class="line">xhr.open(method, url, true);</span><br><span class="line"></span><br><span class="line">xhr.send();</span><br><span class="line"></span><br><span class="line">// 取消发送请求</span><br><span class="line">xhr.abort();</span><br></pre></td></tr></table></figure>
-
-<p>而其中的原理可分为两部分</p>
-<p>浏览器端: 基于 XHR，xhr.abort()，见源码axios/lib/adapters/xhr.js(opens new window)<br>Node 端: 基于 http/https/follow-redirects，使用 request.abort()，见源码axios/lib/adapters/http.js</p>
-<h2 id="如何实现浏览器内多个标签页之间的通信？"><a href="#如何实现浏览器内多个标签页之间的通信？" class="headerlink" title="如何实现浏览器内多个标签页之间的通信？"></a>如何实现浏览器内多个标签页之间的通信？</h2><h3 id="第一种——调用localStorage"><a href="#第一种——调用localStorage" class="headerlink" title="第一种——调用localStorage"></a>第一种——调用localStorage</h3><p>在一个标签页里面使用 localStorage.setItem(key,value)添加（修改、删除）内容；<br>在另一个标签页里面监听 storage 事件。<br>即可得到 localstorge 存储的值，实现不同标签页之间的通信。</p>
-<p>标签页1：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;input id=&quot;name&quot;&gt;  </span><br><span class="line">&lt;input type=&quot;button&quot; id=&quot;btn&quot; value=&quot;提交&quot;&gt;  </span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;  </span><br><span class="line">    $(function()&#123;    </span><br><span class="line">        $(&quot;#btn&quot;).click(function()&#123;    </span><br><span class="line">            var name=$(&quot;#name&quot;).val();    </span><br><span class="line">            localStorage.setItem(&quot;name&quot;, name);   </span><br><span class="line">        &#125;);    </span><br><span class="line">    &#125;);    </span><br><span class="line">&lt;/script&gt;  </span><br></pre></td></tr></table></figure>
-
-<p>标签页2：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    $(function()&#123;</span><br><span class="line">        window.addEventListener(&quot;storage&quot;, function(event)&#123;</span><br><span class="line">            console.log(event.key + &quot;=&quot; + event.newValue);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="第二种——调用cookie-setInterval"><a href="#第二种——调用cookie-setInterval" class="headerlink" title="第二种——调用cookie+setInterval()"></a>第二种——调用cookie+setInterval()</h3><p>将要传递的信息存储在cookie中，每隔一定时间读取cookie信息，即可随时获取要传递的信息。</p>
-<p>页面1：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;input id=&quot;name&quot;&gt;</span><br><span class="line">&lt;input type=&quot;button&quot; id=&quot;btn&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    $(function()&#123;</span><br><span class="line">        $(&quot;#btn&quot;).click(function()&#123;</span><br><span class="line">            var name=$(&quot;#name&quot;).val();</span><br><span class="line">            document.cookie=&quot;name=&quot;+name;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>页面2：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    $(function()&#123;</span><br><span class="line">        function getCookie(key) &#123;</span><br><span class="line">            return JSON.parse(&quot;&#123;\&quot;&quot; + document.cookie.replace(/;\s+/gim,&quot;\&quot;,\&quot;&quot;).replace(/=/gim, &quot;\&quot;:\&quot;&quot;) + &quot;\&quot;&#125;&quot;)[key];</span><br><span class="line">        &#125;</span><br><span class="line">        setInterval(function()&#123;</span><br><span class="line">            console.log(&quot;name=&quot; + getCookie(&quot;name&quot;));</span><br><span class="line">        &#125;, 10000);</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="第三种-websocket通讯"><a href="#第三种-websocket通讯" class="headerlink" title="第三种 websocket通讯"></a>第三种 websocket通讯</h3><h3 id="第四种-html5浏览器的新特性SharedWorker"><a href="#第四种-html5浏览器的新特性SharedWorker" class="headerlink" title="第四种 html5浏览器的新特性SharedWorker"></a>第四种 html5浏览器的新特性SharedWorker</h3><p>普通的webworker直接使用new Worker()即可创建，这种webworker是当前页面专有的。然后还有种共享worker(SharedWorker)，这种是可以多个标签页、iframe共同使用的。</p>
-<p>SharedWorker可以被多个window共同使用，但必须保证这些标签页都是同源的(相同的协议，主机和端口号)</p>
-<p>首先新建一个js文件worker.js，具体代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// sharedWorker所要用到的js文件，不必打包到项目中，直接放到服务器即可let data = &#x27;&#x27;onconnect = function (e) &#123;  let port = e.ports[0]  port.onmessage = function (e) &#123;    if (e.data === &#x27;get&#x27;) &#123;      port.postMessage(data)    &#125; else &#123;      data = e.data    &#125;  &#125;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>webworker端(暂且这样称呼)的代码就如上，只需注册一个onmessage监听信息的事件，客户端(即使用sharedWorker的标签页)发送message时就会触发。</p>
-<p>注意webworker无法在本地使用，出于浏览器本身的安全机制，所以我这次的示例也是放在服务器上的，worker.js和index.html在同一目录。</p>
-<p>因为客户端和webworker端的通信不像websocket那样是全双工的，所以客户端发送数据和接收数据要分成两步来处理。示例中会有两个按钮，分别对应的向sharedWorker发送数据的请求以及获取数据的请求，但他们本质上都是相同的事件–发送消息。</p>
-<p>webworker端会进行判断，传递的数据为’get’时，就把变量data的值回传给客户端，其他情况，则把客户端传递过来的数据存储到data变量中。下面是客户端的代码：</p>
-<p>// 这段代码是必须的，打开页面后注册SharedWorker，显示指定worker.port.start()方法建立与worker间的连接</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">if (typeof Worker === &quot;undefined&quot;) &#123;</span><br><span class="line"></span><br><span class="line">      alert(&#x27;当前浏览器不支持webworker&#x27;)</span><br><span class="line"></span><br><span class="line">    &#125; else &#123;</span><br><span class="line"></span><br><span class="line">      let worker = new SharedWorker(&#x27;worker.js&#x27;)</span><br><span class="line"></span><br><span class="line">      worker.port.addEventListener(&#x27;message&#x27;, (e) =&gt; &#123;</span><br><span class="line"></span><br><span class="line">        console.log(&#x27;来自worker的数据：&#x27;, e.data)</span><br><span class="line"></span><br><span class="line">      &#125;, false)</span><br><span class="line"></span><br><span class="line">      worker.port.start()</span><br><span class="line"></span><br><span class="line">      window.worker = worker</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>// 获取和发送消息都是调用postMessage方法，我这里约定的是传递’get’表示获取数据。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.worker.port.postMessage(&#x27;get&#x27;)</span><br><span class="line"></span><br><span class="line">window.worker.port.postMessage(&#x27;发送信息给worker&#x27;)</span><br></pre></td></tr></table></figure>
-
-<p>页面A发送数据给worker，然后打开页面B，调用window.worker.port.postMessage(‘get’)，即可收到页面A发送给worker的数据。</p>
-<h2 id="webSocket如何兼容低浏览器"><a href="#webSocket如何兼容低浏览器" class="headerlink" title="webSocket如何兼容低浏览器"></a>webSocket如何兼容低浏览器</h2><ol>
-<li><p>使用轮询或长连接的方式实现伪websocket的通信</p>
-</li>
-<li><p>使用flash或其他方法实现一个websocket客户端 Adobe Flash Socket；</p>
-</li>
-<li><p>ActiveX HTMLFile (IE) ；</p>
-</li>
-<li><p>基于 multipart 编码发送 XHR；</p>
-</li>
-</ol>
-<h2 id="canvas-和-svg-的区别"><a href="#canvas-和-svg-的区别" class="headerlink" title="canvas 和 svg 的区别"></a>canvas 和 svg 的区别</h2><p>canvas 是 html5 提供的新元素，而 svg 存在的历史要比 canvas 久远，已经有十几年了。svg 并不是 html5 专有的标签，最初 svg 是用 xml 技术（超文本扩展语言，可以自定义标签或属性）描述二维图形的语言。在 H5 中看似 canvas 与 svg 很像，但是，他们有巨大的差别。<br>首先，从它们的功能上来讲，canvas 可以看做是一个画布。，其绘制出来的图形为标量图，因此，可以在 canvas 中引入 jpg 或 png 这类格式的图片，在实际开发中，大型的网络游戏都是用 canvas 画布做出来的，并且 canvas 的技术现在已经相当的成熟。另外，我们喜欢用 canvas 来做一些统计用的图表，如柱状图曲线图或饼状图等。 而 svg，所绘制的图形为矢量图，所以其用法上受到了限制。因为只能绘制矢量图，所以 svg 中不能引入普通的图片，因为矢量图的不会失真的效果，在项目中我们会用来做小图标。但是由于其本质为矢量图，可以被无限放大而不会失真，这很适合被用来做地图，而百度地图就是用 svg 技术做出来的。<br>另外从技术发面来讲 canvas 里面绘制的图形不能被引擎抓取，如我们要让 canvas 里面的一个图片跟随鼠标事件: canvas.onmouseover=function(){}。 而 svg 里面的图形可以被引擎抓取，支持事件的绑定。另外 canvas 中我们绘制图形通常是通过 javascript 来实现，svg 更多的是通过标签来来实现，如在 svg 中绘制正矩形形就要用，这里我们不能用属性 style=”width:XXX;height:XXX;”来定义。</p>
+<p>优点：</p>
+<ul>
+<li>使用直观；</li>
+<li>解决hoc的prop 重名问题；</li>
+<li>解决render props 因共享数据 而出现嵌套地狱的问题；</li>
+<li>能在return之外使用数据的问题。</li>
+</ul>
+<p>总结：Hoc、render props和hook都是为了解决代码复用的问题，但是hoc和render props都有特定的使用场景和明显的缺点。hook是react16.8更新的新的API，让组件逻辑复用更简洁明了，同时也解决了hoc和render props的一些缺点</p>
+<h2 id="对React-Fiber的理解，它解决了什么问题？"><a href="#对React-Fiber的理解，它解决了什么问题？" class="headerlink" title="对React-Fiber的理解，它解决了什么问题？"></a>对React-Fiber的理解，它解决了什么问题？</h2><p>React V15 在渲染时，会递归比对 VirtualDOM 树，找出需要变动的节点，然后同步更新它们， 一气呵成。这个过程期间， React 会占据浏览器资源，这会导致用户触发的事件得不到响应，并且会导致掉帧，导致用户感觉到卡顿。<br>为了给用户制造一种应用很快的“假象”，不能让一个任务长期霸占着资源。 可以将浏览器的渲染、布局、绘制、资源加载(例如 HTML 解析)、事件响应、脚本执行视作操作系统的“进程”，需要通过某些调度策略合理地分配 CPU 资源，从而提高浏览器的用户响应速率, 同时兼顾任务执行效率。<br>所以 React 通过Fiber 架构，让这个执行过程变成可被中断。“适时”地让出 CPU 执行权，除了可以让浏览器及时地响应用户的交互，还有其他好处:</p>
+<ul>
+<li>分批延时对DOM进行操作，避免一次性操作大量 DOM 节点，可以得到更好的用户体验；</li>
+<li>给浏览器一点喘息的机会，它会对代码进行编译优化（JIT）及进行热代码优化，或者对 reflow 进行修正。</li>
+</ul>
+<p>核心思想: Fiber 也称协程或者纤程。它和线程并不一样，协程本身是没有并发或者并行能力的（需要配合线程），它只是一种控制流程的让出机制。让出 CPU 的执行权，让 CPU 能在这段时间执行其他的操作。渲染的过程可以被中断，可以将控制权交回浏览器，让位给高优先级的任务，浏览器空闲后再恢复渲染。</p>
+<h2 id="React-Component-和-React-PureComponent-的区别"><a href="#React-Component-和-React-PureComponent-的区别" class="headerlink" title="React.Component 和 React.PureComponent 的区别"></a>React.Component 和 React.PureComponent 的区别</h2><p>PureComponent表示一个纯组件，可以用来优化React程序，减少render函数执行的次数，从而提高组件的性能。<br>在React中，当prop或者state发生变化时，可以通过在shouldComponentUpdate生命周期函数中执行return false来阻止页面的更新，从而减少不必要的render执行。React.PureComponent会自动执行 shouldComponentUpdate。<br>不过，pureComponent中的 shouldComponentUpdate() 进行的是浅比较，也就是说如果是引用数据类型的数据，只会比较不是同一个地址，而不会比较这个地址里面的数据是否一致。浅比较会忽略属性和或状态突变情况，其实也就是数据引用指针没有变化，而数据发生改变的时候render是不会执行的。如果需要重新渲染那么就需要重新开辟空间引用数据。PureComponent一般会用在一些纯展示组件上。<br>使用pureComponent的好处：当组件更新时，如果组件的props或者state都没有改变，render函数就不会触发。省去虚拟DOM的生成和对比过程，达到提升性能的目的。这是因为react自动做了一层浅比较。</p>
+<h2 id="Component-Element-Instance-之间有什么区别和联系？"><a href="#Component-Element-Instance-之间有什么区别和联系？" class="headerlink" title="Component, Element, Instance 之间有什么区别和联系？"></a>Component, Element, Instance 之间有什么区别和联系？</h2><ul>
+<li>元素： 一个元素element是一个普通对象(plain object)，描述了对于一个DOM节点或者其他组件component，你想让它在屏幕上呈现成什么样子。元素element可以在它的属性props中包含其他元素(译注:用于形成元素树)。创建一个React元素element成本很低。元素element创建之后是不可变的。</li>
+<li>组件： 一个组件component可以通过多种方式声明。可以是带有一个render()方法的类，简单点也可以定义为一个函数。这两种情况下，它都把属性props作为输入，把返回的一棵元素树作为输出。</li>
+<li>实例： 一个实例instance是你在所写的组件类component class中使用关键字this所指向的东西(译注:组件实例)。它用来存储本地状态和响应生命周期事件很有用。</li>
+</ul>
+<p>函数式组件(Functional component)根本没有实例instance。类组件(Class component)有实例instance，但是永远也不需要直接创建一个组件的实例，因为React帮我们做了这些。</p>
 
       
     </div>
@@ -1025,7 +506,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/36/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/">38</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><a class="extend next" rel="next" href="/page/38/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/36/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/">38</a><span class="space">&hellip;</span><a class="page-number" href="/page/44/">44</a><a class="extend next" rel="next" href="/page/38/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>

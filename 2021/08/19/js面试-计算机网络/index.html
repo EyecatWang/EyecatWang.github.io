@@ -21,15 +21,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"eyecatwang.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="eyecatwang的学习日记">
+<meta name="description" content="OSI七层理想模型网络分层的含义 应用层，用户最终使用的接口，微信、qq 表示层，对数据进行描述，压缩等 会话层，建立会话和管理会话 传输层，把数据传递给对方，怎么传，丢了要不要重新传递 网络层，网络层主要是寻址 数据链路层，只关心是两个设备链接起来，连接数据 物理层，只关心如何传输数据 0&amp;1，传输的是比特流  实际模型  应用层        应用层数据-&gt;报文 应用层">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javascript面试-计算机网络">
 <meta property="og:url" content="https://eyecatwang.github.io/2021/08/19/js%E9%9D%A2%E8%AF%95-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
 <meta property="og:site_name" content="eyecatwang">
-<meta property="og:description" content="eyecatwang的学习日记">
+<meta property="og:description" content="OSI七层理想模型网络分层的含义 应用层，用户最终使用的接口，微信、qq 表示层，对数据进行描述，压缩等 会话层，建立会话和管理会话 传输层，把数据传递给对方，怎么传，丢了要不要重新传递 网络层，网络层主要是寻址 数据链路层，只关心是两个设备链接起来，连接数据 物理层，只关心如何传输数据 0&amp;1，传输的是比特流  实际模型  应用层        应用层数据-&gt;报文 应用层">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-08-19T07:14:33.000Z">
-<meta property="article:modified_time" content="2021-12-05T09:08:26.439Z">
+<meta property="article:modified_time" content="2021-12-18T11:48:54.510Z">
 <meta property="article:author" content="eyecatwang">
 <meta name="twitter:card" content="summary">
 
@@ -136,7 +136,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -149,6 +149,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OSI%E4%B8%83%E5%B1%82%E7%90%86%E6%83%B3%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">OSI七层理想模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%E7%9A%84%E5%90%AB%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">网络分层的含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E5%B1%82%E5%8D%8F%E8%AE%AE%E7%9C%9F%E6%AD%A3%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88%E4%BA%8B%E6%83%85"><span class="nav-number">1.2.</span> <span class="nav-text">七层协议真正做了什么事情</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80"><span class="nav-number">1.3.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%E6%9C%89%E5%93%AA%E4%BA%9B%E8%AE%BE%E5%A4%87%EF%BC%9F"><span class="nav-number">1.4.</span> <span class="nav-text">网络层有哪些设备？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="nav-number">1.5.</span> <span class="nav-text">链路层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="nav-number">1.6.</span> <span class="nav-text">网络层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.7.</span> <span class="nav-text">网络中的协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP%E5%92%8CUDP-%EF%BC%88%E4%BC%A0%E8%BE%93%E5%B1%82%EF%BC%89"><span class="nav-number">1.8.</span> <span class="nav-text">TCP和UDP （传输层）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP"><span class="nav-number">1.9.</span> <span class="nav-text">TCP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http-1-1%EF%BC%88%E7%BA%AF%E6%96%87%E6%9C%AC%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98-%E6%98%8E%E6%96%87-%E5%AE%89%E5%85%A8%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">http 1.1（纯文本协议 安全问题 明文-安全）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E5%A4%B4%E5%92%8C%E5%93%8D%E5%BA%94%E5%A4%B4"><span class="nav-number">2.1.</span> <span class="nav-text">请求头和响应头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%A1%E7%BA%BF%E5%8C%96%E6%96%B9%E5%BC%8F%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE"><span class="nav-number">2.2.</span> <span class="nav-text">管线化方式传递数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8cookie%E4%BD%BF%E7%94%A8%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD"><span class="nav-number">2.3.</span> <span class="nav-text">可以使用cookie使用用户身份</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http%E7%BC%93%E5%AD%98"><span class="nav-number">2.4.</span> <span class="nav-text">http缓存</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BD%93-ping-%E4%B8%80%E4%B8%AA-IP-%E5%9C%B0%E5%9D%80%E6%97%B6%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88"><span class="nav-number">3.</span> <span class="nav-text">当 ping 一个 IP 地址时发生了什么</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -163,13 +164,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -245,7 +246,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-12-05 17:08:26" itemprop="dateModified" datetime="2021-12-05T17:08:26+08:00">2021-12-05</time>
+        <time title="修改时间：2021-12-18 19:48:54" itemprop="dateModified" datetime="2021-12-18T19:48:54+08:00">2021-12-18</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -271,7 +272,168 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        
+        <h1 id="OSI七层理想模型"><a href="#OSI七层理想模型" class="headerlink" title="OSI七层理想模型"></a>OSI七层理想模型</h1><h2 id="网络分层的含义"><a href="#网络分层的含义" class="headerlink" title="网络分层的含义"></a>网络分层的含义</h2><ul>
+<li>应用层，用户最终使用的接口，微信、qq</li>
+<li>表示层，对数据进行描述，压缩等</li>
+<li>会话层，建立会话和管理会话</li>
+<li>传输层，把数据传递给对方，怎么传，丢了要不要重新传递</li>
+<li>网络层，网络层主要是寻址</li>
+<li>数据链路层，只关心是两个设备链接起来，连接数据</li>
+<li>物理层，只关心如何传输数据 0&amp;1，传输的是比特流</li>
+</ul>
+<p>实际模型</p>
+<ul>
+<li>应用层        应用层数据-&gt;报文<ul>
+<li>应用层    </li>
+<li>表示层</li>
+<li>会话层</li>
+</ul>
+</li>
+<li>传输层        传输层头部| 应用层数据 -&gt;数据段：增加端口</li>
+<li>网络层        网络层头部|传输层头部|应用层数据 数据包 增加IP</li>
+<li>网络接口层     桢头|网络层头部|传输层头部|应用层数据|桢尾 数据桢：增加mac地址<ul>
+<li>数据链路层</li>
+<li>物理层</li>
+</ul>
+</li>
+</ul>
+<h2 id="七层协议真正做了什么事情"><a href="#七层协议真正做了什么事情" class="headerlink" title="七层协议真正做了什么事情"></a>七层协议真正做了什么事情</h2><ul>
+<li>报文（应用层 + 数据）</li>
+<li>数据段 （应用层 + 数据+ 端口号）</li>
+<li>数据包 （网络层+数据+端口+ IP地址）</li>
+<li>数据桢（链路层+ 数据+ 端口+ ip+ mac地址）</li>
+</ul>
+<h2 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h2><p>通信是通过ip地址查找对应的mac来进行通信的，IP地址是可变的（类似与我们的快递地址是可变的）</p>
+<h3 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h3><p>IPV4 ip地址的第四个版本 255.255.255.255 最大地址位<br>IPV6 ip地址的第六个版本 八个16进制 aaaa-aaaa-aaaa-aaaa-aaaa-aaaa-aaaa-aaaa</p>
+<h3 id="mac地址"><a href="#mac地址" class="headerlink" title="mac地址"></a>mac地址</h3><p>原则上是唯一的（也是可以变的，不考虑篡改下是不可变的）每个网卡都会有一个mac地址</p>
+<h2 id="网络层有哪些设备？"><a href="#网络层有哪些设备？" class="headerlink" title="网络层有哪些设备？"></a>网络层有哪些设备？</h2><p>物理层只关心发数据（局域网通信）</p>
+<ul>
+<li>光纤 同轴电缆 网线 中继器</li>
+</ul>
+<h2 id="链路层"><a href="#链路层" class="headerlink" title="链路层"></a>链路层</h2><p>局域网</p>
+<ul>
+<li>交换机</li>
+</ul>
+<h2 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h2><ul>
+<li>路由器</li>
+</ul>
+<h2 id="网络中的协议"><a href="#网络中的协议" class="headerlink" title="网络中的协议"></a>网络中的协议</h2><p>协议就是约定和规范 （在7层模型中只有三层以上的才能称之为协议）</p>
+<p>应用层（HTTP DNS）DHCP协议<br>传输层协议 TCP UDP<br>网络层 IP协议 ARP协议 下层为上层提供服务</p>
+<h3 id="ARP协议（核心价值在于将IP地址转换成mac地址）"><a href="#ARP协议（核心价值在于将IP地址转换成mac地址）" class="headerlink" title="ARP协议（核心价值在于将IP地址转换成mac地址）"></a>ARP协议（核心价值在于将IP地址转换成mac地址）</h3><p>广播 根据ip地址，广播信息，然后应答，应答之后知道mac地址了 </p>
+<h3 id="DHCP协议"><a href="#DHCP协议" class="headerlink" title="DHCP协议"></a>DHCP协议</h3><p>通过DHCP自动获取网络配置信息，我们无序自己手动配置IP，基于UDP</p>
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p>因为ip地址很难记，用域名替代IP，IP替代mac地址<br>DNS服务器进行域名和与之对应的IP地址转换的服务器<br>DNS 如何进行解析的？<br>是基于UDP协议进行解析，没有三次握手</p>
+<ol>
+<li>如果域名被解析了，根据缓存输出对应ip，缓存地址两种情况，（路由器，本地host文件）</li>
+<li>没有缓存，<a href="http://www.baidu.com.cn/">www.baidu.com.cn</a><br>cn :域名服务器 =》 根服务器里面查找。cn 找到之后=》域名服务器<br>com:域名服务器 =》 根服务器里面查找。cn 找到之后=》域名服务器<br>baidu :域名服务器 =》 根服务器里面查找。cn 找到之后=》域名服务器<br>www :域名服务器 =》 根服务器里面查找。cn 找到之后=》域名服务器</li>
+</ol>
+<p>DNS为什么块？<br>DNS服务器会对IP及域名进行缓存，采用UDP协议</p>
+<h2 id="TCP和UDP-（传输层）"><a href="#TCP和UDP-（传输层）" class="headerlink" title="TCP和UDP （传输层）"></a>TCP和UDP （传输层）</h2><p>两个协议都在传输层，我们经常说TCP是面向连接，而UDP是面向无连接的</p>
+<ul>
+<li>UDP发出请求后，不考虑对方是否能接收到，内容是否完整，顺序是否正确，收到数据后不会进行通知</li>
+<li>首部结构简单，在数据传输时能实现最小的开销</li>
+</ul>
+<h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><p>TCP传输控制协议，可靠，面向连接的协议，传输效率第（在不可靠的IP层上建立可靠的传输层）。TCP提供双工服务，即数据可在同一时间进行双向传播。</p>
+<h3 id="TCP数据格式"><a href="#TCP数据格式" class="headerlink" title="TCP数据格式"></a>TCP数据格式</h3><p>0 ———— 15 16———-31<br>—–源端口号— | | 目标端口号—|<br>—————32位序列号——-|<br>—————r-32位确认号—–|<br>4位|保留|U|A|P|R|S|F|———-|<br>首部|6位|R|C|S|S|Y|I|16位窗口大小<br>长度|   |G|K|H|T|N|N|———-|<br>—–16位校验号—-|-16位紧急指针|</p>
+<ol>
+<li>TCP为什么需要三次握手？<br>因为需要双共通信<ul>
+<li>客户端和服务端主动握手 SYN</li>
+<li>服务端应答后台客户端 SYN ACK</li>
+<li>客户端应答            ACK</li>
+</ul>
+</li>
+<li>TCP四次挥手<ul>
+<li>客户端发送断开消息 [FIN, ACK]</li>
+<li>服务端应答        [ ACK ]</li>
+<li>服务端说完剩下的话  [FIN ACK]</li>
+<li>客户端 回应          [ ACK ]</li>
+</ul>
+</li>
+</ol>
+<h3 id><a href="#" class="headerlink" title></a></h3><p>a ============= &gt; b<br>seq = 0<br>a&lt;================b<br>seq = 0 ack = 1<br>a=================&gt;b<br>seq = 1 ack = 1</p>
+<h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><ul>
+<li>客户端有自己的缓存区，服务端也有自己的缓存区，会根据网络状况调整发送数据的多少</li>
+<li>客户端给服务端发送的数据是乱序的，但是当服务端收到某个包后，之前的数据还没有收到，此时我们需要等待前面序号的包到了之后才能继续滑动（队头阻塞）</li>
+<li>服务端会和客户端说明发送数据的个数</li>
+<li>如果某个数据包丢失，那需要重新发送（超时重传 TRO）</li>
+<li>当接收方的缓存区收满了，每隔一定时间，发送方会发送一个探测包，来询问能否调整窗口的大小，上层协议消耗掉接收方的数据，接收方也会主动通知发送方调整窗口，继续发送数据</li>
+<li>流量控制，控制发送方发送的数据大小</li>
+</ul>
+<h3 id="粘包"><a href="#粘包" class="headerlink" title="粘包"></a>粘包</h3><p>nagle算法（node默认算法），同一时间段内只有一个包处于发送状态</p>
+<p>cork算法可以合并多个包</p>
+<h3 id="tcp问题-队头阻塞，慢开始，端链接，"><a href="#tcp问题-队头阻塞，慢开始，端链接，" class="headerlink" title="tcp问题-队头阻塞，慢开始，端链接，"></a>tcp问题-队头阻塞，慢开始，端链接，</h3><ul>
+<li>滑动窗口控制传输速度</li>
+<li>粘包 nagle算法，cork算法</li>
+<li>拥塞处理，快重传 -快恢复算法</li>
+<li>TCP顺序问题，后面的包到达需要等待前面的包返回之后才可以继续传输 （队头阻塞问题）</li>
+<li>满启动的过程 非常消耗性能</li>
+<li>time-wait 客户端连接服务器最后不会立即断开，在高并发 短连接的情况下，会出现端口全被占用</li>
+</ul>
+<h1 id="http-1-1（纯文本协议-安全问题-明文-安全）"><a href="#http-1-1（纯文本协议-安全问题-明文-安全）" class="headerlink" title="http 1.1（纯文本协议 安全问题 明文-安全）"></a>http 1.1（纯文本协议 安全问题 明文-安全）</h1><ul>
+<li><p>基于TCP传输层，半双工通信，请求应答模式，默认无状态（默认TCP不能在没有应答后复用TCP通道继续发送消息）</p>
+</li>
+<li><p>tcp的规范，就是固定的组成结构</p>
+<ul>
+<li>  请求行 响应行 主要目的是描述我要做什么，服务端告诉客户端OK</li>
+<li>  请求头 响应头 描述我们传输的数据内容，自定义我们的header</li>
+<li>  请求体 响应体 两者的数据</li>
+</ul>
+</li>
+<li><p>请求头</p>
+</li>
+</ul>
+<ul>
+<li>  accept                  content-type</li>
+<li>  accept-encoding         content-encoding</li>
+<li>  accept-language</li>
+<li>  range                   content-range</li>
+</ul>
+<h2 id="请求头和响应头"><a href="#请求头和响应头" class="headerlink" title="请求头和响应头"></a>请求头和响应头</h2><ul>
+<li>核心在于内容协商</li>
+<li>http实现长连接，会默认在请求的时候，增加connection:keep-alive, connection: close 用于TCP通道传递数据（必须在一次请求应答后才能复用）<ul>
+<li>  多个请求怎么办？</li>
+</ul>
+</li>
+</ul>
+<h2 id="管线化方式传递数据"><a href="#管线化方式传递数据" class="headerlink" title="管线化方式传递数据"></a>管线化方式传递数据</h2><ul>
+<li>我们针对每个域名分配6个TCP通道（域名分片，域名不易过多，过多会导致DNS解析大量域名）问题，在于请求并发的请求，应答依旧是按顺序的（管道的特点就是先发送的先回来）（队头阻塞 http1.1中的队头阻塞）</li>
+</ul>
+<h2 id="可以使用cookie使用用户身份"><a href="#可以使用cookie使用用户身份" class="headerlink" title="可以使用cookie使用用户身份"></a>可以使用cookie使用用户身份</h2><p>在客户端增加cookie字段，服务端set-cookie每次请求都会自动携带cookie</p>
+<h2 id="http缓存"><a href="#http缓存" class="headerlink" title="http缓存"></a>http缓存</h2><ul>
+<li>强制缓存 协商缓存</li>
+<li>强制缓存，客户端访问之后，接下来重复访问后直接从缓存中读取 cache-control</li>
+<li>协商缓存的含义就是，当强制缓存失效后会再次向服务器发起请求，服务器要对比客户端的缓存文件和服务端是否一致，如果一致则返回302, 如果文件更新来，那么就采用返回新文件的方式last-modify /if modify-since 问题在于最后修改时间变化了，但是内容没变，同一时间无法返回多次修改</li>
+<li>摘要算法 md4（不同的内容摘要的结果，肯定不同，两个相同的内容摘要肯定相同，无法通过最终的结果反推原内容）etag/if-none-match</li>
+<li>no-cache(不缓存，但是缓存中有，每次询问) no-store（真正的不缓存，压根没有缓存），会简单的使用弱指纹，可以用last-modify</li>
+</ul>
+<h1 id="当-ping-一个-IP-地址时发生了什么"><a href="#当-ping-一个-IP-地址时发生了什么" class="headerlink" title="当 ping 一个 IP 地址时发生了什么"></a>当 ping 一个 IP 地址时发生了什么</h1><p>Step 1: ICMP 创建一个请求数据包(数据域中只包含字母)</p>
+<p>Step 2: ICMP将该有效负荷交给IP协议，增加的IP头包含：源IP(Host A的IP)，目标IP(Host C的IP)，协议字段(0x01, ICMP的协议号)，这些信息在接收方主机用来判断将数据交给哪个协议处理</p>
+<p>Step 3: IP协议判断目的IP是处于LAN还是某个远程网络，具体的判断方法是将目标IP和子网掩码一起找出目标网络，看是否等于本地网络；</p>
+<p>Step 4: 由于IP协议判定这是一个远程的跨网络请求，要将这一分组路由到远程网络，就必须将它发给默认路由</p>
+<p>Step 5: 主机 Host A(192.168.1.2)要将分组数据发送到默认网关(192.168.1.1), 就必须要知道Router A接口F0/0的MAC地址</p>
+<p>Step 6: 检查主机ARP缓存，查看默认网关IP地址是否已经被解析为一个硬件地址</p>
+<p>若已被解析：此分组可被传送到数据链路层以组建帧(可使用arp -a查看)</p>
+<p>若未被解析：Host A使用ARP广播(MAC广播地址为：FF-FF-FF-FF-FF-FF), Router A接受到广播后，通过F0/0口返回该口的硬件地址</p>
+<p>Step 7: 一旦分组和硬件地址交给链路层，局域网驱动程序负责选择合适的局域网类型(本例为以太网)的介质访问方式，创建数据帧</p>
+<p>Step 8: 一旦帧创建完成，该帧被提交到物理层；物理层将 1bit/次的方式将数据发送到物理介质中</p>
+<p>Step 10: 将分组数据从帧中取出，并将其他部分丢弃；然后，分组被递交给以太网类型字段中列出的协议（本例为IP协议）</p>
+<p>Step 11：IP接受该分组，并检查其目的IP</p>
+<p>由于分组的目的IP与本路由(Router A)的配置IP不匹配，此路由将在其路由表中查找目的IP的位置</p>
+<p>Step 12: 如果路由表中没有网络 192.168.20.0 的路由表项，则立即丢弃该分组；并向源主机Host A发送目标网络不可达的ICMP报文</p>
+<p>Step 13: 如果在路由表中查找到了相关的路由表项，则分组将被交换到指定的输出接口</p>
+<p>Step 14: 路由器Router A将此分组交换到F0/1的缓冲区内</p>
+<p>Step 15: F0/1需要获得目的方设备的MAC地址(本例为Router B的F0/0 MAC地址)</p>
+<p>查看F0/1的ARP缓存，若存在，则分组和MAC地址将被提交到数据链路层，用于数据帧的组建；</p>
+<p>若不存在，采用路由选择协议(RIP/EIGRP/OSPF)；</p>
+<p>Step 16: 帧创建完成后，将其交给物理层，并由物理层逐比特发送到物理介质中</p>
+<p>Step 17: Router B执行与Router A相同的操作 (即step9 - step16)</p>
+<p>Step 18: Host C 接收到该帧，并立即运行CRC运算，若与FCS匹配，则检测帧中的目标MAC，如果同样相同，检查以太网类型值，判断网络层协议 – 本例为IP</p>
+<p>Step 19: 在网络层，IP接受到该分组，并对其头部进行CRC；若相同，则检查目标IP是否与本机相同；若相同，检查分组的协议字段，了解上层的交付对象 – 本例为ICMP</p>
+<p>Step 20: 负荷提交给ICMP；ICMP知道此为回应请求信号，ICMP将应答此请求</p>
+<p>应答方式：首先丢弃接受到的字段，产生一个新的有效负荷作为回应字段</p>
+<p>Step 21: 此时一个新的有效负荷产生，目标为Host A</p>
+<p>Step 22: 将其提交给IP层，IP判断目的地址为本地LAN还是远程主机(本例为远程主机)，此分组首先发到默认网关</p>
+<p>Step 23: 重复请求包所经历的步骤，直到将应答包发送到Host A的ICMP协议为止</p>
+
     </div>
 
     
@@ -301,8 +463,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/08/19/js%E9%9D%A2%E8%AF%95-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="prev" title="javascript面试-面向对象">
-                  <i class="fa fa-chevron-left"></i> javascript面试-面向对象
+                <a href="/2021/08/19/%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C/" rel="prev" title="数组操作">
+                  <i class="fa fa-chevron-left"></i> 数组操作
                 </a>
             </div>
             <div class="post-nav-item">

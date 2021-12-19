@@ -161,13 +161,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -211,7 +211,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://eyecatwang.github.io/2021/08/19/js%E9%9D%A2%E8%AF%95-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="https://eyecatwang.github.io/2021/08/19/js%E9%9D%A2%E8%AF%95-%E9%AB%98%E9%A2%91%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/26106551">
@@ -224,7 +224,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/19/js%E9%9D%A2%E8%AF%95-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">javascript面试-数据类型</a>
+          <a href="/2021/08/19/js%E9%9D%A2%E8%AF%95-%E9%AB%98%E9%A2%91%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81/" class="post-title-link" itemprop="url">javascript面试-高频手写代码</a>
         </h2>
 
         <div class="post-meta-container">
@@ -242,7 +242,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-12-06 13:04:52" itemprop="dateModified" datetime="2021-12-06T13:04:52+08:00">2021-12-06</time>
+        <time title="修改时间：2021-12-18 21:15:03" itemprop="dateModified" datetime="2021-12-18T21:15:03+08:00">2021-12-18</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -268,453 +268,113 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h1 id="js中有哪些数据类型，他们的区别是？"><a href="#js中有哪些数据类型，他们的区别是？" class="headerlink" title="js中有哪些数据类型，他们的区别是？"></a>js中有哪些数据类型，他们的区别是？</h1><p>8种原始数据类型：Null, Undefined, Boolean, Number, String,Object,Symbol,BigInt</p>
-<p>其中Symbol和BigInt是新增的数据类型：</p>
+          <h1 id="call"><a href="#call" class="headerlink" title="call"></a>call</h1><ol>
+<li>判断调用对象是否是函数，即使是定义在函数的原型上的，但是可能出现使用call等方式调用的情况；</li>
+<li>判断上下文对象是否存在，如果不存在，则设置为window</li>
+<li>处理传入的参数，截取第一个参数后的所有参数。</li>
+<li>将函数作为上下文对象的一个属性。</li>
+<li>使用上下文对象来调用这个方法，并保留返回结果。</li>
+<li>删除刚才新增的属性</li>
+<li>返回结果。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Fuction.prototype.myCall = function (context) &#123;</span><br><span class="line">  // 判断调用对象</span><br><span class="line">  if (typeof this !== &#x27;function&#x27;) &#123;</span><br><span class="line">    throw new Error(&quot;type error&quot;)</span><br><span class="line">  &#125;</span><br><span class="line">  let result;</span><br><span class="line">  // 获取参数</span><br><span class="line">  let arg = [...argument].slice(1)</span><br><span class="line">  // 判断context是否传入，如果为传入，设置为window</span><br><span class="line">  context = context || window</span><br><span class="line">  // 将调用函数设为对象的方法</span><br><span class="line">  context.fn = this</span><br><span class="line"></span><br><span class="line">  result = context.fn(arg)</span><br><span class="line">  // 将属性删除</span><br><span class="line">  delete context.fn</span><br><span class="line">  return result</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h1><ol>
+<li>判断调用对象是否为函数，即使是定义在函数的原型上的，但是可能出现使用 call 等方式调用的情况。</li>
+<li>判断传入上下文对象是否存在，如果不存在，则设置为 window 。</li>
+<li>将函数作为上下文对象的一个属性。</li>
+<li>判断参数值是否传入</li>
+<li>使用上下文对象来调用这个方法，并保存返回结果。</li>
+<li>删除刚才新增的属性</li>
+<li>返回结果</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.myApply = function(context) &#123;</span><br><span class="line">  if (typeof this !== &#x27;function&#x27;) &#123;</span><br><span class="line">    throw new Error(&#x27;type error&#x27;)</span><br><span class="line">  &#125;</span><br><span class="line">  let result;</span><br><span class="line">  context = context || window</span><br><span class="line">  context.fn = this</span><br><span class="line"></span><br><span class="line">  if (arguments[1]) &#123;</span><br><span class="line">    result = context.fn(...arguments[1])</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    result = context.fn()</span><br><span class="line">  &#125;</span><br><span class="line">  delte context.fn</span><br><span class="line">  return result</span><br><span class="line">&#125;; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h1><ol>
+<li>判断调用对象是否为函数，即使是定义在函数的原型上的，但是可能出现使用 call 等方式调用的情况</li>
+<li>保存当前函数的引用，获取其余传入参数值。</li>
+<li>创建一个函数返回</li>
+<li>函数内部使用apply来绑定函数调用，需要判断函数作为构造函数的情况，这个时候需要传入当前的this给apply调用，其余情况都传入制定的上下文对象</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.myBind = function (context) &#123;</span><br><span class="line">  if (typeof this !== &#x27;function&#x27;) &#123;</span><br><span class="line">    throw new Error(&#x27;type error&#x27;)</span><br><span class="line">  &#125;</span><br><span class="line">  let _self = this</span><br><span class="line">  let args = [...arguments].slice(1)</span><br><span class="line">  return function () &#123;</span><br><span class="line">    return _self.apply(</span><br><span class="line">      context,</span><br><span class="line">      args.concat([...arguments])</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="什么是防抖和节流，他们的应用场景有哪些"><a href="#什么是防抖和节流，他们的应用场景有哪些" class="headerlink" title="什么是防抖和节流，他们的应用场景有哪些"></a>什么是防抖和节流，他们的应用场景有哪些</h1><h2 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖(debounce)"></a>防抖(debounce)</h2><p>触发高频事件后 n 秒内函数只会执行一次，如果 n 秒内高频事件再次被触发，则重新计算时间</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 防抖函数</span><br><span class="line"></span><br><span class="line">function debounce(fn, wait) &#123;</span><br><span class="line">  let timer = null</span><br><span class="line"></span><br><span class="line">  return function () &#123;</span><br><span class="line">    let context = this</span><br><span class="line">    let args = arguments;</span><br><span class="line">    if (timer) &#123;</span><br><span class="line">      clearTimeout(timer)</span><br><span class="line">      timer = null</span><br><span class="line">    &#125;</span><br><span class="line">    timer = setTimeout(() =&gt; &#123;</span><br><span class="line">      fn.apply(context, args);</span><br><span class="line">    &#125;, wait)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="节流-throttle"><a href="#节流-throttle" class="headerlink" title="节流(throttle)"></a>节流(throttle)</h2><p>高频事件触发，但在 n 秒内只会执行一次，所以节流会稀释函数的执行频率</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// 方式1: 使用时间戳</span><br><span class="line">function throttle1(fn, wait) &#123;</span><br><span class="line">  let time = 0;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    let _this = this;</span><br><span class="line">    let args = arguments;</span><br><span class="line">    let now = Date.now();</span><br><span class="line">    if (now - time &gt; wait) &#123;</span><br><span class="line">      fn.apply(_this, args);</span><br><span class="line">      time = now;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">// 方式2: 使用定时器</span><br><span class="line">function thorttle2(fn, wait) &#123;</span><br><span class="line">  let timer;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    let _this = this;</span><br><span class="line">    let args = arguments;</span><br><span class="line"></span><br><span class="line">    if (!timer) &#123;</span><br><span class="line">      timer = setTimeout(function () &#123;</span><br><span class="line">        timer = null;</span><br><span class="line">        fn.apply(_this, args);</span><br><span class="line">      &#125;, wait);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>上面节流和防抖实现方式比较简单，但是已经可以满足日常使用，如果想更近一步了解可以查看underscore (opens new window)和lodash (opens new window)文档中debounce和thorttle</p>
+<p>防抖：防止抖动，单位时间内事件触发会被重置，避免事件被误伤触发多次。代码实现重在清零 clearTimeout。防抖可以比作等电梯，只要有一个人进来，就需要再等一会儿。业务场景有避免登录按钮多次点击的重复提交。<br>节流：控制流量，单位时间内事件只能触发一次，与服务器端的限流 (Rate Limit) 类似。代码实现重在开锁关锁 timer=timeout; timer=null。节流可以比作过红绿灯，每等一个红灯时间就可以过一批。</p>
+<h1 id="手写object-create"><a href="#手写object-create" class="headerlink" title="手写object.create"></a>手写object.create</h1><p>思路：将传入的对象作为原型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function create(obj) &#123;</span><br><span class="line">  function Fn() &#123;&#125;</span><br><span class="line">  Fn.prototype = obj</span><br><span class="line">  return new Fn()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="手写类型判断"><a href="#手写类型判断" class="headerlink" title="手写类型判断"></a>手写类型判断</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function mytypeof(value) &#123;</span><br><span class="line">  if (value === null) &#123;</span><br><span class="line">    return &#x27;null&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">  let type = typeof value</span><br><span class="line">  if (type === &#x27;object&#x27;) &#123;</span><br><span class="line">    let objectType = Object.prototype.toString.call(value);</span><br><span class="line">    type = objectType.split(&quot; &quot;)[1]</span><br><span class="line">    return type.toLowerCase();</span><br><span class="line">  &#125;</span><br><span class="line">  return type</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="手写instanceOf方法"><a href="#手写instanceOf方法" class="headerlink" title="手写instanceOf方法"></a>手写instanceOf方法</h1><p>instanceof运算符用于判断构造函数的prototype属性是否出现在对象的原型链中的任何位置。</p>
+<p>实现步骤：</p>
 <ol>
-<li>Symbol代表创建后独一无二的数据类型，它主要是为了解决可能出现的全局变量冲突的问题。</li>
-<li>BigInt是一种数字类型的数据，它可以表示任意精度格式的整数，使用BigInt可以安全的存储和操作大数据，即使这个数已经超出了Number能够表示的安全整数范围（-2^53 到 2^53 之间（不含两个端点）.）。</li>
+<li>首先获取类型的原型</li>
+<li>然后获取对象的原型</li>
+<li>循环判读对象的原型是否等于类型的原型，直到对象原型为null,因为 Object.prototype.<strong>proto</strong> = null<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function instance(left, right) &#123;</span><br><span class="line">  let proto = Object.getPrototypeOf(left)</span><br><span class="line">  let prototype = right.prototype</span><br><span class="line"></span><br><span class="line">  while(true) &#123;</span><br><span class="line">    if (!proto) return false</span><br><span class="line">    if (proto === prototype) return true</span><br><span class="line"></span><br><span class="line">    proto = Object.getPrototypeOf(proto)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ol>
-<p>这些数据可以分为原始数据类型和引用数据类型：</p>
-<ol>
-<li>栈：原始数据类型（Undefined,Null,Boolean,Number,String）</li>
-<li>堆：引用数据类型（对象，数组和函数）</li>
-</ol>
-<p>两种类型的区别在于存位置的不同：</p>
-<ol>
-<li>原始数据类型直接存储在栈（stack）中的简单数据段，占据空间小，大小固定，属于被频繁使用数据，所以放入栈中存储；</li>
-<li>引用数据类型存储在堆（heap）中的对象，占据空间大，大小不固定。如果存储在栈中，将会影响程序运行的性能；引用数据类型在栈中存储了指针，该指针指向堆中该实体的起始地址。当解释器寻找引用值时，会首先检索起在栈中的地址，取得地址后从堆中获得实体。</li>
-</ol>
-<p>堆和栈的概念存在与数据结构和操作系统内存中，在数据结构中：</p>
-<ol>
-<li>在数据结构中，栈中数据的存取方式为先进后出。</li>
-<li>堆是一个优先队列，是按优先级来进行排序的，优先级可以按照大小来规定。</li>
-</ol>
-<p>在操作系统中，内存被分为栈区和堆区：</p>
-<ol>
-<li>栈区内存由编译器自动分配释放，存放函数的参数值，局部变量的值等。其操作方式类似与数据结构中的栈。</li>
-<li>堆区内存一般由开发者分配释放，若开发者不释放，程序结束时可能由垃圾回收机制回收。</li>
-</ol>
-<h1 id="JS中Number是双精度浮点型，-意味着可以表示的范围是2-63次方么？如果不是的话，应该是多少呢？"><a href="#JS中Number是双精度浮点型，-意味着可以表示的范围是2-63次方么？如果不是的话，应该是多少呢？" class="headerlink" title="JS中Number是双精度浮点型， 意味着可以表示的范围是2^63次方么？如果不是的话，应该是多少呢？"></a>JS中Number是双精度浮点型， 意味着可以表示的范围是2^63次方么？如果不是的话，应该是多少呢？</h1><p>JavaScript 的 Number 类型使用 53 位表示小数位，10 位表示指数位，1 位表示符号位。<br>-2^53 到 2^53 之间（不含两个端点）</p>
-<h1 id="数据类型检测的方式有哪些？"><a href="#数据类型检测的方式有哪些？" class="headerlink" title="数据类型检测的方式有哪些？"></a>数据类型检测的方式有哪些？</h1><ol>
-<li><p>typeof</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">console.log(typeof 2);               // number</span><br><span class="line">console.log(typeof true);            // boolean</span><br><span class="line">console.log(typeof &#x27;str&#x27;);           // string</span><br><span class="line">console.log(typeof []);              // object    </span><br><span class="line">console.log(typeof function()&#123;&#125;);    // function</span><br><span class="line">console.log(typeof &#123;&#125;);              // object</span><br><span class="line">console.log(typeof undefined);       // undefined</span><br><span class="line">console.log(typeof null);            // object （表示一个空对象引用）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>其中数组、对象、null都会被判断为object，其他判断都正确</p>
-</li>
-<li><p>instanceof<br>instanceof 可以正确判断对象的类型，其内部运行机制是判断在其原型链中能否找到该类型的原型。</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">console.log(2 instanceof Number);                    // false</span><br><span class="line">console.log(true instanceof Boolean);                // false </span><br><span class="line">console.log(&#x27;str&#x27; instanceof String);                // false </span><br><span class="line"> </span><br><span class="line">console.log([] instanceof Array);                    // true</span><br><span class="line">console.log(function()&#123;&#125; instanceof Function);       // true</span><br><span class="line">console.log(&#123;&#125; instanceof Object);                   // true</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="手写new-操作符"><a href="#手写new-操作符" class="headerlink" title="手写new 操作符"></a>手写new 操作符</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function objectFactory() &#123;</span><br><span class="line">  let newObject = null;</span><br><span class="line">  let constructor = Array.prototype.shift.call(arguments);</span><br><span class="line">  let result = null;</span><br><span class="line">  // 判断参数是否是一个函数</span><br><span class="line">  if (typeof constructor !== &quot;function&quot;) &#123;</span><br><span class="line">    console.error(&quot;type error&quot;);</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line">  // 新建一个空对象，对象的原型为构造函数的 prototype 对象</span><br><span class="line">  newObject = Object.create(constructor.prototype);</span><br><span class="line">  // 将 this 指向新建对象，并执行函数</span><br><span class="line">  result = constructor.apply(newObject, arguments);</span><br><span class="line">  // 判断返回对象</span><br><span class="line">  let flag = result &amp;&amp; (typeof result === &quot;object&quot; || typeof result === &quot;function&quot;);</span><br><span class="line">  // 判断返回结果</span><br><span class="line">  return flag ? result : newObject;</span><br><span class="line">&#125;</span><br><span class="line">// 使用方法</span><br><span class="line">objectFactory(构造函数, 初始化参数);</span><br></pre></td></tr></table></figure>
 
-<p>可以看到，instanceof只能正确判断引用数据类型，而不能判断基本数据类型。instanceof运算符可以用来测试一个对象在其原型链中是否存在一个构造函数的prototype属性。</p>
-<ol start="3">
-<li>constructor</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">console.log((2).constructor === Number); // true</span><br><span class="line">console.log((true).constructor === Boolean); // true</span><br><span class="line">console.log((&#x27;str&#x27;).constructor === String); // true</span><br><span class="line">console.log(([]).constructor === Array); // true</span><br><span class="line">console.log((function() &#123;&#125;).constructor === Function); // true</span><br><span class="line">console.log((&#123;&#125;).constructor === Object); // true</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="函数柯里化的实现"><a href="#函数柯里化的实现" class="headerlink" title="函数柯里化的实现"></a>函数柯里化的实现</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// 第一种</span><br><span class="line"></span><br><span class="line">function curry (fn, args) &#123;</span><br><span class="line">  let length = fn.length</span><br><span class="line">  args = args || []</span><br><span class="line"></span><br><span class="line">  return function () &#123;</span><br><span class="line">    let subargs = args.slice(0)</span><br><span class="line">    subargs.push(...arguments)</span><br><span class="line">    if (subargs.length &gt;= length) &#123;</span><br><span class="line">      return fn.apply(this, subargs)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      return curry.apply(this, fn, subargs)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function curry2(fn, ...args) &#123;</span><br><span class="line">  return fn.length &lt;= args.length ? fn(...args) : curry2.bind(this, fn, ...args);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>constructor有两个作用，一是判断数据的类型，二是对象实例通过constructor对象访问它的构造函数。需要注意，如果创建一个对象来改变它的原型，constructor就不能用来判断数据类型来：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function Fn()&#123;&#125;;</span><br><span class="line"> </span><br><span class="line">Fn.prototype = new Array();</span><br><span class="line"> </span><br><span class="line">var f = new Fn();</span><br><span class="line"> </span><br><span class="line">console.log(f.constructor===Fn);    // false</span><br><span class="line">console.log(f.constructor===Array); // true</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="实现AJAX请求"><a href="#实现AJAX请求" class="headerlink" title="实现AJAX请求"></a>实现AJAX请求</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">// promise 封装实现：</span><br><span class="line">function getJSON(url) &#123;</span><br><span class="line">  // 创建一个 promise 对象</span><br><span class="line">  let promise = new Promise(function(resolve, reject) &#123;</span><br><span class="line">    let xhr = new XMLHttpRequest();</span><br><span class="line">    // 新建一个 http 请求</span><br><span class="line">    xhr.open(&quot;GET&quot;, url, true);</span><br><span class="line">    // 设置状态的监听函数</span><br><span class="line">    xhr.onreadystatechange = function() &#123;</span><br><span class="line">      if (this.readyState !== 4) return;</span><br><span class="line">      // 当请求成功或失败时，改变 promise 的状态</span><br><span class="line">      if (this.status === 200) &#123;</span><br><span class="line">        resolve(this.response);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        reject(new Error(this.statusText));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    // 设置错误监听函数</span><br><span class="line">    xhr.onerror = function() &#123;</span><br><span class="line">      reject(new Error(this.statusText));</span><br><span class="line">    &#125;;</span><br><span class="line">    // 设置响应的数据类型</span><br><span class="line">    xhr.responseType = &quot;json&quot;;</span><br><span class="line">    // 设置请求头信息</span><br><span class="line">    xhr.setRequestHeader(&quot;Accept&quot;, &quot;application/json&quot;);</span><br><span class="line">    // 发送 http 请求</span><br><span class="line">    xhr.send(null);</span><br><span class="line">  &#125;);</span><br><span class="line">  return promise;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h1><ul>
+<li>object.assign()</li>
+<li>{…object}</li>
+<li>手写浅拷贝<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function assign(obj) &#123;</span><br><span class="line">  if (!obj ||  typeof obj !== &#x27;object&#x27; ) return;</span><br><span class="line">  let newObj = Array.isArray(obj) ? [] : &#123;&#125;</span><br><span class="line">  for (let key in obj) &#123;</span><br><span class="line">    if (obj.hasOwnPrototype(key)) &#123;</span><br><span class="line">      newObj[key] = obj[key]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return newObj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h1><ul>
+<li>JSON.parse(JSON.stringify(obj))</li>
+<li>手写<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function deepCopy(obj) &#123;</span><br><span class="line">  if (!obj || typeof obj !==&#x27;object&#x27;) return</span><br><span class="line">  let newObj = Array.isArray(obj) ? [] : &#123;&#125;</span><br><span class="line">  for (let key in obj) &#123;</span><br><span class="line">    if (obj.hasOwnPrototype(key)) &#123;</span><br><span class="line">      newObj[key] = typeof obj[key] === &#x27;object&#x27; ? deepCopy(obj) : obj[key]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return newObj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="实现日期格式化函数"><a href="#实现日期格式化函数" class="headerlink" title="实现日期格式化函数"></a>实现日期格式化函数</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const dateFormat = (dateInput, format) =&gt; &#123;</span><br><span class="line">  const day = dateInput.getDate()</span><br><span class="line">  const month = dateInput.getMonth() + 1</span><br><span class="line">  const year = dateInput.getFullYear()</span><br><span class="line">  format = format.replace(&#x27;/yyyy/&#x27;, year).replace(&#x27;/MM/&#x27;, month).replace(&#x27;/dd/&#x27;, day)</span><br><span class="line">  return format</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ol start="4">
-<li>Object.prototype.toString.call()</li>
-</ol>
-<p>Object.prototype.toString.call()使用Object对象的原型方法toString来判断数据类型：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var a = Object.prototype.toString;</span><br><span class="line"> </span><br><span class="line">console.log(a.call(2));</span><br><span class="line">console.log(a.call(true));</span><br><span class="line">console.log(a.call(&#x27;str&#x27;));</span><br><span class="line">console.log(a.call([]));</span><br><span class="line">console.log(a.call(function()&#123;&#125;));</span><br><span class="line">console.log(a.call(&#123;&#125;));</span><br><span class="line">console.log(a.call(undefined));</span><br><span class="line">console.log(a.call(null));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>同样是检测对象obj调用toString方法，obj.toString()的结果和Object.prototype.toString.call(obj)的结果不一样，这是为什么？<br>这是因为toString是Object的原型方法，而Array、function等类型作为Object的实例，都重写了toString方法。不同的对象类型调用toString方法时，根据原型链的知识，调用的是对应的重写之后的toString方法（function类型返回内容为函数体的字符串，Array类型返回元素组成的字符串…），而不会去调用Object上原型toString方法（返回对象的具体类型），所以采用obj.toString()不能得到其对象类型，只能将obj转换为字符串类型；因此，在想要得到对象的具体类型时，应该调用Object原型上的toString方法。</p>
-<h1 id="判断数组的方式有哪些"><a href="#判断数组的方式有哪些" class="headerlink" title="判断数组的方式有哪些"></a>判断数组的方式有哪些</h1><ol>
-<li>通过Object.prototype.toString.call()做判断</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object.prototype.toString.call(obj).slice(8,-1) === &#x27;Array&#x27;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="交换a-b的值，不能使用临时变量"><a href="#交换a-b的值，不能使用临时变量" class="headerlink" title="交换a,b的值，不能使用临时变量"></a>交换a,b的值，不能使用临时变量</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = a + b</span><br><span class="line">b = a - b</span><br><span class="line">a = a- b</span><br><span class="line"></span><br><span class="line">[a, b] = [b, a]</span><br></pre></td></tr></table></figure>
 
-<ol start="2">
-<li>通过原型链做判断</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">obj.__proto__ === Array.prototype;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="实现数组的乱序输出"><a href="#实现数组的乱序输出" class="headerlink" title="实现数组的乱序输出"></a>实现数组的乱序输出</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let arr = []</span><br><span class="line">for (let i = 0; i &lt; arr.length; i ++) &#123;</span><br><span class="line">  let random = Math.round(Math.random() * (arr.length - 1 - i)) + i</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ol start="3">
-<li>通过ES6的Array.isArray()做判断</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Array.isArrray(obj);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="实现数组元素求和"><a href="#实现数组元素求和" class="headerlink" title="实现数组元素求和"></a>实现数组元素求和</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let arr = []</span><br><span class="line">let sum = arr.reduce((total, i) =&gt; total += i, 0 )</span><br></pre></td></tr></table></figure>
 
-<ol start="4">
-<li>通过instanceof做判断</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">obj instanceof Array</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="数组扁平化"><a href="#数组扁平化" class="headerlink" title="数组扁平化"></a>数组扁平化</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">1.</span><br><span class="line">let arr = [1, [2, [3, 4, 5]]];</span><br><span class="line">function flatten(arr) &#123;</span><br><span class="line">  let result = [];</span><br><span class="line"></span><br><span class="line">  for(let i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">    if(Array.isArray(arr[i])) &#123;</span><br><span class="line">      result = result.concat(flatten(arr[i]));</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      result.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br><span class="line">flatten(arr);  //  [1, 2, 3, 4，5]</span><br><span class="line"></span><br><span class="line">2.</span><br><span class="line">let arr = [1, [2, [3, 4]]];</span><br><span class="line">function flatten(arr) &#123;</span><br><span class="line">    return arr.reduce(function(prev, next)&#123;</span><br><span class="line">        return prev.concat(Array.isArray(next) ? flatten(next) : next)</span><br><span class="line">    &#125;, [])</span><br><span class="line">&#125;</span><br><span class="line">console.log(flatten(arr));//  [1, 2, 3, 4，5]</span><br><span class="line"></span><br><span class="line">3. </span><br><span class="line">let arr = [1, [2, [3, 4]]];</span><br><span class="line">function flatten(arr) &#123;</span><br><span class="line">    while (arr.some(item =&gt; Array.isArray(item))) &#123;</span><br><span class="line">        arr = [].concat(...arr);</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br><span class="line">console.log(flatten(arr)); //  [1, 2, 3, 4，5]</span><br><span class="line"></span><br><span class="line">4. </span><br><span class="line">let arr = [1, [2, [3, 4]]];</span><br><span class="line">function flatten(arr) &#123;</span><br><span class="line">    return arr.toString().split(&#x27;,&#x27;);</span><br><span class="line">&#125;</span><br><span class="line">console.log(flatten(arr)); //  [1, 2, 3, 4，5]</span><br><span class="line">5.</span><br><span class="line">let arr = [1, [2, [3, 4]]];</span><br><span class="line">function flatten(arr) &#123;</span><br><span class="line">  return arr.flat(Infinity);</span><br><span class="line">&#125;</span><br><span class="line">console.log(flatten(arr)); //  [1, 2, 3, 4，5]</span><br><span class="line"></span><br><span class="line">6. </span><br><span class="line">let arr = [1, [2, [3, [4, 5]]], 6];</span><br><span class="line">function flatten(arr) &#123;</span><br><span class="line">  let str = JSON.stringify(arr);</span><br><span class="line">  str = str.replace(/(\[|\])/g, &#x27;&#x27;);</span><br><span class="line">  str = &#x27;[&#x27; + str + &#x27;]&#x27;;</span><br><span class="line">  return JSON.parse(str); </span><br><span class="line">&#125;</span><br><span class="line">console.log(flatten(arr)); //  [1, 2, 3, 4，5]</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<ol start="5">
-<li>通过Array.prototype.isPrototypeOf<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.isPrototypeOf(obj)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="null和undefined区别"><a href="#null和undefined区别" class="headerlink" title="null和undefined区别"></a>null和undefined区别</h1><p>首先 Undefined 和 Null 都是基本数据类型，这两个基本数据类型分别都只有一个值，就是 undefined 和 null。<br>undefined 代表的含义是未定义，null 代表的含义是空对象。一般变量声明了但还没有定义的时候会返回 undefined，null主要用于赋值给一些可能会返回对象的变量，作为初始化。<br>undefined 在 JavaScript 中不是一个保留字，这意味着可以使用 undefined 来作为一个变量名，但是这样的做法是非常危险的，它会影响对 undefined 值的判断。我们可以通过一些方法获得安全的 undefined 值，比如说 void 0。<br>当对这两种类型使用 typeof 进行判断时，Null 类型化会返回 “object”，这是一个历史遗留的问题。当使用双等号对两种类型的值进行比较时会返回 true，使用三个等号时会返回 false。</p>
-<h1 id="typeof-null-的结果是什么，为什么？"><a href="#typeof-null-的结果是什么，为什么？" class="headerlink" title="typeof null 的结果是什么，为什么？"></a>typeof null 的结果是什么，为什么？</h1><p>typeof null 的结果是Object。<br>在 JavaScript 第一个版本中，所有值都存储在 32 位的单元中，每个单元包含一个小的 类型标签(1-3 bits) 以及当前要存储值的真实数据。类型标签存储在每个单元的低位中，共有五种数据类型：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">000: object   - 当前存储的数据指向一个对象。</span><br><span class="line">  1: int      - 当前存储的数据是一个 31 位的有符号整数。</span><br><span class="line">010: double   - 当前存储的数据指向一个双精度的浮点数。</span><br><span class="line">100: string   - 当前存储的数据指向一个字符串。</span><br><span class="line">110: boolean  - 当前存储的数据是布尔值。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="实现数组去重"><a href="#实现数组去重" class="headerlink" title="实现数组去重"></a>实现数组去重</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1. new set()</span><br><span class="line">const array = [1, 2, 3, 5, 1, 5, 9, 1, 2, 8];</span><br><span class="line"></span><br><span class="line">Array.from(new Set(array)); // [1, 2, 3, 5, 9, 8]</span><br><span class="line"></span><br><span class="line">2. const array = [1, 2, 3, 5, 1, 5, 9, 1, 2, 8];</span><br><span class="line"></span><br><span class="line">uniqueArray(array); // [1, 2, 3, 5, 9, 8]</span><br><span class="line"></span><br><span class="line">function uniqueArray(array) &#123;</span><br><span class="line">  let map = &#123;&#125;;</span><br><span class="line">  let res = [];</span><br><span class="line">  for(var i = 0; i &lt; array.length; i++) &#123;</span><br><span class="line">    if(!map.hasOwnProperty([array[i]])) &#123;</span><br><span class="line">      map[array[i]] = 1;</span><br><span class="line">      res.push(array[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>如果最低位是 1，则类型标签标志位的长度只有一位；如果最低位是 0，则类型标签标志位的长度占三位，为存储其他四种数据类型提供了额外两个 bit 的长度。<br>有两种特殊数据类型：</p>
-<p>undefined的值是 (-2)30(一个超出整数范围的数字)；<br>null 的值是机器码 NULL 指针(null 指针的值全是 0)</p>
-<p>那也就是说null的类型标签也是000，和Object的类型标签一样，所以会被判定为Object。</p>
-<h1 id="intanceof-操作符的实现原理及实现"><a href="#intanceof-操作符的实现原理及实现" class="headerlink" title="intanceof 操作符的实现原理及实现"></a>intanceof 操作符的实现原理及实现</h1><p>instanceof 运算符用于判断构造函数的 prototype 属性是否出现在对象的原型链中的任何位置。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function myInstanceof(left, right) &#123;</span><br><span class="line">  // 获取对象的原型</span><br><span class="line">  let proto = Object.getPrototypeOf(left)</span><br><span class="line">  // 获取构造函数的 prototype 对象</span><br><span class="line">  let prototype = right.prototype; </span><br><span class="line"> </span><br><span class="line">  // 判断构造函数的 prototype 对象是否在对象的原型链上</span><br><span class="line">  while (true) &#123;</span><br><span class="line">    if (!proto) return false;</span><br><span class="line">    if (proto === prototype) return true;</span><br><span class="line">    // 如果没有找到，就继续从其原型上找，Object.getPrototypeOf方法用来获取指定对象的原型</span><br><span class="line">    proto = Object.getPrototypeOf(proto);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="实现数组的flat方法"><a href="#实现数组的flat方法" class="headerlink" title="实现数组的flat方法"></a>实现数组的flat方法</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function _flat(arr, depth) &#123;</span><br><span class="line">  if(!Array.isArray(arr) || depth &lt;= 0) &#123;</span><br><span class="line">    return arr;</span><br><span class="line">  &#125;</span><br><span class="line">  return arr.reduce((prev, cur) =&gt; &#123;</span><br><span class="line">    if (Array.isArray(cur)) &#123;</span><br><span class="line">      return prev.concat(_flat(cur, depth - 1))</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      return prev.concat(cur);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, []);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h1 id="为什么0-1-0-2-0-3，如何让其相等"><a href="#为什么0-1-0-2-0-3，如何让其相等" class="headerlink" title="为什么0.1+0.2 ! == 0.3，如何让其相等"></a>为什么0.1+0.2 ! == 0.3，如何让其相等</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.1+0.2 = 0.30000000000000004 !== 0.3</span><br></pre></td></tr></table></figure>
-<p>这里得到的不是想要的结果，要想等于0.3，就要把它进行转化：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(n1 + n2).toFixed(2) // 注意，toFixed为四舍五入</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="实现数组的push方法"><a href="#实现数组的push方法" class="headerlink" title="实现数组的push方法"></a>实现数组的push方法</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let arr = [];</span><br><span class="line">Array.prototype.push = function() &#123;</span><br><span class="line">	for( let i = 0 ; i &lt; arguments.length ; i++)&#123;</span><br><span class="line">		this[this.length] = arguments[i] ;</span><br><span class="line">	&#125;</span><br><span class="line">	return this.length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<ol>
-<li><p>toFixed(num) 方法</p>
-</li>
-<li><p>设置一个误差范围，通常称为“机器精度”。对JavaScript来说，这个值通常为2-52，在ES6中，提供了Number.EPSILON属性，而它的值就是2-52，只要判断0.1+0.2-0.3是否小于Number.EPSILON，如果小于，就可以判断为0.1+0.2 ===0.3</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function numberepsilon(arg1,arg2)&#123;                   </span><br><span class="line">  return Math.abs(arg1 - arg2) &lt; Number.EPSILON;        </span><br><span class="line">&#125;        </span><br><span class="line"></span><br><span class="line">console.log(numberepsilon(0.1 + 0.2, 0.3)); // true</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="如何获取安全的-undefined-值？"><a href="#如何获取安全的-undefined-值？" class="headerlink" title="如何获取安全的 undefined 值？"></a>如何获取安全的 undefined 值？</h1><p>因为 undefined 是一个标识符，所以可以被当作变量来使用和赋值，但是这样会影响 undefined 的正常判断。表达式 void ___ 没有返回值，因此返回结果是 undefined。void 并不改变表达式的结果，只是让表达式不返回值。因此可以用 void 0 来获得 undefined。</p>
-<h1 id="typeof-NaN-的结果是什么？"><a href="#typeof-NaN-的结果是什么？" class="headerlink" title="typeof NaN 的结果是什么？"></a>typeof NaN 的结果是什么？</h1><p>NaN 指“不是一个数字”（not a number），NaN 是一个“警戒值”（sentinel value，有特殊用途的常规值），用于指出数字类型中的错误情况，即“执行数学运算没有成功，这是失败后返回的结果”。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">typeof NaN; // &quot;number&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="实现数组的filter方法"><a href="#实现数组的filter方法" class="headerlink" title="实现数组的filter方法"></a>实现数组的filter方法</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.filter = function(fn) &#123;</span><br><span class="line">  if (typeof fn !== &#x27;function&#x27;) &#123;</span><br><span class="line">    throw new Error(&#x27;type error&#x27;)</span><br><span class="line">  &#125;</span><br><span class="line">  let res = []</span><br><span class="line">  for (let i = 0; i &lt; this.lenght; i ++) &#123;</span><br><span class="line">    let cur = this[i]</span><br><span class="line">    let f = fn(cur)</span><br><span class="line">    if (f) &#123;</span><br><span class="line">      res.push(cur</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>NaN 是一个特殊值，它和自身不相等，是唯一一个非自反（自反，reflexive，即 x === x 不成立）的值。而 NaN !== NaN 为 true。</p>
-<h1 id="isNaN-和-Number-isNaN-函数的区别？"><a href="#isNaN-和-Number-isNaN-函数的区别？" class="headerlink" title="isNaN 和 Number.isNaN 函数的区别？"></a>isNaN 和 Number.isNaN 函数的区别？</h1><ol>
-<li>函数 isNaN 接收参数后，会尝试将这个参数转换为数值，任何不能被转换为数值的的值都会返回 true，因此非数字值传入也会返回 true ，会影响 NaN 的判断。</li>
-<li>函数 Number.isNaN 会首先判断传入参数是否为数字，如果是数字再继续判断是否为 NaN ，不会进行数据类型的转换，这种方法对于 NaN 的判断更为准确。</li>
-</ol>
-<h1 id="操作符的强制类型转换规则？"><a href="#操作符的强制类型转换规则？" class="headerlink" title="== 操作符的强制类型转换规则？"></a>== 操作符的强制类型转换规则？</h1><p>对于 == 来说，如果对比双方的类型不一样，就会进行类型转换。假如对比 x 和 y 是否相同，就会进行如下判断流程：</p>
-<ol>
-<li><p>首先会判断两者类型是否<strong>相同，</strong>相同的话就比较两者的大小；</p>
-</li>
-<li><p>类型不相同的话，就会进行类型转换；</p>
-</li>
-<li><p>会先判断是否在对比 null 和 undefined，是的话就会返回 true</p>
-</li>
-<li><p>判断两者类型是否为 string 和 number，是的话就会将字符串转换为 number</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1 == &#x27;1&#x27;</span><br><span class="line">      ↓</span><br><span class="line">1 ==  1</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>判断其中一方是否为 boolean，是的话就会把 boolean 转为 number 再进行判断</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x27;1&#x27; == true</span><br><span class="line">        ↓</span><br><span class="line">&#x27;1&#x27; ==  1</span><br><span class="line">        ↓</span><br><span class="line"> 1  ==  1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="实现数组的map方法"><a href="#实现数组的map方法" class="headerlink" title="实现数组的map方法"></a>实现数组的map方法</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.map = function(fn)&#123;</span><br><span class="line">  if (typeof fn !== &#x27;function&#x27;) &#123;</span><br><span class="line">    throw new Error(&#x27;type error&#x27;)</span><br><span class="line">  &#125;</span><br><span class="line">  let res = []</span><br><span class="line">  for (let i = 0; i &lt; this.lenght; i ++) &#123;</span><br><span class="line">    let cur = this[i]</span><br><span class="line">    res.push(fn(cur))</span><br><span class="line">  &#125;</span><br><span class="line">  return res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ol start="6">
-<li>判断其中一方是否为 object 且另一方为 string、number 或者 symbol，是的话就会把 object 转为原始类型再进行判断</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x27;1&#x27; == &#123; name: &#x27;js&#x27; &#125;        ↓&#x27;1&#x27; == &#x27;[object Object]&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="实现字符串的repeat方法"><a href="#实现字符串的repeat方法" class="headerlink" title="实现字符串的repeat方法"></a>实现字符串的repeat方法</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function repeat (s, n) &#123;</span><br><span class="line">  return (new Array(n + 1)).join(s)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function repeat(s, n) &#123;</span><br><span class="line">    return (n &gt; 0) ? s.concat(repeat(s, --n)) : &quot;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="其他值到字符串的转换规则？"><a href="#其他值到字符串的转换规则？" class="headerlink" title="其他值到字符串的转换规则？"></a>其他值到字符串的转换规则？</h1><ol>
-<li>Null 和 Undefined 类型 ，null 转换为 “null”，undefined 转换为 “undefined”，</li>
-<li>Boolean 类型，true 转换为 “true”，false 转换为 “false”。</li>
-<li>Number 类型的值直接转换，不过那些极小和极大的数字会使用指数形式。</li>
-<li>Symbol 类型的值直接转换，但是只允许显式强制类型转换，使用隐式强制类型转换会产生错误。</li>
-<li>对普通对象来说，除非自行定义 toString() 方法，否则会调用 toString()（Object.prototype.toString()）来返回内部属性 [[Class]] 的值，如”[object Object]”。如果对象有自己的 toString() 方法，字符串化时就会调用该方法并使用其返回值。</li>
-</ol>
-<h1 id="其他值到数字值的转换规则？"><a href="#其他值到数字值的转换规则？" class="headerlink" title="其他值到数字值的转换规则？"></a>其他值到数字值的转换规则？</h1><ol>
-<li>Undefined 类型的值转换为 NaN。</li>
-<li>Null 类型的值转换为 0。</li>
-<li>Boolean 类型的值，true 转换为 1，false 转换为 0。</li>
-<li>String 类型的值转换如同使用 Number() 函数进行转换，如果包含非数字值则转换为 NaN，空字符串为 0。</li>
-<li>Symbol 类型的值不能转换为数字，会报错。</li>
-<li>对象（包括数组）会首先被转换为相应的基本类型值，如果返回的是非数字的基本类型值，则再遵循以上规则将其强制转换为数字。</li>
-</ol>
-<p>为了将值转换为相应的基本类型值，抽象操作 ToPrimitive 会首先（通过内部操作 DefaultValue）检查该值是否有valueOf()方法。如果有并且返回基本类型值，就使用该值进行强制类型转换。如果没有就使用 toString() 的返回值（如果存在）来进行强制类型转换。<br>如果 valueOf() 和 toString() 均不返回基本类型值，会产生 TypeError 错误。</p>
-<h1 id="其他值到布尔类型的值的转换规则？"><a href="#其他值到布尔类型的值的转换规则？" class="headerlink" title="其他值到布尔类型的值的转换规则？"></a>其他值到布尔类型的值的转换规则？</h1><p>以下这些是假值： • undefined • null • false • +0、-0 和 NaN • “”</p>
-<p>假值的布尔强制类型转换结果为 false。从逻辑上说，假值列表以外的都应该是真值。</p>
-<h1 id="和-amp-amp-操作符的返回值？"><a href="#和-amp-amp-操作符的返回值？" class="headerlink" title="|| 和 &amp;&amp; 操作符的返回值？"></a>|| 和 &amp;&amp; 操作符的返回值？</h1><p>|| 和 &amp;&amp; 首先会对第一个操作数执行条件判断，如果其不是布尔值就先强制转换为布尔类型，然后再执行条件判断。</p>
-<ol>
-<li>对于 || 来说，如果条件判断结果为 true 就返回第一个操作数的值，如果为 false 就返回第二个操作数的值。</li>
-<li>&amp;&amp; 则相反，如果条件判断结果为 true 就返回第二个操作数的值，如果为 false 就返回第一个操作数的值。</li>
-</ol>
-<p>|| 和 &amp;&amp; 返回它们其中一个操作数的值，而非条件判断的结果</p>
-<h1 id="Object-is-与比较操作符-“-”、“-”-的区别？"><a href="#Object-is-与比较操作符-“-”、“-”-的区别？" class="headerlink" title="Object.is() 与比较操作符 “===”、“==” 的区别？"></a>Object.is() 与比较操作符 “===”、“==” 的区别？</h1><ol>
-<li>使用双等号（==）进行相等判断时，如果两边的类型不一致，则会进行强制类型转化后再进行比较。</li>
-<li>使用三等号（===）进行相等判断时，如果两边的类型不一致时，不会做强制类型准换，直接返回 false。</li>
-<li>使用 Object.is 来进行相等判断时，一般情况下和三等号的判断相同，它处理了一些特殊的情况，比如 -0 和 +0 不再相等，两个 NaN 是相等的。</li>
-</ol>
-<h1 id="什么是-JavaScript-中的包装类型？"><a href="#什么是-JavaScript-中的包装类型？" class="headerlink" title="什么是 JavaScript 中的包装类型？"></a>什么是 JavaScript 中的包装类型？</h1><p>在 JavaScript 中，基本类型是没有属性和方法的，但是为了便于操作基本类型的值，在调用基本类型的属性或方法时 JavaScript 会在后台隐式地将基本类型的值转换为对象，如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const a = &quot;abc&quot;;</span><br><span class="line">a.length; // 3</span><br><span class="line">a.toUpperCase(); // &quot;ABC&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="实现字符串翻转"><a href="#实现字符串翻转" class="headerlink" title="实现字符串翻转"></a>实现字符串翻转</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">String.prototype._reverse = function(a)&#123;</span><br><span class="line">    return a.split(&quot;&quot;).reverse().join(&quot;&quot;);</span><br><span class="line">&#125;</span><br><span class="line">var obj = new String();</span><br><span class="line">var res = obj._reverse (&#x27;hello&#x27;);</span><br><span class="line">console.log(res);    // olleh</span><br><span class="line"></span><br><span class="line">function _reverse(s) &#123;</span><br><span class="line">  let left = 0;</span><br><span class="line">  let right = s.length - 1</span><br><span class="line">  while(left++ &lt; right--) &#123;</span><br><span class="line">    [s[left], s[right]] = [s[right], s[left]]</span><br><span class="line">  &#125;</span><br><span class="line">  return s</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>在访问’abc’.length时，JavaScript 将’abc’在后台转换成String(‘abc’)，然后再访问其length属性。</p>
-<p>JavaScript也可以使用Object函数显式地将基本类型转换为包装类型：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a = &#x27;abc&#x27;</span><br><span class="line">Object(a) // String &#123;&quot;abc&quot;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>也可以使用valueOf方法将包装类型倒转成基本类型：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = &#x27;abc&#x27;</span><br><span class="line">var b = Object(a)</span><br><span class="line">var c = b.valueOf() // &#x27;abc&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>看看如下代码会打印出什么：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a = new Boolean( false );</span><br><span class="line">if (!a) &#123;</span><br><span class="line">	console.log( &quot;Oops&quot; ); // never runs</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="将数字每千分位用逗号隔开"><a href="#将数字每千分位用逗号隔开" class="headerlink" title="将数字每千分位用逗号隔开"></a>将数字每千分位用逗号隔开</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">let format = n =&gt; &#123;</span><br><span class="line">    let num = n.toString() // 转成字符串</span><br><span class="line">    let decimals = &#x27;&#x27;</span><br><span class="line">        // 判断是否有小数</span><br><span class="line">    num.indexOf(&#x27;.&#x27;) &gt; -1 ? decimals = num.split(&#x27;.&#x27;)[1] : decimals</span><br><span class="line">    let len = num.length</span><br><span class="line">    if (len &lt;= 3) &#123;</span><br><span class="line">        return num</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        let temp = &#x27;&#x27;</span><br><span class="line">        let remainder = len % 3</span><br><span class="line">        decimals ? temp = &#x27;.&#x27; + decimals : temp</span><br><span class="line">        if (remainder &gt; 0) &#123; // 不是3的整数倍</span><br><span class="line">            return num.slice(0, remainder) + &#x27;,&#x27; + num.slice(remainder, len).match(/\d&#123;3&#125;/g).join(&#x27;,&#x27;) + temp</span><br><span class="line">        &#125; else &#123; // 是3的整数倍</span><br><span class="line">            return num.slice(0, len).match(/\d&#123;3&#125;/g).join(&#x27;,&#x27;) + temp </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">format(12323.33)  // &#x27;12,323.33&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>答案是什么都不会打印，因为虽然包裹的基本类型是false，但是false被包裹成包装类型后就成了对象，所以其非值为false，所以循环体中的内容不会运行。</p>
-<h1 id="JavaScript-中如何进行隐式类型转换？"><a href="#JavaScript-中如何进行隐式类型转换？" class="headerlink" title="JavaScript 中如何进行隐式类型转换？"></a>JavaScript 中如何进行隐式类型转换？</h1><p>首先要介绍ToPrimitive方法，这是 JavaScript 中每个值隐含的自带的方法，用来将值 （无论是基本类型值还是对象）转换为基本类型值。如果值为基本类型，则直接返回值本身；如果值为对象，其看起来大概是这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* @obj 需要转换的对象</span><br><span class="line">* @type 期望的结果类型</span><br><span class="line">*/</span><br><span class="line">ToPrimitive(obj,type)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="实现非负大整数相加"><a href="#实现非负大整数相加" class="headerlink" title="实现非负大整数相加"></a>实现非负大整数相加</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function sumBigNumber(a, b) &#123;</span><br><span class="line">  let res = &#x27;&#x27;;</span><br><span class="line">  let temp = 0;</span><br><span class="line">  </span><br><span class="line">  a = a.split(&#x27;&#x27;);</span><br><span class="line">  b = b.split(&#x27;&#x27;);</span><br><span class="line">  </span><br><span class="line">  while (a.length || b.length || temp) &#123;</span><br><span class="line">    temp += ~~a.pop() + ~~b.pop();</span><br><span class="line">    res = (temp % 10) + res;</span><br><span class="line">    temp  = temp &gt; 9</span><br><span class="line">  &#125;</span><br><span class="line">  return res.replace(/^0+/, &#x27;&#x27;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>type的值为number或者string。<br>（1）当type为number时规则如下：</p>
-<ol>
-<li>调用obj的valueOf方法，如果为原始值，则返回，否则下一步；</li>
-<li>调用obj的toString方法，后续同上；</li>
-<li>抛出TypeError 异常。</li>
-</ol>
-<p>（2）当type为string时规则如下：</p>
-<ol>
-<li>调用obj的toString方法，如果为原始值，则返回，否则下一步；</li>
-<li>调用obj的valueOf方法，后续同上；</li>
-<li>抛出TypeError 异常。</li>
-</ol>
-<p>可以看出两者的主要区别在于调用toString和valueOf的先后顺序。默认情况下：</p>
-<ol>
-<li>如果对象为 Date 对象，则type默认为string；</li>
-<li>其他情况下，type默认为number。</li>
-</ol>
-<p>总结上面的规则，对于 Date 以外的对象，转换为基本类型的大概规则可以概括为一个函数：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var objToNumber = value =&gt; Number(value.valueOf().toString())</span><br><span class="line">objToNumber([]) === 0</span><br><span class="line">objToNumber(&#123;&#125;) === NaN</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>而 JavaScript 中的隐式类型转换主要发生在+、-、*、/以及==、&gt;、&lt;这些运算符之间。而这些运算符只能操作基本类型值，所以在进行这些运算前的第一步就是将两边的值用ToPrimitive转换成基本类型，再进行操作。<br>以下是基本类型的值在不同操作符的情况下隐式转换的规则 （对于对象，其会被ToPrimitive转换成基本类型，所以最终还是要应用基本类型转换规则）：</p>
-<ol>
-<li>+操作符</li>
-</ol>
-<p>+操作符的两边有至少一个string类型变量时，两边的变量都会被隐式转换为字符串；其他情况下两边的变量都会被转换为数字。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1 + &#x27;23&#x27; // &#x27;123&#x27;</span><br><span class="line"> 1 + false // 1 </span><br><span class="line"> 1 + Symbol() // Uncaught TypeError: Cannot convert a Symbol value to a number</span><br><span class="line"> &#x27;1&#x27; + false // &#x27;1false&#x27;</span><br><span class="line"> false + true // 1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>-、*、\操作符<br>NaN也是一个数字</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1 * &#x27;23&#x27; // 23</span><br><span class="line"> 1 * false // 0</span><br><span class="line"> 1 / &#x27;aa&#x27; // NaN</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>对于==操作符<br>操作符两边的值都尽量转成number：</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3 == true // false, 3 转为number为3，true转为number为1</span><br><span class="line">&#x27;0&#x27; == false //true, &#x27;0&#x27;转为number为0，false转为number为0</span><br><span class="line">&#x27;0&#x27; == 0 // &#x27;0&#x27;转为number为0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="实现-add-1-2-3"><a href="#实现-add-1-2-3" class="headerlink" title="实现 add(1)(2)(3)"></a>实现 add(1)(2)(3)</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function curry(fn, ...args) &#123;</span><br><span class="line">    let nums = []</span><br><span class="line"></span><br><span class="line">    return function temp(...newArgs) &#123;</span><br><span class="line">      if (newArgs.length) &#123;</span><br><span class="line">        nums = [...nums, ...newArgs]</span><br><span class="line">        return temp</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        return f(...nums)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  function f(...args) &#123;</span><br><span class="line">    return [...args].reduce((total, i) =&gt; total += i, 0)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  console.log(curry(f)(1)(2)(3, 4, 5)())</span><br><span class="line">  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="实现类数组转化为数组"><a href="#实现类数组转化为数组" class="headerlink" title="实现类数组转化为数组"></a>实现类数组转化为数组</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.slice.call(arrayLike);</span><br><span class="line"></span><br><span class="line">Array.prototype.splice.call(arrayLike, 0);</span><br><span class="line"></span><br><span class="line">Array.prototype.concat.apply([], arrayLike);</span><br><span class="line"></span><br><span class="line">Array.from(arrayLike);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<ol start="4">
-<li>对于&lt;和&gt;比较符<br>如果两边都是字符串，则比较字母表顺序：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x27;ca&#x27; &lt; &#x27;bd&#x27; // false</span><br><span class="line">&#x27;a&#x27; &lt; &#x27;b&#x27; // true</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>其他情况下，转换为数字再比较：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x27;12&#x27; &lt; 13 // true</span><br><span class="line">false &gt; -1 // true</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="将js对象转化为树形结构"><a href="#将js对象转化为树形结构" class="headerlink" title="将js对象转化为树形结构"></a>将js对象转化为树形结构</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">// 转换前：</span><br><span class="line">source = [&#123;</span><br><span class="line">            id: 1,</span><br><span class="line">            pid: 0,</span><br><span class="line">            name: &#x27;body&#x27;</span><br><span class="line">          &#125;, &#123;</span><br><span class="line">            id: 2,</span><br><span class="line">            pid: 1,</span><br><span class="line">            name: &#x27;title&#x27;</span><br><span class="line">          &#125;, &#123;</span><br><span class="line">            id: 3,</span><br><span class="line">            pid: 2,</span><br><span class="line">            name: &#x27;div&#x27;</span><br><span class="line">          &#125;]</span><br><span class="line">// 转换为: </span><br><span class="line">tree = [&#123;</span><br><span class="line">          id: 1,</span><br><span class="line">          pid: 0,</span><br><span class="line">          name: &#x27;body&#x27;,</span><br><span class="line">          children: [&#123;</span><br><span class="line">            id: 2,</span><br><span class="line">            pid: 1,</span><br><span class="line">            name: &#x27;title&#x27;,</span><br><span class="line">            children: [&#123;</span><br><span class="line">              id: 3,</span><br><span class="line">              pid: 1,</span><br><span class="line">              name: &#x27;div&#x27;</span><br><span class="line">            &#125;]</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function buildTree(data) &#123;</span><br><span class="line">  let result = []</span><br><span class="line">  let map = &#123;&#125;</span><br><span class="line">  data.forEach(item =&gt; &#123;</span><br><span class="line">    map[item.id] = item</span><br><span class="line">  &#125;)</span><br><span class="line">  data.forEach(item =&gt; &#123;</span><br><span class="line">    let parent = map[item.pid]</span><br><span class="line">    if (paent) &#123;</span><br><span class="line">      parent.children ? parent.children.push(item) ? parent.children = [item]</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      result.push(item)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  return result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>以上说的是基本类型的隐式转换，而对象会被ToPrimitive转换为基本类型再进行转换：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;&#125;</span><br><span class="line">a &gt; 2 // false</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>其对比过程如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a.valueOf() // &#123;&#125;, 上面提到过，ToPrimitive默认type为number，所以先valueOf，结果还是个对象，下一步</span><br><span class="line">a.toString() // &quot;[object Object]&quot;，现在是一个字符串了</span><br><span class="line">Number(a.toString()) // NaN，根据上面 &lt; 和 &gt; 操作符的规则，要转换成数字</span><br><span class="line">NaN &gt; 2 //false，得出比较结果</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="使用ES5和ES6求函数参数的和"><a href="#使用ES5和ES6求函数参数的和" class="headerlink" title="使用ES5和ES6求函数参数的和"></a>使用ES5和ES6求函数参数的和</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function sum() &#123;</span><br><span class="line">    let sum = 0</span><br><span class="line">    Array.prototype.forEach.call(arguments, function(item) &#123;</span><br><span class="line">        sum += item * 1</span><br><span class="line">    &#125;)</span><br><span class="line">    return sum</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function sum(...nums) &#123;</span><br><span class="line">    let sum = 0</span><br><span class="line">    nums.forEach(function(item) &#123;</span><br><span class="line">        sum += item * 1</span><br><span class="line">    &#125;)</span><br><span class="line">    return sum</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>又比如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;name:&#x27;Jack&#x27;&#125;</span><br><span class="line">var b = &#123;age: 18&#125;</span><br><span class="line">a + b // &quot;[object Object][object Object]&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="解析-URL-Params-为对象"><a href="#解析-URL-Params-为对象" class="headerlink" title="解析 URL Params 为对象"></a>解析 URL Params 为对象</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">let url = &#x27;http://www.domain.com/?user=anonymous&amp;id=123&amp;id=456&amp;city=%E5%8C%97%E4%BA%AC&amp;enabled&#x27;;</span><br><span class="line">parseParam(url)</span><br><span class="line">/* 结果</span><br><span class="line">&#123; user: &#x27;anonymous&#x27;,</span><br><span class="line">  id: [ 123, 456 ], // 重复出现的 key 要组装成数组，能被转成数字的就转成数字类型</span><br><span class="line">  city: &#x27;北京&#x27;, // 中文需解码</span><br><span class="line">  enabled: true, // 未指定值得 key 约定为 true</span><br><span class="line">&#125;</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function parseParam(url) &#123;</span><br><span class="line">  const paramsStr = /.+\?(.+)$/.exec(url)[1]; // 将 ? 后面的字符串取出来</span><br><span class="line">  const paramsArr = paramsStr.split(&#x27;&amp;&#x27;); // 将字符串以 &amp; 分割后存到数组中</span><br><span class="line">  let paramsObj = &#123;&#125;;</span><br><span class="line">  // 将 params 存到对象中</span><br><span class="line">  paramsArr.forEach(param =&gt; &#123;</span><br><span class="line">    if (/=/.test(param)) &#123; // 处理有 value 的参数</span><br><span class="line">      let [key, val] = param.split(&#x27;=&#x27;); // 分割 key 和 value</span><br><span class="line">      val = decodeURIComponent(val); // 解码</span><br><span class="line">      val = /^\d+$/.test(val) ? parseFloat(val) : val; // 判断是否转为数字</span><br><span class="line">      if (paramsObj.hasOwnProperty(key)) &#123; // 如果对象有 key，则添加一个值</span><br><span class="line">        paramsObj[key] = [].concat(paramsObj[key], val);</span><br><span class="line">      &#125; else &#123; // 如果对象没有这个 key，创建 key 并设置值</span><br><span class="line">        paramsObj[key] = val;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else &#123; // 处理没有 value 的参数</span><br><span class="line">      paramsObj[param] = true;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  return paramsObj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>运算过程如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a.valueOf() // &#123;&#125;，上面提到过，ToPrimitive默认type为number，所以先valueOf，结果还是个对象，下一步</span><br><span class="line">a.toString() // &quot;[object Object]&quot;</span><br><span class="line">b.valueOf() // 同理</span><br><span class="line">b.toString() // &quot;[object Object]&quot;</span><br><span class="line">a + b // &quot;[object Object][object Object]&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="循环打印红黄绿"><a href="#循环打印红黄绿" class="headerlink" title="循环打印红黄绿"></a>循环打印红黄绿</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const taskRunner =  async () =&gt; &#123;</span><br><span class="line">    await task(3000, &#x27;red&#x27;)</span><br><span class="line">    await task(2000, &#x27;green&#x27;)</span><br><span class="line">    await task(2100, &#x27;yellow&#x27;)</span><br><span class="line">    taskRunner()</span><br><span class="line">&#125;</span><br><span class="line">taskRunner()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h1 id="操作符什么时候用于字符串的拼接？"><a href="#操作符什么时候用于字符串的拼接？" class="headerlink" title="+ 操作符什么时候用于字符串的拼接？"></a>+ 操作符什么时候用于字符串的拼接？</h1><p>根据 ES5 规范，如果某个操作数是字符串或者能够通过以下步骤转换为字符串的话，+ 将进行拼接操作。如果其中一个操作数是对象（包括数组），则首先对其调用 ToPrimitive 抽象操作，该抽象操作再调用 [[DefaultValue]]，以数字作为上下文。如果不能转换为字符串，则会将其转换为数字类型来进行计算。<br>简单来说就是，如果 + 的其中一个操作数是字符串（或者通过以上步骤最终得到字符串），则执行字符串拼接，否则执行数字加法。<br>那么对于除了加法的运算符来说，只要其中一方是数字，那么另一方就会被转为数字。</p>
-<h1 id="为什么会有BigInt的提案？"><a href="#为什么会有BigInt的提案？" class="headerlink" title="为什么会有BigInt的提案？"></a>为什么会有BigInt的提案？</h1><p>JavaScript中Number.MAX_SAFE_INTEGER表示最⼤安全数字，计算结果是9007199254740991，即在这个数范围内不会出现精度丢失（⼩数除外）。但是⼀旦超过这个范围，js就会出现计算不准确的情况，这在⼤数计算的时候不得不依靠⼀些第三⽅库进⾏解决，因此官⽅提出了BigInt来解决此问题。</p>
-<h1 id="object-assign和扩展运算法是深拷贝还是浅拷贝，两者区别"><a href="#object-assign和扩展运算法是深拷贝还是浅拷贝，两者区别" class="headerlink" title="object.assign和扩展运算法是深拷贝还是浅拷贝，两者区别"></a>object.assign和扩展运算法是深拷贝还是浅拷贝，两者区别</h1><p>扩展运算符：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let outObj = &#123;</span><br><span class="line">  inObj: &#123;a: 1, b: 2&#125;</span><br><span class="line">&#125;</span><br><span class="line">let newObj = &#123;...outObj&#125;</span><br><span class="line">newObj.inObj.a = 2</span><br><span class="line">console.log(outObj) // &#123;inObj: &#123;a: 2, b: 2&#125;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>Object.assign():</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let outObj = &#123;</span><br><span class="line">  inObj: &#123;a: 1, b: 2&#125;</span><br><span class="line">&#125;</span><br><span class="line">let newObj = Object.assign(&#123;&#125;, outObj)</span><br><span class="line">newObj.inObj.a = 2</span><br><span class="line">console.log(outObj) // &#123;inObj: &#123;a: 2, b: 2&#125;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>可以看到，两者都是浅拷贝。</p>
-<ol>
-<li>Object.assign()方法接收的第一个参数作为目标对象，后面的所有参数作为源对象。然后把所有的源对象合并到目标对象中。它会修改了一个对象，因此会触发 ES6 setter。</li>
-<li>扩展操作符（…）使用它时，数组或对象中的每一个值都会被拷贝到一个新的数组或对象中。它不复制继承的属性或类的属性，但是它会复制ES6的 symbols 属性。</li>
-</ol>
-<h1 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h1><p>定义：独一无二的值<br>声明：const set = Symbol(str)<br>入参：字符串(可选)</p>
-<ol>
-<li>方法</li>
-</ol>
-<ul>
-<li>Symbol()：创建以参数作为描述的Symbol值(不登记在全局环境)</li>
-<li>Symbol.for()：创建以参数作为描述的Symbol值，如存在此参数则返回原有的Symbol值(先搜索后创建，登记在全局环境)</li>
-<li>Symbol.keyFor()：返回已登记的Symbol值的描述(只能返回Symbol.for()的key)</li>
-<li>Object.getOwnPropertySymbols()：返回对象中所有用作属性名的Symbol值的数组</li>
-</ul>
-<ol start="2">
-<li>内置</li>
-</ol>
-<ul>
-<li>Symbol.hasInstance：指向一个内部方法，当其他对象使用instanceof运算符判断是否为此对象的实例时会调用此方法</li>
-<li>Symbol.isConcatSpreadable：指向一个布尔，定义对象用于Array.prototype.concat()时是否可展开</li>
-<li>Symbol.species：指向一个构造函数，当实例对象使用自身构造函数时会调用指定的构造函数</li>
-<li>Symbol.match：指向一个函数，当实例对象被String.prototype.match()调用时会重新定义match()的行为</li>
-<li>Symbol.replace：指向一个函数，当实例对象被String.prototype.replace()调用时会重新定义replace()的行为</li>
-<li>Symbol.search：指向一个函数，当实例对象被String.prototype.search()调用时会重新定义search()的行为</li>
-<li>Symbol.split：指向一个函数，当实例对象被String.prototype.split()调用时会重新定义split()的行为</li>
-<li>Symbol.iterator：指向一个默认遍历器方法，当实例对象执行for-of时会调用指定的默认遍历器</li>
-<li>Symbol.toPrimitive：指向一个函数，当实例对象被转为原始类型的值时会返回此对象对应的原始类型值</li>
-<li>Symbol.toStringTag：指向一个函数，当实例对象被Object.prototype.toString()调用时其返回值会出现在toString()返回的字符串之中表示对象的类型</li>
-<li>Symbol.unscopables：指向一个对象，指定使用with时哪些属性会被with环境排除</li>
-</ul>
-<ol start="3">
-<li>应用场景</li>
-</ol>
-<ul>
-<li>唯一化对象属性名：属性名属于Symbol类型，就都是独一无二的，可保证不会与其他属性名产生冲突</li>
-<li>消除魔术字符串：在代码中多次出现且与代码形成强耦合的某一个具体的字符串或数值</li>
-<li>遍历属性名：无法通过for-in、for-of、Object.keys()、Object.getOwnPropertyNames()、JSON.stringify()返回，只能通过Object.+ getOwnPropertySymbols返回</li>
-<li>启用模块的Singleton模式：调用一个类在任何时候返回同一个实例(window和global)，使用Symbol.for()来模拟全局的Singleton模式</li>
-</ul>
-<ol start="4">
-<li>重点难点</li>
-</ol>
-<ul>
-<li>Symbol()生成一个原始类型的值不是对象，因此Symbol()前不能使用new命令</li>
-<li>Symbol()参数表示对当前Symbol值的描述，相同参数的Symbol()返回值不相等</li>
-<li>Symbol值不能与其他类型的值进行运算</li>
-<li>Symbol值可通过String()或toString()显式转为字符串</li>
-<li>Symbol值作为对象属性名时，此属性是公开属性，但不是私有属性</li>
-<li>Symbol值作为对象属性名时，只能用方括号运算符([])读取，不能用点运算符(.)读取</li>
-<li>Symbol值作为对象属性名时，不会被常规方法遍历得到，可利用此特性为对象定义非私有但又只用于内部的方法</li>
-</ul>
-<h1 id="BigInt"><a href="#BigInt" class="headerlink" title="BigInt"></a>BigInt</h1><p>定义：任何位数的整数(新增的数据类型，使用n结尾)<br>声明：const n = BigInt()<br>入参：数字</p>
-<ul>
-<li>BigInt.asUintN()：转换BigInt为0到2n-1之间对应的值</li>
-<li>BigInt.asIntN()：转换BigInt为-2n-1 到2n-1-1</li>
-<li>BigInt.parseInt()：近似于Number.parseInt()，将一个字符串转换成指定进制的BigInt类型</li>
-</ul>
-<p>重点难点</p>
-<ul>
-<li>BigInt同样可使用各种进制表示，都要加上后缀</li>
-<li>BigInt与普通整数是两种值，它们之间并不相等</li>
-<li>typeof运算符对于BigInt类型的数据返回bigint</li>
-</ul>
-<h1 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h1><ul>
-<li><p>定义：类似于数组的数据结构，成员值都是唯一且没有重复的值</p>
-</li>
-<li><p>声明：const set = new Set(arr)</p>
-</li>
-<li><p>入参：具有Iterator接口的数据结构</p>
-</li>
-<li><p>属性</p>
-<ul>
-<li>constructor：构造函数，返回Set</li>
-<li>size：返回实例成员总数</li>
-</ul>
-</li>
-<li><p>方法</p>
-<ul>
-<li>add()：添加值，返回实例</li>
-<li>delete()：删除值，返回布尔</li>
-<li>has()：检查值，返回布尔</li>
-<li>clear()：清除所有成员</li>
-<li>keys()：返回以属性值为遍历器的对象</li>
-<li>values()：返回以属性值为遍历器的对象</li>
-<li>entries()：返回以属性值和属性值为遍历器的对象</li>
-<li>forEach()：使用回调函数遍历每个成员</li>
-</ul>
-</li>
-<li><p>应用场景</p>
-<ul>
-<li>去重字符串：[…new Set(str)].join(“”)</li>
-<li>去重数组：[…new Set(arr)]或Array.from(new Set(arr))</li>
-</ul>
-</li>
-<li><p>集合数组</p>
-<ul>
-<li>声明：const a = new Set(arr1)、const b = new Set(arr2)</li>
-<li>并集：new Set([…a, …b])</li>
-<li>交集：new Set([…a].filter(v =&gt; b.has(v)))</li>
-<li>差集：new Set([…a].filter(v =&gt; !b.has(v)))</li>
-</ul>
-</li>
-<li><p>映射集合</p>
-<ul>
-<li>声明：let set = new Set(arr)</li>
-<li>映射：set = new Set([…set].map(v =&gt; v * 2))或set = new Set(Array.from(set, v =&gt; v * 2))</li>
-</ul>
-</li>
-<li><p>重点难点</p>
-<ul>
-<li>遍历顺序：插入顺序</li>
-<li>没有键只有值，可认为键和值两值相等</li>
-<li>添加多个NaN时，只会存在一个NaN</li>
-<li>添加相同的对象时，会认为是不同的对象</li>
-<li>添加值时不会发生类型转换(5 !== “5”)</li>
-<li>keys()和values()的行为完全一致，entries()返回的遍历器同时包括键和值且两值相等</li>
-</ul>
-</li>
-</ul>
-<h1 id="WeakSet"><a href="#WeakSet" class="headerlink" title="WeakSet"></a>WeakSet</h1><ul>
-<li><p>定义：和Set结构类似，成员值只能是对象</p>
-</li>
-<li><p>声明：const set = new WeakSet(arr)</p>
-</li>
-<li><p>入参：具有Iterator接口的数据结构</p>
-</li>
-<li><p>属性</p>
-<ul>
-<li>constructor：构造函数，返回WeakSet</li>
-</ul>
-</li>
-<li><p>方法</p>
-<ul>
-<li>add()：添加值，返回实例</li>
-<li>delete()：删除值，返回布尔</li>
-<li>has()：检查值，返回布尔</li>
-</ul>
-</li>
-<li><p>应用场景</p>
-<ul>
-<li>储存DOM节点：DOM节点被移除时自动释放此成员，不用担心这些节点从文档移除时会引发内存泄漏</li>
-<li>临时存放一组对象或存放跟对象绑定的信息：只要这些对象在外部消失，它在WeakSet结构中的引用就会自动消</li>
-</ul>
-</li>
-<li><p>重点难点</p>
-<ul>
-<li>成员都是弱引用，垃圾回收机制不考虑WeakSet结构对此成员的引用</li>
-<li>成员不适合引用，它会随时消失，因此ES6规定WeakSet结构不可遍历</li>
-<li>其他对象不再引用成员时，垃圾回收机制会自动回收此成员所占用的内存，不考虑此成员是否还存在于WeakSet结构中</li>
-</ul>
-</li>
-</ul>
-<h1 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h1><ul>
-<li><p>定义：类似于对象的数据结构，成员键是任何类型的值</p>
-</li>
-<li><p>声明：const map = new Map(arr)</p>
-</li>
-<li><p>入参：具有Iterator接口且每个成员都是一个双元素数组的数据结构</p>
-</li>
-<li><p>属性</p>
-<ul>
-<li>constructor：构造函数，返回Map</li>
-<li>size：返回实例成员总数</li>
-</ul>
-</li>
-<li><p>方法</p>
-<ul>
-<li>get()：返回键值对</li>
-<li>set()：添加键值对，返回实例</li>
-<li>delete()：删除键值对，返回布尔</li>
-<li>has()：检查键值对，返回布尔</li>
-<li>clear()：清除所有成员</li>
-<li>keys()：返回以键为遍历器的对象</li>
-<li>values()：返回以值为遍历器的对象</li>
-<li>entries()：返回以键和值为遍历器的对象</li>
-<li>forEach()：使用回调函数遍历每个成员</li>
-</ul>
-</li>
-<li><p>重点难点</p>
-<ul>
-<li>遍历顺序：插入顺序</li>
-<li>对同一个键多次赋值，后面的值将覆盖前面的值</li>
-<li>对同一个对象的引用，被视为一个键</li>
-<li>对同样值的两个实例，被视为两个键</li>
-<li>键跟内存地址绑定，只要内存地址不一样就视为两个键</li>
-<li>添加多个以NaN作为键时，只会存在一个以NaN作为键的值</li>
-<li>Object结构提供字符串—值的对应，Map结构提供值—值的对应</li>
-</ul>
-</li>
-</ul>
-<h1 id="WeakMap"><a href="#WeakMap" class="headerlink" title="WeakMap"></a>WeakMap</h1><ul>
-<li>定义：和Map结构类似，成员键只能是对象</li>
-<li>声明：const set = new WeakMap(arr)</li>
-<li>入参：具有Iterator接口且每个成员都是一个双元素数组的数据结构</li>
-<li>属性<ul>
-<li>constructor：构造函数，返回WeakMap</li>
-</ul>
-</li>
-<li>方法<ul>
-<li>get()：返回键值对</li>
-<li>set()：添加键值对，返回实例</li>
-<li>delete()：删除键值对，返回布尔</li>
-<li>has()：检查键值对，返回布尔</li>
-</ul>
-</li>
-<li>应用场景<ul>
-<li>储存DOM节点：DOM节点被移除时自动释放此成员键，不用担心这些节点从文档移除时会引发内存泄漏</li>
-<li>部署私有属性：内部属性是实例的弱引用，删除实例时它们也随之消失，不会造成内存泄漏</li>
-</ul>
-</li>
-<li>重点难点<ul>
-<li>成员键都是弱引用，垃圾回收机制不考虑WeakMap结构对此成员键的引用</li>
-<li>成员键不适合引用，它会随时消失，因此ES6规定WeakMap结构不可遍历</li>
-<li>其他对象不再引用成员键时，垃圾回收机制会自动回收此成员所占用的内存，不考虑此成员是否还存在于WeakMap结构中</li>
-<li>一旦不再需要，成员会自动消失，不用手动删除引用</li>
-<li>弱引用的只是键而不是值，值依然是正常引用</li>
-<li>即使在外部消除了成员键的引用，内部的成员值依然存在</li>
-</ul>
-</li>
-</ul>
+<h1 id="实现每隔一秒打印-1-2-3-4"><a href="#实现每隔一秒打印-1-2-3-4" class="headerlink" title="实现每隔一秒打印 1,2,3,4"></a>实现每隔一秒打印 1,2,3,4</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for (let i = 0; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(function() &#123;</span><br><span class="line">    console.log(i);</span><br><span class="line">  &#125;, i * 1000);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h1 id="小孩报数问题"><a href="#小孩报数问题" class="headerlink" title="小孩报数问题"></a>小孩报数问题</h1><p>有30个小孩儿，编号从1-30，围成一圈依此报数，1、2、3 数到 3 的小孩儿退出这个圈， 然后下一个小孩 重新报数 1、2、3，问最后剩下的那个小孩儿的编号是多少?</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function live(nums, count) &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -733,7 +393,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/35/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><span class="page-number current">36</span><a class="page-number" href="/page/37/">37</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><a class="extend next" rel="next" href="/page/37/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/35/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><span class="page-number current">36</span><a class="page-number" href="/page/37/">37</a><span class="space">&hellip;</span><a class="page-number" href="/page/44/">44</a><a class="extend next" rel="next" href="/page/37/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>

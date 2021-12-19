@@ -161,13 +161,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -211,7 +211,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://eyecatwang.github.io/2021/08/19/js%E9%9D%A2%E8%AF%95-%E9%AB%98%E9%A2%91%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81/">
+    <link itemprop="mainEntityOfPage" href="https://eyecatwang.github.io/2021/08/19/%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/26106551">
@@ -224,7 +224,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/19/js%E9%9D%A2%E8%AF%95-%E9%AB%98%E9%A2%91%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81/" class="post-title-link" itemprop="url">javascript面试-高频手写代码</a>
+          <a href="/2021/08/19/%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/" class="post-title-link" itemprop="url">javascript面试-常用算法</a>
         </h2>
 
         <div class="post-meta-container">
@@ -242,7 +242,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-12-06 19:37:12" itemprop="dateModified" datetime="2021-12-06T19:37:12+08:00">2021-12-06</time>
+        <time title="修改时间：2021-12-19 14:16:25" itemprop="dateModified" datetime="2021-12-19T14:16:25+08:00">2021-12-19</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -254,7 +254,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E9%9D%A2%E8%AF%95/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a>
+          <a href="/categories/%E9%9D%A2%E8%AF%95/http/" itemprop="url" rel="index"><span itemprop="name">http</span></a>
         </span>
     </span>
 
@@ -268,44 +268,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="call"><a href="#call" class="headerlink" title="call"></a>call</h1><ol>
-<li>判断调用对象是否是函数，即使是定义在函数的原型上的，但是可能出现使用call等方式调用的情况；</li>
-<li>判断上下文对象是否存在，如果不存在，则设置为window</li>
-<li>处理传入的参数，截取第一个参数后的所有参数。</li>
-<li>将函数作为上下文对象的一个属性。</li>
-<li>使用上下文对象来调用这个方法，并保留返回结果。</li>
-<li>删除刚才新增的属性</li>
-<li>返回结果。</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.myCall = function(context) &#123;</span><br><span class="line">  // 判断调用对象</span><br><span class="line">  if (typeof this !== &quot;function&quot;) &#123;</span><br><span class="line">    console.error(&quot;type error&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  // 获取参数</span><br><span class="line">  let args = [...arguments].slice(1),</span><br><span class="line">    result = null;</span><br><span class="line">  // 判断 context 是否传入，如果未传入则设置为 window</span><br><span class="line">  context = context || window;</span><br><span class="line">  // 将调用函数设为对象的方法</span><br><span class="line">  context.fn = this;</span><br><span class="line">  // 调用函数</span><br><span class="line">  result = context.fn(...args);</span><br><span class="line">  // 将属性删除</span><br><span class="line">  delete context.fn;</span><br><span class="line">  return result;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <h1 id="ip协议的首部结构"><a href="#ip协议的首部结构" class="headerlink" title="ip协议的首部结构"></a>ip协议的首部结构</h1><p><img src="/.io//IP%E5%8D%8F%E8%AE%AE%E7%9A%84%E9%A6%96%E9%83%A8%E7%BB%93%E6%9E%84.png" alt="IP协议的首部结构"></p>
+<h1 id="说一说-HashRouter-和-HistoryRouter的区别和原理？"><a href="#说一说-HashRouter-和-HistoryRouter的区别和原理？" class="headerlink" title="说一说 HashRouter 和 HistoryRouter的区别和原理？"></a>说一说 HashRouter 和 HistoryRouter的区别和原理？</h1><h1 id="说一说你对闭包的理解？"><a href="#说一说你对闭包的理解？" class="headerlink" title="说一说你对闭包的理解？"></a>说一说你对闭包的理解？</h1><h1 id="说一下浏览器如何渲染页面的？"><a href="#说一下浏览器如何渲染页面的？" class="headerlink" title="说一下浏览器如何渲染页面的？"></a>说一下浏览器如何渲染页面的？</h1><h1 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h1><p>给定一个整数数组nums，按升序排序，数组中的元素各不相同。<br>nums数组在传递给search函数之前，会在预先未知的某个下标 t（0 &lt;= t &lt;= nums.length-1）上进行旋转，让数组变为[nums[t], nums[t+1], …, nums[nums.length-1], nums[0], nums[1], …, nums[t-1]]。<br>比如，数组[0,2,4,6,8,10]在下标2处旋转之后变为[6,8,10,0,2,4]<br>现在给定一个旋转后的数组nums和一个整数target，请你查找这个数组是不是存在这个target，如果存在，那么返回它的下标，如果不存在，返回-1</p>
 
-<h1 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h1><ol>
-<li>判断调用对象是否为函数，即使是定义在函数的原型上的，但是可能出现使用 call 等方式调用的情况。</li>
-<li>判断传入上下文对象是否存在，如果不存在，则设置为 window 。</li>
-<li>将函数作为上下文对象的一个属性。</li>
-<li>判断参数值是否传入</li>
-<li>使用上下文对象来调用这个方法，并保存返回结果。</li>
-<li>删除刚才新增的属性</li>
-<li>返回结果</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.myApply = function(context) &#123;</span><br><span class="line">  // 判断调用对象是否为函数</span><br><span class="line">  if (typeof this !== &quot;function&quot;) &#123;</span><br><span class="line">    throw new TypeError(&quot;Error&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  let result = null;</span><br><span class="line">  // 判断 context 是否存在，如果未传入则为 window</span><br><span class="line">  context = context || window;</span><br><span class="line">  // 将函数设为对象的方法</span><br><span class="line">  context.fn = this;</span><br><span class="line">  // 调用方法</span><br><span class="line">  if (arguments[1]) &#123;</span><br><span class="line">    result = context.fn(...arguments[1]);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    result = context.fn();</span><br><span class="line">  &#125;</span><br><span class="line">  // 将属性删除</span><br><span class="line">  delete context.fn;</span><br><span class="line">  return result;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h1><ol>
-<li>判断调用对象是否为函数，即使是定义在函数的原型上的，但是可能出现使用 call 等方式调用的情况</li>
-<li>保存当前函数的引用，获取其余传入参数值。</li>
-<li>创建一个函数返回</li>
-<li>函数内部使用apply来绑定函数调用，需要判断函数作为构造函数的情况，这个时候需要传入当前的this给apply调用，其余情况都传入制定的上下文对象</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.myBind = function(context) &#123;</span><br><span class="line">  // 判断调用对象是否为函数</span><br><span class="line">  if (typeof this !== &quot;function&quot;) &#123;</span><br><span class="line">    throw new TypeError(&quot;Error&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  // 获取参数</span><br><span class="line">  var args = [...arguments].slice(1),</span><br><span class="line">    fn = this;</span><br><span class="line">  return function Fn() &#123;</span><br><span class="line">    // 根据调用方式，传入不同绑定值</span><br><span class="line">    return fn.apply(</span><br><span class="line">      this instanceof Fn ? this : context,</span><br><span class="line">      args.concat(...arguments)</span><br><span class="line">    );</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="什么是防抖和节流，他们的应用场景有哪些"><a href="#什么是防抖和节流，他们的应用场景有哪些" class="headerlink" title="什么是防抖和节流，他们的应用场景有哪些"></a>什么是防抖和节流，他们的应用场景有哪些</h1><h2 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖(debounce)"></a>防抖(debounce)</h2><p>触发高频事件后 n 秒内函数只会执行一次，如果 n 秒内高频事件再次被触发，则重新计算时间</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 防抖函数</span><br><span class="line">function debounce(fn, wait) &#123;</span><br><span class="line">  let timer;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    let _this = this;</span><br><span class="line">    let args = arguments;</span><br><span class="line">    if (timer) &#123;</span><br><span class="line">      clearTimeout(timer);</span><br><span class="line">    &#125;</span><br><span class="line">    timer = setTimeout(function () &#123;</span><br><span class="line">      fn.apply(_this, args);</span><br><span class="line">    &#125;, wait);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">// 使用</span><br><span class="line">window.onresize = debounce(function () &#123;</span><br><span class="line">  console.log(&quot;resize&quot;);</span><br><span class="line">&#125;, 500);</span><br></pre></td></tr></table></figure>
-
-<h2 id="节流-throttle"><a href="#节流-throttle" class="headerlink" title="节流(throttle)"></a>节流(throttle)</h2><p>高频事件触发，但在 n 秒内只会执行一次，所以节流会稀释函数的执行频率</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// 方式1: 使用时间戳</span><br><span class="line">function throttle1(fn, wait) &#123;</span><br><span class="line">  let time = 0;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    let _this = this;</span><br><span class="line">    let args = arguments;</span><br><span class="line">    let now = Date.now();</span><br><span class="line">    if (now - time &gt; wait) &#123;</span><br><span class="line">      fn.apply(_this, args);</span><br><span class="line">      time = now;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">// 方式2: 使用定时器</span><br><span class="line">function thorttle2(fn, wait) &#123;</span><br><span class="line">  let timer;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    let _this = this;</span><br><span class="line">    let args = arguments;</span><br><span class="line"></span><br><span class="line">    if (!timer) &#123;</span><br><span class="line">      timer = setTimeout(function () &#123;</span><br><span class="line">        timer = null;</span><br><span class="line">        fn.apply(_this, args);</span><br><span class="line">      &#125;, wait);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>上面节流和防抖实现方式比较简单，但是已经可以满足日常使用，如果想更近一步了解可以查看underscore (opens new window)和lodash (opens new window)文档中debounce和thorttle</p>
-<p>防抖：防止抖动，单位时间内事件触发会被重置，避免事件被误伤触发多次。代码实现重在清零 clearTimeout。防抖可以比作等电梯，只要有一个人进来，就需要再等一会儿。业务场景有避免登录按钮多次点击的重复提交。<br>节流：控制流量，单位时间内事件只能触发一次，与服务器端的限流 (Rate Limit) 类似。代码实现重在开锁关锁 timer=timeout; timer=null。节流可以比作过红绿灯，每等一个红灯时间就可以过一批。</p>
-<h1 id="如何实现一个简单的-Promise"><a href="#如何实现一个简单的-Promise" class="headerlink" title="如何实现一个简单的 Promise"></a>如何实现一个简单的 Promise</h1>
       
     </div>
 
@@ -324,7 +289,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><a class="extend next" rel="next" href="/page/33/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/44/">44</a><a class="extend next" rel="next" href="/page/33/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>

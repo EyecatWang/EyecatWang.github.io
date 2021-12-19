@@ -321,22 +321,25 @@
 <li>JavaScript中存在两种变量：局部变量和全局变量。全局变量的生命周期会持续要页面卸载；而局部变量声明在函数中，它的生命周期从函数执行开始，直到函数执行结束，在这个过程中，局部变量会在堆或栈中存储它们的值，当函数执行结束后，这些局部变量不再被使用，它们所占有的空间就会被释放。</li>
 <li>不过，当局部变量被外部函数使用时，其中一种情况就是闭包，在函数执行结束后，函数外部的变量依然指向函数内部的局部变量，此时局部变量依然在被使用，所以不会回收。</li>
 </ul>
-<h2 id="垃圾回收的方式"><a href="#垃圾回收的方式" class="headerlink" title="垃圾回收的方式"></a>垃圾回收的方式</h2><p>浏览器通常使用的垃圾回收方法有两种：标记清除，引用计数。<br>1.标记清除</p>
+<h2 id="垃圾回收的方式"><a href="#垃圾回收的方式" class="headerlink" title="垃圾回收的方式"></a>垃圾回收的方式</h2><p>浏览器通常使用的垃圾回收方法有两种：标记清除，引用计数。</p>
+<ol>
+<li><p>标记清除</p>
 <ul>
 <li>标记清除是浏览器常见的垃圾回收方式，当变量进入执行环境时，就标记这个变量“进入环境”，被标记为“进入环境”的变量是不能被回收的，因为他们正在被使用。当变量离开环境时，就会被标记为“离开环境”，被标记为“离开环境”的变量会被内存释放。</li>
 <li>垃圾收集器在运行的时候会给存储在内存中的所有变量都加上标记。然后，它会去掉环境中的变量以及被环境中的变量引用的标记。而在此之后再被加上标记的变量将被视为准备删除的变量，原因是环境中的变量已经无法访问到这些变量了。最后。垃圾收集器完成内存清除工作，销毁那些带标记的值，并回收他们所占用的内存空间。</li>
 </ul>
-<ol start="2">
-<li>引用计数</li>
-</ol>
+</li>
+<li><p>引用计数</p>
 <ul>
 <li>另外一种垃圾回收机制就是引用计数，这个用的相对较少。引用计数就是跟踪记录每个值被引用的次数。当声明了一个变量并将一个引用类型赋值给该变量时，则这个值的引用次数就是1。相反，如果包含对这个值引用的变量又取得了另外一个值，则这个值的引用次数就减1。当这个引用次数变为0时，说明这个变量已经没有价值，因此，在在机回收期下次再运行时，这个变量所占有的内存空间就会被释放出来。</li>
-<li>这种方法会引起循环引用的问题：例如： obj1和obj2通过属性进行相互引用，两个对象的引用次数都是2。当使用循环计数时，由于函数执行完后，两个对象都离开作用域，函数执行结束，obj1和obj2还将会继续存在，因此它们的引用次数永远不会是0，就会引起循环引用。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function fun() &#123;</span><br><span class="line">    let obj1 = &#123;&#125;;</span><br><span class="line">    let obj2 = &#123;&#125;;</span><br><span class="line">    obj1.a = obj2; // obj1 引用 obj2</span><br><span class="line">    obj2.a = obj1; // obj2 引用 obj1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-这种情况下，就要手动释放变量占用的内存：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">obj1.a =  null</span><br><span class="line"> obj2.a =  null</span><br></pre></td></tr></table></figure></li>
+<li>这种方法会引起循环引用的问题：例如： obj1和obj2通过属性进行相互引用，两个对象的引用次数都是2。当使用循环计数时，由于函数执行完后，两个对象都离开作用域，函数执行结束，obj1和obj2还将会继续存在，因此它们的引用次数永远不会是0，就会引起循环引用。</li>
 </ul>
-<ol start="3">
-<li>减少垃圾回收<br>虽然浏览器可以进行垃圾自动回收，但是当代码比较复杂时，垃圾回收所带来的代价比较大，所以应该尽量减少垃圾回收。</li>
+</li>
 </ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function fun() &#123;</span><br><span class="line">    let obj1 = &#123;&#125;;</span><br><span class="line">    let obj2 = &#123;&#125;;</span><br><span class="line">    obj1.a = obj2; // obj1 引用 obj2</span><br><span class="line">    obj2.a = obj1; // obj2 引用 obj1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种情况下，就要手动释放变量占用的内存：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">obj1.a =  null</span><br><span class="line"> obj2.a =  null</span><br></pre></td></tr></table></figure>
+<h2 id="减少垃圾回收"><a href="#减少垃圾回收" class="headerlink" title="减少垃圾回收"></a>减少垃圾回收</h2><p>虽然浏览器可以进行垃圾自动回收，但是当代码比较复杂时，垃圾回收所带来的代价比较大，所以应该尽量减少垃圾回收。</p>
 <ul>
 <li>对数组进行优化： 在清空一个数组时，最简单的方法就是给其赋值为[ ]，但是与此同时会创建一个新的空对象，可以将数组的长度设置为0，以此来达到清空数组的目的。</li>
 <li>对object进行优化： 对象尽量复用，对于不再使用的对象，就将其设置为null，尽快被回收。</li>
@@ -358,7 +361,28 @@
   <entry>
     <title>javascript面试-常用算法</title>
     <url>/2021/08/19/js%E9%9D%A2%E8%AF%95-%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h1 id="前序遍历判断回文链表"><a href="#前序遍历判断回文链表" class="headerlink" title="前序遍历判断回文链表"></a>前序遍历判断回文链表</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * function ListNode(val, next) &#123;</span><br><span class="line"> *     this.val = (val===undefined ? 0 : val)</span><br><span class="line"> *     this.next = (next===undefined ? null : next)</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">/**</span><br><span class="line"> * @param &#123;ListNode&#125; head</span><br><span class="line"> * @return &#123;boolean&#125;</span><br><span class="line"> */</span><br><span class="line">var isPalindrome = function(head) &#123;</span><br><span class="line">   let left = head</span><br><span class="line">   function f(right) &#123;</span><br><span class="line">       if (right === null) return true</span><br><span class="line">        let res = f(right.next)</span><br><span class="line">        res = res &amp;&amp; left.val === right.val</span><br><span class="line">        left = left.next</span><br><span class="line">        return res</span><br><span class="line">   &#125;</span><br><span class="line">   return f(head)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="反转链表"><a href="#反转链表" class="headerlink" title="反转链表"></a>反转链表</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * function ListNode(val, next) &#123;</span><br><span class="line"> *     this.val = (val===undefined ? 0 : val)</span><br><span class="line"> *     this.next = (next===undefined ? null : next)</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">/**</span><br><span class="line"> * @param &#123;ListNode&#125; head</span><br><span class="line"> * @return &#123;ListNode&#125;</span><br><span class="line"> */</span><br><span class="line">var reverseList = function(head) &#123;</span><br><span class="line">    // [4, 5]</span><br><span class="line">    if (head === null || head.next === null) return head</span><br><span class="line">    const last = reverseList(head.next)</span><br><span class="line">    // head.next为5，5的next为4</span><br><span class="line">    head.next.next = head</span><br><span class="line">    head.next = null</span><br><span class="line">    return last</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="合并K个升序链表"><a href="#合并K个升序链表" class="headerlink" title="合并K个升序链表"></a>合并K个升序链表</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * function ListNode(val, next) &#123;</span><br><span class="line"> *     this.val = (val===undefined ? 0 : val)</span><br><span class="line"> *     this.next = (next===undefined ? null : next)</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">/**</span><br><span class="line"> * @param &#123;ListNode[]&#125; lists</span><br><span class="line"> * @return &#123;ListNode&#125;</span><br><span class="line"> */</span><br><span class="line">var mergeKLists = function(lists) &#123;</span><br><span class="line">    function mergeList (l1, l2) &#123;</span><br><span class="line">        if (l1 === null) return l2</span><br><span class="line">        if (l2 === null) return l1</span><br><span class="line">        if (l1.val &lt; l2.val) &#123;</span><br><span class="line">            l1.next = mergeList(l1.next, l2)</span><br><span class="line">            return l1</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            l2.next =  mergeList(l1, l2.next)</span><br><span class="line">            return l2</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // 两两循环数组</span><br><span class="line">    function loop (list) &#123;</span><br><span class="line">        if (list.length === 0) return null</span><br><span class="line">        if (list.length === 1) return list[0]</span><br><span class="line">        const len = list.length;</span><br><span class="line">        const temp = []</span><br><span class="line">        const loopTeamp = len &gt;&gt; 1; // 位移</span><br><span class="line">        for (let i = 0; i &lt; loopTeamp; i ++) &#123;</span><br><span class="line">            temp.push(mergeList(list[2 * i], list[2* i + 1]))</span><br><span class="line">        &#125;</span><br><span class="line">        if (len % 2 === 1) &#123;</span><br><span class="line">            temp.push(list[len - 1])</span><br><span class="line">        &#125;</span><br><span class="line">        return loop(temp)</span><br><span class="line">    &#125;</span><br><span class="line">    return loop(lists)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="环形链表"><a href="#环形链表" class="headerlink" title="环形链表"></a>环形链表</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * function ListNode(val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *     this.next = null;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @param &#123;ListNode&#125; head</span><br><span class="line"> * @return &#123;ListNode&#125;</span><br><span class="line"> */</span><br><span class="line">var detectCycle = function(head) &#123;</span><br><span class="line">    let s = new Set()</span><br><span class="line">    while(head) &#123;</span><br><span class="line">        if (s.has(head)) return head</span><br><span class="line">        s.add(head)</span><br><span class="line">        head = head.next</span><br><span class="line">    &#125;</span><br><span class="line">    return null</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>快慢指针</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * function ListNode(val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *     this.next = null;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @param &#123;ListNode&#125; head</span><br><span class="line"> * @return &#123;ListNode&#125;</span><br><span class="line"> */</span><br><span class="line">var detectCycle = function(head) &#123;</span><br><span class="line">    if (head == null) return head</span><br><span class="line">    let fast = head, slow = head</span><br><span class="line">    while(fast &amp;&amp; fast.next) &#123;</span><br><span class="line">        slow = slow.next</span><br><span class="line">        fast = fast.next.next</span><br><span class="line">        if (fast == slow) &#123;</span><br><span class="line">            let cur = head</span><br><span class="line">            while (cur != fast) &#123;</span><br><span class="line">                cur = cur.next</span><br><span class="line">                fast = fast.next</span><br><span class="line">            &#125;</span><br><span class="line">            return fast</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return null</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="排序链表"><a href="#排序链表" class="headerlink" title="排序链表"></a>排序链表</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * function ListNode(val, next) &#123;</span><br><span class="line"> *     this.val = (val===undefined ? 0 : val)</span><br><span class="line"> *     this.next = (next===undefined ? null : next)</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line"> const merge = (head1, head2) =&gt; &#123;</span><br><span class="line">     const node = new ListNode(0)</span><br><span class="line">     let temp = node, temp1 = head1, temp2 = head2</span><br><span class="line">     while(temp1 !== null &amp;&amp; temp2 !== null) &#123;</span><br><span class="line">         if (temp1.val &lt;= temp2.val) &#123;</span><br><span class="line">             temp.next = temp1</span><br><span class="line">             temp1 = temp1.next</span><br><span class="line">         &#125; else &#123;</span><br><span class="line">             temp.next = temp2</span><br><span class="line">             temp2 = temp2.next</span><br><span class="line">         &#125;</span><br><span class="line">         temp = temp.next</span><br><span class="line">     &#125;</span><br><span class="line">     if (temp1 !== null) &#123;</span><br><span class="line">         temp.next = temp1</span><br><span class="line">     &#125; else if (temp2!== null) &#123;</span><br><span class="line">         temp.next = temp2</span><br><span class="line">     &#125;</span><br><span class="line">     return node.next</span><br><span class="line"> &#125;</span><br><span class="line">const toSortList = (head, tail) =&gt; &#123;</span><br><span class="line">     if (head === null) &#123;</span><br><span class="line">         return head // 为空判断</span><br><span class="line">     &#125;</span><br><span class="line">     if (head.next === tail) &#123; // 临界值</span><br><span class="line">        head.next = null</span><br><span class="line">        return head</span><br><span class="line">     &#125;</span><br><span class="line">     let slow = head, fast = head</span><br><span class="line">     while(fast !== tail) &#123;</span><br><span class="line">         slow = slow.next</span><br><span class="line">         fast = fast.next</span><br><span class="line">         if (fast!== tail) &#123;</span><br><span class="line">             fast = fast.next</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     let mid = slow</span><br><span class="line">     return merge(toSortList(head, mid), toSortList(mid, tail))</span><br><span class="line"> &#125;</span><br><span class="line">var sortList = function(head) &#123;</span><br><span class="line">    return toSortList(head, null)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="相交链表"><a href="#相交链表" class="headerlink" title="相交链表"></a>相交链表</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * function ListNode(val) &#123;</span><br><span class="line"> *     this.val = val;</span><br><span class="line"> *     this.next = null;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @param &#123;ListNode&#125; headA</span><br><span class="line"> * @param &#123;ListNode&#125; headB</span><br><span class="line"> * @return &#123;ListNode&#125;</span><br><span class="line"> */</span><br><span class="line">var getIntersectionNode = function(headA, headB) &#123;</span><br><span class="line">    if (headA === null || headB === null) return null</span><br><span class="line">    let nodeA = headA</span><br><span class="line">    let nodeB = headB</span><br><span class="line">    while(nodeA !== nodeB) &#123;</span><br><span class="line">        if (nodeA === null) &#123;</span><br><span class="line">            nodeA = headB</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            nodeA = nodeA.next</span><br><span class="line">        &#125;</span><br><span class="line">        if (nodeB === null) &#123;</span><br><span class="line">            nodeB = headA</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            nodeB = nodeB.next</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return nodeA</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="最长回文子串"><a href="#最长回文子串" class="headerlink" title="最长回文子串"></a>最长回文子串</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @param &#123;string&#125; s</span><br><span class="line"> * @return &#123;string&#125;</span><br><span class="line"> */</span><br><span class="line">var longestPalindrome = function(s) &#123;</span><br><span class="line">    let res = &#x27;&#x27;;</span><br><span class="line">    for (let i = 0; i &lt; s.length; i++) &#123;</span><br><span class="line">        // 寻找长度为奇数的回文子串(以当前元素向两边扩散)</span><br><span class="line">        const s1 = palindrome(s, i, i);</span><br><span class="line">        // 寻找长度为偶数的回文子串(以s[i],s[i + 1])向两边扩散</span><br><span class="line">        const s2 = palindrome(s, i, i + 1);</span><br><span class="line">        res = res.length &gt; s1.length ? res : s1;</span><br><span class="line">        res = res.length &gt; s2.length ? res : s2;</span><br><span class="line">    &#125;</span><br><span class="line">    return res;</span><br><span class="line">&#125;;</span><br><span class="line">function palindrome(s, l, r) &#123;</span><br><span class="line">    // 左右指针，从s[l]和s[r]向两边扩散，找到最长回文串</span><br><span class="line">    while (l &gt;= 0 &amp;&amp; r &lt; s.length &amp;&amp; s[l] == s[r]) &#123;</span><br><span class="line">        l--; r++;</span><br><span class="line">    &#125;</span><br><span class="line">    return s.substr(l + 1, r - l - 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="最长公共前缀"><a href="#最长公共前缀" class="headerlink" title="最长公共前缀"></a>最长公共前缀</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @param &#123;string[]&#125; strs</span><br><span class="line"> * @return &#123;string&#125;</span><br><span class="line"> */</span><br><span class="line">var longestCommonPrefix = function(strs) &#123;</span><br><span class="line">    if (strs.length === 0 || strs === null) return &#x27;&#x27;</span><br><span class="line">    return lcpCommonPrefix(strs)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function lcpCommonPrefix(arr) &#123;</span><br><span class="line">    let len = arr.length</span><br><span class="line">    if (len === 1) &#123;</span><br><span class="line">        return arr[0]</span><br><span class="line">    &#125;</span><br><span class="line">    let mid = Math.floor(len / 2)</span><br><span class="line">    let left = arr.slice(0, mid)</span><br><span class="line">    let right = arr.slice(mid, len)</span><br><span class="line">    return check(lcpCommonPrefix(left), lcpCommonPrefix(right))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function check(str1, str2)&#123;</span><br><span class="line">    let j = 0;</span><br><span class="line">    for (; j &lt; str1.length, j &lt; str2.length; j ++) &#123;</span><br><span class="line">        if (str1.charAt(j) !== str2.charAt(j)) &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return str1.substr(0, j)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="无重复字符的最长子串"><a href="#无重复字符的最长子串" class="headerlink" title="无重复字符的最长子串"></a>无重复字符的最长子串</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @param &#123;string&#125; s</span><br><span class="line"> * @return &#123;number&#125;</span><br><span class="line"> */</span><br><span class="line">var lengthOfLongestSubstring = function(s) &#123;</span><br><span class="line">    let str = new Set();</span><br><span class="line">    let len = s.length;</span><br><span class="line">    let ans = 0;</span><br><span class="line">    let rk = -1;</span><br><span class="line">    for (let i = 0; i &lt; len; i ++) &#123;</span><br><span class="line">        if (i !==0 ) &#123;</span><br><span class="line">            str.delete(s.charAt(i - 1))</span><br><span class="line">        &#125;</span><br><span class="line">        while(rk + 1 &lt; len &amp;&amp; !str.has(s.charAt(rk + 1))) &#123;</span><br><span class="line">            str.add(s.charAt(rk + 1))</span><br><span class="line">            ++rk</span><br><span class="line">        &#125;</span><br><span class="line">        ans = Math.max(ans, rk + 1 - i)</span><br><span class="line">    &#125;</span><br><span class="line">    return ans</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="最小覆盖子串"><a href="#最小覆盖子串" class="headerlink" title="最小覆盖子串"></a>最小覆盖子串</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @param &#123;string&#125; s</span><br><span class="line"> * @param &#123;string&#125; t</span><br><span class="line"> * @return &#123;string&#125;</span><br><span class="line"> */</span><br><span class="line">var minWindow = function(s, t) &#123;</span><br><span class="line">  // 需要的</span><br><span class="line">  let need = &#123;&#125;;</span><br><span class="line">  // 窗口中的字符</span><br><span class="line">  let window = &#123;&#125;;</span><br><span class="line">  for (let a of t) &#123;</span><br><span class="line">    // 统计需要的字符</span><br><span class="line">    need[a] = (need[a] || 0) + 1;</span><br><span class="line">  &#125;</span><br><span class="line">  // 左右指针</span><br><span class="line">  let left = 0,</span><br><span class="line">    right = 0;</span><br><span class="line">  let valid = 0;</span><br><span class="line">  // 最小覆盖子串的起始索引及长度</span><br><span class="line">  let start = 0,</span><br><span class="line">    len = Number.MAX_VALUE;</span><br><span class="line">  while (right &lt; s.length) &#123;</span><br><span class="line">    // 即将移入窗口的字符</span><br><span class="line">    let c = s[right];</span><br><span class="line">    // 右移窗口</span><br><span class="line">    right++;</span><br><span class="line">    if (need[c]) &#123;</span><br><span class="line">      // 当前字符在需要的字符中，则更新当前窗口统计</span><br><span class="line">      window[c] = (window[c] || 0) + 1;</span><br><span class="line">      if (window[c] == need[c]) &#123;</span><br><span class="line">        // 当前窗口和需要的字符匹配时，验证数量增加1</span><br><span class="line">        valid++;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // 当验证数量与需要的字符个数一致时，就应该收缩窗口了</span><br><span class="line">    while (valid == Object.keys(need).length) &#123;</span><br><span class="line">      // 更新最小覆盖子串</span><br><span class="line">      if (right - left &lt; len) &#123;</span><br><span class="line">        start = left;</span><br><span class="line">        len = right - left;</span><br><span class="line">      &#125;</span><br><span class="line">      //即将移出窗口的字符</span><br><span class="line">      let d = s[left];</span><br><span class="line">      // 左移窗口</span><br><span class="line">      left++;</span><br><span class="line">      if (need[d]) &#123;</span><br><span class="line">        if (window[d] == need[d]) &#123;</span><br><span class="line">          valid--;</span><br><span class="line">        &#125;</span><br><span class="line">        window[d]--;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return len == Number.MAX_VALUE ? &quot;&quot; : s.substr(start, len);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="验证回文串"><a href="#验证回文串" class="headerlink" title="验证回文串"></a>验证回文串</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @param &#123;string&#125; s</span><br><span class="line"> * @return &#123;boolean&#125;</span><br><span class="line"> */</span><br><span class="line">var isPalindrome = function(s) &#123;</span><br><span class="line">    var str = s.toLowerCase()</span><br><span class="line">    let left = 0;</span><br><span class="line">    let right = str.length - 1</span><br><span class="line">    while (left &lt; right) &#123;</span><br><span class="line">        if (!isValid(str[left])) &#123;</span><br><span class="line">            left ++</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!isValid(str[right])) &#123;</span><br><span class="line">            right --</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line">        if (str[left] !== str[right]) &#123;</span><br><span class="line">            return false</span><br><span class="line">        &#125;</span><br><span class="line">        left ++</span><br><span class="line">        right --</span><br><span class="line">    &#125;</span><br><span class="line">    return true</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function isValid (str) &#123;</span><br><span class="line">    return (str &gt;= &#x27;a&#x27; &amp;&amp; str &lt;= &#x27;z&#x27;) || (str &gt;=&#x27;0&#x27; &amp;&amp; str &lt;= &#x27;9&#x27;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>面试</category>
         <category>js</category>
@@ -486,73 +510,168 @@
   <entry>
     <title>javascript面试-计算机网络</title>
     <url>/2021/08/19/js%E9%9D%A2%E8%AF%95-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>面试</category>
-        <category>js</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>javascript面试-面向对象</title>
-    <url>/2021/08/19/js%E9%9D%A2%E8%AF%95-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</url>
-    <content><![CDATA[<h1 id="对象创建的方式有哪些？"><a href="#对象创建的方式有哪些？" class="headerlink" title="对象创建的方式有哪些？"></a>对象创建的方式有哪些？</h1><p>一般使用字面量的形式直接创建对象，但是这种创建方式对于创建大量相似对象的时候，会产生大量的重复代码。但 js和一般的面向对象的语言不同，在 ES6 之前它没有类的概念。但是可以使用函数来进行模拟，从而产生出可复用的对象创建方式，常见的有以下几种：<br>（1）第一种是工厂模式，工厂模式的主要工作原理是用函数来封装创建对象的细节，从而通过调用函数来达到复用的目的。但是它有一个很大的问题就是创建出来的对象无法和某个类型联系起来，它只是简单的封装了复用代码，而没有建立起对象和类型间的关系。<br>（2）第二种是构造函数模式。js 中每一个函数都可以作为构造函数，只要一个函数是通过 new 来调用的，那么就可以把它称为构造函数。执行构造函数首先会创建一个对象，然后将对象的原型指向构造函数的 prototype 属性，然后将执行上下文中的 this 指向这个对象，最后再执行整个函数，如果返回值不是对象，则返回新建的对象。因为 this 的值指向了新建的对象，因此可以使用 this 给对象赋值。构造函数模式相对于工厂模式的优点是，所创建的对象和构造函数建立起了联系，因此可以通过原型来识别对象的类型。但是构造函数存在一个缺点就是，造成了不必要的函数对象的创建，因为在 js 中函数也是一个对象，因此如果对象属性中如果包含函数的话，那么每次都会新建一个函数对象，浪费了不必要的内存空间，因为函数是所有的实例都可以通用的。<br>（3）第三种模式是原型模式，因为每一个函数都有一个 prototype 属性，这个属性是一个对象，它包含了通过构造函数创建的所有实例都能共享的属性和方法。因此可以使用原型对象来添加公用属性和方法，从而实现代码的复用。这种方式相对于构造函数模式来说，解决了函数对象的复用问题。但是这种模式也存在一些问题，一个是没有办法通过传入参数来初始化值，另一个是如果存在一个引用类型如 Array 这样的值，那么所有的实例将共享一个对象，一个实例对引用类型值的改变会影响所有的实例。<br>（4）第四种模式是组合使用构造函数模式和原型模式，这是创建自定义类型的最常见方式。因为构造函数模式和原型模式分开使用都存在一些问题，因此可以组合使用这两种模式，通过构造函数来初始化对象的属性，通过原型对象来实现函数方法的复用。这种方法很好的解决了两种模式单独使用时的缺点，但是有一点不足的就是，因为使用了两种不同的模式，所以对于代码的封装性不够好。<br>（5）第五种模式是动态原型模式，这一种模式将原型方法赋值的创建过程移动到了构造函数的内部，通过对属性是否存在的判断，可以实现仅在第一次调用函数时对原型对象赋值一次的效果。这一种方式很好地对上面的混合模式进行了封装。<br>（6）第六种模式是寄生构造函数模式，这一种模式和工厂模式的实现基本相同，我对这个模式的理解是，它主要是基于一个已有的类型，在实例化时对实例化的对象进行扩展。这样既不用修改原来的构造函数，也达到了扩展对象的目的。它的一个缺点和工厂模式一样，无法实现对象的识别。</p>
-<h1 id="对象继承的方式有哪些？"><a href="#对象继承的方式有哪些？" class="headerlink" title="对象继承的方式有哪些？"></a>对象继承的方式有哪些？</h1><p>（1）第一种是以原型链的方式来实现继承，但是这种实现方式存在的缺点是，在包含有引用类型的数据时，会被所有的实例对象所共享，容易造成修改的混乱。还有就是在创建子类型的时候不能向超类型传递参数。<br>（2）第二种方式是使用借用构造函数的方式，这种方式是通过在子类型的函数中调用超类型的构造函数来实现的，这一种方法解决了不能向超类型传递参数的缺点，但是它存在的一个问题就是无法实现函数方法的复用，并且超类型原型定义的方法子类型也没有办法访问到。<br>（3）第三种方式是组合继承，组合继承是将原型链和借用构造函数组合起来使用的一种方式。通过借用构造函数的方式来实现类型的属性的继承，通过将子类型的原型设置为超类型的实例来实现方法的继承。这种方式解决了上面的两种模式单独使用时的问题，但是由于我们是以超类型的实例来作为子类型的原型，所以调用了两次超类的构造函数，造成了子类型的原型中多了很多不必要的属性。<br>（4）第四种方式是原型式继承，原型式继承的主要思路就是基于已有的对象来创建新的对象，实现的原理是，向函数中传入一个对象，然后返回一个以这个对象为原型的对象。这种继承的思路主要不是为了实现创造一种新的类型，只是对某个对象实现一种简单继承，ES5 中定义的 Object.create() 方法就是原型式继承的实现。缺点与原型链方式相同。<br>（5）第五种方式是寄生式继承，寄生式继承的思路是创建一个用于封装继承过程的函数，通过传入一个对象，然后复制一个对象的副本，然后对象进行扩展，最后返回这个对象。这个扩展的过程就可以理解是一种继承。这种继承的优点就是对一个简单对象实现继承，如果这个对象不是自定义类型时。缺点是没有办法实现函数的复用。<br>（6）第六种方式是寄生式组合继承，组合继承的缺点就是使用超类型的实例做为子类型的原型，导致添加了不必要的原型属性。寄生式组合继承的方式是使用超类型的原型的副本来作为子类型的原型，这样就避免了创建不必要的属性。</p>
+    <content><![CDATA[<h1 id="OSI七层理想模型"><a href="#OSI七层理想模型" class="headerlink" title="OSI七层理想模型"></a>OSI七层理想模型</h1><h2 id="网络分层的含义"><a href="#网络分层的含义" class="headerlink" title="网络分层的含义"></a>网络分层的含义</h2><ul>
+<li>应用层，用户最终使用的接口，微信、qq</li>
+<li>表示层，对数据进行描述，压缩等</li>
+<li>会话层，建立会话和管理会话</li>
+<li>传输层，把数据传递给对方，怎么传，丢了要不要重新传递</li>
+<li>网络层，网络层主要是寻址</li>
+<li>数据链路层，只关心是两个设备链接起来，连接数据</li>
+<li>物理层，只关心如何传输数据 0&amp;1，传输的是比特流</li>
+</ul>
+<p>实际模型</p>
+<ul>
+<li>应用层        应用层数据-&gt;报文<ul>
+<li>应用层    </li>
+<li>表示层</li>
+<li>会话层</li>
+</ul>
+</li>
+<li>传输层        传输层头部| 应用层数据 -&gt;数据段：增加端口</li>
+<li>网络层        网络层头部|传输层头部|应用层数据 数据包 增加IP</li>
+<li>网络接口层     桢头|网络层头部|传输层头部|应用层数据|桢尾 数据桢：增加mac地址<ul>
+<li>数据链路层</li>
+<li>物理层</li>
+</ul>
+</li>
+</ul>
+<h2 id="七层协议真正做了什么事情"><a href="#七层协议真正做了什么事情" class="headerlink" title="七层协议真正做了什么事情"></a>七层协议真正做了什么事情</h2><ul>
+<li>报文（应用层 + 数据）</li>
+<li>数据段 （应用层 + 数据+ 端口号）</li>
+<li>数据包 （网络层+数据+端口+ IP地址）</li>
+<li>数据桢（链路层+ 数据+ 端口+ ip+ mac地址）</li>
+</ul>
+<h2 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h2><p>通信是通过ip地址查找对应的mac来进行通信的，IP地址是可变的（类似与我们的快递地址是可变的）</p>
+<h3 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h3><p>IPV4 ip地址的第四个版本 255.255.255.255 最大地址位<br>IPV6 ip地址的第六个版本 八个16进制 aaaa-aaaa-aaaa-aaaa-aaaa-aaaa-aaaa-aaaa</p>
+<h3 id="mac地址"><a href="#mac地址" class="headerlink" title="mac地址"></a>mac地址</h3><p>原则上是唯一的（也是可以变的，不考虑篡改下是不可变的）每个网卡都会有一个mac地址</p>
+<h2 id="网络层有哪些设备？"><a href="#网络层有哪些设备？" class="headerlink" title="网络层有哪些设备？"></a>网络层有哪些设备？</h2><p>物理层只关心发数据（局域网通信）</p>
+<ul>
+<li>光纤 同轴电缆 网线 中继器</li>
+</ul>
+<h2 id="链路层"><a href="#链路层" class="headerlink" title="链路层"></a>链路层</h2><p>局域网</p>
+<ul>
+<li>交换机</li>
+</ul>
+<h2 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h2><ul>
+<li>路由器</li>
+</ul>
+<h2 id="网络中的协议"><a href="#网络中的协议" class="headerlink" title="网络中的协议"></a>网络中的协议</h2><p>协议就是约定和规范 （在7层模型中只有三层以上的才能称之为协议）</p>
+<p>应用层（HTTP DNS）DHCP协议<br>传输层协议 TCP UDP<br>网络层 IP协议 ARP协议 下层为上层提供服务</p>
+<h3 id="ARP协议（核心价值在于将IP地址转换成mac地址）"><a href="#ARP协议（核心价值在于将IP地址转换成mac地址）" class="headerlink" title="ARP协议（核心价值在于将IP地址转换成mac地址）"></a>ARP协议（核心价值在于将IP地址转换成mac地址）</h3><p>广播 根据ip地址，广播信息，然后应答，应答之后知道mac地址了 </p>
+<h3 id="DHCP协议"><a href="#DHCP协议" class="headerlink" title="DHCP协议"></a>DHCP协议</h3><p>通过DHCP自动获取网络配置信息，我们无序自己手动配置IP，基于UDP</p>
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p>因为ip地址很难记，用域名替代IP，IP替代mac地址<br>DNS服务器进行域名和与之对应的IP地址转换的服务器<br>DNS 如何进行解析的？<br>是基于UDP协议进行解析，没有三次握手</p>
+<ol>
+<li>如果域名被解析了，根据缓存输出对应ip，缓存地址两种情况，（路由器，本地host文件）</li>
+<li>没有缓存，<a href="http://www.baidu.com.cn/">www.baidu.com.cn</a><br>cn :域名服务器 =》 根服务器里面查找。cn 找到之后=》域名服务器<br>com:域名服务器 =》 根服务器里面查找。cn 找到之后=》域名服务器<br>baidu :域名服务器 =》 根服务器里面查找。cn 找到之后=》域名服务器<br>www :域名服务器 =》 根服务器里面查找。cn 找到之后=》域名服务器</li>
+</ol>
+<p>DNS为什么块？<br>DNS服务器会对IP及域名进行缓存，采用UDP协议</p>
+<h2 id="TCP和UDP-（传输层）"><a href="#TCP和UDP-（传输层）" class="headerlink" title="TCP和UDP （传输层）"></a>TCP和UDP （传输层）</h2><p>两个协议都在传输层，我们经常说TCP是面向连接，而UDP是面向无连接的</p>
+<ul>
+<li>UDP发出请求后，不考虑对方是否能接收到，内容是否完整，顺序是否正确，收到数据后不会进行通知</li>
+<li>首部结构简单，在数据传输时能实现最小的开销</li>
+</ul>
+<h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><p>TCP传输控制协议，可靠，面向连接的协议，传输效率第（在不可靠的IP层上建立可靠的传输层）。TCP提供双工服务，即数据可在同一时间进行双向传播。</p>
+<h3 id="TCP数据格式"><a href="#TCP数据格式" class="headerlink" title="TCP数据格式"></a>TCP数据格式</h3><p>0 ———— 15 16———-31<br>—–源端口号— | | 目标端口号—|<br>—————32位序列号——-|<br>—————r-32位确认号—–|<br>4位|保留|U|A|P|R|S|F|———-|<br>首部|6位|R|C|S|S|Y|I|16位窗口大小<br>长度|   |G|K|H|T|N|N|———-|<br>—–16位校验号—-|-16位紧急指针|</p>
+<ol>
+<li>TCP为什么需要三次握手？<br>因为需要双共通信<ul>
+<li>客户端和服务端主动握手 SYN</li>
+<li>服务端应答后台客户端 SYN ACK</li>
+<li>客户端应答            ACK</li>
+</ul>
+</li>
+<li>TCP四次挥手<ul>
+<li>客户端发送断开消息 [FIN, ACK]</li>
+<li>服务端应答        [ ACK ]</li>
+<li>服务端说完剩下的话  [FIN ACK]</li>
+<li>客户端 回应          [ ACK ]</li>
+</ul>
+</li>
+</ol>
+<h3 id><a href="#" class="headerlink" title></a></h3><p>a ============= &gt; b<br>seq = 0<br>a&lt;================b<br>seq = 0 ack = 1<br>a=================&gt;b<br>seq = 1 ack = 1</p>
+<h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><ul>
+<li>客户端有自己的缓存区，服务端也有自己的缓存区，会根据网络状况调整发送数据的多少</li>
+<li>客户端给服务端发送的数据是乱序的，但是当服务端收到某个包后，之前的数据还没有收到，此时我们需要等待前面序号的包到了之后才能继续滑动（队头阻塞）</li>
+<li>服务端会和客户端说明发送数据的个数</li>
+<li>如果某个数据包丢失，那需要重新发送（超时重传 TRO）</li>
+<li>当接收方的缓存区收满了，每隔一定时间，发送方会发送一个探测包，来询问能否调整窗口的大小，上层协议消耗掉接收方的数据，接收方也会主动通知发送方调整窗口，继续发送数据</li>
+<li>流量控制，控制发送方发送的数据大小</li>
+</ul>
+<h3 id="粘包"><a href="#粘包" class="headerlink" title="粘包"></a>粘包</h3><p>nagle算法（node默认算法），同一时间段内只有一个包处于发送状态</p>
+<p>cork算法可以合并多个包</p>
+<h3 id="tcp问题-队头阻塞，慢开始，端链接，"><a href="#tcp问题-队头阻塞，慢开始，端链接，" class="headerlink" title="tcp问题-队头阻塞，慢开始，端链接，"></a>tcp问题-队头阻塞，慢开始，端链接，</h3><ul>
+<li>滑动窗口控制传输速度</li>
+<li>粘包 nagle算法，cork算法</li>
+<li>拥塞处理，快重传 -快恢复算法</li>
+<li>TCP顺序问题，后面的包到达需要等待前面的包返回之后才可以继续传输 （队头阻塞问题）</li>
+<li>满启动的过程 非常消耗性能</li>
+<li>time-wait 客户端连接服务器最后不会立即断开，在高并发 短连接的情况下，会出现端口全被占用</li>
+</ul>
+<h1 id="http-1-1（纯文本协议-安全问题-明文-安全）"><a href="#http-1-1（纯文本协议-安全问题-明文-安全）" class="headerlink" title="http 1.1（纯文本协议 安全问题 明文-安全）"></a>http 1.1（纯文本协议 安全问题 明文-安全）</h1><ul>
+<li><p>基于TCP传输层，半双工通信，请求应答模式，默认无状态（默认TCP不能在没有应答后复用TCP通道继续发送消息）</p>
+</li>
+<li><p>tcp的规范，就是固定的组成结构</p>
+<ul>
+<li>  请求行 响应行 主要目的是描述我要做什么，服务端告诉客户端OK</li>
+<li>  请求头 响应头 描述我们传输的数据内容，自定义我们的header</li>
+<li>  请求体 响应体 两者的数据</li>
+</ul>
+</li>
+<li><p>请求头</p>
+</li>
+</ul>
+<ul>
+<li>  accept                  content-type</li>
+<li>  accept-encoding         content-encoding</li>
+<li>  accept-language</li>
+<li>  range                   content-range</li>
+</ul>
+<h2 id="请求头和响应头"><a href="#请求头和响应头" class="headerlink" title="请求头和响应头"></a>请求头和响应头</h2><ul>
+<li>核心在于内容协商</li>
+<li>http实现长连接，会默认在请求的时候，增加connection:keep-alive, connection: close 用于TCP通道传递数据（必须在一次请求应答后才能复用）<ul>
+<li>  多个请求怎么办？</li>
+</ul>
+</li>
+</ul>
+<h2 id="管线化方式传递数据"><a href="#管线化方式传递数据" class="headerlink" title="管线化方式传递数据"></a>管线化方式传递数据</h2><ul>
+<li>我们针对每个域名分配6个TCP通道（域名分片，域名不易过多，过多会导致DNS解析大量域名）问题，在于请求并发的请求，应答依旧是按顺序的（管道的特点就是先发送的先回来）（队头阻塞 http1.1中的队头阻塞）</li>
+</ul>
+<h2 id="可以使用cookie使用用户身份"><a href="#可以使用cookie使用用户身份" class="headerlink" title="可以使用cookie使用用户身份"></a>可以使用cookie使用用户身份</h2><p>在客户端增加cookie字段，服务端set-cookie每次请求都会自动携带cookie</p>
+<h2 id="http缓存"><a href="#http缓存" class="headerlink" title="http缓存"></a>http缓存</h2><ul>
+<li>强制缓存 协商缓存</li>
+<li>强制缓存，客户端访问之后，接下来重复访问后直接从缓存中读取 cache-control</li>
+<li>协商缓存的含义就是，当强制缓存失效后会再次向服务器发起请求，服务器要对比客户端的缓存文件和服务端是否一致，如果一致则返回302, 如果文件更新来，那么就采用返回新文件的方式last-modify /if modify-since 问题在于最后修改时间变化了，但是内容没变，同一时间无法返回多次修改</li>
+<li>摘要算法 md4（不同的内容摘要的结果，肯定不同，两个相同的内容摘要肯定相同，无法通过最终的结果反推原内容）etag/if-none-match</li>
+<li>no-cache(不缓存，但是缓存中有，每次询问) no-store（真正的不缓存，压根没有缓存），会简单的使用弱指纹，可以用last-modify</li>
+</ul>
+<h1 id="当-ping-一个-IP-地址时发生了什么"><a href="#当-ping-一个-IP-地址时发生了什么" class="headerlink" title="当 ping 一个 IP 地址时发生了什么"></a>当 ping 一个 IP 地址时发生了什么</h1><p>Step 1: ICMP 创建一个请求数据包(数据域中只包含字母)</p>
+<p>Step 2: ICMP将该有效负荷交给IP协议，增加的IP头包含：源IP(Host A的IP)，目标IP(Host C的IP)，协议字段(0x01, ICMP的协议号)，这些信息在接收方主机用来判断将数据交给哪个协议处理</p>
+<p>Step 3: IP协议判断目的IP是处于LAN还是某个远程网络，具体的判断方法是将目标IP和子网掩码一起找出目标网络，看是否等于本地网络；</p>
+<p>Step 4: 由于IP协议判定这是一个远程的跨网络请求，要将这一分组路由到远程网络，就必须将它发给默认路由</p>
+<p>Step 5: 主机 Host A(192.168.1.2)要将分组数据发送到默认网关(192.168.1.1), 就必须要知道Router A接口F0/0的MAC地址</p>
+<p>Step 6: 检查主机ARP缓存，查看默认网关IP地址是否已经被解析为一个硬件地址</p>
+<p>若已被解析：此分组可被传送到数据链路层以组建帧(可使用arp -a查看)</p>
+<p>若未被解析：Host A使用ARP广播(MAC广播地址为：FF-FF-FF-FF-FF-FF), Router A接受到广播后，通过F0/0口返回该口的硬件地址</p>
+<p>Step 7: 一旦分组和硬件地址交给链路层，局域网驱动程序负责选择合适的局域网类型(本例为以太网)的介质访问方式，创建数据帧</p>
+<p>Step 8: 一旦帧创建完成，该帧被提交到物理层；物理层将 1bit/次的方式将数据发送到物理介质中</p>
+<p>Step 10: 将分组数据从帧中取出，并将其他部分丢弃；然后，分组被递交给以太网类型字段中列出的协议（本例为IP协议）</p>
+<p>Step 11：IP接受该分组，并检查其目的IP</p>
+<p>由于分组的目的IP与本路由(Router A)的配置IP不匹配，此路由将在其路由表中查找目的IP的位置</p>
+<p>Step 12: 如果路由表中没有网络 192.168.20.0 的路由表项，则立即丢弃该分组；并向源主机Host A发送目标网络不可达的ICMP报文</p>
+<p>Step 13: 如果在路由表中查找到了相关的路由表项，则分组将被交换到指定的输出接口</p>
+<p>Step 14: 路由器Router A将此分组交换到F0/1的缓冲区内</p>
+<p>Step 15: F0/1需要获得目的方设备的MAC地址(本例为Router B的F0/0 MAC地址)</p>
+<p>查看F0/1的ARP缓存，若存在，则分组和MAC地址将被提交到数据链路层，用于数据帧的组建；</p>
+<p>若不存在，采用路由选择协议(RIP/EIGRP/OSPF)；</p>
+<p>Step 16: 帧创建完成后，将其交给物理层，并由物理层逐比特发送到物理介质中</p>
+<p>Step 17: Router B执行与Router A相同的操作 (即step9 - step16)</p>
+<p>Step 18: Host C 接收到该帧，并立即运行CRC运算，若与FCS匹配，则检测帧中的目标MAC，如果同样相同，检查以太网类型值，判断网络层协议 – 本例为IP</p>
+<p>Step 19: 在网络层，IP接受到该分组，并对其头部进行CRC；若相同，则检查目标IP是否与本机相同；若相同，检查分组的协议字段，了解上层的交付对象 – 本例为ICMP</p>
+<p>Step 20: 负荷提交给ICMP；ICMP知道此为回应请求信号，ICMP将应答此请求</p>
+<p>应答方式：首先丢弃接受到的字段，产生一个新的有效负荷作为回应字段</p>
+<p>Step 21: 此时一个新的有效负荷产生，目标为Host A</p>
+<p>Step 22: 将其提交给IP层，IP判断目的地址为本地LAN还是远程主机(本例为远程主机)，此分组首先发到默认网关</p>
+<p>Step 23: 重复请求包所经历的步骤，直到将应答包发送到Host A的ICMP协议为止</p>
 ]]></content>
-      <categories>
-        <category>面试</category>
-        <category>js</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>javascript面试-高频手写代码</title>
-    <url>/2021/08/19/js%E9%9D%A2%E8%AF%95-%E9%AB%98%E9%A2%91%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81/</url>
-    <content><![CDATA[<h1 id="call"><a href="#call" class="headerlink" title="call"></a>call</h1><ol>
-<li>判断调用对象是否是函数，即使是定义在函数的原型上的，但是可能出现使用call等方式调用的情况；</li>
-<li>判断上下文对象是否存在，如果不存在，则设置为window</li>
-<li>处理传入的参数，截取第一个参数后的所有参数。</li>
-<li>将函数作为上下文对象的一个属性。</li>
-<li>使用上下文对象来调用这个方法，并保留返回结果。</li>
-<li>删除刚才新增的属性</li>
-<li>返回结果。</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Function.prototype.myCall = function(context) &#123;</span><br><span class="line">  // 判断调用对象</span><br><span class="line">  if (typeof this !== &quot;function&quot;) &#123;</span><br><span class="line">    console.error(&quot;type error&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  // 获取参数</span><br><span class="line">  let args = [...arguments].slice(1),</span><br><span class="line">    result = null;</span><br><span class="line">  // 判断 context 是否传入，如果未传入则设置为 window</span><br><span class="line">  context = context || window;</span><br><span class="line">  // 将调用函数设为对象的方法</span><br><span class="line">  context.fn = this;</span><br><span class="line">  // 调用函数</span><br><span class="line">  result = context.fn(...args);</span><br><span class="line">  // 将属性删除</span><br><span class="line">  delete context.fn;</span><br><span class="line">  return result;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h1><ol>
-<li>判断调用对象是否为函数，即使是定义在函数的原型上的，但是可能出现使用 call 等方式调用的情况。</li>
-<li>判断传入上下文对象是否存在，如果不存在，则设置为 window 。</li>
-<li>将函数作为上下文对象的一个属性。</li>
-<li>判断参数值是否传入</li>
-<li>使用上下文对象来调用这个方法，并保存返回结果。</li>
-<li>删除刚才新增的属性</li>
-<li>返回结果</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Function.prototype.myApply = function(context) &#123;</span><br><span class="line">  // 判断调用对象是否为函数</span><br><span class="line">  if (typeof this !== &quot;function&quot;) &#123;</span><br><span class="line">    throw new TypeError(&quot;Error&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  let result = null;</span><br><span class="line">  // 判断 context 是否存在，如果未传入则为 window</span><br><span class="line">  context = context || window;</span><br><span class="line">  // 将函数设为对象的方法</span><br><span class="line">  context.fn = this;</span><br><span class="line">  // 调用方法</span><br><span class="line">  if (arguments[1]) &#123;</span><br><span class="line">    result = context.fn(...arguments[1]);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    result = context.fn();</span><br><span class="line">  &#125;</span><br><span class="line">  // 将属性删除</span><br><span class="line">  delete context.fn;</span><br><span class="line">  return result;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h1><ol>
-<li>判断调用对象是否为函数，即使是定义在函数的原型上的，但是可能出现使用 call 等方式调用的情况</li>
-<li>保存当前函数的引用，获取其余传入参数值。</li>
-<li>创建一个函数返回</li>
-<li>函数内部使用apply来绑定函数调用，需要判断函数作为构造函数的情况，这个时候需要传入当前的this给apply调用，其余情况都传入制定的上下文对象</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Function.prototype.myBind = function(context) &#123;</span><br><span class="line">  // 判断调用对象是否为函数</span><br><span class="line">  if (typeof this !== &quot;function&quot;) &#123;</span><br><span class="line">    throw new TypeError(&quot;Error&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  // 获取参数</span><br><span class="line">  var args = [...arguments].slice(1),</span><br><span class="line">    fn = this;</span><br><span class="line">  return function Fn() &#123;</span><br><span class="line">    // 根据调用方式，传入不同绑定值</span><br><span class="line">    return fn.apply(</span><br><span class="line">      this instanceof Fn ? this : context,</span><br><span class="line">      args.concat(...arguments)</span><br><span class="line">    );</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="什么是防抖和节流，他们的应用场景有哪些"><a href="#什么是防抖和节流，他们的应用场景有哪些" class="headerlink" title="什么是防抖和节流，他们的应用场景有哪些"></a>什么是防抖和节流，他们的应用场景有哪些</h1><h2 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖(debounce)"></a>防抖(debounce)</h2><p>触发高频事件后 n 秒内函数只会执行一次，如果 n 秒内高频事件再次被触发，则重新计算时间</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 防抖函数</span><br><span class="line">function debounce(fn, wait) &#123;</span><br><span class="line">  let timer;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    let _this = this;</span><br><span class="line">    let args = arguments;</span><br><span class="line">    if (timer) &#123;</span><br><span class="line">      clearTimeout(timer);</span><br><span class="line">    &#125;</span><br><span class="line">    timer = setTimeout(function () &#123;</span><br><span class="line">      fn.apply(_this, args);</span><br><span class="line">    &#125;, wait);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">// 使用</span><br><span class="line">window.onresize = debounce(function () &#123;</span><br><span class="line">  console.log(&quot;resize&quot;);</span><br><span class="line">&#125;, 500);</span><br></pre></td></tr></table></figure>
-
-<h2 id="节流-throttle"><a href="#节流-throttle" class="headerlink" title="节流(throttle)"></a>节流(throttle)</h2><p>高频事件触发，但在 n 秒内只会执行一次，所以节流会稀释函数的执行频率</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 方式1: 使用时间戳</span><br><span class="line">function throttle1(fn, wait) &#123;</span><br><span class="line">  let time = 0;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    let _this = this;</span><br><span class="line">    let args = arguments;</span><br><span class="line">    let now = Date.now();</span><br><span class="line">    if (now - time &gt; wait) &#123;</span><br><span class="line">      fn.apply(_this, args);</span><br><span class="line">      time = now;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">// 方式2: 使用定时器</span><br><span class="line">function thorttle2(fn, wait) &#123;</span><br><span class="line">  let timer;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    let _this = this;</span><br><span class="line">    let args = arguments;</span><br><span class="line"></span><br><span class="line">    if (!timer) &#123;</span><br><span class="line">      timer = setTimeout(function () &#123;</span><br><span class="line">        timer = null;</span><br><span class="line">        fn.apply(_this, args);</span><br><span class="line">      &#125;, wait);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>上面节流和防抖实现方式比较简单，但是已经可以满足日常使用，如果想更近一步了解可以查看underscore (opens new window)和lodash (opens new window)文档中debounce和thorttle</p>
-<p>防抖：防止抖动，单位时间内事件触发会被重置，避免事件被误伤触发多次。代码实现重在清零 clearTimeout。防抖可以比作等电梯，只要有一个人进来，就需要再等一会儿。业务场景有避免登录按钮多次点击的重复提交。<br>节流：控制流量，单位时间内事件只能触发一次，与服务器端的限流 (Rate Limit) 类似。代码实现重在开锁关锁 timer=timeout; timer=null。节流可以比作过红绿灯，每等一个红灯时间就可以过一批。</p>
-<h1 id="如何实现一个简单的-Promise"><a href="#如何实现一个简单的-Promise" class="headerlink" title="如何实现一个简单的 Promise"></a>如何实现一个简单的 Promise</h1>]]></content>
-      <categories>
-        <category>面试</category>
-        <category>js</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>javascript面试-react</title>
-    <url>/2021/08/19/js%E9%9D%A2%E8%AF%95%E9%A2%98-react/</url>
-    <content><![CDATA[]]></content>
       <categories>
         <category>面试</category>
         <category>js</category>
@@ -1091,6 +1210,17 @@
 ]]></content>
       <categories>
         <category>js基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>javascript面试-常用算法</title>
+    <url>/2021/08/19/%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[<h1 id="ip协议的首部结构"><a href="#ip协议的首部结构" class="headerlink" title="ip协议的首部结构"></a>ip协议的首部结构</h1><p><img src="/.io//IP%E5%8D%8F%E8%AE%AE%E7%9A%84%E9%A6%96%E9%83%A8%E7%BB%93%E6%9E%84.png" alt="IP协议的首部结构"></p>
+<h1 id="说一说-HashRouter-和-HistoryRouter的区别和原理？"><a href="#说一说-HashRouter-和-HistoryRouter的区别和原理？" class="headerlink" title="说一说 HashRouter 和 HistoryRouter的区别和原理？"></a>说一说 HashRouter 和 HistoryRouter的区别和原理？</h1><h1 id="说一说你对闭包的理解？"><a href="#说一说你对闭包的理解？" class="headerlink" title="说一说你对闭包的理解？"></a>说一说你对闭包的理解？</h1><h1 id="说一下浏览器如何渲染页面的？"><a href="#说一下浏览器如何渲染页面的？" class="headerlink" title="说一下浏览器如何渲染页面的？"></a>说一下浏览器如何渲染页面的？</h1><h1 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h1><p>给定一个整数数组nums，按升序排序，数组中的元素各不相同。<br>nums数组在传递给search函数之前，会在预先未知的某个下标 t（0 &lt;= t &lt;= nums.length-1）上进行旋转，让数组变为[nums[t], nums[t+1], …, nums[nums.length-1], nums[0], nums[1], …, nums[t-1]]。<br>比如，数组[0,2,4,6,8,10]在下标2处旋转之后变为[6,8,10,0,2,4]<br>现在给定一个旋转后的数组nums和一个整数target，请你查找这个数组是不是存在这个target，如果存在，那么返回它的下标，如果不存在，返回-1</p>
+]]></content>
+      <categories>
+        <category>面试</category>
+        <category>http</category>
       </categories>
   </entry>
   <entry>
@@ -2668,6 +2798,432 @@ finally方法的回调函数不接受任何参数，这意味着没有办法知�
       </categories>
   </entry>
   <entry>
+    <title>javascript面试-面向对象</title>
+    <url>/2021/08/19/js%E9%9D%A2%E8%AF%95-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</url>
+    <content><![CDATA[<h1 id="对象创建的方式有哪些？"><a href="#对象创建的方式有哪些？" class="headerlink" title="对象创建的方式有哪些？"></a>对象创建的方式有哪些？</h1><p>一般使用字面量的形式直接创建对象，但是这种创建方式对于创建大量相似对象的时候，会产生大量的重复代码。但 js和一般的面向对象的语言不同，在 ES6 之前它没有类的概念。但是可以使用函数来进行模拟，从而产生出可复用的对象创建方式，常见的有以下几种：<br>（1）第一种是工厂模式，工厂模式的主要工作原理是用函数来封装创建对象的细节，从而通过调用函数来达到复用的目的。但是它有一个很大的问题就是创建出来的对象无法和某个类型联系起来，它只是简单的封装了复用代码，而没有建立起对象和类型间的关系。<br>（2）第二种是构造函数模式。js 中每一个函数都可以作为构造函数，只要一个函数是通过 new 来调用的，那么就可以把它称为构造函数。执行构造函数首先会创建一个对象，然后将对象的原型指向构造函数的 prototype 属性，然后将执行上下文中的 this 指向这个对象，最后再执行整个函数，如果返回值不是对象，则返回新建的对象。因为 this 的值指向了新建的对象，因此可以使用 this 给对象赋值。构造函数模式相对于工厂模式的优点是，所创建的对象和构造函数建立起了联系，因此可以通过原型来识别对象的类型。但是构造函数存在一个缺点就是，造成了不必要的函数对象的创建，因为在 js 中函数也是一个对象，因此如果对象属性中如果包含函数的话，那么每次都会新建一个函数对象，浪费了不必要的内存空间，因为函数是所有的实例都可以通用的。<br>（3）第三种模式是原型模式，因为每一个函数都有一个 prototype 属性，这个属性是一个对象，它包含了通过构造函数创建的所有实例都能共享的属性和方法。因此可以使用原型对象来添加公用属性和方法，从而实现代码的复用。这种方式相对于构造函数模式来说，解决了函数对象的复用问题。但是这种模式也存在一些问题，一个是没有办法通过传入参数来初始化值，另一个是如果存在一个引用类型如 Array 这样的值，那么所有的实例将共享一个对象，一个实例对引用类型值的改变会影响所有的实例。<br>（4）第四种模式是组合使用构造函数模式和原型模式，这是创建自定义类型的最常见方式。因为构造函数模式和原型模式分开使用都存在一些问题，因此可以组合使用这两种模式，通过构造函数来初始化对象的属性，通过原型对象来实现函数方法的复用。这种方法很好的解决了两种模式单独使用时的缺点，但是有一点不足的就是，因为使用了两种不同的模式，所以对于代码的封装性不够好。<br>（5）第五种模式是动态原型模式，这一种模式将原型方法赋值的创建过程移动到了构造函数的内部，通过对属性是否存在的判断，可以实现仅在第一次调用函数时对原型对象赋值一次的效果。这一种方式很好地对上面的混合模式进行了封装。<br>（6）第六种模式是寄生构造函数模式，这一种模式和工厂模式的实现基本相同，我对这个模式的理解是，它主要是基于一个已有的类型，在实例化时对实例化的对象进行扩展。这样既不用修改原来的构造函数，也达到了扩展对象的目的。它的一个缺点和工厂模式一样，无法实现对象的识别。</p>
+<h2 id="1、对象的构造函数"><a href="#1、对象的构造函数" class="headerlink" title="1、对象的构造函数"></a>1、对象的构造函数</h2><p>创建空对象的最简单方法是使用object构造函数，目前不推荐这种方法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = <span class="keyword">new</span> object() <span class="comment">// 对象构造函数</span></span><br></pre></td></tr></table></figure>
+<h2 id="2、对象的创建方法："><a href="#2、对象的创建方法：" class="headerlink" title="2、对象的创建方法："></a>2、对象的创建方法：</h2><p>Object的create方法通过将原型对象作为参数传递来创建一个新对象</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = <span class="built_in">Object</span>.create(<span class="literal">null</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="3、对象字面量语法"><a href="#3、对象字面量语法" class="headerlink" title="3、对象字面量语法"></a>3、对象字面量语法</h2><p>当传递null作为参数时，对象字面量语法等效于create方法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4、函数构造器"><a href="#4、函数构造器" class="headerlink" title="4、函数构造器"></a>4、函数构造器</h2><p>创建任何函数并应用new运算符来创建对象实例</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> obj = &#123;&#125;</span><br><span class="line">    obj.name = name</span><br><span class="line">    <span class="keyword">return</span> obj</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> obj1 = <span class="keyword">new</span> Person(<span class="string">&quot;哈哈&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、带有原型的函数构造函数"><a href="#5、带有原型的函数构造函数" class="headerlink" title="5、带有原型的函数构造函数"></a>5、带有原型的函数构造函数</h2><p>这类似于函数构造函数，但它使用原型作为其属性和方法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">Person.prototype.name = <span class="string">&quot;哈哈&quot;</span></span><br><span class="line"><span class="keyword">var</span> obj = New Person()</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、es6类语法"><a href="#6、es6类语法" class="headerlink" title="6、es6类语法"></a>6、es6类语法</h2><p>es6引入类特性来创建对象</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="title">construtor</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> object = <span class="keyword">new</span> Person(<span class="string">&quot;哈哈&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="7、单例模式"><a href="#7、单例模式" class="headerlink" title="7、单例模式"></a>7、单例模式</h2><p>Singleton是一个只能实例化一次的对象。对其构造函数的重复调用返回相同的实例，这样可以确保它们不会意外创建多个实例</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = <span class="keyword">new</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.name = <span class="string">&quot;哈哈&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="对象继承的方式有哪些？"><a href="#对象继承的方式有哪些？" class="headerlink" title="对象继承的方式有哪些？"></a>对象继承的方式有哪些？</h1><p>（1）第一种是以原型链的方式来实现继承，但是这种实现方式存在的缺点是，在包含有引用类型的数据时，会被所有的实例对象所共享，容易造成修改的混乱。还有就是在创建子类型的时候不能向超类型传递参数。<br>（2）第二种方式是使用借用构造函数的方式，这种方式是通过在子类型的函数中调用超类型的构造函数来实现的，这一种方法解决了不能向超类型传递参数的缺点，但是它存在的一个问题就是无法实现函数方法的复用，并且超类型原型定义的方法子类型也没有办法访问到。<br>（3）第三种方式是组合继承，组合继承是将原型链和借用构造函数组合起来使用的一种方式。通过借用构造函数的方式来实现类型的属性的继承，通过将子类型的原型设置为超类型的实例来实现方法的继承。这种方式解决了上面的两种模式单独使用时的问题，但是由于我们是以超类型的实例来作为子类型的原型，所以调用了两次超类的构造函数，造成了子类型的原型中多了很多不必要的属性。<br>（4）第四种方式是原型式继承，原型式继承的主要思路就是基于已有的对象来创建新的对象，实现的原理是，向函数中传入一个对象，然后返回一个以这个对象为原型的对象。这种继承的思路主要不是为了实现创造一种新的类型，只是对某个对象实现一种简单继承，ES5 中定义的 Object.create() 方法就是原型式继承的实现。缺点与原型链方式相同。<br>（5）第五种方式是寄生式继承，寄生式继承的思路是创建一个用于封装继承过程的函数，通过传入一个对象，然后复制一个对象的副本，然后对象进行扩展，最后返回这个对象。这个扩展的过程就可以理解是一种继承。这种继承的优点就是对一个简单对象实现继承，如果这个对象不是自定义类型时。缺点是没有办法实现函数的复用。<br>（6）第六种方式是寄生式组合继承，组合继承的缺点就是使用超类型的实例做为子类型的原型，导致添加了不必要的原型属性。寄生式组合继承的方式是使用超类型的原型的副本来作为子类型的原型，这样就避免了创建不必要的属性。</p>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h2 id="何为继承"><a href="#何为继承" class="headerlink" title="何为继承"></a>何为继承</h2><p>一个类获取另一个或者多个类的属性或者方法。继承可以使得子类具有父类的各种方法和属性。以免重复输出很多代码。</p>
+<h2 id="继承的原理"><a href="#继承的原理" class="headerlink" title="继承的原理"></a>继承的原理</h2><p>复制父类的方法和属性来重写子类的原型对象。</p>
+<h2 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h2><p>构造函数、原型和实例之间的关系：每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个原型对象的指针。</p>
+<p>继承的本质就是复制，即重写原型对象，代之以一个新类型的实例。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function SuperType() &#123;</span><br><span class="line">    this.property = true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SuperType.prototype.getSuperValue = function() &#123;</span><br><span class="line">    return this.property;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function SubType() &#123;</span><br><span class="line">    this.subproperty = false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 这里是关键，创建SuperType的实例，并将该实例赋值给SubType.prototype</span><br><span class="line">SubType.prototype = new SuperType(); </span><br><span class="line"></span><br><span class="line">SubType.prototype.getSubValue = function() &#123;</span><br><span class="line">    return this.subproperty;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var instance = new SubType();</span><br><span class="line">console.log(instance.getSuperValue()); // true</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>注意：原型链方案存在的缺点：多个实例对引用类型的操作会被篡改。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function SuperType()&#123;</span><br><span class="line">  this.colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line">function SubType()&#123;&#125;</span><br><span class="line"></span><br><span class="line">SubType.prototype = new SuperType();</span><br><span class="line"></span><br><span class="line">var instance1 = new SubType();</span><br><span class="line">instance1.colors.push(&quot;black&quot;);</span><br><span class="line">alert(instance1.colors); //&quot;red,blue,green,black&quot;</span><br><span class="line"></span><br><span class="line">var instance2 = new SubType(); </span><br><span class="line">alert(instance2.colors); //&quot;red,blue,green,black&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="借用构造函数继承"><a href="#借用构造函数继承" class="headerlink" title="借用构造函数继承"></a>借用构造函数继承</h2><p>使用父类的构造函数来增强子类实例，等同于复制父类的实例给子类（不使用原型）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function  SuperType()&#123;</span><br><span class="line">    this.color=[&quot;red&quot;,&quot;green&quot;,&quot;blue&quot;];</span><br><span class="line">&#125;</span><br><span class="line">function  SubType()&#123;</span><br><span class="line">    //继承自SuperType</span><br><span class="line">    SuperType.call(this);</span><br><span class="line">&#125;</span><br><span class="line">var instance1 = new SubType();</span><br><span class="line">instance1.color.push(&quot;black&quot;);</span><br><span class="line">alert(instance1.color);//&quot;red,green,blue,black&quot;</span><br><span class="line"></span><br><span class="line">var instance2 = new SubType();</span><br><span class="line">alert(instance2.color);//&quot;red,green,blue&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>核心代码是SuperType.call(this)，创建子类实例时调用SuperType构造函数，于是SubType的每个实例都会将SuperType中的属性复制一份。<br>缺点：</p>
+<p>只能继承父类的实例属性和方法，不能继承原型属性/方法<br>无法实现复用，每个子类都有父类实例函数的副本，影响性能</p>
+<h2 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h2><p>组合上述两种方法就是组合继承。用原型链实现对原型属性和方法的继承，用借用构造函数技术来实现实例属性的继承。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function SuperType(name)&#123;</span><br><span class="line">  this.name = name;</span><br><span class="line">  this.colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.sayName = function()&#123;</span><br><span class="line">  alert(this.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function SubType(name, age)&#123;</span><br><span class="line">  // 继承属性</span><br><span class="line">  // 第二次调用SuperType()</span><br><span class="line">  SuperType.call(this, name);</span><br><span class="line">  this.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 继承方法</span><br><span class="line">// 构建原型链</span><br><span class="line">// 第一次调用SuperType()</span><br><span class="line">SubType.prototype = new SuperType(); </span><br><span class="line">// 重写SubType.prototype的constructor属性，指向自己的构造函数SubType</span><br><span class="line">SubType.prototype.constructor = SubType; </span><br><span class="line">SubType.prototype.sayAge = function()&#123;</span><br><span class="line">    alert(this.age);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var instance1 = new SubType(&quot;Nicholas&quot;, 29);</span><br><span class="line">instance1.colors.push(&quot;black&quot;);</span><br><span class="line">alert(instance1.colors); //&quot;red,blue,green,black&quot;</span><br><span class="line">instance1.sayName(); //&quot;Nicholas&quot;;</span><br><span class="line">instance1.sayAge(); //29</span><br><span class="line"></span><br><span class="line">var instance2 = new SubType(&quot;Greg&quot;, 27);</span><br><span class="line">alert(instance2.colors); //&quot;red,blue,green&quot;</span><br><span class="line">instance2.sayName(); //&quot;Greg&quot;;</span><br><span class="line">instance2.sayAge(); //27</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>缺点：</p>
+<ul>
+<li>第一次调用SuperType()：给SubType.prototype写入两个属性name，color。</li>
+<li>第二次调用SuperType()：给instance1写入两个属性name，color。</li>
+</ul>
+<p>实例对象instance1上的两个属性就屏蔽了其原型对象SubType.prototype的两个同名属性。所以，组合模式的缺点就是在使用子类创建实例对象时，其原型中会存在两份相同的属性/方法。</p>
+<h2 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h2><p>利用一个空对象作为中介，将某个对象直接赋值给空对象构造函数的原型。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function object(obj)&#123;</span><br><span class="line">  function F()&#123;&#125;</span><br><span class="line">  F.prototype = obj;</span><br><span class="line">  return new F();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>object()对传入其中的对象执行了一次浅复制，将构造函数F的原型直接指向传入的对象。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line">  name: &quot;Nicholas&quot;,</span><br><span class="line">  friends: [&quot;Shelby&quot;, &quot;Court&quot;, &quot;Van&quot;]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var anotherPerson = object(person);</span><br><span class="line">anotherPerson.name = &quot;Greg&quot;;</span><br><span class="line">anotherPerson.friends.push(&quot;Rob&quot;);</span><br><span class="line"></span><br><span class="line">var yetAnotherPerson = object(person);</span><br><span class="line">yetAnotherPerson.name = &quot;Linda&quot;;</span><br><span class="line">yetAnotherPerson.friends.push(&quot;Barbie&quot;);</span><br><span class="line"></span><br><span class="line">alert(person.friends);   //&quot;Shelby,Court,Van,Rob,Barbie&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>缺点：</p>
+<p>原型链继承多个实例的引用类型属性指向相同，存在篡改的可能。<br>无法传递参数<br>另外，ES5中存在Object.create()的方法，能够代替上面的object方法。</p>
+<h2 id="5、寄生式继承"><a href="#5、寄生式继承" class="headerlink" title="5、寄生式继承"></a>5、寄生式继承</h2><p>核心：在原型式继承的基础上，增强对象，返回构造函数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function createAnother(original)&#123;</span><br><span class="line">  var clone = object(original); // 通过调用 object() 函数创建一个新对象</span><br><span class="line">  clone.sayHi = function()&#123;  // 以某种方式来增强对象</span><br><span class="line">    alert(&quot;hi&quot;);</span><br><span class="line">  &#125;;</span><br><span class="line">  return clone; // 返回这个对象</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>函数的主要作用是为构造函数新增属性和方法，以增强函数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line">  name: &quot;Nicholas&quot;,</span><br><span class="line">  friends: [&quot;Shelby&quot;, &quot;Court&quot;, &quot;Van&quot;]</span><br><span class="line">&#125;;</span><br><span class="line">var anotherPerson = createAnother(person);</span><br><span class="line">anotherPerson.sayHi(); //&quot;hi&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>缺点（同原型式继承）：</p>
+<ul>
+<li>原型链继承多个实例的引用类型属性指向相同，存在篡改的可能。</li>
+<li>无法传递参数</li>
+</ul>
+<h2 id="寄生组合式继承"><a href="#寄生组合式继承" class="headerlink" title="寄生组合式继承"></a>寄生组合式继承</h2><p>结合借用构造函数传递参数和寄生模式实现继承</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function init (sub, super)&#123;</span><br><span class="line">    const pro = Object.create(super.prototype)</span><br><span class="line">    pro.constructor = sub</span><br><span class="line">    sub.prototype = pro</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function super(name)&#123;</span><br><span class="line">    this.name = name</span><br><span class="line">&#125;</span><br><span class="line">function sub(name, age)&#123;</span><br><span class="line">    super.call(this, name)</span><br><span class="line">    this.age = age</span><br><span class="line">&#125;</span><br><span class="line">init(sub, super)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这个例子的高效率体现在它只调用了一次SuperType 构造函数，并且因此避免了在SubType.prototype 上创建不必要的、多余的属性。于此同时，原型链还能保持不变；因此，还能够正常使用instanceof 和isPrototypeOf()<br>这是最成熟的方法，也是现在库实现的方法</p>
+<h2 id="混入方式继承多个对象"><a href="#混入方式继承多个对象" class="headerlink" title="混入方式继承多个对象"></a>混入方式继承多个对象</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function MyClass() &#123;</span><br><span class="line">     SuperClass.call(this);</span><br><span class="line">     OtherSuperClass.call(this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 继承一个类</span><br><span class="line">MyClass.prototype = Object.create(SuperClass.prototype);</span><br><span class="line">// 混合其它</span><br><span class="line">Object.assign(MyClass.prototype, OtherSuperClass.prototype);</span><br><span class="line">// 重新指定constructor</span><br><span class="line">MyClass.prototype.constructor = MyClass;</span><br><span class="line"></span><br><span class="line">MyClass.prototype.myMethod = function() &#123;</span><br><span class="line">     // do something</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Object.assign会把 OtherSuperClass原型上的函数拷贝到 MyClass原型上，使 MyClass 的所有实例都可用 OtherSuperClass 的方法。</p>
+<h2 id="ES6类继承extends"><a href="#ES6类继承extends" class="headerlink" title="ES6类继承extends"></a>ES6类继承extends</h2><p>extends关键字主要用于类声明或者类表达式中，以创建一个类，该类是另一个类的子类。其中constructor表示构造函数，一个类中只能有一个构造函数，有多个会报出SyntaxError错误,如果没有显式指定构造方法，则会添加默认的 constructor方法，使用例子如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class Rectangle &#123;</span><br><span class="line">    // constructor</span><br><span class="line">    constructor(height, width) &#123;</span><br><span class="line">        this.height = height;</span><br><span class="line">        this.width = width;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // Getter</span><br><span class="line">    get area() &#123;</span><br><span class="line">        return this.calcArea()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // Method</span><br><span class="line">    calcArea() &#123;</span><br><span class="line">        return this.height * this.width;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const rectangle = new Rectangle(10, 20);</span><br><span class="line">console.log(rectangle.area);</span><br><span class="line">// 输出 200</span><br><span class="line"></span><br><span class="line">-----------------------------------------------------------------</span><br><span class="line">// 继承</span><br><span class="line">class Square extends Rectangle &#123;</span><br><span class="line"></span><br><span class="line">  constructor(length) &#123;</span><br><span class="line">    super(length, length);</span><br><span class="line">    </span><br><span class="line">    // 如果子类中存在构造函数，则需要在使用“this”之前首先调用 super()。</span><br><span class="line">    this.name = &#x27;Square&#x27;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  get area() &#123;</span><br><span class="line">    return this.height * this.width;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const square = new Square(10);</span><br><span class="line">console.log(square.area);</span><br><span class="line">// 输出 100</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>extends继承的核心代码如下，其实现和上述的寄生组合式继承方式一样</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function _inherits(subType, superType) &#123;</span><br><span class="line">  </span><br><span class="line">    // 创建对象，创建父类原型的一个副本</span><br><span class="line">    // 增强对象，弥补因重写原型而失去的默认的constructor 属性</span><br><span class="line">    // 指定对象，将新创建的对象赋值给子类的原型</span><br><span class="line">    subType.prototype = Object.create(superType &amp;&amp; superType.prototype, &#123;</span><br><span class="line">        constructor: &#123;</span><br><span class="line">            value: subType,</span><br><span class="line">            enumerable: false,</span><br><span class="line">            writable: true,</span><br><span class="line">            configurable: true</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    if (superType) &#123;</span><br><span class="line">        Object.setPrototypeOf </span><br><span class="line">            ? Object.setPrototypeOf(subType, superType) </span><br><span class="line">            : subType.__proto__ = superType;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="ES5继承和ES6继承的区别"><a href="#ES5继承和ES6继承的区别" class="headerlink" title="ES5继承和ES6继承的区别"></a>ES5继承和ES6继承的区别</h2><p>ES5的继承实质上是先创建子类的实例对象，然后再将父类的方法添加到this上（Parent.call(this)）.</p>
+<p>ES6的继承有所不同，实质上是先创建父类的实例对象this，然后再用子类的构造函数修改this。因为子类没有自己的this对象，所以必须先调用父类的super()方法，否则新建实例报错。</p>
+]]></content>
+      <categories>
+        <category>面试</category>
+        <category>js</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>javascript面试-高频手写代码</title>
+    <url>/2021/08/19/js%E9%9D%A2%E8%AF%95-%E9%AB%98%E9%A2%91%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81/</url>
+    <content><![CDATA[<h1 id="call"><a href="#call" class="headerlink" title="call"></a>call</h1><ol>
+<li>判断调用对象是否是函数，即使是定义在函数的原型上的，但是可能出现使用call等方式调用的情况；</li>
+<li>判断上下文对象是否存在，如果不存在，则设置为window</li>
+<li>处理传入的参数，截取第一个参数后的所有参数。</li>
+<li>将函数作为上下文对象的一个属性。</li>
+<li>使用上下文对象来调用这个方法，并保留返回结果。</li>
+<li>删除刚才新增的属性</li>
+<li>返回结果。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Fuction.prototype.myCall = function (context) &#123;</span><br><span class="line">  // 判断调用对象</span><br><span class="line">  if (typeof this !== &#x27;function&#x27;) &#123;</span><br><span class="line">    throw new Error(&quot;type error&quot;)</span><br><span class="line">  &#125;</span><br><span class="line">  let result;</span><br><span class="line">  // 获取参数</span><br><span class="line">  let arg = [...argument].slice(1)</span><br><span class="line">  // 判断context是否传入，如果为传入，设置为window</span><br><span class="line">  context = context || window</span><br><span class="line">  // 将调用函数设为对象的方法</span><br><span class="line">  context.fn = this</span><br><span class="line"></span><br><span class="line">  result = context.fn(arg)</span><br><span class="line">  // 将属性删除</span><br><span class="line">  delete context.fn</span><br><span class="line">  return result</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h1><ol>
+<li>判断调用对象是否为函数，即使是定义在函数的原型上的，但是可能出现使用 call 等方式调用的情况。</li>
+<li>判断传入上下文对象是否存在，如果不存在，则设置为 window 。</li>
+<li>将函数作为上下文对象的一个属性。</li>
+<li>判断参数值是否传入</li>
+<li>使用上下文对象来调用这个方法，并保存返回结果。</li>
+<li>删除刚才新增的属性</li>
+<li>返回结果</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Function.prototype.myApply = function(context) &#123;</span><br><span class="line">  if (typeof this !== &#x27;function&#x27;) &#123;</span><br><span class="line">    throw new Error(&#x27;type error&#x27;)</span><br><span class="line">  &#125;</span><br><span class="line">  let result;</span><br><span class="line">  context = context || window</span><br><span class="line">  context.fn = this</span><br><span class="line"></span><br><span class="line">  if (arguments[1]) &#123;</span><br><span class="line">    result = context.fn(...arguments[1])</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    result = context.fn()</span><br><span class="line">  &#125;</span><br><span class="line">  delte context.fn</span><br><span class="line">  return result</span><br><span class="line">&#125;; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h1><ol>
+<li>判断调用对象是否为函数，即使是定义在函数的原型上的，但是可能出现使用 call 等方式调用的情况</li>
+<li>保存当前函数的引用，获取其余传入参数值。</li>
+<li>创建一个函数返回</li>
+<li>函数内部使用apply来绑定函数调用，需要判断函数作为构造函数的情况，这个时候需要传入当前的this给apply调用，其余情况都传入制定的上下文对象</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Function.prototype.myBind = function (context) &#123;</span><br><span class="line">  if (typeof this !== &#x27;function&#x27;) &#123;</span><br><span class="line">    throw new Error(&#x27;type error&#x27;)</span><br><span class="line">  &#125;</span><br><span class="line">  let _self = this</span><br><span class="line">  let args = [...arguments].slice(1)</span><br><span class="line">  return function () &#123;</span><br><span class="line">    return _self.apply(</span><br><span class="line">      context,</span><br><span class="line">      args.concat([...arguments])</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="什么是防抖和节流，他们的应用场景有哪些"><a href="#什么是防抖和节流，他们的应用场景有哪些" class="headerlink" title="什么是防抖和节流，他们的应用场景有哪些"></a>什么是防抖和节流，他们的应用场景有哪些</h1><h2 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖(debounce)"></a>防抖(debounce)</h2><p>触发高频事件后 n 秒内函数只会执行一次，如果 n 秒内高频事件再次被触发，则重新计算时间</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 防抖函数</span><br><span class="line"></span><br><span class="line">function debounce(fn, wait) &#123;</span><br><span class="line">  let timer = null</span><br><span class="line"></span><br><span class="line">  return function () &#123;</span><br><span class="line">    let context = this</span><br><span class="line">    let args = arguments;</span><br><span class="line">    if (timer) &#123;</span><br><span class="line">      clearTimeout(timer)</span><br><span class="line">      timer = null</span><br><span class="line">    &#125;</span><br><span class="line">    timer = setTimeout(() =&gt; &#123;</span><br><span class="line">      fn.apply(context, args);</span><br><span class="line">    &#125;, wait)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="节流-throttle"><a href="#节流-throttle" class="headerlink" title="节流(throttle)"></a>节流(throttle)</h2><p>高频事件触发，但在 n 秒内只会执行一次，所以节流会稀释函数的执行频率</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 方式1: 使用时间戳</span><br><span class="line">function throttle1(fn, wait) &#123;</span><br><span class="line">  let time = 0;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    let _this = this;</span><br><span class="line">    let args = arguments;</span><br><span class="line">    let now = Date.now();</span><br><span class="line">    if (now - time &gt; wait) &#123;</span><br><span class="line">      fn.apply(_this, args);</span><br><span class="line">      time = now;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">// 方式2: 使用定时器</span><br><span class="line">function thorttle2(fn, wait) &#123;</span><br><span class="line">  let timer;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    let _this = this;</span><br><span class="line">    let args = arguments;</span><br><span class="line"></span><br><span class="line">    if (!timer) &#123;</span><br><span class="line">      timer = setTimeout(function () &#123;</span><br><span class="line">        timer = null;</span><br><span class="line">        fn.apply(_this, args);</span><br><span class="line">      &#125;, wait);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>上面节流和防抖实现方式比较简单，但是已经可以满足日常使用，如果想更近一步了解可以查看underscore (opens new window)和lodash (opens new window)文档中debounce和thorttle</p>
+<p>防抖：防止抖动，单位时间内事件触发会被重置，避免事件被误伤触发多次。代码实现重在清零 clearTimeout。防抖可以比作等电梯，只要有一个人进来，就需要再等一会儿。业务场景有避免登录按钮多次点击的重复提交。<br>节流：控制流量，单位时间内事件只能触发一次，与服务器端的限流 (Rate Limit) 类似。代码实现重在开锁关锁 timer=timeout; timer=null。节流可以比作过红绿灯，每等一个红灯时间就可以过一批。</p>
+<h1 id="手写object-create"><a href="#手写object-create" class="headerlink" title="手写object.create"></a>手写object.create</h1><p>思路：将传入的对象作为原型</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function create(obj) &#123;</span><br><span class="line">  function Fn() &#123;&#125;</span><br><span class="line">  Fn.prototype = obj</span><br><span class="line">  return new Fn()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="手写类型判断"><a href="#手写类型判断" class="headerlink" title="手写类型判断"></a>手写类型判断</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function mytypeof(value) &#123;</span><br><span class="line">  if (value === null) &#123;</span><br><span class="line">    return &#x27;null&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">  let type = typeof value</span><br><span class="line">  if (type === &#x27;object&#x27;) &#123;</span><br><span class="line">    let objectType = Object.prototype.toString.call(value);</span><br><span class="line">    type = objectType.split(&quot; &quot;)[1]</span><br><span class="line">    return type.toLowerCase();</span><br><span class="line">  &#125;</span><br><span class="line">  return type</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="手写instanceOf方法"><a href="#手写instanceOf方法" class="headerlink" title="手写instanceOf方法"></a>手写instanceOf方法</h1><p>instanceof运算符用于判断构造函数的prototype属性是否出现在对象的原型链中的任何位置。</p>
+<p>实现步骤：</p>
+<ol>
+<li>首先获取类型的原型</li>
+<li>然后获取对象的原型</li>
+<li>循环判读对象的原型是否等于类型的原型，直到对象原型为null,因为 Object.prototype.<strong>proto</strong> = null<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">function instance(left, right) &#123;</span><br><span class="line">  let proto = Object.getPrototypeOf(left)</span><br><span class="line">  let prototype = right.prototype</span><br><span class="line"></span><br><span class="line">  while(true) &#123;</span><br><span class="line">    if (!proto) return false</span><br><span class="line">    if (proto === prototype) return true</span><br><span class="line"></span><br><span class="line">    proto = Object.getPrototypeOf(proto)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="手写new-操作符"><a href="#手写new-操作符" class="headerlink" title="手写new 操作符"></a>手写new 操作符</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function objectFactory() &#123;</span><br><span class="line">  let newObject = null;</span><br><span class="line">  let constructor = Array.prototype.shift.call(arguments);</span><br><span class="line">  let result = null;</span><br><span class="line">  // 判断参数是否是一个函数</span><br><span class="line">  if (typeof constructor !== &quot;function&quot;) &#123;</span><br><span class="line">    console.error(&quot;type error&quot;);</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line">  // 新建一个空对象，对象的原型为构造函数的 prototype 对象</span><br><span class="line">  newObject = Object.create(constructor.prototype);</span><br><span class="line">  // 将 this 指向新建对象，并执行函数</span><br><span class="line">  result = constructor.apply(newObject, arguments);</span><br><span class="line">  // 判断返回对象</span><br><span class="line">  let flag = result &amp;&amp; (typeof result === &quot;object&quot; || typeof result === &quot;function&quot;);</span><br><span class="line">  // 判断返回结果</span><br><span class="line">  return flag ? result : newObject;</span><br><span class="line">&#125;</span><br><span class="line">// 使用方法</span><br><span class="line">objectFactory(构造函数, 初始化参数);</span><br></pre></td></tr></table></figure>
+
+<h1 id="函数柯里化的实现"><a href="#函数柯里化的实现" class="headerlink" title="函数柯里化的实现"></a>函数柯里化的实现</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 第一种</span><br><span class="line"></span><br><span class="line">function curry (fn, args) &#123;</span><br><span class="line">  let length = fn.length</span><br><span class="line">  args = args || []</span><br><span class="line"></span><br><span class="line">  return function () &#123;</span><br><span class="line">    let subargs = args.slice(0)</span><br><span class="line">    subargs.push(...arguments)</span><br><span class="line">    if (subargs.length &gt;= length) &#123;</span><br><span class="line">      return fn.apply(this, subargs)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      return curry.apply(this, fn, subargs)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function curry2(fn, ...args) &#123;</span><br><span class="line">  return fn.length &lt;= args.length ? fn(...args) : curry2.bind(this, fn, ...args);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="实现AJAX请求"><a href="#实现AJAX请求" class="headerlink" title="实现AJAX请求"></a>实现AJAX请求</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// promise 封装实现：</span><br><span class="line">function getJSON(url) &#123;</span><br><span class="line">  // 创建一个 promise 对象</span><br><span class="line">  let promise = new Promise(function(resolve, reject) &#123;</span><br><span class="line">    let xhr = new XMLHttpRequest();</span><br><span class="line">    // 新建一个 http 请求</span><br><span class="line">    xhr.open(&quot;GET&quot;, url, true);</span><br><span class="line">    // 设置状态的监听函数</span><br><span class="line">    xhr.onreadystatechange = function() &#123;</span><br><span class="line">      if (this.readyState !== 4) return;</span><br><span class="line">      // 当请求成功或失败时，改变 promise 的状态</span><br><span class="line">      if (this.status === 200) &#123;</span><br><span class="line">        resolve(this.response);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        reject(new Error(this.statusText));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    // 设置错误监听函数</span><br><span class="line">    xhr.onerror = function() &#123;</span><br><span class="line">      reject(new Error(this.statusText));</span><br><span class="line">    &#125;;</span><br><span class="line">    // 设置响应的数据类型</span><br><span class="line">    xhr.responseType = &quot;json&quot;;</span><br><span class="line">    // 设置请求头信息</span><br><span class="line">    xhr.setRequestHeader(&quot;Accept&quot;, &quot;application/json&quot;);</span><br><span class="line">    // 发送 http 请求</span><br><span class="line">    xhr.send(null);</span><br><span class="line">  &#125;);</span><br><span class="line">  return promise;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h1><ul>
+<li>object.assign()</li>
+<li>{…object}</li>
+<li>手写浅拷贝<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function assign(obj) &#123;</span><br><span class="line">  if (!obj ||  typeof obj !== &#x27;object&#x27; ) return;</span><br><span class="line">  let newObj = Array.isArray(obj) ? [] : &#123;&#125;</span><br><span class="line">  for (let key in obj) &#123;</span><br><span class="line">    if (obj.hasOwnPrototype(key)) &#123;</span><br><span class="line">      newObj[key] = obj[key]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return newObj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h1><ul>
+<li>JSON.parse(JSON.stringify(obj))</li>
+<li>手写<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function deepCopy(obj) &#123;</span><br><span class="line">  if (!obj || typeof obj !==&#x27;object&#x27;) return</span><br><span class="line">  let newObj = Array.isArray(obj) ? [] : &#123;&#125;</span><br><span class="line">  for (let key in obj) &#123;</span><br><span class="line">    if (obj.hasOwnPrototype(key)) &#123;</span><br><span class="line">      newObj[key] = typeof obj[key] === &#x27;object&#x27; ? deepCopy(obj) : obj[key]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return newObj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="实现日期格式化函数"><a href="#实现日期格式化函数" class="headerlink" title="实现日期格式化函数"></a>实现日期格式化函数</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const dateFormat = (dateInput, format) =&gt; &#123;</span><br><span class="line">  const day = dateInput.getDate()</span><br><span class="line">  const month = dateInput.getMonth() + 1</span><br><span class="line">  const year = dateInput.getFullYear()</span><br><span class="line">  format = format.replace(&#x27;/yyyy/&#x27;, year).replace(&#x27;/MM/&#x27;, month).replace(&#x27;/dd/&#x27;, day)</span><br><span class="line">  return format</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="交换a-b的值，不能使用临时变量"><a href="#交换a-b的值，不能使用临时变量" class="headerlink" title="交换a,b的值，不能使用临时变量"></a>交换a,b的值，不能使用临时变量</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">a = a + b</span><br><span class="line">b = a - b</span><br><span class="line">a = a- b</span><br><span class="line"></span><br><span class="line">[a, b] = [b, a]</span><br></pre></td></tr></table></figure>
+
+<h1 id="实现数组的乱序输出"><a href="#实现数组的乱序输出" class="headerlink" title="实现数组的乱序输出"></a>实现数组的乱序输出</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let arr = []</span><br><span class="line">for (let i = 0; i &lt; arr.length; i ++) &#123;</span><br><span class="line">  let random = Math.round(Math.random() * (arr.length - 1 - i)) + i</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="实现数组元素求和"><a href="#实现数组元素求和" class="headerlink" title="实现数组元素求和"></a>实现数组元素求和</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let arr = []</span><br><span class="line">let sum = arr.reduce((total, i) =&gt; total += i, 0 )</span><br></pre></td></tr></table></figure>
+
+<h1 id="数组扁平化"><a href="#数组扁平化" class="headerlink" title="数组扁平化"></a>数组扁平化</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.</span><br><span class="line">let arr = [1, [2, [3, 4, 5]]];</span><br><span class="line">function flatten(arr) &#123;</span><br><span class="line">  let result = [];</span><br><span class="line"></span><br><span class="line">  for(let i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">    if(Array.isArray(arr[i])) &#123;</span><br><span class="line">      result = result.concat(flatten(arr[i]));</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      result.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br><span class="line">flatten(arr);  //  [1, 2, 3, 4，5]</span><br><span class="line"></span><br><span class="line">2.</span><br><span class="line">let arr = [1, [2, [3, 4]]];</span><br><span class="line">function flatten(arr) &#123;</span><br><span class="line">    return arr.reduce(function(prev, next)&#123;</span><br><span class="line">        return prev.concat(Array.isArray(next) ? flatten(next) : next)</span><br><span class="line">    &#125;, [])</span><br><span class="line">&#125;</span><br><span class="line">console.log(flatten(arr));//  [1, 2, 3, 4，5]</span><br><span class="line"></span><br><span class="line">3. </span><br><span class="line">let arr = [1, [2, [3, 4]]];</span><br><span class="line">function flatten(arr) &#123;</span><br><span class="line">    while (arr.some(item =&gt; Array.isArray(item))) &#123;</span><br><span class="line">        arr = [].concat(...arr);</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br><span class="line">console.log(flatten(arr)); //  [1, 2, 3, 4，5]</span><br><span class="line"></span><br><span class="line">4. </span><br><span class="line">let arr = [1, [2, [3, 4]]];</span><br><span class="line">function flatten(arr) &#123;</span><br><span class="line">    return arr.toString().split(&#x27;,&#x27;);</span><br><span class="line">&#125;</span><br><span class="line">console.log(flatten(arr)); //  [1, 2, 3, 4，5]</span><br><span class="line">5.</span><br><span class="line">let arr = [1, [2, [3, 4]]];</span><br><span class="line">function flatten(arr) &#123;</span><br><span class="line">  return arr.flat(Infinity);</span><br><span class="line">&#125;</span><br><span class="line">console.log(flatten(arr)); //  [1, 2, 3, 4，5]</span><br><span class="line"></span><br><span class="line">6. </span><br><span class="line">let arr = [1, [2, [3, [4, 5]]], 6];</span><br><span class="line">function flatten(arr) &#123;</span><br><span class="line">  let str = JSON.stringify(arr);</span><br><span class="line">  str = str.replace(/(\[|\])/g, &#x27;&#x27;);</span><br><span class="line">  str = &#x27;[&#x27; + str + &#x27;]&#x27;;</span><br><span class="line">  return JSON.parse(str); </span><br><span class="line">&#125;</span><br><span class="line">console.log(flatten(arr)); //  [1, 2, 3, 4，5]</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="实现数组去重"><a href="#实现数组去重" class="headerlink" title="实现数组去重"></a>实现数组去重</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. new set()</span><br><span class="line">const array = [1, 2, 3, 5, 1, 5, 9, 1, 2, 8];</span><br><span class="line"></span><br><span class="line">Array.from(new Set(array)); // [1, 2, 3, 5, 9, 8]</span><br><span class="line"></span><br><span class="line">2. const array = [1, 2, 3, 5, 1, 5, 9, 1, 2, 8];</span><br><span class="line"></span><br><span class="line">uniqueArray(array); // [1, 2, 3, 5, 9, 8]</span><br><span class="line"></span><br><span class="line">function uniqueArray(array) &#123;</span><br><span class="line">  let map = &#123;&#125;;</span><br><span class="line">  let res = [];</span><br><span class="line">  for(var i = 0; i &lt; array.length; i++) &#123;</span><br><span class="line">    if(!map.hasOwnProperty([array[i]])) &#123;</span><br><span class="line">      map[array[i]] = 1;</span><br><span class="line">      res.push(array[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="实现数组的flat方法"><a href="#实现数组的flat方法" class="headerlink" title="实现数组的flat方法"></a>实现数组的flat方法</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function _flat(arr, depth) &#123;</span><br><span class="line">  if(!Array.isArray(arr) || depth &lt;= 0) &#123;</span><br><span class="line">    return arr;</span><br><span class="line">  &#125;</span><br><span class="line">  return arr.reduce((prev, cur) =&gt; &#123;</span><br><span class="line">    if (Array.isArray(cur)) &#123;</span><br><span class="line">      return prev.concat(_flat(cur, depth - 1))</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      return prev.concat(cur);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, []);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="实现数组的push方法"><a href="#实现数组的push方法" class="headerlink" title="实现数组的push方法"></a>实现数组的push方法</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let arr = [];</span><br><span class="line">Array.prototype.push = function() &#123;</span><br><span class="line">	for( let i = 0 ; i &lt; arguments.length ; i++)&#123;</span><br><span class="line">		this[this.length] = arguments[i] ;</span><br><span class="line">	&#125;</span><br><span class="line">	return this.length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="实现数组的filter方法"><a href="#实现数组的filter方法" class="headerlink" title="实现数组的filter方法"></a>实现数组的filter方法</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Array.prototype.filter = function(fn) &#123;</span><br><span class="line">  if (typeof fn !== &#x27;function&#x27;) &#123;</span><br><span class="line">    throw new Error(&#x27;type error&#x27;)</span><br><span class="line">  &#125;</span><br><span class="line">  let res = []</span><br><span class="line">  for (let i = 0; i &lt; this.lenght; i ++) &#123;</span><br><span class="line">    let cur = this[i]</span><br><span class="line">    let f = fn(cur)</span><br><span class="line">    if (f) &#123;</span><br><span class="line">      res.push(cur</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="实现数组的map方法"><a href="#实现数组的map方法" class="headerlink" title="实现数组的map方法"></a>实现数组的map方法</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Array.prototype.map = function(fn)&#123;</span><br><span class="line">  if (typeof fn !== &#x27;function&#x27;) &#123;</span><br><span class="line">    throw new Error(&#x27;type error&#x27;)</span><br><span class="line">  &#125;</span><br><span class="line">  let res = []</span><br><span class="line">  for (let i = 0; i &lt; this.lenght; i ++) &#123;</span><br><span class="line">    let cur = this[i]</span><br><span class="line">    res.push(fn(cur))</span><br><span class="line">  &#125;</span><br><span class="line">  return res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="实现字符串的repeat方法"><a href="#实现字符串的repeat方法" class="headerlink" title="实现字符串的repeat方法"></a>实现字符串的repeat方法</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function repeat (s, n) &#123;</span><br><span class="line">  return (new Array(n + 1)).join(s)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function repeat(s, n) &#123;</span><br><span class="line">    return (n &gt; 0) ? s.concat(repeat(s, --n)) : &quot;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="实现字符串翻转"><a href="#实现字符串翻转" class="headerlink" title="实现字符串翻转"></a>实现字符串翻转</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">String.prototype._reverse = function(a)&#123;</span><br><span class="line">    return a.split(&quot;&quot;).reverse().join(&quot;&quot;);</span><br><span class="line">&#125;</span><br><span class="line">var obj = new String();</span><br><span class="line">var res = obj._reverse (&#x27;hello&#x27;);</span><br><span class="line">console.log(res);    // olleh</span><br><span class="line"></span><br><span class="line">function _reverse(s) &#123;</span><br><span class="line">  let left = 0;</span><br><span class="line">  let right = s.length - 1</span><br><span class="line">  while(left++ &lt; right--) &#123;</span><br><span class="line">    [s[left], s[right]] = [s[right], s[left]]</span><br><span class="line">  &#125;</span><br><span class="line">  return s</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="将数字每千分位用逗号隔开"><a href="#将数字每千分位用逗号隔开" class="headerlink" title="将数字每千分位用逗号隔开"></a>将数字每千分位用逗号隔开</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let format = n =&gt; &#123;</span><br><span class="line">    let num = n.toString() // 转成字符串</span><br><span class="line">    let decimals = &#x27;&#x27;</span><br><span class="line">        // 判断是否有小数</span><br><span class="line">    num.indexOf(&#x27;.&#x27;) &gt; -1 ? decimals = num.split(&#x27;.&#x27;)[1] : decimals</span><br><span class="line">    let len = num.length</span><br><span class="line">    if (len &lt;= 3) &#123;</span><br><span class="line">        return num</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        let temp = &#x27;&#x27;</span><br><span class="line">        let remainder = len % 3</span><br><span class="line">        decimals ? temp = &#x27;.&#x27; + decimals : temp</span><br><span class="line">        if (remainder &gt; 0) &#123; // 不是3的整数倍</span><br><span class="line">            return num.slice(0, remainder) + &#x27;,&#x27; + num.slice(remainder, len).match(/\d&#123;3&#125;/g).join(&#x27;,&#x27;) + temp</span><br><span class="line">        &#125; else &#123; // 是3的整数倍</span><br><span class="line">            return num.slice(0, len).match(/\d&#123;3&#125;/g).join(&#x27;,&#x27;) + temp </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">format(12323.33)  // &#x27;12,323.33&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="实现非负大整数相加"><a href="#实现非负大整数相加" class="headerlink" title="实现非负大整数相加"></a>实现非负大整数相加</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function sumBigNumber(a, b) &#123;</span><br><span class="line">  let res = &#x27;&#x27;;</span><br><span class="line">  let temp = 0;</span><br><span class="line">  </span><br><span class="line">  a = a.split(&#x27;&#x27;);</span><br><span class="line">  b = b.split(&#x27;&#x27;);</span><br><span class="line">  </span><br><span class="line">  while (a.length || b.length || temp) &#123;</span><br><span class="line">    temp += ~~a.pop() + ~~b.pop();</span><br><span class="line">    res = (temp % 10) + res;</span><br><span class="line">    temp  = temp &gt; 9</span><br><span class="line">  &#125;</span><br><span class="line">  return res.replace(/^0+/, &#x27;&#x27;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="实现-add-1-2-3"><a href="#实现-add-1-2-3" class="headerlink" title="实现 add(1)(2)(3)"></a>实现 add(1)(2)(3)</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function curry(fn, ...args) &#123;</span><br><span class="line">    let nums = []</span><br><span class="line"></span><br><span class="line">    return function temp(...newArgs) &#123;</span><br><span class="line">      if (newArgs.length) &#123;</span><br><span class="line">        nums = [...nums, ...newArgs]</span><br><span class="line">        return temp</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        return f(...nums)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  function f(...args) &#123;</span><br><span class="line">    return [...args].reduce((total, i) =&gt; total += i, 0)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  console.log(curry(f)(1)(2)(3, 4, 5)())</span><br><span class="line">  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="实现类数组转化为数组"><a href="#实现类数组转化为数组" class="headerlink" title="实现类数组转化为数组"></a>实现类数组转化为数组</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Array.prototype.slice.call(arrayLike);</span><br><span class="line"></span><br><span class="line">Array.prototype.splice.call(arrayLike, 0);</span><br><span class="line"></span><br><span class="line">Array.prototype.concat.apply([], arrayLike);</span><br><span class="line"></span><br><span class="line">Array.from(arrayLike);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="将js对象转化为树形结构"><a href="#将js对象转化为树形结构" class="headerlink" title="将js对象转化为树形结构"></a>将js对象转化为树形结构</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 转换前：</span><br><span class="line">source = [&#123;</span><br><span class="line">            id: 1,</span><br><span class="line">            pid: 0,</span><br><span class="line">            name: &#x27;body&#x27;</span><br><span class="line">          &#125;, &#123;</span><br><span class="line">            id: 2,</span><br><span class="line">            pid: 1,</span><br><span class="line">            name: &#x27;title&#x27;</span><br><span class="line">          &#125;, &#123;</span><br><span class="line">            id: 3,</span><br><span class="line">            pid: 2,</span><br><span class="line">            name: &#x27;div&#x27;</span><br><span class="line">          &#125;]</span><br><span class="line">// 转换为: </span><br><span class="line">tree = [&#123;</span><br><span class="line">          id: 1,</span><br><span class="line">          pid: 0,</span><br><span class="line">          name: &#x27;body&#x27;,</span><br><span class="line">          children: [&#123;</span><br><span class="line">            id: 2,</span><br><span class="line">            pid: 1,</span><br><span class="line">            name: &#x27;title&#x27;,</span><br><span class="line">            children: [&#123;</span><br><span class="line">              id: 3,</span><br><span class="line">              pid: 1,</span><br><span class="line">              name: &#x27;div&#x27;</span><br><span class="line">            &#125;]</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function buildTree(data) &#123;</span><br><span class="line">  let result = []</span><br><span class="line">  let map = &#123;&#125;</span><br><span class="line">  data.forEach(item =&gt; &#123;</span><br><span class="line">    map[item.id] = item</span><br><span class="line">  &#125;)</span><br><span class="line">  data.forEach(item =&gt; &#123;</span><br><span class="line">    let parent = map[item.pid]</span><br><span class="line">    if (paent) &#123;</span><br><span class="line">      parent.children ? parent.children.push(item) ? parent.children = [item]</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      result.push(item)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  return result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="使用ES5和ES6求函数参数的和"><a href="#使用ES5和ES6求函数参数的和" class="headerlink" title="使用ES5和ES6求函数参数的和"></a>使用ES5和ES6求函数参数的和</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function sum() &#123;</span><br><span class="line">    let sum = 0</span><br><span class="line">    Array.prototype.forEach.call(arguments, function(item) &#123;</span><br><span class="line">        sum += item * 1</span><br><span class="line">    &#125;)</span><br><span class="line">    return sum</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function sum(...nums) &#123;</span><br><span class="line">    let sum = 0</span><br><span class="line">    nums.forEach(function(item) &#123;</span><br><span class="line">        sum += item * 1</span><br><span class="line">    &#125;)</span><br><span class="line">    return sum</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="解析-URL-Params-为对象"><a href="#解析-URL-Params-为对象" class="headerlink" title="解析 URL Params 为对象"></a>解析 URL Params 为对象</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">let url = &#x27;http://www.domain.com/?user=anonymous&amp;id=123&amp;id=456&amp;city=%E5%8C%97%E4%BA%AC&amp;enabled&#x27;;</span><br><span class="line">parseParam(url)</span><br><span class="line">/* 结果</span><br><span class="line">&#123; user: &#x27;anonymous&#x27;,</span><br><span class="line">  id: [ 123, 456 ], // 重复出现的 key 要组装成数组，能被转成数字的就转成数字类型</span><br><span class="line">  city: &#x27;北京&#x27;, // 中文需解码</span><br><span class="line">  enabled: true, // 未指定值得 key 约定为 true</span><br><span class="line">&#125;</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function parseParam(url) &#123;</span><br><span class="line">  const paramsStr = /.+\?(.+)$/.exec(url)[1]; // 将 ? 后面的字符串取出来</span><br><span class="line">  const paramsArr = paramsStr.split(&#x27;&amp;&#x27;); // 将字符串以 &amp; 分割后存到数组中</span><br><span class="line">  let paramsObj = &#123;&#125;;</span><br><span class="line">  // 将 params 存到对象中</span><br><span class="line">  paramsArr.forEach(param =&gt; &#123;</span><br><span class="line">    if (/=/.test(param)) &#123; // 处理有 value 的参数</span><br><span class="line">      let [key, val] = param.split(&#x27;=&#x27;); // 分割 key 和 value</span><br><span class="line">      val = decodeURIComponent(val); // 解码</span><br><span class="line">      val = /^\d+$/.test(val) ? parseFloat(val) : val; // 判断是否转为数字</span><br><span class="line">      if (paramsObj.hasOwnProperty(key)) &#123; // 如果对象有 key，则添加一个值</span><br><span class="line">        paramsObj[key] = [].concat(paramsObj[key], val);</span><br><span class="line">      &#125; else &#123; // 如果对象没有这个 key，创建 key 并设置值</span><br><span class="line">        paramsObj[key] = val;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else &#123; // 处理没有 value 的参数</span><br><span class="line">      paramsObj[param] = true;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  return paramsObj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="循环打印红黄绿"><a href="#循环打印红黄绿" class="headerlink" title="循环打印红黄绿"></a>循环打印红黄绿</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const taskRunner =  async () =&gt; &#123;</span><br><span class="line">    await task(3000, &#x27;red&#x27;)</span><br><span class="line">    await task(2000, &#x27;green&#x27;)</span><br><span class="line">    await task(2100, &#x27;yellow&#x27;)</span><br><span class="line">    taskRunner()</span><br><span class="line">&#125;</span><br><span class="line">taskRunner()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="实现每隔一秒打印-1-2-3-4"><a href="#实现每隔一秒打印-1-2-3-4" class="headerlink" title="实现每隔一秒打印 1,2,3,4"></a>实现每隔一秒打印 1,2,3,4</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (let i = 0; i &lt; 5; i++) &#123;</span><br><span class="line">  setTimeout(function() &#123;</span><br><span class="line">    console.log(i);</span><br><span class="line">  &#125;, i * 1000);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="小孩报数问题"><a href="#小孩报数问题" class="headerlink" title="小孩报数问题"></a>小孩报数问题</h1><p>有30个小孩儿，编号从1-30，围成一圈依此报数，1、2、3 数到 3 的小孩儿退出这个圈， 然后下一个小孩 重新报数 1、2、3，问最后剩下的那个小孩儿的编号是多少?</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function live(nums, count) &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>面试</category>
+        <category>js</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>javascript面试-react</title>
+    <url>/2021/08/19/js%E9%9D%A2%E8%AF%95%E9%A2%98-react/</url>
+    <content><![CDATA[<h1 id="请说一下你对React的理解"><a href="#请说一下你对React的理解" class="headerlink" title="请说一下你对React的理解"></a>请说一下你对React的理解</h1><pre><code>+ 解题思路
+    - 是什么？一句话直达本质
+    - 能干什么？ 用途和应用场景
+    - 如何干的？核心的工作原理
+    干的怎么样？优缺点
+</code></pre>
+<h2 id="React是什么？"><a href="#React是什么？" class="headerlink" title="React是什么？"></a>React是什么？</h2><pre><code>React是一个用于构建用户界面的js库
+</code></pre>
+<h2 id="React能干什么"><a href="#React能干什么" class="headerlink" title="React能干什么"></a>React能干什么</h2><pre><code>React通过组件化的方式构建快速响应的大型Web应用程序
+</code></pre>
+<h2 id="React如何干的"><a href="#React如何干的" class="headerlink" title="React如何干的"></a>React如何干的</h2><h3 id="声明式"><a href="#声明式" class="headerlink" title="声明式"></a>声明式</h3><pre><code>+ 声明式使用声明式的编写用户界面，代码可方便调试
++ 声明式渲染和命令式渲染
+    - 命令式渲染 命令我们的程序去做什么，程序就会跟着你的命令去一步步执行
+    - 声明式渲染 我们只要告诉程序我们想要什么效果，其他的交给程序来做
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let root = document.getElementById(&#x27;root&#x27;)</span><br><span class="line">// 声明式</span><br><span class="line">ReactDOM.render(&lt;h1&gt;声明式&lt;/h1&gt;, root);</span><br><span class="line">let h1 = document.creatElement(&#x27;h1&#x27;)</span><br><span class="line">root.appendCHild(h1)</span><br><span class="line">// </span><br></pre></td></tr></table></figure>
+</code></pre>
+<h3 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h3><pre><code> 组件化 把页面拆分为一个个组件，方便视图的拆分和复用，还可以做到高内聚和低耦合
+</code></pre>
+<h3 id="一次学习，随处编写"><a href="#一次学习，随处编写" class="headerlink" title="一次学习，随处编写"></a>一次学习，随处编写</h3><pre><code>+ 开发web,android,ios,VR,和命令行程序
++ reactNative使用react来创建android和iOS的原生应用
++ react 360是一个创建3D和VR用户交互的框架
+</code></pre>
+<h2 id="React干的怎么样？"><a href="#React干的怎么样？" class="headerlink" title="React干的怎么样？"></a>React干的怎么样？</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><pre><code>+ 开发团队和社区强大
++ 一次学习，随处编写
++ API比较简洁
+</code></pre>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><pre><code>+ 没有官方系统解决方案，选型成本高
++ 过于灵活，不容易写出高质量的应用
+</code></pre>
+<h2 id="其他扩展"><a href="#其他扩展" class="headerlink" title="其他扩展"></a>其他扩展</h2><pre><code>+ JSX实现声明式
++ 虚拟DOM可以实现跨平台
++ React使用的设计模式 
++ 自己React大型架构经验
+</code></pre>
+<h1 id="为什么React会引入JSX"><a href="#为什么React会引入JSX" class="headerlink" title="为什么React会引入JSX"></a>为什么React会引入JSX</h1><pre><code>+ 题目分析 方案选型，考察知识扩展
++ 解题思路
+    - 即使概念
+    - 想实现什么目的？
+    - 有哪些可选方案，为什么这个方案最好
+    - JSX的工作原理？
+</code></pre>
+<h2 id="JSX是什么"><a href="#JSX是什么" class="headerlink" title="JSX是什么"></a>JSX是什么</h2><pre><code>+ jsx是一个js的语法扩展，jsx可以很好的描述UI应该呈现出它应有交互的本质形式
++ jsx其实式React.createElement的语法糖
+</code></pre>
+<h2 id="React想实现什么目的"><a href="#React想实现什么目的" class="headerlink" title="React想实现什么目的"></a>React想实现什么目的</h2><pre><code>+ 需要实现声明式
++ 代码结构需要非常清晰和简洁，可读性强
++ 结构、样式、和事件等能够实现高内聚低耦合，方便重用和组合
++ 不想引入新的概念和语法，只写js
+</code></pre>
+<h2 id="为什么JSX最好（列举其他）"><a href="#为什么JSX最好（列举其他）" class="headerlink" title="为什么JSX最好（列举其他）"></a>为什么JSX最好（列举其他）</h2><pre><code>+ Vue.js使用了基于HTML的模版语法，允许开发者声明式的将DOM绑定至底层VUE实例的数据
++ 引入太多概念，比如ng就引入了控制器、作用域、服务等概念
+</code></pre>
+<h2 id="JSX工作原理"><a href="#JSX工作原理" class="headerlink" title="JSX工作原理"></a>JSX工作原理</h2><h3 id="AST抽象语法树"><a href="#AST抽象语法树" class="headerlink" title="AST抽象语法树"></a>AST抽象语法树</h3><p>抽象语法树式源代码语法结构的一种抽象表示，它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源中的一种结构。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">type,props,children</span><br></pre></td></tr></table></figure>
+
+<h3 id="babel工作流"><a href="#babel工作流" class="headerlink" title="babel工作流"></a>babel工作流</h3><p>code =&gt;词法分析=&gt;语法分析=&gt;转换新的树=&gt;code源代码</p>
+<h3 id="旧转换-classic"><a href="#旧转换-classic" class="headerlink" title="旧转换 classic"></a>旧转换 classic</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const babel = require(&#x27;@babel/core&#x27;)</span><br><span class="line">const source = &#x27;&lt;h1&gt;111&lt;/h1&gt;&#x27;</span><br><span class="line">const result = babel.transform(source, &#123;</span><br><span class="line">    plugin: [</span><br><span class="line">        [</span><br><span class="line">            &#x27;@babel/plugin-transform-react-jsx&#x27;, &#123;</span><br><span class="line">                runtime: &#x27;classic&#x27;</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="新转换-automatic"><a href="#新转换-automatic" class="headerlink" title="新转换 automatic"></a>新转换 automatic</h3><p>automatic不需要引入React</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">const babel = require(&#x27;@babel/core&#x27;)</span><br><span class="line">const source = &#x27;&lt;h1&gt;111&lt;/h1&gt;&#x27;</span><br><span class="line">const result = babel.transform(source, &#123;</span><br><span class="line">    plugin: [</span><br><span class="line">        [</span><br><span class="line">            &#x27;@babel/plugin-transform-react-jsx&#x27;, &#123;</span><br><span class="line">                runtime: &#x27;automatic&#x27;</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="请说一下你对Virtual-Dom的理解"><a href="#请说一下你对Virtual-Dom的理解" class="headerlink" title="请说一下你对Virtual Dom的理解"></a>请说一下你对Virtual Dom的理解</h1><p>题目分析 本题属于概念题<br>解题思路<br>    + 是什么？一句话直达本质<br>    + 能干什么？用途和应用场景<br>    + 如何干的？核心的工作原理<br>    + 干的怎么样？优缺点<br>    + 其他扩展</p>
+<h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><p>虚拟DOM就是一个描述真实DOM的纯JS对象</p>
+<h2 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h2><ul>
+<li>处理了浏览器的兼容性问题，避免用户操作真实DOM，</li>
+<li>内容经过了XSS处理，可以防范XSS攻击</li>
+<li>更容易实现跨平台开发Android,ios,VR 应用</li>
+<li>更新的时候可以实现差异化更新，减少更新DOM的操作</li>
+</ul>
+<h2 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h2><ul>
+<li>虚拟DOM需要消耗额外的内存</li>
+<li>首次渲染其实并不一定更快</li>
+</ul>
+<h1 id="函数组件和类组件的相同点和不同点？"><a href="#函数组件和类组件的相同点和不同点？" class="headerlink" title="函数组件和类组件的相同点和不同点？"></a>函数组件和类组件的相同点和不同点？</h1><p>题目分析 本题属于差异题<br>解题思路</p>
+<ul>
+<li>相同点</li>
+<li>不同点</li>
+</ul>
+<h2 id="函数组件"><a href="#函数组件" class="headerlink" title="函数组件"></a>函数组件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let v = (</span><br><span class="line">    &lt;div&gt;hello word&lt;/div&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">function VF (props) &#123;</span><br><span class="line">    return v</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let fdom = &lt;VF /&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="类组件"><a href="#类组件" class="headerlink" title="类组件"></a>类组件</h2><h2 id="源代码怎么区分普通函数还是类组件"><a href="#源代码怎么区分普通函数还是类组件" class="headerlink" title="源代码怎么区分普通函数还是类组件"></a>源代码怎么区分普通函数还是类组件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function Component(props) &#123;</span><br><span class="line">    this.props = props</span><br><span class="line">&#125;</span><br><span class="line">Component.prototype.isReactComponent = &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h2><p>他们都可以接收属性并且返回React元素</p>
+<h2 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h2><ul>
+<li>编程思想不同：类组件需要创建实例，是基于面向对象的方式编程，而函数组件不需要创建实例，接收输入，返回输出，是基于函数式编程思想写的</li>
+<li>内存占用：类组件需要创建并保存实例，会占用一定内存，函数组件不需要创建实例，可以节约内存占用</li>
+<li>捕获特性：函数组件具有捕获特性</li>
+<li>可测试性：函数组件更方便写单元测试</li>
+<li>状态：类组件有自己的实例，可以定义状态，而且可以修改状态更新组件，函数组件以前没有状态，现在可以使用useState使用状态</li>
+<li>声明周期：类组件有自己完整的生命周期，可以在声明周期里面写逻辑，函数组件没有声明周期，现在可以使用useEffect实现类似声明周期的功能</li>
+<li>逻辑复用：类组件可以通过继承实现逻辑的复用，但官方推荐组件优先继承，函数组件可以通过自定义hooks实现逻辑复用</li>
+<li>跳过更新：类组件可以通过shouldComponentUpdate和PureCompinent来跳过更新，而函数式组件可以使用React.momo来跳过更新</li>
+<li>发展前景：未来函数式组件将成为主流，因为它可以更好的屏蔽this问题，规范和复用逻辑，更好的适合时间分片和并发渲染</li>
+</ul>
+<h2 id="值捕获"><a href="#值捕获" class="headerlink" title="值捕获"></a>值捕获</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import &#123;useState&#125; from &#x27;react&#x27;</span><br><span class="line">function () &#123;</span><br><span class="line">    const [number, setNumber] = useState(0)</span><br><span class="line"></span><br><span class="line">    handleClick = () =&gt; &#123;</span><br><span class="line">        setTimeout(() =&gt; &#123;</span><br><span class="line">            console.log(number) // 0</span><br><span class="line">        &#125;, 3000)</span><br><span class="line">        setNumber(number+1)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return (</span><br><span class="line">        &lt;div onClick=&#123;handleClick&#125;&gt;&#123;number&#125;&lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class...</span><br><span class="line">this.state = &#123;number: 0&#125;</span><br><span class="line"> handleClick = () =&gt; &#123;</span><br><span class="line">        setTimeout(() =&gt; &#123;</span><br><span class="line">            console.log() // 1</span><br><span class="line">        &#125;, 3000)</span><br><span class="line">        this.setState(&#123;</span><br><span class="line">            number: this.state.number + 1</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render (</span><br><span class="line">        &lt;div onClick=&#123;handleClick&#125;&gt;&#123;number&#125;&lt;/div&gt;</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<h1 id="请说一下React中的渲染流程"><a href="#请说一下React中的渲染流程" class="headerlink" title="请说一下React中的渲染流程"></a>请说一下React中的渲染流程</h1><p>解题思路</p>
+<ul>
+<li>宏观的设计理念</li>
+<li>关键原理清晰描述，抽象和具象相结合</li>
+<li>结合工程实践和工作成果</li>
+</ul>
+<h2 id="设计理念"><a href="#设计理念" class="headerlink" title="设计理念"></a>设计理念</h2><ul>
+<li>跨平台渲染 =&gt;虚拟DOM</li>
+<li>快速响应 =&gt; 异步可中断+ 增量更新</li>
+</ul>
+<h2 id="性能瓶颈"><a href="#性能瓶颈" class="headerlink" title="性能瓶颈"></a>性能瓶颈</h2><p>js任务执行实践过长</p>
+<ul>
+<li>浏览器刷新的频率为60HZ，大概16.6毫秒（1/ 60 * 1000）渲染一次，而js线程和渲染线程是互斥的，所以如果js线程执行任务时间超过了16.6ms的话，就会导致掉帧，导致卡顿，解决方案就是React利用空闲的实践进行更新，不影响渲染进行的渲染</li>
+<li>把一个耗时的任务分成一个个小任务，分布在每一帧里的方式就叫做时间切片</li>
+</ul>
+<h2 id="屏幕刷新率"><a href="#屏幕刷新率" class="headerlink" title="屏幕刷新率"></a>屏幕刷新率</h2><h2 id="桢"><a href="#桢" class="headerlink" title="桢"></a>桢</h2><h2 id="requestIdelCallback-React使用MessageChannel-requestAnimationFrame模拟RequestIdleCallback"><a href="#requestIdelCallback-React使用MessageChannel-requestAnimationFrame模拟RequestIdleCallback" class="headerlink" title="requestIdelCallback(React使用MessageChannel+requestAnimationFrame模拟RequestIdleCallback)"></a>requestIdelCallback(React使用MessageChannel+requestAnimationFrame模拟RequestIdleCallback)</h2><ul>
+<li>我们希望快速响应用户，让用户觉得够快，不能阻塞用户的交互</li>
+<li>requestIdleCallback使开发者能够在主事件循环上执行后台和低优先级工作，而不会影响延迟关键事件，如动画和输入响应</li>
+<li>正常桢任务完成后没超过16.6ms，说明时间有富裕，此时就会执行requestIdleCallback里注册的任务<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">requestIdleCallback(fn)</span><br><span class="line">function fn(deadline) &#123;</span><br><span class="line">    deadline.timeRemaining()</span><br><span class="line">    while(deading.timeRemaining() &gt; 0) &#123;</span><br><span class="line">        doSomeThing()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="fiber"><a href="#fiber" class="headerlink" title="fiber"></a>fiber</h2></li>
+<li>我们可以通过某些调度策略合理分配CPU资源，从而提高用户的响应速度</li>
+<li>通过fiber架构，让自己的调和过程变成可被中断。适时让出CPU执行权，可以让浏览器及时响应用户的交互<h3 id="fiber是一个执行单元"><a href="#fiber是一个执行单元" class="headerlink" title="fiber是一个执行单元"></a>fiber是一个执行单元</h3></li>
+<li>Fiber是一个执行单元，每次执行完一个执行单元，React就会检查现在还剩下多少时间，如果没有时间就将控制权让出去</li>
+</ul>
+<h1 id="react-hooks"><a href="#react-hooks" class="headerlink" title="react hooks"></a>react hooks</h1><p>hooks可以让你在不编写class的情况下使用state以及其他的React特性</p>
+<h2 id="hooks的优点"><a href="#hooks的优点" class="headerlink" title="hooks的优点"></a>hooks的优点</h2><ul>
+<li>可以抽离公共方法和逻辑，提高代码的可复用性</li>
+<li>函数式组件更简洁，开发效率更高</li>
+</ul>
+<h2 id="自定义hooks"><a href="#自定义hooks" class="headerlink" title="自定义hooks"></a>自定义hooks</h2><ul>
+<li>通过自定义hook，可以将组件逻辑提取到可重用的函数中</li>
+<li>自定义hook是一个函数，其名称以use开头，函数内部可以调用其他的hook</li>
+</ul>
+<h1 id="请说一下React中的DOM-DIff算法"><a href="#请说一下React中的DOM-DIff算法" class="headerlink" title="请说一下React中的DOM-DIff算法"></a>请说一下React中的DOM-DIff算法</h1><p>DOM-DIFF就是根据老得fiber树和最新的JSX对比生成新的fiber树的过程</p>
+<h2 id="react优化原则"><a href="#react优化原则" class="headerlink" title="react优化原则"></a>react优化原则</h2><ul>
+<li>只对同级节点进行对比，如果DOM节点跨层移动，则React不会复用</li>
+<li>不同类型的元素会产生不同的结构，会销毁老得结构，创建新的结构</li>
+<li>可以通过key标示移动的元素</li>
+</ul>
+<p>具体的流程如下：</p>
+<ul>
+<li>真实的 DOM 首先会映射为虚拟 DOM；</li>
+<li>当虚拟 DOM 发生变化后，就会根据差距计算生成 patch，这个 patch 是一个结构化的数据，内容包含了增加、更新、移除等；</li>
+<li>根据 patch 去更新真实的 DOM，反馈到用户的界面上。</li>
+</ul>
+<p>diff算法可以总结为三个策略，分别从树、组件及元素三个层面进行复杂度的优化：</p>
+<ol>
+<li>策略一：忽略节点跨层级操作场景，提升比对效率。（基于树进行对比）<br>这一策略需要进行树比对，即对树进行分层比较。树比对的处理手法是非常“暴力”的，即两棵树只对同一层次的节点进行比较，如果发现节点已经不存在了，则该节点及其子节点会被完全删除掉，不会用于进一步的比较，这就提升了比对效率。</li>
+<li>策略二：如果组件的 class 一致，则默认为相似的树结构，否则默认为不同的树结构。（基于组件进行对比）<br>在组件比对的过程中：</li>
+</ol>
+<ul>
+<li>如果组件是同一类型则进行树比对；</li>
+<li>如果不是则直接放入补丁中。</li>
+</ul>
+<p>只要父组件类型不同，就会被重新渲染。这也就是为什么 shouldComponentUpdate、PureComponent 及 React.memo 可以提高性能的原因。<br>3. 策略三：同一层级的子节点，可以通过标记 key 的方式进行列表对比。（基于节点进行对比）<br>元素比对主要发生在同层级中，通过标记节点操作生成补丁。节点操作包含了插入、移动、删除等。其中节点重新排序同时涉及插入、移动、删除三个操作，所以效率消耗最大，此时策略三起到了至关重要的作用。通过标记 key 的方式，React 可以直接移动 DOM 节点，降低内耗。</p>
+<ul>
+<li>单节点<br>直接对比，更新删除</li>
+<li>多节点<br>两次遍历，第一次更新，key或者type不同，就进入第二次遍历<br>第二次遍历，会生成map，进行标记（更新，删除，移动，插入）<br>生成真实dom</li>
+</ul>
+<h1 id="为什么不能在条件和循环里使用hooks"><a href="#为什么不能在条件和循环里使用hooks" class="headerlink" title="为什么不能在条件和循环里使用hooks"></a>为什么不能在条件和循环里使用hooks</h1><h1 id="为什么不能在函数组件外部使用hooks"><a href="#为什么不能在函数组件外部使用hooks" class="headerlink" title="为什么不能在函数组件外部使用hooks"></a>为什么不能在函数组件外部使用hooks</h1><h1 id="React-Hooks的状态保存在哪里"><a href="#React-Hooks的状态保存在哪里" class="headerlink" title="React Hooks的状态保存在哪里"></a>React Hooks的状态保存在哪里</h1><h1 id="为什么传入两次相同的状态，函数组件不更新"><a href="#为什么传入两次相同的状态，函数组件不更新" class="headerlink" title="为什么传入两次相同的状态，函数组件不更新"></a>为什么传入两次相同的状态，函数组件不更新</h1><h1 id="函数组件的useState和类组件的setState有什么区别"><a href="#函数组件的useState和类组件的setState有什么区别" class="headerlink" title="函数组件的useState和类组件的setState有什么区别"></a>函数组件的useState和类组件的setState有什么区别</h1><h1 id="组件基础"><a href="#组件基础" class="headerlink" title="组件基础"></a>组件基础</h1><h2 id="React-事件机制"><a href="#React-事件机制" class="headerlink" title="React 事件机制"></a>React 事件机制</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div onClick=&#123;this.handleClick.bind(this)&#125;&gt;点我&lt;/div&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>React 并不是将click事件绑定到div的真实DOM 上，而是在document处监听了所有的事件，当事件发生并且冒泡到document处的时候，React将事件内容封装并交由真正的处理函数运行。这样的方式不仅仅减少了内存的消耗，还能在组建挂载销毁时统一订阅和移除事件。</p>
+<p>除此之外，冒泡到document上的事件也不是原生的浏览器事件，而是由react自己实现的合成事件。因此如果不想要事件冒泡的话应该调用event.preventDefault()方法，而不是调用event.stopProppagation()方法。</p>
+<p>实现合成事件的目的如下：</p>
+<ul>
+<li>合成事件首先抹平了浏览器之间的兼容问题，另外这是一个跨浏览器原生事件包装器，赋予了跨浏览器开发的能力；</li>
+<li>对于原生浏览器事件来说，浏览器会给监听器创建一个事件对象。如果你有很多的事件监听，那么就需要分配很多的事件对象，造成高额的内存分配问题。但是对于合成事件来说，有一个事件池专门来管理它们的创建和销毁，当事件需要被使用时，就会从池子中复用对象，事件回调结束后，就会销毁事件对象上的属性，从而便于下次复用事件对象。</li>
+</ul>
+<h2 id="React的事件和普通的HTML事件有什么不同？"><a href="#React的事件和普通的HTML事件有什么不同？" class="headerlink" title="React的事件和普通的HTML事件有什么不同？"></a>React的事件和普通的HTML事件有什么不同？</h2><p>区别：</p>
+<ul>
+<li>对于事件名称命名方式，原生事件为全小写，react 事件采用小驼峰；</li>
+<li>对于事件函数处理语法，原生事件为字符串，react 事件为函数；</li>
+<li>react 事件不能采用 return false 的方式来阻止浏览器的默认行为，而必须要地明确地调用preventDefault()来阻止默认行为。</li>
+</ul>
+<p>合成事件是 react 模拟原生 DOM 事件所有能力的一个事件对象，其优点如下：</p>
+<ul>
+<li>兼容所有浏览器，更好的跨平台；</li>
+<li>将事件统一存放在一个数组，避免频繁的新增与删除（垃圾回收）。</li>
+<li>方便 react 统一管理和事务机制。</li>
+</ul>
+<p>事件的执行顺序为原生事件先执行，合成事件后执行，合成事件会冒泡绑定到 document 上，所以尽量避免原生事件与合成事件混用，如果原生事件阻止冒泡，可能会导致合成事件不执行，因为需要冒泡到document 上合成事件才会执行。</p>
+<h2 id="React-组件中怎么做事件代理？它的原理是什么？"><a href="#React-组件中怎么做事件代理？它的原理是什么？" class="headerlink" title="React 组件中怎么做事件代理？它的原理是什么？"></a>React 组件中怎么做事件代理？它的原理是什么？</h2><p>React基于Virtual DOM实现了一个SyntheticEvent层（合成事件层），定义的事件处理器会接收到一个合成事件对象的实例，它符合W3C标准，且与原生的浏览器事件拥有同样的接口，支持冒泡机制，所有的事件都自动绑定在最外层上。<br>在React底层，主要对合成事件做了两件事：</p>
+<ul>
+<li>事件委派： React会把所有的事件绑定到结构的最外层，使用统一的事件监听器，这个事件监听器上维持了一个映射来保存所有组件内部事件监听和处理函数。</li>
+<li>自动绑定： React组件中，每个方法的上下文都会指向该组件的实例，即自动绑定this为当前组件。</li>
+</ul>
+<h2 id="React如果没写key，源码不会加上key，而是使用索引来比较"><a href="#React如果没写key，源码不会加上key，而是使用索引来比较" class="headerlink" title="React如果没写key，源码不会加上key，而是使用索引来比较"></a>React如果没写key，源码不会加上key，而是使用索引来比较</h2><h2 id="React-高阶组件、Render-props、hooks-有什么区别，为什么要不断迭代"><a href="#React-高阶组件、Render-props、hooks-有什么区别，为什么要不断迭代" class="headerlink" title="React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代"></a>React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代</h2><ol>
+<li>HOC<br>高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。<br>HOC的优缺点∶</li>
+</ol>
+<ul>
+<li>优点∶ 逻辑服用、不影响被包裹组件的内部逻辑。</li>
+<li>缺点∶ hoc传递给被包裹组件的props容易和被包裹后的组件重名，进而被覆盖</li>
+</ul>
+<ol start="2">
+<li>render prop<br>“render prop”是指一种在 React 组件之间使用一个值为函数的 prop 共享代码的简单技术</li>
+</ol>
+<ul>
+<li>优点：数据共享、代码复用，将组件内的state作为props传递给调用者，将渲染逻辑交给调用者。</li>
+<li>缺点：无法在 return 语句外访问数据、嵌套写法不够优雅</li>
+</ul>
+<ol start="3">
+<li>Hooks<br>Hook是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。通过自定义hook，可以复用代码逻辑。</li>
+</ol>
+<p>优点：</p>
+<ul>
+<li>使用直观；</li>
+<li>解决hoc的prop 重名问题；</li>
+<li>解决render props 因共享数据 而出现嵌套地狱的问题；</li>
+<li>能在return之外使用数据的问题。</li>
+</ul>
+<p>总结：Hoc、render props和hook都是为了解决代码复用的问题，但是hoc和render props都有特定的使用场景和明显的缺点。hook是react16.8更新的新的API，让组件逻辑复用更简洁明了，同时也解决了hoc和render props的一些缺点</p>
+<h2 id="对React-Fiber的理解，它解决了什么问题？"><a href="#对React-Fiber的理解，它解决了什么问题？" class="headerlink" title="对React-Fiber的理解，它解决了什么问题？"></a>对React-Fiber的理解，它解决了什么问题？</h2><p>React V15 在渲染时，会递归比对 VirtualDOM 树，找出需要变动的节点，然后同步更新它们， 一气呵成。这个过程期间， React 会占据浏览器资源，这会导致用户触发的事件得不到响应，并且会导致掉帧，导致用户感觉到卡顿。<br>为了给用户制造一种应用很快的“假象”，不能让一个任务长期霸占着资源。 可以将浏览器的渲染、布局、绘制、资源加载(例如 HTML 解析)、事件响应、脚本执行视作操作系统的“进程”，需要通过某些调度策略合理地分配 CPU 资源，从而提高浏览器的用户响应速率, 同时兼顾任务执行效率。<br>所以 React 通过Fiber 架构，让这个执行过程变成可被中断。“适时”地让出 CPU 执行权，除了可以让浏览器及时地响应用户的交互，还有其他好处:</p>
+<ul>
+<li>分批延时对DOM进行操作，避免一次性操作大量 DOM 节点，可以得到更好的用户体验；</li>
+<li>给浏览器一点喘息的机会，它会对代码进行编译优化（JIT）及进行热代码优化，或者对 reflow 进行修正。</li>
+</ul>
+<p>核心思想: Fiber 也称协程或者纤程。它和线程并不一样，协程本身是没有并发或者并行能力的（需要配合线程），它只是一种控制流程的让出机制。让出 CPU 的执行权，让 CPU 能在这段时间执行其他的操作。渲染的过程可以被中断，可以将控制权交回浏览器，让位给高优先级的任务，浏览器空闲后再恢复渲染。</p>
+<h2 id="React-Component-和-React-PureComponent-的区别"><a href="#React-Component-和-React-PureComponent-的区别" class="headerlink" title="React.Component 和 React.PureComponent 的区别"></a>React.Component 和 React.PureComponent 的区别</h2><p>PureComponent表示一个纯组件，可以用来优化React程序，减少render函数执行的次数，从而提高组件的性能。<br>在React中，当prop或者state发生变化时，可以通过在shouldComponentUpdate生命周期函数中执行return false来阻止页面的更新，从而减少不必要的render执行。React.PureComponent会自动执行 shouldComponentUpdate。<br>不过，pureComponent中的 shouldComponentUpdate() 进行的是浅比较，也就是说如果是引用数据类型的数据，只会比较不是同一个地址，而不会比较这个地址里面的数据是否一致。浅比较会忽略属性和或状态突变情况，其实也就是数据引用指针没有变化，而数据发生改变的时候render是不会执行的。如果需要重新渲染那么就需要重新开辟空间引用数据。PureComponent一般会用在一些纯展示组件上。<br>使用pureComponent的好处：当组件更新时，如果组件的props或者state都没有改变，render函数就不会触发。省去虚拟DOM的生成和对比过程，达到提升性能的目的。这是因为react自动做了一层浅比较。</p>
+<h2 id="Component-Element-Instance-之间有什么区别和联系？"><a href="#Component-Element-Instance-之间有什么区别和联系？" class="headerlink" title="Component, Element, Instance 之间有什么区别和联系？"></a>Component, Element, Instance 之间有什么区别和联系？</h2><ul>
+<li>元素： 一个元素element是一个普通对象(plain object)，描述了对于一个DOM节点或者其他组件component，你想让它在屏幕上呈现成什么样子。元素element可以在它的属性props中包含其他元素(译注:用于形成元素树)。创建一个React元素element成本很低。元素element创建之后是不可变的。</li>
+<li>组件： 一个组件component可以通过多种方式声明。可以是带有一个render()方法的类，简单点也可以定义为一个函数。这两种情况下，它都把属性props作为输入，把返回的一棵元素树作为输出。</li>
+<li>实例： 一个实例instance是你在所写的组件类component class中使用关键字this所指向的东西(译注:组件实例)。它用来存储本地状态和响应生命周期事件很有用。</li>
+</ul>
+<p>函数式组件(Functional component)根本没有实例instance。类组件(Class component)有实例instance，但是永远也不需要直接创建一个组件的实例，因为React帮我们做了这些。</p>
+]]></content>
+      <categories>
+        <category>面试</category>
+        <category>js</category>
+      </categories>
+  </entry>
+  <entry>
     <title>javascript面试-基础</title>
     <url>/2021/08/21/js%E9%9D%A2%E8%AF%95-%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h1 id="new操作符的实现原理"><a href="#new操作符的实现原理" class="headerlink" title="new操作符的实现原理"></a>new操作符的实现原理</h1><p>new操作符的执行过程：<br>（1）首先创建了一个新的空对象<br>（2）设置原型，将对象的原型设置为函数的 prototype 对象。<br>（3）让函数的 this 指向这个对象，执行构造函数的代码（为这个新对象添加属性）<br>（4）判断函数的返回值类型，如果是值类型，返回创建的对象。如果是引用类型，就返回这个引用类型的对象。<br>具体实现：</p>
@@ -3061,10 +3617,47 @@ finally方法的回调函数不接受任何参数，这意味着没有办法知�
 <li>forEach()方法会针对每一个元素执行提供的函数，对数据的操作会改变原数组，该方法没有返回值；</li>
 <li>map()方法不会改变原数组的值，返回一个新数组，新数组中的值为原数组调用函数处理之后的值；</li>
 </ul>
-<h1 id="什么是事件循环？"><a href="#什么是事件循环？" class="headerlink" title="什么是事件循环？"></a>什么是事件循环？</h1><p>首先，所有的语言都拥有并发模型的概念，也就是说多个任务如何同时执行，大部分语言支持多线程执行，JS拥有所有语言中最简单的并发模型——JS使用单线程的”事件循环(Event Loop)”来处理多个任务的执行。</p>
+<h1 id="什么是事件循环、宏任务、微任务"><a href="#什么是事件循环、宏任务、微任务" class="headerlink" title="什么是事件循环、宏任务、微任务"></a>什么是事件循环、宏任务、微任务</h1><h2 id="事件循环（event-loop）"><a href="#事件循环（event-loop）" class="headerlink" title="事件循环（event loop）"></a>事件循环（event loop）</h2><p>首先，所有的语言都拥有并发模型的概念，也就是说多个任务如何同时执行，大部分语言支持多线程执行，JS拥有所有语言中最简单的并发模型——JS使用单线程的”事件循环(Event Loop)”来处理多个任务的执行。</p>
 <p>js的事件循环，每次读取一个任务，然后执行这个任务，执行完再继续获取下一个，如果暂时没有任务，就暂停执行，等待下一个任务到来；如果在执行任务的过程中有新的任务到达，也不会中断现有任务的执行，而是添加到队列的尾部等待</p>
-<p>JS使用基于事件循环的单线程执行方式，而且是非抢断执行的（也就是说，无论发生什么，都会把当前任务执行完，不会出现执行到一半就去执行别的任务的情况）。<br><img src="/.io//%E5%AF%B9%E6%AF%94.png" alt="优缺点"></p>
-<p><img src="/.io//event-loop1.png" alt="event-loop"></p>
+<p>JS使用基于事件循环的单线程执行方式，而且是非抢断执行的（也就是说，无论发生什么，都会把当前任务执行完，不会出现执行到一半就去执行别的任务的情况）。<br><img src="/.io//duibi.png" alt="优缺点"></p>
+<p><img src="/.io//eventloop1.png" alt="event-loop"></p>
+<h2 id="任务队列的概念"><a href="#任务队列的概念" class="headerlink" title="任务队列的概念"></a>任务队列的概念</h2><p>任务队列，其实就是保存待处理任务的一个数组<br><img src="/.io//%E9%98%9F%E5%88%97.png" alt="队列"></p>
+<p>每当我们要执行一个新的任务（例如：定时器），我们就会在队列尾部添加一个task，等到当前任务完成，事件循环会去队列头部寻找下一个可执行任务，我们用一个例子来更好的理解这一点</p>
+<h2 id="任务队列与定时器"><a href="#任务队列与定时器" class="headerlink" title="任务队列与定时器"></a>任务队列与定时器</h2><ul>
+<li>正在执行的任务（比如上面的console.log aaa和bbb）永远不会被打断，所有异步代码会被添加到队列等待执行</li>
+<li>定时器不论时间多短（哪怕是0）也不会立刻执行，而是被放到任务队列尾部</li>
+</ul>
+<h2 id="定时器为什么总是不准？"><a href="#定时器为什么总是不准？" class="headerlink" title="定时器为什么总是不准？"></a>定时器为什么总是不准？</h2><ul>
+<li>定时器的时间，并不是函数执行的时间，而是”最短x毫秒后，将任务添加到队列中”</li>
+<li>也就是说，除非队列完全是空的，否则定时器的时间到了，它仅仅是开始排队罢了</li>
+<li>那么，队列有可能永远是空的吗？显然不可能，就算没有你的任务，浏览器也有很多它的工作——渲染、重排、清理内存什么的</li>
+</ul>
+<h2 id="宏任务-微任务"><a href="#宏任务-微任务" class="headerlink" title="宏任务/微任务"></a>宏任务/微任务</h2><p>其实js里任务队列不只有一条，而是有两条.</p>
+<ul>
+<li>宏任务（macroTask或简称Task）：普通的任务，正常执行</li>
+<li>微任务（microTask）：SVIP年费白金会员任务，优先于宏任务执行（但依然是非抢断的）</li>
+</ul>
+<p><img src="/.io//weirenwu.png" alt="微任务"></p>
+<ol>
+<li>获取下一个任务，如果没有就进入等待</li>
+<li>当执行完一个任务之后，会执行所有排队的微任务</li>
+<li>然后再次获取下一个任务</li>
+</ol>
+<h2 id="哪些操作属于宏任务？哪些属于微任务？"><a href="#哪些操作属于宏任务？哪些属于微任务？" class="headerlink" title="哪些操作属于宏任务？哪些属于微任务？"></a>哪些操作属于宏任务？哪些属于微任务？</h2><ul>
+<li>宏任务：正常的异步任务都是宏任务，最常见的就是定时器（setInterval, setImmediate, setTimeout）、IO任务</li>
+<li>微任务：微任务出现比较晚，queueMicrotask、Promise和async属于微任务（当然，async就是promise）</li>
+</ul>
+<h2 id="为什么要有微任务？"><a href="#为什么要有微任务？" class="headerlink" title="为什么要有微任务？"></a>为什么要有微任务？</h2><p>按照官方的设想，任务之间是不平等的，有些任务对用户体验影响大，就应该优先执行，而有些任务属于背景任务（比如定时器），晚点执行没有什么问题，所以设计了这种优先级队列的方式</p>
+<h2 id="注意：async的坑"><a href="#注意：async的坑" class="headerlink" title="注意：async的坑"></a>注意：async的坑</h2><p>上面我们说到Promise也是微任务，而且async就是promise的一种语法包装（所谓语法糖），那async是不是一定是按照微任务的方式执行呢？”不全是”</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(&#x27;aaa&#x27;);</span><br><span class="line"></span><br><span class="line">(async ()=&gt;&#123;</span><br><span class="line">  console.log(111);  //在async里面</span><br><span class="line">&#125;)().then(()=&gt;&#123;</span><br><span class="line">  console.log(222);  //在async的then里面</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(&#x27;bbb&#x27;);</span><br><span class="line">aaa 111 bbb 222</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>事件循环：JS采用单线程的事件循环方式管理异步任务，优点是简化编程模型，缺点是无法发挥CPU的全部性能（但对前端其实没影响）</li>
+<li>任务队列：JS采用非抢断式运行，当前任务不会被打断，有新的异步任务时，会放入任务队列</li>
+<li>宏任务、微任务：宏任务就是普通异步任务，是最早出现的，微任务更关乎用户体验，所以得到优先执行</li>
+<li>常见宏任务：定时器、IO任务</li>
+<li>常见微任务：queueMicrotask、await、then</li>
+</ul>
 ]]></content>
       <categories>
         <category>面试</category>
